@@ -131,3 +131,21 @@ stoi[''] =
 
 itos = {i: ch for ch, i in stoi.items()} # Reverse map
 
+def createTokens(self,full_text):
+  chars = sorted(list(set(full_text)))
+  stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
+  stoi['<PAD>'] = 0
+  stoi['<SOS>'] = 1
+  stoi['<EOS>'] = 2
+  t=3+ len(chars)
+  def get_nested_value(self, full_text):
+    if isinstance(full_text, dict):
+    for key, value in (full_text):
+      str="'<"+key+">'"
+      stoi[str] = t+=1
+      if isinstance(value, dict):
+        self.get_nested_value(value)
+      elif isinstance(value, (dict, list)):
+        stoi[value] = t+=1
+      return stoi
+      
