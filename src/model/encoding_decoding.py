@@ -11,6 +11,11 @@ class EncodeDecode:
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
     encode=
     decode=
+  def encoder(self,str_in):
+    return encode(str_in)
+  def decoder(self, int_in):
+    return decode(int_in)
+    
 # t=3+ len(chars)
 # t= len(stoi)-1
 
