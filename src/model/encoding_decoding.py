@@ -1,4 +1,4 @@
-1class EncodeDecode:
+class EncodeDecode:
   def __init__(self, full_text):
     # Create new stoi with special tokens
     chars = sorted(list(set(full_text)))
