@@ -153,7 +153,7 @@ def createTokens(self, full_text):
   t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
-        if !=0:
+        if not self.stoi.get(key):
           str="'<"+key+">'"
           stoi[str] = t+=1
         if isinstance(value, dict):
