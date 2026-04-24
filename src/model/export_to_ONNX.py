@@ -5,7 +5,8 @@ To export a Transformer model to ONNX, we have to handle the fact that Transform
 Run this script to convert your PyTorch .pth file into a universal .onnx file.
 """
 import torch
-
+#save_path="app/src/main/res/raw/dict_model.onnx"
+#save_path="app/src/main/res/raw"
 def export_to_onnx(model, stoi, save_path="dict_model.onnx", max_len=512):
     model.eval()
     
@@ -30,9 +31,13 @@ def export_to_onnx(model, stoi, save_path="dict_model.onnx", max_len=512):
     )
     print(f"Model successfully exported to {save_path}")
 
-# Usage
-# export_to_onnx(model, stoi)
-
+if __name__=="__main__":
+    # Usage
+    save_path="app/src/main/res/raw/dict_model.onnx"
+    # stoi = 
+    # model =
+    # export_to_onnx(model, stoi)
+    export_to_onnx(model, stoi, save_path)
 """
 
 2. Why use ONNX for your Dictionary Model?
