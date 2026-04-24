@@ -149,7 +149,7 @@ stoi[''] =
 """
 
 # itos = {i: ch for ch, i in stoi.items()} # Reverse map
-def createTokens(self, full_text):
+def createTokens(self, full_text=full_text):
   t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
