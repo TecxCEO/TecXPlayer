@@ -6,7 +6,7 @@ stoi['<EOS>'] = 2
 t= len(stoi)-1
 #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
 stoi = {ch: (t+=1) for i, ch in enumerate(chars)} # Shift everything by 3
-
+itos = {i: ch for ch, i in stoi.items()} # Reverse map
 
 # t=3+ len(chars)
 # t= len(stoi)-1
@@ -136,7 +136,7 @@ stoi[''] =
 stoi[''] = 
 """
 
-itos = {i: ch for ch, i in stoi.items()} # Reverse map
+# itos = {i: ch for ch, i in stoi.items()} # Reverse map
 def get_nested_value(self, full_text):
   t=len(stoi)-1
     if isinstance(full_text, dict):
