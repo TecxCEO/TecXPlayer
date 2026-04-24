@@ -1,5 +1,5 @@
 """
-To quantize your Transformer model, use Post-Training Dynamic Quantization. This is the recommended method for Transformer-based models because it handles varying activation ranges effectively without needing a separate calibration dataset. 
+To quantize Transformer model, use Post-Training Dynamic Quantization. This is the recommended method for Transformer-based models because it handles varying activation ranges effectively without needing a separate calibration dataset. 
 
 ONNX Runtime
 
