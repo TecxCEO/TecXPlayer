@@ -1,4 +1,4 @@
-class EncodeDecode:
+1class EncodeDecode:
   def __init__(self, full_text):
     # Create new stoi with special tokens
     chars = sorted(list(set(full_text)))
@@ -159,7 +159,7 @@ def createTokens(self, full_text):
         if isinstance(value, dict):
           self.createTokens(value)
         elif not isinstance(value, (dict, list)):
-          if !=0:
+          if  not self.stoi.get(value):
             stoi[value] = t+=1
       return stoi
 #def createTokens(self,full_text):
