@@ -4,7 +4,7 @@ To prevent losing your progress or saving a "worse" version of the model due to 
 Add this logic inside your training loop, specifically right after the Validation Phase:
 
 """
-
+from encoding_decoding import EncodeDecode as ed
 best_val_loss = float('inf') # Start with infinity
 
 # Inside your epoch loop, after calculating avg_val_loss:
@@ -17,7 +17,8 @@ if avg_val_loss < best_val_loss:
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
         'best_val_loss': best_val_loss,
-        'stoi': stoi # Saving the vocabulary is critical!
+        'stoi': ed.createTokens() # Saving the vocabulary is critical!
+        #'stoi': stoi # Saving the vocabulary is critical!
     }
     
     torch.save(checkpoint, 'best_dictionary_model.pth')
