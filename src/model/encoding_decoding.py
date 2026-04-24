@@ -153,12 +153,14 @@ def createTokens(self, full_text):
   t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
-        str="'<"+key+">'"
-        stoi[str] = t+=1
+        if !=0:
+          str="'<"+key+">'"
+          stoi[str] = t+=1
         if isinstance(value, dict):
           self.createTokens(value)
         elif not isinstance(value, (dict, list)):
-          stoi[value] = t+=1
+          if !=0:
+            stoi[value] = t+=1
       return stoi
 #def createTokens(self,full_text):
   #chars = sorted(list(set(full_text)))
