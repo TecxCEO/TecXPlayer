@@ -9,8 +9,12 @@ class EncodeDecode:
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
     stoi = {ch: (t+=1) for i, ch in enumerate(chars)} # Shift everything by 3
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
-    encode=
-    decode=
+    # encode=
+    # decode=
+    encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
+    decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
+    # Train and test splits
+    ##data = torch.tensor(encode(text), dtype=torch.long)
   def encoder(self,str_in):
     return encode(str_in)
   def decoder(self, int_in):
