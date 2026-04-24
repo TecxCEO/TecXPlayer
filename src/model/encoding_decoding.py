@@ -1,13 +1,16 @@
-# Create new stoi with special tokens
-chars = sorted(list(set(full_text)))
-stoi['<PAD>'] = 0
-stoi['<SOS>'] = 1
-stoi['<EOS>'] = 2
-t= len(stoi)-1
-#stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
-stoi = {ch: (t+=1) for i, ch in enumerate(chars)} # Shift everything by 3
-itos = {i: ch for ch, i in stoi.items()} # Reverse map
-
+class EncodeDecode:
+  def __init__(self, full_text):
+    # Create new stoi with special tokens
+    chars = sorted(list(set(full_text)))
+    stoi['<PAD>'] = 0
+    stoi['<SOS>'] = 1
+    stoi['<EOS>'] = 2
+    t= len(stoi)-1
+    #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
+    stoi = {ch: (t+=1) for i, ch in enumerate(chars)} # Shift everything by 3
+    itos = {i: ch for ch, i in stoi.items()} # Reverse map
+    encode=
+    decode=
 # t=3+ len(chars)
 # t= len(stoi)-1
 
