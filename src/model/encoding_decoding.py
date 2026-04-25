@@ -153,13 +153,16 @@ def createTokens(self, full_text=full_text):
   t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
-        if not self.stoi.get(key) and isinstance(value, dict):
+        #if not self.stoi.get(key) and isinstance(value, dict):
+        if not self.stoi.get(key) and key != "state" and isinstance(value, dict):
           str="'<"+key+">'"
           stoi[str] = t+=1
           self.createTokens(value)
         #if isinstance(value, dict):
           #self.createTokens(value)
         elif not isinstance(value, (dict, list)):
+          if not self.stoi.get(key) and key != "state":
+            stoi[key] = t+=1
           if  not self.stoi.get(value):
             stoi[value] = t+=1
       return stoi
