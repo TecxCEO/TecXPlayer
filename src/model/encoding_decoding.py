@@ -1,5 +1,15 @@
 class EncodeDecode:
   def __init__(self, full_text):
+    # here are all the unique characters that occur in this text
+    # Define the components
+    lowercase = string.ascii_lowercase          # a-z (26)
+    uppercase = string.ascii_uppercase          # A-Z (26)
+    digits = string.digits                      # 0-9 (10)
+    special = """ !.,{"'}()[]:;?-\n"""
+    # Combine them into one string
+    chars = lowercase + uppercase + digits + special
+    ##chars = lowercase + uppercase + digits + special + ''.join(chars)
+    chars = sorted(list(set(chars)))
     # Create new stoi with special tokens
     chars = sorted(list(set(full_text)))
     # stoi = {}
