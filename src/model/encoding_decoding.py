@@ -2,6 +2,7 @@ class EncodeDecode:
   def __init__(self, full_text):
     # Create new stoi with special tokens
     chars = sorted(list(set(full_text)))
+    # stoi = {}
     stoi['<PAD>'] = 0
     stoi['<SOS>'] = 1
     stoi['<EOS>'] = 2
@@ -165,13 +166,18 @@ def createTokens(self, full_text=full_text):
             stoi[key] = t+=1
           if  not self.stoi.get(value):
             stoi[value] = t+=1
-      return stoi
-#def createTokens(self,full_text):
+      itos = {i: ch for ch, i in stoi.items()} # Reverse map
+      # return stoi
+      return stoi, itos
+def createCharactarizedTokens(self, full_text=full_text):
+  # In this method each and every word will be a list of character, like rgw = [21, 11, 27].
   #chars = sorted(list(set(full_text)))
   #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
   #stoi['<PAD>'] = 0
   #stoi['<SOS>'] = 1
   #stoi['<EOS>'] = 2
   #t=3+ len(chars)
-  # self.get_nested_value(self, full_text)
-      
+  stoi = 
+  stoi = 
+  itos = {i: ch for ch, i in stoi.items()} # Reverse map
+  return stoi, itos
