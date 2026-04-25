@@ -4,7 +4,7 @@ class ImportDataset():
     def __init__(self, file_path):
         self.file_path = file_path
         edc = ed.EncodeDecode(self.file_path) #
-    def __iter__(self):
+    def importData(self):
         with open(self.file_path, 'r') as f:
             cube_data = json.load(f)
             #cube_data = json.read(f)
