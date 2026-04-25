@@ -31,12 +31,15 @@ class ImportDataset():
                     continue
                 print(f"result={result}")
                 #cst, mv, amvst = self.get_nested_value(cube)
-                cst = torch.tensor(encode(cst), dtype=torch.long)
-                mv = torch.tensor(encode(mv), dtype=torch.long)
-                amvst = torch.tensor(encode(afmvst), dtype=torch.long)
+                # cst = torch.tensor(encode(cst), dtype=torch.long)
+                cst = torch.tensor(edc.encode(cst), dtype=torch.long)
+                # mv = torch.tensor(encode(mv), dtype=torch.long)
+                mv = torch.tensor(edc.encode(mv), dtype=torch.long)
+                # amvst = torch.tensor(encode(afmvst), dtype=torch.long)
+                amvst = torch.tensor(edc.encode(afmvst), dtype=torch.long)
                 yield torch.tensor(cst), torch.tensor(mv), torch.tensor(amvst)
     def get_nested_value(self,data):
-        """
+        """##result = self.get_nested_value(cube)
         Recursively searches for a target_key in a nested dictionary.
         """
         mv=[]
