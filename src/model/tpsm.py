@@ -30,7 +30,8 @@ class DictionaryTransformer(nn.Module):
         # Use the mean of the sequence for final classification
         x = x.mean(dim=1) 
         return self.fc_out(x)
-
-# Setup Example
-vocab_size = 80  # Size of your 'stoi' map
-model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
+if __name__ == "__main__":
+    # Setup Example
+    vocab_size = 80  # Size of your 'stoi' map
+    model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
+    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
