@@ -4,10 +4,19 @@ To prevent losing your progress or saving a "worse" version of the model due to 
 Add this logic inside your training loop, specifically right after the Validation Phase:
 
 """
+
+import tpsm as tm
 from encoding_decoding import EncodeDecode as ed
-
+##
+if __name__ == "__main__":
+    # Setup Example
+    vocab_size = 80  # Size of your 'stoi' map
+    model = tm.DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
+    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
+    input = imd.ImportDataset() #
+    model(input) #
 best_val_loss = float('inf') # Start with infinity
-
+##
 # Inside your epoch loop, after calculating avg_val_loss:
 if avg_val_loss < best_val_loss:
   best_val_loss = avg_val_loss
