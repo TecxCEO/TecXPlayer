@@ -1,6 +1,6 @@
 # TecX Puzzle Solving Model
 # import encoding_decoding as ed #
-import importdataset as imd #
+## import importdataset as imd #
 import torch
 import torch.nn as nn
 import math
@@ -33,6 +33,8 @@ class DictionaryTransformer(nn.Module):
         x = x.mean(dim=1) 
         return self.fc_out(x)
 if __name__ == "__main__":
+    import importdataset as imd #
+    
     # Setup Example
     vocab_size = 80  # Size of your 'stoi' map
     model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
