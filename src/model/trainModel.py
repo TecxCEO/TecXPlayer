@@ -9,6 +9,15 @@ import tpsm as tm
 from encoding_decoding import EncodeDecode as ed
 ##
 if __name__ == "__main__":
+    
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    # Setup Example
+    # vocab_size = 80  # Size of your 'stoi' map
+    vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
+    max_epoch = 11
+    model = tm.DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
+    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
+    ##
     checkpoint = {
         'epoch': epoch + 1,
         'model_state_dict': model.state_dict(),
@@ -17,13 +26,7 @@ if __name__ == "__main__":
         'stoi': ed.createTokens() # Saving the vocabulary is critical!
         #'stoi': stoi # Saving the vocabulary is critical!
     }
-    device = 'gpu' if isavailable() else 'cpu'
-    # Setup Example
-    # vocab_size = 80  # Size of your 'stoi' map
-    vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
-    max_epoch = 11
-    model = tm.DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
-    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
+    ##
     input = imd.ImportDataset() #
     model(input) #
     best_val_loss = float('inf') # Start with infinity
