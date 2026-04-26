@@ -17,6 +17,7 @@ if __name__ == "__main__":
         'stoi': ed.createTokens() # Saving the vocabulary is critical!
         #'stoi': stoi # Saving the vocabulary is critical!
     }
+    device = 'gpu' if isavailable() else 'cpu'
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
@@ -27,7 +28,8 @@ if __name__ == "__main__":
     model(input) #
     best_val_loss = float('inf') # Start with infinity
     ##
-    
+    model.to(device)
+    model.eval()
     for epoch in range(max_epoch):
         # Inside your epoch loop, after calculating avg_val_loss:
         if avg_val_loss < best_val_loss:
