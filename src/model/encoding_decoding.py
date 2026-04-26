@@ -20,7 +20,7 @@ class EncodeDecode:
     stoi['<EOS>'] = 2
     t= len(stoi)-1
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
-    stoi = {ch: (t+=1) for i, ch in enumerate(chars)} # Shift everything by 3
+    stoi = {ch: i+t for i, ch in enumerate(chars)} # Shift everything by 3
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
     # encode=
     # decode=
