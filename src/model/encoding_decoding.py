@@ -169,7 +169,7 @@ def createTokens(self, full_text=full_text):
       #if not self.stoi.get(key) and isinstance(value, dict):
       if not self.stoi.get(key) and key != "state" and isinstance(value, dict):
         str="'<"+key+">'"
-        stoi[str] = t+=1
+        stoi[str] = (t+=1)
         self.createTokens(value)
         #if isinstance(value, dict):
           #self.createTokens(value)
