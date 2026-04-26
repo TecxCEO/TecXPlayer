@@ -179,7 +179,8 @@ def createTokens(self, full_text=full_text):
           t+=1
           stoi[key] = t
         if  not self.stoi.get(value):
-          stoi[value] = t+=1
+          t+=1
+          stoi[value] = t
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
     # return stoi
     return stoi, itos
