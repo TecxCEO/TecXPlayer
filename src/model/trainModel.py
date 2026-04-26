@@ -7,9 +7,10 @@ Add this logic inside your training loop, specifically right after the Validatio
 
 import tpsm as tm
 from encoding_decoding import EncodeDecode as ed
+import import_dataset as imd
 ##
 if __name__ == "__main__":
-    
+    filepath = f"./data/dataset/cube3x3.json"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
@@ -27,7 +28,7 @@ if __name__ == "__main__":
         #'stoi': stoi # Saving the vocabulary is critical!
     }
     ##
-    input = imd.ImportDataset() #
+    input = imd.ImportDataset(filepath) #
     model(input) #
     best_val_loss = float('inf') # Start with infinity
     ##
