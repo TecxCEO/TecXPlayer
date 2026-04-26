@@ -9,15 +9,6 @@ import tpsm as tm
 from encoding_decoding import EncodeDecode as ed
 ##
 if __name__ == "__main__":
-    # Setup Example
-    vocab_size = 80  # Size of your 'stoi' map
-    max_epoch = 11
-    model = tm.DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
-    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
-    input = imd.ImportDataset() #
-    model(input) #
-    best_val_loss = float('inf') # Start with infinity
-    ##
     checkpoint = {
         'epoch': epoch + 1,
         'model_state_dict': model.state_dict(),
@@ -26,6 +17,17 @@ if __name__ == "__main__":
         'stoi': ed.createTokens() # Saving the vocabulary is critical!
         #'stoi': stoi # Saving the vocabulary is critical!
     }
+    # Setup Example
+    # vocab_size = 80  # Size of your 'stoi' map
+    vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
+    max_epoch = 11
+    model = tm.DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=8, num_layers=4, num_classes=3)
+    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
+    input = imd.ImportDataset() #
+    model(input) #
+    best_val_loss = float('inf') # Start with infinity
+    ##
+    
     for epoch in range(max_epoch):
         # Inside your epoch loop, after calculating avg_val_loss:
         if avg_val_loss < best_val_loss:
