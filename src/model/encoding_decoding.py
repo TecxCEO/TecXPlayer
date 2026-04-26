@@ -1,6 +1,7 @@
 import string
 class EncodeDecode:
   def __init__(self, full_text):
+    self.full_text=full_text
     # here are all the unique characters that occur in this text
     # Define the components
     lowercase = string.ascii_lowercase          # a-z (26)
@@ -162,7 +163,7 @@ stoi[''] =
 """
 
 # itos = {i: ch for ch, i in stoi.items()} # Reverse map
-def createTokens(self, full_text=full_text):
+def createTokens(self, full_text=self.full_text):
   t=len(stoi)-1
   if isinstance(full_text, dict):
     for key, value in (full_text):
