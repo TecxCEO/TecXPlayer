@@ -164,23 +164,23 @@ stoi[''] =
 # itos = {i: ch for ch, i in stoi.items()} # Reverse map
 def createTokens(self, full_text=full_text):
   t=len(stoi)-1
-    if isinstance(full_text, dict):
-      for key, value in (full_text):
-        #if not self.stoi.get(key) and isinstance(value, dict):
-        if not self.stoi.get(key) and key != "state" and isinstance(value, dict):
-          str="'<"+key+">'"
-          stoi[str] = t+=1
-          self.createTokens(value)
+  if isinstance(full_text, dict):
+    for key, value in (full_text):
+      #if not self.stoi.get(key) and isinstance(value, dict):
+      if not self.stoi.get(key) and key != "state" and isinstance(value, dict):
+        str="'<"+key+">'"
+        stoi[str] = t+=1
+        self.createTokens(value)
         #if isinstance(value, dict):
           #self.createTokens(value)
-        elif not isinstance(value, (dict, list)):
-          if not self.stoi.get(key) and key != "state":
-            stoi[key] = t+=1
-          if  not self.stoi.get(value):
-            stoi[value] = t+=1
-      itos = {i: ch for ch, i in stoi.items()} # Reverse map
-      # return stoi
-      return stoi, itos
+      elif not isinstance(value, (dict, list)):
+        if not self.stoi.get(key) and key != "state":
+          stoi[key] = t+=1
+        if  not self.stoi.get(value):
+          stoi[value] = t+=1
+    itos = {i: ch for ch, i in stoi.items()} # Reverse map
+    # return stoi
+    return stoi, itos
 def createCharactarizedTokens(self, full_text=full_text):
   # In this method each and every word will be a list of character, like rgw = [21, 11, 27].
   #chars = sorted(list(set(full_text)))
