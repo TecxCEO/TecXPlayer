@@ -2,6 +2,7 @@ import encoding_decoding as ed #
 
 class ImportDataset():
     def __init__(self, file_path):
+        #super.__init__()
         self.file_path = file_path
         edc = ed.EncodeDecode(self.file_path) #
     # def __iter__(self):
