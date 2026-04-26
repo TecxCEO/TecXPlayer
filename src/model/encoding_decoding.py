@@ -184,7 +184,7 @@ def createTokens(self, full_text=full_text):
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
     # return stoi
     return stoi, itos
-def createCharactarizedTokens(self, full_text=full_text):
+###def createCharactarizedTokens(self, full_text=full_text):
   # In this method each and every word will be a list of character, like rgw = [21, 11, 27].
   #chars = sorted(list(set(full_text)))
   #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
@@ -192,7 +192,7 @@ def createCharactarizedTokens(self, full_text=full_text):
   #stoi['<SOS>'] = 1
   #stoi['<EOS>'] = 2
   #t=3+ len(chars)
-  stoi = 
-  stoi = 
-  itos = {i: ch for ch, i in stoi.items()} # Reverse map
-  return stoi, itos
+  ###stoi = 
+  ###stoi = 
+  ###itos = {i: ch for ch, i in stoi.items()} # Reverse map
+  ###return stoi, itos
