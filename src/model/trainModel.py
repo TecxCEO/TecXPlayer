@@ -35,7 +35,7 @@ if __name__ == "__main__":
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             # Save the model state
-            torch.save(checkpoint, 'best_dictionary_model.pth')
+            torch.save(checkpoint, 'models/best_dictionary_model.pth')
             print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         # Save progress
-        torch.save(model.state_dict(), f"checkpoint_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), f"models/checkpoint_epoch_{epoch}.pth")
