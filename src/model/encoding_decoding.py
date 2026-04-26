@@ -176,7 +176,8 @@ def createTokens(self, full_text=full_text):
           #self.createTokens(value)
       elif not isinstance(value, (dict, list)):
         if not self.stoi.get(key) and key != "state":
-          stoi[key] = t+=1
+          t+=1
+          stoi[key] = t
         if  not self.stoi.get(value):
           stoi[value] = t+=1
     itos = {i: ch for ch, i in stoi.items()} # Reverse map
