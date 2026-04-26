@@ -1,2 +1,26 @@
+"""
+To prevent losing your progress or saving a "worse" version of the model due to overfitting, you should use a Checkpoint System. This script saves the model weights to a file only when the Validation Loss hits a new record low.
+1. The Checkpoint Logic
+Add this logic inside your training loop, specifically right after the Validation Phase:
+
+"""
+from encoding_decoding import EncodeDecode as ed
+
+best_val_loss = float('inf') # Start with infinity
+
+# Inside your epoch loop, after calculating avg_val_loss:
+if avg_val_loss < best_val_loss:
+  best_val_loss = avg_val_loss
+  # Save the model state
+  checkpoint = {
+    'epoch': epoch + 1,
+    'model_state_dict': model.state_dict(),
+    'optimizer_state_dict': optimizer.state_dict(),
+    'best_val_loss': best_val_loss,
+    'stoi': ed.createTokens() # Saving the vocabulary is critical!
+    #'stoi': stoi # Saving the vocabulary is critical!
+  }
+  torch.save(checkpoint, 'best_dictionary_model.pth')
+  print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
 # Save progress
 torch.save(model.state_dict(), f"checkpoint_epoch_{epoch}.pth")
