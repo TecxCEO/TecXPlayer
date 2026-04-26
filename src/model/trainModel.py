@@ -10,7 +10,8 @@ from encoding_decoding import EncodeDecode as ed
 import import_dataset as imd
 ##
 if __name__ == "__main__":
-    filepath = f"./data/dataset/cube3x3.json"
+    filepath = f"./data/dataset/cube3x3solvingdataset.json"
+    #filepath = f"./data/dataset/cube3x3.json"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     input = imd.ImportDataset(filepath) #
