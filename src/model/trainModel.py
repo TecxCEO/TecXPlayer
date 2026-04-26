@@ -12,6 +12,8 @@ import import_dataset as imd
 if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3.json"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    
+    input = imd.ImportDataset(filepath) #
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
@@ -28,7 +30,7 @@ if __name__ == "__main__":
         #'stoi': stoi # Saving the vocabulary is critical!
     }
     ##
-    input = imd.ImportDataset(filepath) #
+    
     model(input) #
     best_val_loss = float('inf') # Start with infinity
     ##
