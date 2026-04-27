@@ -14,8 +14,9 @@ if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3solvingdataset.json"
     #filepath = f"./data/dataset/cube3x3.json"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    
     input = imd.ImportDataset(filepath) #
+    edc=ed.EncodeDecode(input)
+    edc.createTokens
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
