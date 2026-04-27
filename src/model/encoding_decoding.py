@@ -13,6 +13,7 @@ class EncodeDecode:
     ##chars = lowercase + uppercase + digits + special + ''.join(chars)
     chars = sorted(list(set(chars)))
     # Create new stoi with special tokens
+    print(full_text)
     chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
     stoi = {}
