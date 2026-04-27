@@ -20,6 +20,13 @@ class ImportDataset(Dataset):
         return len(self.data) 
 
     def __getitem__(self, idx):
+        # 1. Get the raw data for this specific index
+        # (Example: if your data is a list of strings or tokens)
+        item = self.data[idx] 
+        # 2. Define 'x' and 'y' (Example for text prediction)
+        x = item[:-1] # Input (all but last)
+        y = item[1:]  # Target (shifted by one)
+        # 3. NOW you can return them
         # ... your existing getitem code ...
         return x, y
     def importData(self):
