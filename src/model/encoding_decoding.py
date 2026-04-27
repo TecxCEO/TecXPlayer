@@ -38,8 +38,7 @@ class EncodeDecode:
     if isinstance(full_text, dict):
       for key, value in (full_text):
         #if not self.stoi.get(key) and isinstance(value, dict):
-        #
-        if not self.stoi.get(key) and key != "state" and isinstance(value, dict):  
+        # if not self.stoi.get(key) and key != "state" and isinstance(value, dict):  
         if not self.stoi.get(key) and isinstance(value, dict):
           str="'<"+key+">'"
           t+=1
