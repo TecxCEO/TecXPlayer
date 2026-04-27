@@ -36,7 +36,9 @@ class EncodeDecode:
   def return_stoi_size(self):
     return len(stoi)
   # def createTokens(self, full_text = self.full_text):
-  def createTokens(self, full_text):
+  #def createTokens(self, full_text):
+  def createTokens(self):
+    full_text = self.full_text
     t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
