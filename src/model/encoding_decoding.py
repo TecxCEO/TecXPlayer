@@ -29,14 +29,16 @@ class EncodeDecode:
     # decode=
     encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
     decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
+    self.stoi = stoi
     # Train and test splits
     ##data = torch.tensor(encode(text), dtype=torch.long)
+  
   def encoder(self,str_in):
     return encode(str_in)
   def decoder(self, int_in):
     return decode(int_in)
   def return_stoi_size(self):
-    return len(stoi)
+    return len(self.stoi)
   # def createTokens(self, full_text = self.full_text):
   #def createTokens(self, full_text):
   def createTokens(self):
