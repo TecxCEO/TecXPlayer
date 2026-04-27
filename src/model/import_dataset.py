@@ -11,10 +11,13 @@ class ImportDataset(Dataset):
         with open(self.file_path, 'r') as f:
             data = json.load(f)
         ##edc = ed.EncodeDecode(self.file_path) #
-    # def __iter__(self):
-        self.data = data # Or whatever your data variable is named
+        # def __iter__(self):
+        ####self.data = data # Or whatever your data variable is named
         # ... your other init code ...
-
+        # Convert the dictionary values to a list
+        # This ensures self.data[0] gives the first item, self.data[1] the second, etc.
+        self.data = list(data_dict.values()) ####
+        
     # ADD THIS METHOD
     def __len__(self):
         return len(self.data) 
