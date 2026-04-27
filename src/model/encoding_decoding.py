@@ -33,8 +33,8 @@ class EncodeDecode:
     return encode(str_in)
   def decoder(self, int_in):
     return decode(int_in)
-  def return_stoi(self):
-    return stoi
+  def return_stoi_size(self):
+    return len(stoi)
   # def createTokens(self, full_text = self.full_text):
   def createTokens(self, full_text):
     t=len(stoi)-1
