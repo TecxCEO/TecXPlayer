@@ -25,7 +25,7 @@ if __name__ == "__main__":
     max_epoch = 11
     model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
     # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
-    ##
+    """
     checkpoint = {
         'epoch': epoch + 1,
         'model_state_dict': model.state_dict(),
@@ -34,7 +34,7 @@ if __name__ == "__main__":
         'stoi': ed.createTokens() # Saving the vocabulary is critical!
         #'stoi': stoi # Saving the vocabulary is critical!
     }
-    ##
+    """
     
     model(input) #
     best_val_loss = float('inf') # Start with infinity
