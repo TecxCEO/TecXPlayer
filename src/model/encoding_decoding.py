@@ -1,7 +1,7 @@
 import string
 class EncodeDecode:
   def __init__(self, full_text):
-    self.full_text=full_text
+    self.full_text = full_text
     # here are all the unique characters that occur in this text
     # Define the components
     lowercase = string.ascii_lowercase          # a-z (26)
@@ -33,7 +33,32 @@ class EncodeDecode:
     return encode(str_in)
   def decoder(self, int_in):
     return decode(int_in)
-    
+  def createTokens(self, full_text = self.full_text):
+    t=len(stoi)-1
+    if isinstance(full_text, dict):
+      for key, value in (full_text):
+        #if not self.stoi.get(key) and isinstance(value, dict):
+        #
+        if not self.stoi.get(key) and key != "state" and isinstance(value, dict):  
+        if not self.stoi.get(key) and isinstance(value, dict):
+          str="'<"+key+">'"
+          t+=1
+          stoi[str] = t
+          self.createTokens(value)
+          #if isinstance(value, dict):
+            #self.createTokens(value)
+        elif not isinstance(value, (dict, list)):
+          if not self.stoi.get(key) and key != "state":
+            t+=1
+            stoi[key] = t
+          if  not self.stoi.get(value):
+            t+=1
+            stoi[value] = t
+        itos = {i: ch for ch, i in stoi.items()} # Reverse map
+      return stoi, itos
+      # return stoi
+
+
 # t=3+ len(chars)
 # t= len(stoi)-1
 
@@ -163,28 +188,6 @@ stoi[''] =
 """
 
 # itos = {i: ch for ch, i in stoi.items()} # Reverse map
-def createTokens(self, full_text=self.full_text):
-  t=len(stoi)-1
-  if isinstance(full_text, dict):
-    for key, value in (full_text):
-      #if not self.stoi.get(key) and isinstance(value, dict):
-      if not self.stoi.get(key) and key != "state" and isinstance(value, dict):
-        str="'<"+key+">'"
-        t+=1
-        stoi[str] = t
-        self.createTokens(value)
-        #if isinstance(value, dict):
-          #self.createTokens(value)
-      elif not isinstance(value, (dict, list)):
-        if not self.stoi.get(key) and key != "state":
-          t+=1
-          stoi[key] = t
-        if  not self.stoi.get(value):
-          t+=1
-          stoi[value] = t
-    itos = {i: ch for ch, i in stoi.items()} # Reverse map
-    # return stoi
-    return stoi, itos
 ###def createCharactarizedTokens(self, full_text=full_text):
   # In this method each and every word will be a list of character, like rgw = [21, 11, 27].
   #chars = sorted(list(set(full_text)))
