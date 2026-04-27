@@ -34,6 +34,24 @@ class ImportDataset(Dataset):
         # 3. NOW you can return them
         # ... your existing getitem code ...
         return x, y
+        """
+        item_dict = self.data[idx]
+    
+    # 1. Pull the actual sequence from the dictionary.
+    # Replace 'tokens' with the actual key name in your dictionary 
+    # (it might be 'text', 'input_ids', etc.)
+    sequence = item_dict['tokens'] 
+    
+    # 2. Convert to a tensor if it isn't one already
+    sequence = torch.tensor(sequence) 
+
+    # 3. Now you can slice it
+    x = sequence[:-1] # Input
+    y = sequence[1:]  # Target
+    
+    return x, y
+        
+        """
     def importData(self):
             #cube_data = json.read(f)
             cube=self.data["solution"].copy
