@@ -48,8 +48,9 @@ class EncodeDecode:
       for key, value in (full_text):
         #if not self.stoi.get(key) and isinstance(value, dict):
         # if not self.stoi.get(key) and key != "state" and isinstance(value, dict):  
-        if not self.stoi.get(key) and isinstance(value, dict):
-          str="'<"+key+">'"
+        str="'<"+key+">'"
+        #if not self.stoi.get(key) and isinstance(value, dict):
+        if not self.stoi.get(str) and isinstance(value, dict)
           t+=1
           stoi[str] = t
           self.createTokens(value)
