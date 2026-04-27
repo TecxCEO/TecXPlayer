@@ -16,7 +16,7 @@ class ImportDataset(Dataset):
         # ... your other init code ...
         # Convert the dictionary values to a list
         # This ensures self.data[0] gives the first item, self.data[1] the second, etc.
-        self.data = list(data_dict.values()) ####
+        self.data = list(data.values()) ####
         
     # ADD THIS METHOD
     def __len__(self):
