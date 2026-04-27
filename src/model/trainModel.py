@@ -42,6 +42,7 @@ if __name__ == "__main__":
     model.to(device)
     model.eval()
     for epoch in range(max_epoch):
+        print(epoch)
         checkpoint = {
             'epoch': epoch + 1,
             'model_state_dict': model.state_dict(),
