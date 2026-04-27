@@ -42,6 +42,15 @@ if __name__ == "__main__":
     model.to(device)
     model.eval()
     for epoch in range(max_epoch):
+        checkpoint = {
+            'epoch': epoch + 1,
+            'model_state_dict': model.state_dict(),
+            ##'optimizer_state_dict': optimizer.state_dict(),
+            'best_val_loss': best_val_loss,
+            'stoi': ed.createTokens() # Saving the vocabulary is critical!
+            #'stoi': stoi # Saving the vocabulary is critical!
+        }
+        
         # Inside your epoch loop, after calculating avg_val_loss:
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
