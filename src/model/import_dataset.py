@@ -1,5 +1,5 @@
 import encoding_decoding as ed #
-import Dataset
+from torch.utils.data import Dataset
 
 # class ImportDataset():
 class ImportDataset(Dataset):
