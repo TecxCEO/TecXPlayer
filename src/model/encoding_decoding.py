@@ -14,8 +14,8 @@ class EncodeDecode:
     chars = sorted(list(set(chars)))
     # Create new stoi with special tokens
     print(f"full_text={full_text}")
-    if full_text:
-      chars = sorted(list(set(full_text))) + chars
+    ##if full_text:
+      ##chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
     stoi = {}
     stoi['<PAD>'] = 0
