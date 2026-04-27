@@ -35,7 +35,19 @@ if __name__ == "__main__":
         #'stoi': stoi # Saving the vocabulary is critical!
     }
     """
+    from torch.utils.data import DataLoader
     
+    # Create a loader
+    train_loader = DataLoader(dataset=input, batch_size=32, shuffle=True)
+    
+    # Inside your training loop
+    for batch in train_loader:
+        # Assuming your dataset returns (features, labels)
+        x_batch, y_batch = batch 
+        # Pass the actual tensor to the model
+        
+        output = model(x_batch) 
+
     model(input) #
     best_val_loss = float('inf') # Start with infinity
     ##
