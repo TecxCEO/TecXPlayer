@@ -22,6 +22,8 @@ class ImportDataset(Dataset):
     def __getitem__(self, idx):
         # 1. Get the raw data for this specific index
         # (Example: if your data is a list of strings or tokens)
+        print(f"DEBUG: idx is {idx}, data type is {type(self.data)}")
+        # ... rest of code
         item = self.data[idx] 
         # 2. Define 'x' and 'y' (Example for text prediction)
         x = item[:-1] # Input (all but last)
