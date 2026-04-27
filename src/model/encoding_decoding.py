@@ -34,7 +34,7 @@ class EncodeDecode:
   def decoder(self, int_in):
     return decode(int_in)
   # def createTokens(self, full_text = self.full_text):
-  def createTokens(self, full_text = self.full_text):
+  def createTokens(self, full_text):
     t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
