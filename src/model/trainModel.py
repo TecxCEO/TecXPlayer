@@ -6,7 +6,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 """
 
 import tpsm as tm
-from encoding_decoding import EncodeDecode as ed
+# from encoding_decoding import EncodeDecode as ed
+import encoding_decoding as ed
 import import_dataset as imd
 import torch
 ##
