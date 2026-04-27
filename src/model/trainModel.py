@@ -8,6 +8,7 @@ Add this logic inside your training loop, specifically right after the Validatio
 import tpsm as tm
 from encoding_decoding import EncodeDecode as ed
 import import_dataset as imd
+import torch
 ##
 if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3solvingdataset.json"
