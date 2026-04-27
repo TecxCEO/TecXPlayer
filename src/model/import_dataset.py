@@ -1,16 +1,29 @@
 import encoding_decoding as ed #
+import Dataset
 
-class ImportDataset():
+# class ImportDataset():
+class ImportDataset(Dataset):
+    #def __init__(self, data, ...):
     def __init__(self, file_path):
         #super.__init__()
         self.file_path = file_path
+        with open(self.file_path, 'r') as f:
+            data = json.load(f)
         ##edc = ed.EncodeDecode(self.file_path) #
     # def __iter__(self):
+        self.data = data # Or whatever your data variable is named
+        # ... your other init code ...
+
+    # ADD THIS METHOD
+    def __len__(self):
+        return len(self.data) 
+
+    def __getitem__(self, idx):
+        # ... your existing getitem code ...
+        return x, y
     def importData(self):
-        with open(self.file_path, 'r') as f:
-            cube_data = json.load(f)
             #cube_data = json.read(f)
-            cube=cube_data["solution"].copy
+            cube=self.data["solution"].copy
             # set default values: 
             cst, mv, amvst = None, None, None
             ##result = self.get_nested_value(cube)
