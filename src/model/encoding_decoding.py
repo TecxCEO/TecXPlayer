@@ -15,7 +15,7 @@ class EncodeDecode:
     # Create new stoi with special tokens
     chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
-    # stoi = {}
+    stoi = {}
     stoi['<PAD>'] = 0
     stoi['<SOS>'] = 1
     stoi['<EOS>'] = 2
