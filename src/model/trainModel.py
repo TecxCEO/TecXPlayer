@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
-    vocab_size =  ed.return_stoi_size # Size of your 'stoi' map
+    vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
     max_epoch = 11
     model = tm.DictionaryTransformer(vocab_size=int(vocab_size), d_model=128, nhead=8, num_layers=4, num_classes=3)
     # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
