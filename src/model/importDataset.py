@@ -62,6 +62,7 @@ class ImportDataset():
     def createInputString(self, data):
         #dat = importData()
         #stbm = data[state]
+        mv = None
         for key, value in data.items():
             if key == 'state' :
                 stbm = data[key]
