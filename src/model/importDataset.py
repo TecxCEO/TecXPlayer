@@ -91,13 +91,14 @@ if __name__ == "__main__":
     # st_data = idc.importData.copy()
     # Then you must use it like this:
     st_data = copy.copy(idc.importData)
-    # print(f" st_data = {vars(st_data)}")
-    print(f" st_data = {next(vars(st_data))}")
+    print(f" st_data = {vars(st_data)}")
+    
     # OR print(st_data.__dict__)
 
     # This "exhausts" the generator and puts everything into a list
     st_data = list(idc.importData()) 
-    print(f"st_data = {st_data}")
+    # print(f"st_data = {st_data}")
+    print(f" st_data = {next(vars(st_data))}")
     """
     def get_data_stream(data_list):
     for item in data_list:
