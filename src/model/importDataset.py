@@ -10,6 +10,9 @@ class ImportDataset():
         with open(self.file_path, 'r') as f:
             self.data = json.load(f)
             # data = json.load(f)
+    def get_my_data(self):
+        # Inside the class, use self
+        return self.data["solution"]
     def importData(self):
             #cube_data = json.read(f)
             cube=self.data["solution"].copy
@@ -56,7 +59,7 @@ class ImportDataset():
                 if isinstance(value, dict) and len(value)==(16, 19) :
                     # If the value is another dictionary, dive deeper (recursion)
                     yield from get_nested_value(value)
-    def createInputString(data):
+    def createInputString(self, data):
         #dat = importData()
         #stbm = data[state]
         for key, value in data.items():
