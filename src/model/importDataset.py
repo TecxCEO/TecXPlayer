@@ -73,7 +73,9 @@ class ImportDataset():
         for value in stbm.values():
             stbml.append(value)
             # stbml+=value
-        staml.append(value) for value in stbm.values()
+        # staml.append(value) for value in stbm.values()
+        staml.extend(stbm.values())
+        
         #(staml+=value) for value in stbm.values()
         return (stbml, mv, staml)
 if __name__ == "__main__":
