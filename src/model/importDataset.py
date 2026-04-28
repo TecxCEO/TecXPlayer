@@ -91,7 +91,8 @@ if __name__ == "__main__":
     # st_data = idc.importData.copy()
     # Then you must use it like this:
     st_data = copy.copy(idc.importData)
-    print(f" st_data = {st_data}")
+    # print(f" st_data = {st_data}")
+    print(f" st_data = {st_data.importData}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
     print(f"st_mv_data = {st_mv_data}")
