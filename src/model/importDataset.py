@@ -91,7 +91,6 @@ if __name__ == "__main__":
     # st_data = idc.importData.copy()
     # Then you must use it like this:
     st_data = copy.copy(idc.importData)
-    # print(f" st_data = {next(vars(st_data))}")
     print(f" st_data = {vars(st_data)}")
     
     # OR print(st_data.__dict__)
@@ -103,22 +102,11 @@ if __name__ == "__main__":
     # RIGHT
     iterator = iter(st_data)
     print(f" st_data = {next(iterator, None)}")
-
-    """
-    def get_data_stream(data_list):
-    for item in data_list:
-        yield item
-
-    # Using it
-    stream = get_data_stream(st_mv_data)
-    print(next(stream)) # This will print the first 'rgw'
-    """
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
-    print(f"st_mv_data = {st_mv_data}")
+    ###print(f"st_mv_data = {st_mv_data}")
     for l, smd in enumerate(st_mv_data, start = 1):
-        print(f"st_mv_data {l} = {smd[:3]}\n\n")
+        print(f"st_mv_data {l} = {smd[0]}\n, {smd[1]}\n, {smd[2]}\n")
+        # print(f"st_mv_data {l} = {smd[:3]}\n\n")
         st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
         print(f"st_mv_data_list {l} = {st_mv_data_list}\n\n")
-##result = self.get_nested_value(cube)
-##result = self.get_nested_value(cube)
