@@ -69,7 +69,7 @@ class ImportDataset():
                 stbm = data[key]
             elif key != 'state' :
                 mv = key
-                stam = value[key]
+                stam = value['state']
                 # stam = data[mv][state]
                 #stam = data[key][state]
             yield (stbm, mv, stam)
