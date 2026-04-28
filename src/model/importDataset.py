@@ -55,4 +55,11 @@ class ImportDataset():
                 if isinstance(value, dict) and len(value)==(16, 19) :
                     # If the value is another dictionary, dive deeper (recursion)
                     yield from get_nested_value(value)
-                
+    def createInputString(data):
+        #dat = importData()
+        stbm = data[state]
+        for key, value in data.items():
+            mv = key
+            stam = data[key][state]
+            # stam = data[mv][state]
+            stam = value[state]
