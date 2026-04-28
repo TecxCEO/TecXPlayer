@@ -95,4 +95,4 @@ if __name__ == "__main__":
     l+=1
     for smd in st_mv_data:
         st_mv_data_list = idc.convertStateToList(smd)
-        print(f"st_mv_data_list {l++} = {st_mv_data_list}\n\n")
+        print(f"st_mv_data_list {l} = {st_mv_data_list}\n\n")
