@@ -65,7 +65,7 @@ class ImportDataset(Dataset):
                 # Handle the case where no data was found
                 #continue
             for result in self.get_nested_value(cube):
-                cst, mv, amvst = result
+                ####cst, mv, amvst = result
                 # ... rest of your processing and yield ...
                 # Replace your current result check with this:
                 ##result = next(self.get_nested_value(cube), None)
