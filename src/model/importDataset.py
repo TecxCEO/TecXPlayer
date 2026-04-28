@@ -8,7 +8,8 @@ class ImportDataset():
         #super.__init__()
         self.file_path = file_path
         with open(self.file_path, 'r') as f:
-            data = json.load(f)
+            self.data = json.load(f)
+            # data = json.load(f)
     def importData(self):
             #cube_data = json.read(f)
             cube=self.data["solution"].copy
@@ -84,7 +85,7 @@ if __name__ == "__main__":
     st_data = idc.importData
     print(f" st_data = {st_data}")
     st_mv_data = None
-    st_mv_data += idc.createInputString(idc.data["solution"])
+    st_mv_data += idc.createInputString(idc.(self.data["solution"]))
     print(f"st_mv_data = {st_mv_data}")
     st_mv_data_list = idc.convertStateToList(st_mv_data[0])
     print(f"st_mv_data_list = {st_mv_data_list}")
