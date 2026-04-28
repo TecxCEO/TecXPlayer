@@ -76,3 +76,12 @@ class ImportDataset():
         staml.append(value) for value in stbm.values()
         #(staml+=value) for value in stbm.values()
         return (stbml, mv, staml)
+if __name__ == "__main__":
+    idc = ImportDataset()
+    # print()
+    st_data = idc.importData
+    print(f" st_data = {st_data}")
+    st_mv_data + = idc.createInputString(idc.data["solution"])
+    print(f"st_mv_data = {st_mv_data}")
+    st_mv_data_list = idc.convertStateToList(st_mv_data[0])
+    print(f"st_mv_data_list = {st_mv_data_list}")
