@@ -64,10 +64,10 @@ class ImportDataset():
         #stbm = data[state]
         for key, value in data.items():
             if key == 'state' :
-                stbm = data[state]
+                stbm = data[key]
             elif key != 'state' :
                 mv = key
-                stam = value[state]
+                stam = value[key]
                 # stam = data[mv][state]
                 #stam = data[key][state]
             yield (stbm, mv, stam)
