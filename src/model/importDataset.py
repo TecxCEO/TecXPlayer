@@ -63,6 +63,7 @@ class ImportDataset():
         #dat = importData()
         #stbm = data[state]
         mv = None
+        stam = None
         for key, value in data.items():
             if key == 'state' :
                 stbm = data[key]
