@@ -77,7 +77,7 @@ class ImportDataset():
         #(staml+=value) for value in stbm.values()
         return (stbml, mv, staml)
 if __name__ == "__main__":
-    idc = ImportDataset()
+    idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
     # print()
     st_data = idc.importData
     print(f" st_data = {st_data}")
