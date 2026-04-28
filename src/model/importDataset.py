@@ -1,6 +1,7 @@
 import encoding_decoding as ed #
 #from torch.utils.data import Dataset
 import json
+import copy
 
 class ImportDataset():
     #def __init__(self, data, ...):
@@ -87,7 +88,9 @@ class ImportDataset():
 if __name__ == "__main__":
     idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
     # print()
-    st_data = idc.importData.copy()
+    # st_data = idc.importData.copy()
+    # Then you must use it like this:
+    st_data = copy.copy(idc.importData)
     print(f" st_data = {st_data}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
