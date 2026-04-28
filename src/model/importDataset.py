@@ -102,7 +102,7 @@ if __name__ == "__main__":
     ##print(f" st_data = {next(st_data)}")
     # RIGHT
     iterator = iter(st_data)
-    print(f" st_data = {next(iterator)}")
+    print(f" st_data = {next(iterator, None)}")
 
     """
     def get_data_stream(data_list):
