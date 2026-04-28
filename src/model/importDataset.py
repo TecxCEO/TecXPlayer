@@ -87,7 +87,7 @@ class ImportDataset():
 if __name__ == "__main__":
     idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
     # print()
-    st_data = idc.importData
+    st_data = copy(idc.importData)
     print(f" st_data = {st_data}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
