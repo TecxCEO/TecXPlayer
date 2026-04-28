@@ -72,7 +72,7 @@ class ImportDataset():
                 stam = value['state']
                 # stam = data[mv][state]
                 #stam = data[key][state]
-            yield (stbm, mv, stam)
+                yield (stbm, mv, stam)
     def convertStateToList(stbm, mv, stam):
         stbml = []
         staml = []
