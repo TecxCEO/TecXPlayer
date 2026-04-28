@@ -93,5 +93,6 @@ if __name__ == "__main__":
     st_mv_data += idc.createInputString(idc.data["solution"])
     print(f"st_mv_data = {st_mv_data}")
     for l, smd in enumerate(st_mv_data, start = 1):
-        st_mv_data_list = idc.convertStateToList(smd)
+        st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
         print(f"st_mv_data_list {l} = {st_mv_data_list}\n\n")
+\"\"\"##result = self.get_nested_value(cube)\"\"\"##result = self.get_nested_value(cube)
