@@ -57,9 +57,22 @@ class ImportDataset():
                     yield from get_nested_value(value)
     def createInputString(data):
         #dat = importData()
-        stbm = data[state]
+        #stbm = data[state]
         for key, value in data.items():
-            mv = key
-            stam = data[key][state]
-            # stam = data[mv][state]
-            stam = value[state]
+            if key == 'state' :
+                stbm = data[state]
+            elif key != 'state' :
+                mv = key
+                stam = value[state]
+                # stam = data[mv][state]
+                #stam = data[key][state]
+            yield (stbm, mv, stam)
+    def convertStateToList(stbm, mv, stam):
+        stbml = []
+        staml = []
+        for value in stbm.values():
+            stbml.append(value)
+            # stbml+=value
+        staml.append(value) for value in stbm.values()
+        (staml+=value) for value in stbm.values()
+        return (stbml, mv, staml)
