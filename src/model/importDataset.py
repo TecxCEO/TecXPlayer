@@ -85,7 +85,7 @@ if __name__ == "__main__":
     st_data = idc.importData
     print(f" st_data = {st_data}")
     st_mv_data = None
-    st_mv_data += idc.createInputString(idc.self.data["solution"])
+    st_mv_data += idc.createInputString(idc.data["solution"])
     print(f"st_mv_data = {st_mv_data}")
     st_mv_data_list = idc.convertStateToList(st_mv_data[0])
     print(f"st_mv_data_list = {st_mv_data_list}")
