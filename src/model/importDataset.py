@@ -92,7 +92,7 @@ if __name__ == "__main__":
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
     print(f"st_mv_data = {st_mv_data}")
-    l=0
+    l+=1
     for smd in st_mv_data:
         st_mv_data_list = idc.convertStateToList(smd)
         print(f"st_mv_data_list {l++} = {st_mv_data_list}\n\n")
