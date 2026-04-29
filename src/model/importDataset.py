@@ -105,8 +105,8 @@ if __name__ == "__main__":
     # print()
     # st_data = idc.importData.copy()
     # Then you must use it like this:
-    #######st_data = copy.copy(idc.importData)
-    ########print(f" st_data = {vars(st_data)}")
+    st_data = copy.copy(idc.importData)
+    print(f" st_data = {vars(st_data)}")
     
     # OR print(st_data.__dict__)
 
@@ -119,8 +119,8 @@ if __name__ == "__main__":
     ##########print(f" st_data = {next(iterator, None)}")
     idc.get_nested_value(idc.data["solution"])
     # This will trigger every print inside the function as it loops
-    for result in idc.get_nested_value(idc.data["solution"]):
-        print(f"Got result: {result}")
+    ########for result in idc.get_nested_value(idc.data["solution"]):
+        #####$$print(f"Got result: {result}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
     ###print(f"st_mv_data = {st_mv_data}")
