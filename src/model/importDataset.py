@@ -115,8 +115,8 @@ if __name__ == "__main__":
     ######print(f"st_data = {st_data}")
     ######print(f" st_data = {next(st_data)}")
     # RIGHT
-    iterator = iter(st_data)
-    print(f" st_data = {next(iterator, None)}")
+    ####iterator = iter(st_data)
+    ####print(f" st_data = {next(iterator, None)}")
     idc.get_nested_value(idc.data["solution"])
     # This will trigger every print inside the function as it loops
     ########for result in idc.get_nested_value(idc.data["solution"]):
