@@ -55,11 +55,12 @@ class ImportDataset():
                         #yield value
                         mv=key
                         amvst=value["state"]
-                if cst and mv and amvst and key!="state":
-                    yield cst, mv, amvst
-                if isinstance(value, dict) and len(value)==(16, 19) :
-                    # If the value is another dictionary, dive deeper (recursion)
-                    yield from get_nested_value(value)
+                        if cst and mv and amvst # and key!="state":
+                            print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
+                            yield cst, mv, amvst
+                        if isinstance(value, dict) # and len(value)==(16, 19) :
+                            # If the value is another dictionary, dive deeper (recursion)
+                            yield from get_nested_value(value)
     def createInputString(self, data):
         #dat = importData()
         #stbm = data[state]
@@ -102,6 +103,7 @@ if __name__ == "__main__":
     # RIGHT
     iterator = iter(st_data)
     print(f" st_data = {next(iterator, None)}")
+    idc.get_nested_value(idc.data["solution"])
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
     ###print(f"st_mv_data = {st_mv_data}")
