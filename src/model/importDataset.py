@@ -64,6 +64,10 @@ class ImportDataset():
                         mv=key
                         amvst=value["state"]
                         print(f"In the key != 'state' statement mv = {mv}, amst = {amvst}")
+                        # MOVE THIS OUTSIDE THE FOR LOOP
+                        # if cst is not None and mv is not None and amvst is not None:
+                        # print(f"Yielding collected data: {mv}")
+                        # yield cst, mv, amvst
                         if cst and mv and amvst: # and key!="state":
                             print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
                             yield cst, mv, amvst
@@ -114,6 +118,9 @@ if __name__ == "__main__":
     iterator = iter(st_data)
     print(f" st_data = {next(iterator, None)}")
     idc.get_nested_value(idc.data["solution"])
+    # This will trigger every print inside the function as it loops
+    for result in idc.get_nested_value(idc.data["solution"]):
+        print(f"Got result: {result}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
     ###print(f"st_mv_data = {st_mv_data}")
