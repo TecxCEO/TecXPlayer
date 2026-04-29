@@ -34,6 +34,7 @@ class ImportDataset():
                 # yield cst, mv, amvst
                 yield result
     def get_nested_value(self,data):
+        print(f"In the get_nested_value function.\n")
         """##result = self.get_nested_value(cube)
         Recursively searches for a target_key in a nested dictionary.
         """
@@ -43,6 +44,7 @@ class ImportDataset():
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
             for key, value in data.items():
+                print(f"In the get_nested_value function for loop\n")
                 if key == "state":
                     #yield value
                     cst=value
@@ -61,6 +63,7 @@ class ImportDataset():
                         if isinstance(value, dict): # and len(value)==(16, 19) :
                             # If the value is another dictionary, dive deeper (recursion)
                             yield from get_nested_value(value)
+            print(f"At the end of get_nested_value function.\n")
     def createInputString(self, data):
         #dat = importData()
         #stbm = data[state]
