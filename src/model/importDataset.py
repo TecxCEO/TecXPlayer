@@ -48,18 +48,22 @@ class ImportDataset():
             print(f"In the get_nested_value function, if statement.\n")
             for key, value in data.items():
                 print(f"In the get_nested_value function for loop\n")
+                print(f"Key = {key}\n, value = {value}")
                 if key == "state":
                     #yield value
                     cst=value
+                    print(f"In the key == 'state' statement cst = {cst}")
                 elif len(key) == 3:
                     if len(value)==20 :
                         #yield value
                         mv=key
                         amvst=value
+                        print(f"In the value len 20 statement mv = {mv}, amst = {amvst}")
                     elif len(value)== (16, 19):
                         #yield value
                         mv=key
                         amvst=value["state"]
+                        print(f"In the key != 'state' statement mv = {mv}, amst = {amvst}")
                         if cst and mv and amvst: # and key!="state":
                             print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
                             yield cst, mv, amvst
