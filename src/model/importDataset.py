@@ -55,10 +55,10 @@ class ImportDataset():
                         #yield value
                         mv=key
                         amvst=value["state"]
-                        if cst and mv and amvst # and key!="state":
+                        if cst and mv and amvst: # and key!="state":
                             print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
                             yield cst, mv, amvst
-                        if isinstance(value, dict) # and len(value)==(16, 19) :
+                        if isinstance(value, dict): # and len(value)==(16, 19) :
                             # If the value is another dictionary, dive deeper (recursion)
                             yield from get_nested_value(value)
     def createInputString(self, data):
