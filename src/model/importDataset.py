@@ -41,7 +41,7 @@ class ImportDataset():
         mv=[]
         cst = {}
         amst={}
-        data_given=data.copy
+        data_given=data().copy()
         print(f" data = {data_given}")
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
