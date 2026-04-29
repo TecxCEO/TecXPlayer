@@ -43,6 +43,7 @@ class ImportDataset():
         amst={}
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
+            print(f"In the get_nested_value function, if statement.\n")
             for key, value in data.items():
                 print(f"In the get_nested_value function for loop\n")
                 if key == "state":
