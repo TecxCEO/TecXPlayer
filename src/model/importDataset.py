@@ -41,7 +41,8 @@ class ImportDataset():
         mv=[]
         cst = {}
         amst={}
-        print(f" data = {data}")
+        data_given=data.copy
+        print(f" data = {data_given}")
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
             print(f"In the get_nested_value function, if statement.\n")
