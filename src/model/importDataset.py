@@ -97,7 +97,7 @@ class ImportDataset():
             stbml.append(value)
             # stbml+=value
         # staml.append(value) for value in stbm.values()
-        staml.extend(stbm.values())
+        staml.extend(stam.values())
         
         #(staml+=value) for value in stbm.values()
         return (stbml, mv, staml)
