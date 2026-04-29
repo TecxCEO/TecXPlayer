@@ -112,7 +112,7 @@ if __name__ == "__main__":
 
     # This "exhausts" the generator and puts everything into a list
     st_data = list(idc.importData()) 
-    print(f"st_data = {st_data}")
+    ##print(f"st_data = {st_data}")
     print(f" st_data = {next(st_data)}")
     # RIGHT
     iterator = iter(st_data)
