@@ -37,7 +37,7 @@ class EncodeDecode:
     ##s= str_in ###
     if self.stoi[str_in]:
       #return (
-      encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in]] else continue
+      encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in] else]
       return encode(str_in)
     else:
       createTokens(str_in)
