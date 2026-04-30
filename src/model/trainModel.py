@@ -16,8 +16,9 @@ if __name__ == "__main__":
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     input = imd.ImportDataset(filepath) #
+    
     edc=ed.EncodeDecode(input)
-    edc.createTokens
+    stoi, itos = edc.createTokens()
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
@@ -60,8 +61,9 @@ if __name__ == "__main__":
             'model_state_dict': model.state_dict(),
             ##'optimizer_state_dict': optimizer.state_dict(),
             'best_val_loss': best_val_loss,
-            'stoi': ed.createTokens() # Saving the vocabulary is critical!
-            #'stoi': stoi # Saving the vocabulary is critical!
+            #'stoi': ed.createTokens() # Saving the vocabulary is critical!
+            'stoi': stoi # Saving the vocabulary is critical!
+            'itos' : itos
         }
         
         # Inside your epoch loop, after calculating avg_val_loss:
