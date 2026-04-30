@@ -83,8 +83,8 @@ class EncodeDecode:
             t+=1
             self.stoi[value] = t
         self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
-        print(f"stoi = {self.stoi}")
-        print(f"itos = {self.itos}")
+        #print(f"stoi = {self.stoi}")
+        #print(f"itos = {self.itos}")
       return self.stoi, self.itos
       # return stoi
 
@@ -237,4 +237,5 @@ if __name__ == "__main__":
   with open(file, 'r') as f:
             data = json.load(f)
   edc = EncodeDecode(data['solution'])
-  edc.createTokens(data["solution"])
+  result=edc.createTokens(data["solution"])
+  print(f" Result= {result}"))
