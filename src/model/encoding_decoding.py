@@ -36,8 +36,10 @@ class EncodeDecode:
   def encoder(self, str_in):
     ##s= str_in ###
     if self.stoi[str_in]:
+      # Returns the value if found, otherwise returns None
+      encode = lambda str_in: self.stoi.get(str_in)
       #return (
-      encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in] else continue]
+      #encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in] else continue]
       return encode(str_in)
     else:
       createTokens(str_in)
