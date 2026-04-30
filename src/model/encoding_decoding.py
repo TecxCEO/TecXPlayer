@@ -239,5 +239,5 @@ if __name__ == "__main__":
   edc = EncodeDecode(data['solution'])
   result=edc.createTokens(data["solution"])
   print(f" Result= {result}\n")
-  print(f"stoi = {edc.stoi}\n\<n")
+  print(f"stoi = {edc.stoi}\n\n")
   print(f"itos = {edc.itos}")
