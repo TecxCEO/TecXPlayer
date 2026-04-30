@@ -18,7 +18,7 @@ class EncodeDecode:
       ##chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
     self.stoi = {}
-    sepf.stoi['<PAD>'] = 0
+    self.stoi['<PAD>'] = 0
     self.stoi['<SOS>'] = 1
     self.stoi['<EOS>'] = 2
     t= len(self.stoi)-1
