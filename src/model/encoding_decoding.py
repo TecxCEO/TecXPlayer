@@ -58,7 +58,7 @@ class EncodeDecode:
     return len(self.stoi)
   # def createTokens(self, full_text = self.full_text):
   #def createTokens(self, full_text):
-  def createTokens(self, full_text = full_text):
+  def createTokens(self, full_text):
     # full_text = self.full_text
     t=len(self.stoi)-1
     if isinstance(full_text, dict):
