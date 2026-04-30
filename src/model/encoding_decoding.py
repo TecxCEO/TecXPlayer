@@ -209,3 +209,5 @@ stoi[''] =
   ###stoi = 
   ###itos = {i: ch for ch, i in stoi.items()} # Reverse map
   ###return stoi, itos
+if __name__ == "__main__":
+    edc = EncodeDecode(file_data)
