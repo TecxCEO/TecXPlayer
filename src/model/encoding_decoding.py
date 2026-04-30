@@ -19,9 +19,9 @@ class EncodeDecode:
     #chars = sorted(list(set(full_text)))
     #self.stoi = {}
     
-    t= len(self.stoi)-1
+    #####t= len(self.stoi)-1
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
-    self.stoi = {ch: i+t for i, ch in enumerate(chars)} # Shift everything by 3
+    self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
     self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
     self.stoi['<PAD>'] = 0
     self.stoi['<SOS>'] = 1
