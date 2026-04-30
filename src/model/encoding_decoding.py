@@ -44,7 +44,8 @@ class EncodeDecode:
   # return encode = lambda s: [self.stoi[c] if self.stoi[c] else createTokens(c) for c in str_in]
   
     # return encode
-  def decoder(self, int_in):
+  #######
+  #def decoder(self, int_in):
     #if self.itos[int_in]:
       ##return self.decode(int_in)
     #else:
@@ -56,7 +57,7 @@ class EncodeDecode:
   #def createTokens(self, full_text):
   def createTokens(self, full_text = self.full_text):
     # full_text = self.full_text
-    t=len(stoi)-1
+    t=len(self.stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
         #if not self.stoi.get(key) and isinstance(value, dict):
@@ -65,19 +66,21 @@ class EncodeDecode:
         #if not self.stoi.get(key) and isinstance(value, dict):
         if not self.stoi.get(str) and isinstance(value, dict):
           t+=1
-          stoi[str] = t
+          self.stoi[str] = t
           self.createTokens(value)
           #if isinstance(value, dict):
             #self.createTokens(value)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
             t+=1
-            stoi[key] = t
+            self.stoi[key] = t
           if  not self.stoi.get(value):
             t+=1
-            stoi[value] = t
-        itos = {i: ch for ch, i in stoi.items()} # Reverse map
-      return stoi, itos
+            self.stoi[value] = t
+        self.itos = {i: ch for ch, i in stoi.items()} # Reverse map
+        print(f"stoi = {self.stoi}")
+        print(f"itos = {self.itos}")
+      return self.stoi, self.itos
       # return stoi
 
 
@@ -228,3 +231,4 @@ if __name__ == "__main__":
   with open(file, 'r') as f:
             data = json.load(f)
   edc = EncodeDecode(data)
+  edc.createTokens
