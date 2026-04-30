@@ -234,5 +234,5 @@ if __name__ == "__main__":
   file= "data/dataset/cube3x3solvingdataset.json"
   with open(file, 'r') as f:
             data = json.load(f)
-  edc = EncodeDecode(data[solution])
-  edc.createTokens(data[solution])
+  edc = EncodeDecode(data['solution'])
+  edc.createTokens(data["solution"])
