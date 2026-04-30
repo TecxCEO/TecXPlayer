@@ -17,14 +17,15 @@ class EncodeDecode:
     ##if full_text:
       ##chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
-    self.stoi = {}
-    self.stoi['<PAD>'] = 0
-    self.stoi['<SOS>'] = 1
-    self.stoi['<EOS>'] = 2
+    #self.stoi = {}
+    
     t= len(self.stoi)-1
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
     self.stoi = {ch: i+t for i, ch in enumerate(chars)} # Shift everything by 3
     self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
+    self.stoi['<PAD>'] = 0
+    self.stoi['<SOS>'] = 1
+    self.stoi['<EOS>'] = 2
     # encode=
     # decode=
     self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
