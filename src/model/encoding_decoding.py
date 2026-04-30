@@ -36,8 +36,9 @@ class EncodeDecode:
   def encoder(self, str_in):
     ##s= str_in ###
     if self.stoi[str_in]:
-      return (encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in]])
-      # return self.encode(str_in)
+      #return (
+      encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in]]
+      return encode(str_in)
     else:
       createTokens(str_in)
       return self.encode(str_in)
@@ -226,6 +227,7 @@ stoi[''] =
   ###itos = {i: ch for ch, i in stoi.items()} # Reverse map
   ###return stoi, itos
 if __name__ == "__main__":
+  
   import json
   file= "data/dataset/cube3x3solvingdataset.json"
   with open(file, 'r') as f:
