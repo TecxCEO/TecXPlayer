@@ -17,32 +17,45 @@ class EncodeDecode:
     ##if full_text:
       ##chars = sorted(list(set(full_text))) + chars
     #chars = sorted(list(set(full_text)))
-    stoi = {}
-    stoi['<PAD>'] = 0
-    stoi['<SOS>'] = 1
-    stoi['<EOS>'] = 2
-    t= len(stoi)-1
+    self.stoi = {}
+    sepf.stoi['<PAD>'] = 0
+    self.stoi['<SOS>'] = 1
+    self.stoi['<EOS>'] = 2
+    t= len(self.stoi)-1
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
-    stoi = {ch: i+t for i, ch in enumerate(chars)} # Shift everything by 3
-    itos = {i: ch for ch, i in stoi.items()} # Reverse map
+    self.stoi = {ch: i+t for i, ch in enumerate(chars)} # Shift everything by 3
+    self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
     # encode=
     # decode=
-    encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
-    decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
-    self.stoi = stoi
+    self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
+    self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
+    ####self.stoi = stoi
     # Train and test splits
     ##data = torch.tensor(encode(text), dtype=torch.long)
   
-  def encoder(self,str_in):
-    return encode(str_in)
+  def encoder(self, str_in):
+    ##s= str_in ###
+    if self.stoi[str_in]:
+      return (encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in]])
+      # return self.encode(str_in)
+    else:
+      createTokens(str_in)
+      return self.encode(str_in)
+  # return encode = lambda s: [self.stoi[c] if self.stoi[c] else createTokens(c) for c in str_in]
+  
+    # return encode
   def decoder(self, int_in):
-    return decode(int_in)
+    #if self.itos[int_in]:
+      ##return self.decode(int_in)
+    #else:
+      # createTokens(str_in)
+      # return self.decode(int_in)
   def return_stoi_size(self):
     return len(self.stoi)
   # def createTokens(self, full_text = self.full_text):
   #def createTokens(self, full_text):
-  def createTokens(self):
-    full_text = self.full_text
+  def createTokens(self, full_text = self.full_text):
+    # full_text = self.full_text
     t=len(stoi)-1
     if isinstance(full_text, dict):
       for key, value in (full_text):
@@ -210,6 +223,8 @@ stoi[''] =
   ###itos = {i: ch for ch, i in stoi.items()} # Reverse map
   ###return stoi, itos
 if __name__ == "__main__":
+  import json
   file= "data/dataset/cube3x3solvingdataset.json"
-  
-  edc = EncodeDecode(file_data)
+  with open(file, 'r') as f:
+            data = json.load(f)
+  edc = EncodeDecode(data)
