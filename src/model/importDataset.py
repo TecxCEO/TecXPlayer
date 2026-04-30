@@ -16,7 +16,7 @@ class ImportDataset():
         return self.data["solution"]
     def importData(self):
             #cube_data = json.read(f)
-            cube=self.data["solution"].copy
+            cube=self.data["solution"].deepcopy
             # set default values: 
             cst, mv, amvst = None, None, None
             for result in self.get_nested_value(cube):
