@@ -81,7 +81,7 @@ class EncodeDecode:
           if  not self.stoi.get(value):
             t+=1
             self.stoi[value] = t
-        self.itos = {i: ch for ch, i in stoi.items()} # Reverse map
+        self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
         print(f"stoi = {self.stoi}")
         print(f"itos = {self.itos}")
       return self.stoi, self.itos
