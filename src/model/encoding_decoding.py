@@ -238,4 +238,4 @@ if __name__ == "__main__":
             data = json.load(f)
   edc = EncodeDecode(data['solution'])
   result=edc.createTokens(data["solution"])
-  print(f" Result= {result}"))
+  print(f" Result= {result}")
