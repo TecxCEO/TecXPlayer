@@ -235,4 +235,4 @@ if __name__ == "__main__":
   with open(file, 'r') as f:
             data = json.load(f)
   edc = EncodeDecode(data)
-  edc.createTokens
+  edc.createTokens(data)
