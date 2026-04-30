@@ -229,7 +229,7 @@ stoi[''] =
   ###itos = {i: ch for ch, i in stoi.items()} # Reverse map
   ###return stoi, itos
 if __name__ == "__main__":
-  
+  print(f"At start")
   import json
   file= "data/dataset/cube3x3solvingdataset.json"
   with open(file, 'r') as f:
