@@ -19,10 +19,21 @@ def get_nested_data(data, edc, idc):
         st_mv_data = []
         st_mv_data += idc.createInputString(data["solution"])
         ##print(f"st_mv_data = {st_mv_data}")
+        if stmd:
+            stmd += st_mv_data
+        else:
+            stmd = st_mv_data
         for smd in st_mv_data:
-        st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
-        get_nested_data(value, ed, imd)
-    return ed, imd
+            st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
+            if stmdl:
+                stmdl += st_mv_data_list
+            else:
+                stmdl = st_mv_data_list
+        if key != 'state' and len(value) == (19, 16):
+           edc, idc, smd, smdl = edget_nested_data(value, edc, idc)
+        stmd.extend(smd)
+        stmdl.extend(smdl)
+    return edc, imc, stmd, stmdl
 ##
 if __name__ == "__main__":
     filepath = "./data/dataset/cube3x3solvingdataset.json"
