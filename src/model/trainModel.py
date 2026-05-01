@@ -3,6 +3,7 @@ To prevent losing your progress or saving a "worse" version of the model due to 
 1. The Checkpoint Logic
 Add this logic inside your training loop, specifically right after the Validation Phase:
 
+    
 """
 
 import tpsm as tm
@@ -10,6 +11,13 @@ import tpsm as tm
 import encoding_decoding as ed
 import import_dataset as imd
 import torch
+def get_nested_data(data, edc, imd):
+    stoi, itos = edc.createTokens(data)
+    for key, value in data.items():
+        get_nested_data(data, edc, imd)
+        
+    
+    return
 ##
 if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3solvingdataset.json"
@@ -19,6 +27,11 @@ if __name__ == "__main__":
     
     edc=ed.EncodeDecode(input)
     stoi, itos = edc.createTokens()
+
+    ###
+    get_nested_data(data)
+
+    ####
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
