@@ -18,7 +18,7 @@ def get_nested_data(data, edc, idc):
         #####
         st_mv_data = []
         st_mv_data += idc.createInputString(data["solution"])
-        ##print(f"st_mv_data = {st_mv_data}")
+        #### dict2.update(dict1) 
         if stmd:
             stmd += st_mv_data
         else:
