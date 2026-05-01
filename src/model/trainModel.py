@@ -9,7 +9,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 import tpsm as tm
 # from encoding_decoding import EncodeDecode as ed
 import encoding_decoding as ed
-import import_dataset as imd
+import importDataset as imd
+# import import_dataset as imd
 import torch
 def get_nested_data(data, edc, imd):
     stoi, itos = edc.createTokens(data)
@@ -22,9 +23,7 @@ if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3solvingdataset.json"
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    imd.
     # input = imd.ImportDataset(filepath) #
-    ed.
     ## edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
 
