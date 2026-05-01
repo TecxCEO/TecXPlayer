@@ -14,22 +14,22 @@ import torch
 def get_nested_data(data, edc, imd):
     stoi, itos = edc.createTokens(data)
     for key, value in data.items():
-        get_nested_data(data, edc, imd)
         
-    
-    return
+        get_nested_data(value, ed, imd)
+    return ed, imd
 ##
 if __name__ == "__main__":
     filepath = f"./data/dataset/cube3x3solvingdataset.json"
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    input = imd.ImportDataset(filepath) #
-    
-    edc=ed.EncodeDecode(input)
-    stoi, itos = edc.createTokens()
+    imd.
+    # input = imd.ImportDataset(filepath) #
+    ed.
+    ## edc=ed.EncodeDecode(input)
+    ## stoi, itos = edc.createTokens()
 
     ###
-    get_nested_data(data)
+    get_nested_data(data, ed, imd)
 
     ####
     # Setup Example
