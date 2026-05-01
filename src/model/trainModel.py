@@ -17,7 +17,11 @@ def get_nested_data(data, edc, idc):
     for key, value in data.items():
         #####
         st_mv_data = []
+        
         st_mv_data += idc.createInputString(data["solution"])
+        
+        ##### stmdt = edc.encoder(st_mv_data) ####
+        
         #### dict2.update(dict1) 
         if stmd:
             stmd += st_mv_data
@@ -30,7 +34,7 @@ def get_nested_data(data, edc, idc):
             else:
                 stmdl = st_mv_data_list
         if key != 'state' and len(value) == (19, 16):
-           edc, idc, smd, smdl = edget_nested_data(value, edc, idc)
+           edc, idc, smd, smdl = get_nested_data(value, edc, idc)
         stmd.extend(smd)
         stmdl.extend(smdl)
     return edc, imc, stmd, stmdl
@@ -43,10 +47,8 @@ if __name__ == "__main__":
     edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
 
-    ###
-    get_nested_data(data, edc, imd)
-
-    ####
+    ### get_nested_data(data, edc, idc)
+    edc, idc, stmd, stmdl = get_nested_data(value, edc, idc) ####
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
@@ -77,7 +79,7 @@ if __name__ == "__main__":
         
         output = model(x_batch) 
 
-    model(input) #
+    model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
     model.to(device)
