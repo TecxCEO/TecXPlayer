@@ -46,9 +46,11 @@ if __name__ == "__main__":
     idc = imd.ImportDataset(filepath) #
     edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
-
-    ### get_nested_data(data, edc, idc)
+    print(f"stoi len before = {edc.stoi}")
+    print(f"itos len before = {edc.itos}")
     edc, idc, stmd, stmdl = get_nested_data(value, edc, idc) ####
+    print(f"itos len after = {edc.itos}")
+    print(f"stoi len after = {edc.stoi}")
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
