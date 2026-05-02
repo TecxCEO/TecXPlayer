@@ -50,7 +50,7 @@ def get_nested_data(data, edc, idc):
         elif smdl and len(smdl) == 1:
             stmdl += smdl
     
-    return edc, imc, stmd, stmdl
+    return edc, idc, stmd, stmdl
 ##
 if __name__ == "__main__":
     filepath = "./data/dataset/cube3x3solvingdataset.json"
@@ -62,8 +62,8 @@ if __name__ == "__main__":
     print(f"stoi len before = {edc.stoi}")
     print(f"itos len before = {edc.itos}")
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
-    print(f"itos len after = {edc.itos}")
-    print(f"stoi len after = {edc.stoi}")
+    print(f"itos len after = {len(edc.itos)}")
+    print(f"stoi len after = {len(edc.stoi)}")
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
