@@ -82,9 +82,9 @@ if __name__ == "__main__":
     }
     """
     from torch.utils.data import DataLoader
-    
+    """
     # Create a loader
-    train_loader = DataLoader(dataset=input, batch_size=32, shuffle=True)
+    ############ train_loader = DataLoader(dataset=input, batch_size=32, shuffle=True)
     
     # Inside your training loop
     for batch in train_loader:
@@ -93,7 +93,7 @@ if __name__ == "__main__":
         # Pass the actual tensor to the model
         
         output = model(x_batch) 
-
+    """
     model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
@@ -110,12 +110,13 @@ if __name__ == "__main__":
             'stoi': edc.stoi, # Saving the vocabulary is critical!
             'itos' : edc.itos
         }
-        
+       """ 
         # Inside your epoch loop, after calculating avg_val_loss:
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             # Save the model state
             torch.save(checkpoint, 'models/best_dictionary_model.pth')
             print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+        """
         # Save progress
         torch.save(model.state_dict(), f"models/checkpoint_epoch_{epoch}.pth")
