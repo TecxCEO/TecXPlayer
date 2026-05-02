@@ -42,7 +42,7 @@ def get_nested_data(data, edc, idc):
         # stmd.extend(smd) if smd and len(smd)> 1 else stmd.append(smd)
         if smd and len(smd) > 1:
             stmd.extend(smd)
-        elif len(smd) = 1:
+        elif len(smd) == 1:
             stmd += smd
         # stmdl.extend(smdl) if smdl and len(smdl)> 1 else stmdl.append(smdl)
         if smdl and len(smdl) > 1:
