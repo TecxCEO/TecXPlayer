@@ -94,7 +94,7 @@ if __name__ == "__main__":
             ##'optimizer_state_dict': optimizer.state_dict(),
             'best_val_loss': best_val_loss,
             #'stoi': ed.createTokens() # Saving the vocabulary is critical!
-            'stoi': edc.stoi # Saving the vocabulary is critical!
+            'stoi': edc.stoi, # Saving the vocabulary is critical!
             'itos' : edc.itos
         }
         
