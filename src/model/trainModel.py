@@ -14,6 +14,8 @@ import importDataset as imd
 import torch
 def get_nested_data(data, edc, idc):
     stoi, itos = edc.createTokens(data)
+    stmd = None
+    stmdl = None
     for key, value in data.items():
         #####
         st_mv_data = []
