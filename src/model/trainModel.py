@@ -15,6 +15,8 @@ import torch
 def get_nested_data(data, edc, idc):
     stoi, itos = edc.createTokens(data)
     stmd = None
+    smd = None
+    smdl = None
     stmdl = None
     for key, value in data.items():
         #####
