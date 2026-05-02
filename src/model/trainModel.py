@@ -39,8 +39,17 @@ def get_nested_data(data, edc, idc):
                 stmdl = st_mv_data_list
         if key != 'state' and len(value) == (19, 16):
            edc, idc, smd, smdl = get_nested_data(value, edc, idc)
-        stmd.extend(smd) if smd and len(smd)> 1 else stmd.append(smd)
-        stmdl.extend(smdl) if smdl and len(smdl)> 1 else stmdl.append(smdl)
+        # stmd.extend(smd) if smd and len(smd)> 1 else stmd.append(smd)
+        if smd and len(smd) > 1:
+            stmd.extend(smd)
+        elif len(smd) = 1:
+            stmd += smd
+        # stmdl.extend(smdl) if smdl and len(smdl)> 1 else stmdl.append(smdl)
+        if smdl and len(smdl) > 1:
+            stmdl.extend(smdl)
+        else:
+            stmdl += smdl
+    
     return edc, imc, stmd, stmdl
 ##
 if __name__ == "__main__":
