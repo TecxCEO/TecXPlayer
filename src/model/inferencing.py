@@ -24,7 +24,7 @@ if 'model_state_dict' in checkpoint:
 # checkpoint = torch.load("/data/data/com.termux/files/home/TecXPlayer/src/model/your_file.pth")
 
 print("Keys in this checkpoint:")
-for key in checkpoint.keys(self):
+for key in checkpoint.keys():
     print(f"key of checkpoint= {key}\n")
     
     
