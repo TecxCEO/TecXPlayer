@@ -215,6 +215,10 @@ if __name__ == "__main__":
         }
     
         # Inside your epoch loop, after calculating avg_val_loss:
+        # 1. Calculate the average loss (Total Loss / Number of Batches)
+        avg_val_loss = total_val_loss / len(dataloader)
+
+        # 2. Now you can check if it's the best one
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             # Save the model state
