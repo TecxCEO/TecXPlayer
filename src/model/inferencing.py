@@ -6,7 +6,7 @@ import torch
 
 
 model = DictionaryTransformer()
-model_path =model/*
+model_path ="model/checkpoint1_epoch_10.pth"
 #model = TecXModel(vocab_size=71)
 #model.load_state_dict(torch.load(model_path))
 checkpoint = torch.load(model_path)
