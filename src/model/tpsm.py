@@ -60,8 +60,14 @@ class DictionaryTransformer(nn.Module):
             # To this:
             logits = self(idx_cond)
 
-            #logits, _ = self(idx_cond)
-            logits = logits[:, -1, :] / temperature
+            ## logits, _ = self(idx_cond)
+            ## logits = logits[:, -1, :] / temperature
+            # Change this:
+            # logits = logits[:, -1, :] / temperature
+
+            # To this:
+            logits = logits / temperature
+
             # 2. Apply Top-K filtering
             if top_k is not None:
                 v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
