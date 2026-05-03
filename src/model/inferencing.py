@@ -1,11 +1,11 @@
 from tpsm import DictionaryTransformer
 # import tpsm as tm
-from encoding_decoding import EncodeDecode as edc
-# import encoding_decoding as ed
+#from encoding_decoding import EncodeDecode as edc
+import encoding_decoding as ed
 import importDataset as imd
 import torch
 
-
+edc = ed.EncodeDecode()
 model_path = 'models/best_dictionary_model.pth'
 # model_path ="models/checkpoint2_epoch_10.pth"
 checkpoint = torch.load(model_path)
