@@ -76,7 +76,27 @@ if __name__ == "__main__":
         print(f"stmd[{i}] = {stmd[i]}\n")
     for i in range(len(stmdl)):
         print(f"stmdl[{i}] = {stmdl[i]}\n")
+    """ 
+    #########
+    def check_list_recursive(data, path="stmd"):
+      for i, item in enumerate(data):
+        current_path = f"{path}[{i}]"
+        
+        if isinstance(item, (list, tuple)):
+            # If it's a list/tuple, dig deeper
+            check_list_recursive(item, current_path)
+        elif isinstance(item, dict):
+            print(f"❌ ERROR at {current_path}: Found a DICT -> {item}")
+        elif isinstance(item, str):
+            print(f"❌ ERROR at {current_path}: Found a STRING -> '{item}'")
+        else:
+            print(f"✅ OK at {current_path}: {item}")
 
+    # Call it like this:
+    check_list_recursive(stmd)
+
+    #####
+    """
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
