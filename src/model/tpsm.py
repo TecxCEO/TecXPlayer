@@ -54,7 +54,13 @@ class DictionaryTransformer(nn.Module):
         for _ in range(max_new_tokens):
             # 1. Get predictions
             idx_cond = idx[:, -block_size:]
-            logits, _ = self(idx_cond)
+            # Change this:
+            # logits, _ = self(idx_cond)
+
+            # To this:
+            logits = self(idx_cond)
+
+            #logits, _ = self(idx_cond)
             logits = logits[:, -1, :] / temperature
             # 2. Apply Top-K filtering
             if top_k is not None:
