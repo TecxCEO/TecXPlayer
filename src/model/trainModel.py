@@ -120,16 +120,29 @@ if __name__ == "__main__":
 
     
     # Check if it's a dictionary first
-if isinstance(smdl, dict):
-    # smdl.values() extracts just the numbers (e.g., 121, 122, 123)
-    stmdl.extend(smdl.values())
-else:
-    # Use your existing logic for non-dictionary items
-    stmdl += smdl if (smdl and len(smdl) > 1) else [smdl]
+    if isinstance(smdl, dict):
+        # smdl.values() extracts just the numbers (e.g., 121, 122, 123)
+        stmdl.extend(smdl.values())
+    else:
+        # Use your existing logic for non-dictionary items
+        stmdl += smdl if (smdl and len(smdl) > 1) else [smdl]
     
     
     #######
     """
+    def describe_elements(data, level=0):
+    for index, item in enumerate(data):
+        indent = "  " * level  # Adds spacing for visual nesting
+        
+        if isinstance(item, list):
+            print(f"{indent}Index {index}: This is a NESTED LIST. Digging deeper...")
+            describe_elements(item, level + 1) # The "Magic": calls itself
+        else:
+            print(f"{indent}Index {index}: Element is '{item}'. Why? Because it is a flat value.")
+    # Example with your 8-element concept
+    # my_list = [1, 2, 3, [4, 5, 6], 7, 8]
+    describe_elements(stmdl)
+
     stmdl_enc = edc.stoi(stmdl)
     # import torch
 
