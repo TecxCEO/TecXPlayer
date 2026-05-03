@@ -222,4 +222,4 @@ if __name__ == "__main__":
             print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         """
         # Save progress
-        torch.save(model.state_dict(), f"models/m1/checkpoint_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), f"models/checkpoint1_epoch_{epoch}.pth")
