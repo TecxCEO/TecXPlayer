@@ -9,6 +9,18 @@ import torch
 model_path ="models/checkpoint2_epoch_10.pth"
 checkpoint = torch.load(model_path)
 print(checkpoint)
+
+# Load the file
+# checkpoint = torch.load('your_checkpoint.pth')
+# 1. Count top-level keys
+print(f"Top-level keys: {len(checkpoint)}")
+print(checkpoint.keys())
+# 2. Count model parameters (the actual weights)
+# Replace 'model_state_dict' with the key used in your save file
+if 'model_state_dict' in checkpoint:
+    num_params = len(checkpoint['model_state_dict'])
+    print(f"Total model parameter keys: {num_params}")
+    
 # model_dict = checkpoint["state_dict"]
 model_dict = checkpoint["model_state_dict"]
 edc.stoi = checkpoint["stoi"]
