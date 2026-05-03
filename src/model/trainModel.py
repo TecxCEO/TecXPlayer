@@ -213,13 +213,12 @@ if __name__ == "__main__":
             'stoi': edc.stoi, # Saving the vocabulary is critical!
             'itos' : edc.itos
         }
-        """ 
+    
         # Inside your epoch loop, after calculating avg_val_loss:
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
             # Save the model state
             torch.save(checkpoint, 'models/best_dictionary_model.pth')
             print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
-        """
         # Save progress
-        torch.save(model.state_dict(), f"models/checkpoint1_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), f"models/checkpoint2_epoch_{epoch}.pth")
