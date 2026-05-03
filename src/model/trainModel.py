@@ -214,7 +214,8 @@ if __name__ == "__main__":
             print(f" stmdlin = {stmdlin}")
             stmdl_in += stmdlin
             print(f" stmdl_in = {stmdl_in}")
-            stmdl_enc.append(edc.encode(stmdl_in))
+            stmdl_enc.append(edc.encode(stmdlin))
+            #stmdl_enc.append(edc.encode(stmdl_in))
             print(f" stmdl_enc = {stmdl_enc}")
             stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
             print(f" stmdl_tensor = {stmdl_tensor}")
