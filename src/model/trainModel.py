@@ -169,10 +169,15 @@ if __name__ == "__main__":
     # my_list = [1, 2, 3, [4, 5, 6], 7, 8]
     describe_elements(stmdl)
     """
+    best_val_loss = float('inf') # Start with infinity
+    ##
+    model.to(device)
+    model.eval()
     stmdl_in  = []
     stmdlin  = []
     stmdl_enc = []
     # stmdl_tensor = []
+    """
     for i in range(len(stmdl) // 3):
         stmdlin += stmdl[3*i] 
         stmdlin += ('<'+stmdl[3*i+1]+'>')
@@ -197,12 +202,17 @@ if __name__ == "__main__":
     # Pass the tensor to your model
     ###model(stmdl_tensor)
     # model(stmd) #
-    best_val_loss = float('inf') # Start with infinity
-    ##
-    model.to(device)
-    model.eval()
+    """
     for epoch in range(max_epoch):
         print(epoch)
+        for i in range(len(stmdl) // 3):
+            stmdlin += stmdl[3*i] 
+            stmdlin += ('<'+stmdl[3*i+1]+'>')
+            stmdlin += stmdl[3*i+2]
+            stmdl_in += stmdl_in
+            stmdl_enc.append(edc.encode(stmdl_in))
+            stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
+            model(stmdl_tensor)
         """
         # 1. Initialize the counter BEFORE the loop
         total_val_loss = 0.0  
@@ -216,7 +226,7 @@ if __name__ == "__main__":
         # 3. NOW you can calculate the average
         avg_val_loss = total_val_loss / len(val_dataloader)
         """
-        model(stmdl_tensor)
+        # model(stmdl_tensor)
         checkpoint = {
             'epoch': epoch + 1,
             'model_state_dict': model.state_dict(),
@@ -238,6 +248,6 @@ if __name__ == "__main__":
             ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
             ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         # Save progress
-        torch.save(model.state_dict(), f"models/checkpoint2_epoch_{epoch}.pth")
-    torch.save(checkpoint, 'models/best_dictionary_model.pth')
+        torch.save(model.state_dict(), f"models/checkpoint3_epoch_{epoch}.pth")
+    torch.save(checkpoint, 'models/best_dictionary_model1.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
