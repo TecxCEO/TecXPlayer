@@ -5,6 +5,10 @@ import encoding_decoding as ed
 import importDataset as imd
 import torch
 
+
+
+
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 edc = ed.EncodeDecode()
 model_path = 'models/best_dictionary_model.pth'
 # model_path ="models/checkpoint2_epoch_10.pth"
