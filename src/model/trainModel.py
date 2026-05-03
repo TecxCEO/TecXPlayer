@@ -72,11 +72,12 @@ if __name__ == "__main__":
     print(f"stoi len after = {len(edc.stoi)}")
     # print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
     # print(f"stmdl = {stmdl[i]}\n") for i in range(len(stmd))
+    """
     for i in range(len(stmd)):
         print(f"stmd[{i}] = {stmd[i]}\n")
     for i in range(len(stmdl)):
         print(f"stmdl[{i}] = {stmdl[i]}\n")
-    """ 
+    #"" " 
     #########
     def check_list_recursive(data, path="stmd"):
       for i, item in enumerate(data):
@@ -154,7 +155,7 @@ if __name__ == "__main__":
     
     
     #######
-    """
+    #" ""
     def describe_elements(data, level=0):
         for index, item in enumerate(data):
             indent = "  " * level  # Adds spacing for visual nesting
@@ -167,12 +168,18 @@ if __name__ == "__main__":
     # Example with your 8-element concept
     # my_list = [1, 2, 3, [4, 5, 6], 7, 8]
     describe_elements(stmdl)
-
-    stmdl_enc = edc.stoi(stmdl)
-    # import torch
-
-    # Convert your list to a tensor
-    stmdl_tensor = torch.tensor(stmdl_enc)
+    """
+    stmdl_in  = None
+    stmdlin  = None
+    for i in range(len(stmdl)/3):
+        stmdlin += stmdl[3*i] 
+        stmdlin += ('<'+stmdl[3*i+1]+'>')
+        stmdlin += stmdl[3*i+2]
+        stmdl_in += stmdl_in
+        stmdl_enc += edc.stoi(stmdl_in)
+        # import torch
+        # Convert your list to a tensor
+        stmdl_tensor += torch.tensor(stmdl_enc)
 
     # Pass the tensor to your model
     model(stmdl_tensor)
