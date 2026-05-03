@@ -181,8 +181,8 @@ if __name__ == "__main__":
         # Change this:
         # stmdl_enc += edc.stoi(stmdl_in)
         # To this:
-        stmdl_enc.append(edc.stoi[stmdl_in])
-        #stmdl_enc.append(edc.encode(stmdl_in))
+        ###### stmdl_enc.append(edc.stoi[stmdl_in])
+        stmdl_enc.append(edc.encode(stmdl_in))
         # import torch
         # Convert your list to a tensor
         stmdl_tensor += torch.tensor(stmdl_enc)
