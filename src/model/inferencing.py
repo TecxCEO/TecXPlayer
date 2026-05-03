@@ -1,6 +1,6 @@
 from tpsm import DictionaryTransformer
 # import tpsm as tm
-from encoding_decoding import as edc
+from encoding_decoding import EncodeDecode as edc
 # import encoding_decoding as ed
 import importDataset as imd
 import torch
