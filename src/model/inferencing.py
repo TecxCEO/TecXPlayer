@@ -20,6 +20,12 @@ print(f"{checkpoint.keys()}\n")
 if 'model_state_dict' in checkpoint:
     num_params = len(checkpoint['model_state_dict'])
     print(f"Total model parameter keys: {num_params}")
+# checkpoint = torch.load("/data/data/com.termux/files/home/TecXPlayer/src/model/your_file.pth")
+
+print("Keys in this checkpoint:")
+for key in checkpoint.keys():
+    print(f"key of checkpoint= {keys()}\n")
+    
     
 # model_dict = checkpoint["state_dict"]
 model_dict = checkpoint["model_state_dict"]
