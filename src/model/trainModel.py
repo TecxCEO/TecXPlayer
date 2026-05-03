@@ -86,9 +86,20 @@ if __name__ == "__main__":
         'stoi': ed.createTokens() # Saving the vocabulary is critical!
         #'stoi': stoi # Saving the vocabulary is critical!
     }
-    """
+    #"" "
+    #
+    if isinstance(smdl, dict):
+        # Take only the numbers from the dictionary
+        stmdl.extend(smdl.values())
+    elif isinstance(smdl, list) or isinstance(smdl, tuple):
+        stmdl.extend(smdl)
+    else:
+        # If it's just a single number
+        stmdl.append(smdl)
+    
     from torch.utils.data import DataLoader
-    """
+    
+    #"" "
     # Create a loader
     ############ train_loader = DataLoader(dataset=input, batch_size=32, shuffle=True)
     
@@ -103,10 +114,10 @@ if __name__ == "__main__":
     # import torch
 
     # Convert your list to a tensor
-    stmd_tensor = torch.tensor(stmd)
+    stmdl_tensor = torch.tensor(stmdl)
 
     # Pass the tensor to your model
-    model(stmd_tensor)
+    model(stmdl_tensor)
     # model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
