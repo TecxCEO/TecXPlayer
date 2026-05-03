@@ -70,8 +70,13 @@ if __name__ == "__main__":
     print(f"stoi len after = {edc.stoi}")
     
     print(f"stoi len after = {len(edc.stoi)}")
-    print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
-    print(f"stmdl = {stmdl[i]}\n") for i in range(len(stmd))
+    # print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
+    # print(f"stmdl = {stmdl[i]}\n") for i in range(len(stmd))
+    for i in range(len(stmd)):
+        print(f"stmd[{i}] = {stmd[i]}\n")
+    for i in range(len(stmdl)):
+        print(f"stmdl[{i}] = {stmdl[i]}\n")
+
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
