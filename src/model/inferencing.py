@@ -76,6 +76,33 @@ def log_conversation(prompt, response):
 Update the Interactive Loop
 Use sys.stdout.write and flush() to make the characters appear instantly on the same line.
 """
+########
+state_given_to_solve={
+      "rgy":"ogw",
+      "rgw":"ybo",
+      "rby":"ryg",
+      "rbw":"bwr",
+      "ogy":"yrb",
+      "ogw":"oyg",
+      "oby":"owb",
+      "obw":"wrg",
+      "rb":"gy",
+      "rg":"rw",
+      "rw":"yr",
+      "ry":"by",
+      "ob":"gw",
+      "og":"bw",
+      "ow":"oy",
+      "oy":"ow",
+      "by":"go",
+      "bw":"rb",
+      "gw":"ob",
+      "gy":"gr"
+    }
+#keys() in  state_given_to_solve:
+print(f"Keys in state_given_to_solve = {state_given_to_solve.keys()}\n")
+########
+print(f"Value in state_given_to_solve = {state_given_to_solve.values()}\n")
 # ... inside your 'while True' loop ...
 while True:
     # 1. Get custom text from the user
