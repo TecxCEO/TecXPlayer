@@ -171,7 +171,7 @@ if __name__ == "__main__":
     """
     stmdl_in  = None
     stmdlin  = None
-    for i in range(len(stmdl)/3):
+    for i in range(len(stmdl) // 3):
         stmdlin += stmdl[3*i] 
         stmdlin += ('<'+stmdl[3*i+1]+'>')
         stmdlin += stmdl[3*i+2]
