@@ -169,8 +169,8 @@ if __name__ == "__main__":
     # my_list = [1, 2, 3, [4, 5, 6], 7, 8]
     describe_elements(stmdl)
     """
-    stmdl_in  = None
-    stmdlin  = None
+    stmdl_in  = []
+    stmdlin  = []
     for i in range(len(stmdl) // 3):
         stmdlin += stmdl[3*i] 
         stmdlin += ('<'+stmdl[3*i+1]+'>')
