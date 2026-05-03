@@ -100,7 +100,14 @@ if __name__ == "__main__":
         
         output = model(x_batch) 
     """
-    model(stmd) #
+    # import torch
+
+    # Convert your list to a tensor
+    stmd_tensor = torch.tensor(stmd)
+
+    # Pass the tensor to your model
+    model(stmd_tensor)
+    # model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
     model.to(device)
