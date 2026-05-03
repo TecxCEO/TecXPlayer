@@ -187,7 +187,9 @@ if __name__ == "__main__":
         # import torch
         # Convert your list to a tensor
         ########stmdl_tensor += torch.tensor(stmdl_enc)
-        stmdl_tensor = torch.tensor(stmdl_enc)
+        ##### stmdl_tensor = torch.tensor(stmdl_enc)
+        stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
+        
         # Pass the tensor to your model
         model(stmdl_tensor)
     # model(stmd) #
