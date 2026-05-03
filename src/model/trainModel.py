@@ -172,6 +172,7 @@ if __name__ == "__main__":
     stmdl_in  = []
     stmdlin  = []
     stmdl_enc = []
+    stmdl_tensor = []
     for i in range(len(stmdl) // 3):
         stmdlin += stmdl[3*i] 
         stmdlin += ('<'+stmdl[3*i+1]+'>')
