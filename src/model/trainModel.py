@@ -206,12 +206,18 @@ if __name__ == "__main__":
     for epoch in range(max_epoch):
         print(epoch)
         for i in range(len(stmdl) // 3):
+            print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
+            stmdlin  = []
             stmdlin += stmdl[3*i] 
             stmdlin += ('<'+stmdl[3*i+1]+'>')
             stmdlin += stmdl[3*i+2]
-            stmdl_in += stmdl_in
+            print(f" stmdlin = {stmdlin}")
+            stmdl_in += stmdlin
+            print(f" stmdl_in = {stmdl_in}")
             stmdl_enc.append(edc.encode(stmdl_in))
+            print(f" stmdl_enc = {stmdl_enc}")
             stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
+            print(f" stmdl_tensor = {stmdl_tensor}")
             model(stmdl_tensor)
         """
         # 1. Initialize the counter BEFORE the loop
