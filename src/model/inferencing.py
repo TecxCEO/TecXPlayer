@@ -6,11 +6,13 @@ import torch
 
 
 model = DictionaryTransformer()
-model_path = 
+model_path =model/*
 #model = TecXModel(vocab_size=71)
 #model.load_state_dict(torch.load(model_path))
 checkpoint = torch.load(model_path)
 model_dict = checkpoint["state_dict"]
+edc.stoi = checkpoint["stoi"]
+edc.itos = checkpoint["itos"]
 ##model_dict = model.state_dict()
 # Filter out layers with wrong shapes (like lm_head)
 ####pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
@@ -51,7 +53,7 @@ while True:
     # Encode and setup context
     #context_list = [stoi[c] for c in user_prompt if c in stoi]
     #context = torch.tensor([context_list], dtype=torch.long, device=device)
-    context = torch.tensor([encode(user_prompt)], dtype=torch.long).to(device)
+    context = torch.tensor([edc.encode(user_prompt)], dtype=torch.long).to(device)
     #data = torch.tensor(encode(user_prompt), dtype=torch.long)
     print(f"\n[TECX LM]: ", end="")
     sys.stdout.flush()
