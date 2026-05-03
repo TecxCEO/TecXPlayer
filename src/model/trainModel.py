@@ -184,14 +184,18 @@ if __name__ == "__main__":
         # To this:
         ###### stmdl_enc.append(edc.stoi[stmdl_in])
         stmdl_enc.append(edc.encode(stmdl_in))
-        # import torch
         # Convert your list to a tensor
         ########stmdl_tensor += torch.tensor(stmdl_enc)
         ##### stmdl_tensor = torch.tensor(stmdl_enc)
-        stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
-        
+        #######stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
         # Pass the tensor to your model
-        model(stmdl_tensor)
+        #####
+        # model(stmdl_tensor)
+    ##
+    
+    stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
+    # Pass the tensor to your model
+    ###model(stmdl_tensor)
     # model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
@@ -199,6 +203,7 @@ if __name__ == "__main__":
     model.eval()
     for epoch in range(max_epoch):
         print(epoch)
+        model(stmdl_tensor)
         checkpoint = {
             'epoch': epoch + 1,
             'model_state_dict': model.state_dict(),
@@ -217,4 +222,4 @@ if __name__ == "__main__":
             print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         """
         # Save progress
-        torch.save(model.state_dict(), f"models/checkpoint_epoch_{epoch}.pth")
+        torch.save(model.state_dict(), f"models/m1/checkpoint_epoch_{epoch}.pth")
