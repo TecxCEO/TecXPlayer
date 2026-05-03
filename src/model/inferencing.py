@@ -1,5 +1,8 @@
-import
-
+from tpsm import 
+# import tpsm as tm
+import encoding_decoding as ed
+import importDataset as imd
+import torch
 
 
 model = TecXModel()
