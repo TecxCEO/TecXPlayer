@@ -70,6 +70,8 @@ if __name__ == "__main__":
     print(f"stoi len after = {edc.stoi}")
     
     print(f"stoi len after = {len(edc.stoi)}")
+    print(f"stmd = {stmd}\n")
+    print(f"stmdl = {stmdl}\n")
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
@@ -87,7 +89,8 @@ if __name__ == "__main__":
         #'stoi': stoi # Saving the vocabulary is critical!
     }
     #"" "
-    #
+    ########
+    
     if isinstance(smdl, dict):
         # Take only the numbers from the dictionary
         stmdl.extend(smdl.values())
@@ -98,7 +101,9 @@ if __name__ == "__main__":
         stmdl.append(smdl)
     
     from torch.utils.data import DataLoader
-    
+
+
+    ###########
     #"" "
     # Create a loader
     ############ train_loader = DataLoader(dataset=input, batch_size=32, shuffle=True)
@@ -110,6 +115,20 @@ if __name__ == "__main__":
         # Pass the actual tensor to the model
         
         output = model(x_batch) 
+    
+    #######
+
+    
+    # Check if it's a dictionary first
+if isinstance(smdl, dict):
+    # smdl.values() extracts just the numbers (e.g., 121, 122, 123)
+    stmdl.extend(smdl.values())
+else:
+    # Use your existing logic for non-dictionary items
+    stmdl += smdl if (smdl and len(smdl) > 1) else [smdl]
+    
+    
+    #######
     """
     # import torch
 
