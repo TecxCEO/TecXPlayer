@@ -32,8 +32,8 @@ for key in checkpoint.keys():
 model_dict = checkpoint["model_state_dict"]
 edc.stoi = checkpoint["stoi"]
 edc.itos = checkpoint["itos"]
-vocab_size =  edc.return_stoi_size() # Size of your 'stoi' map
-model = DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
+#vocab_size =  edc.return_stoi_size() # Size of your 'stoi' map
+model = DictionaryTransformer(vocab_size=int(len(edc.stoi)), d_model=128, nhead=8, num_layers=4, num_classes=3)
 ###model = DictionaryTransformer()
 
 #model = TecXModel(vocab_size=71)
