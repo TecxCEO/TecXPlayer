@@ -130,10 +130,11 @@ else:
     
     #######
     """
+    stmdl_enc = edc.stoi(stmdl)
     # import torch
 
     # Convert your list to a tensor
-    stmdl_tensor = torch.tensor(stmdl)
+    stmdl_tensor = torch.tensor(stmdl_enc)
 
     # Pass the tensor to your model
     model(stmdl_tensor)
