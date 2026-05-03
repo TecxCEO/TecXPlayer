@@ -255,6 +255,6 @@ if __name__ == "__main__":
             ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
             ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         # Save progress
-        torch.save(model.state_dict(), f"models/checkpoint3_epoch_{epoch}.pth")
-    torch.save(checkpoint, 'models/best_dictionary_model1.pth')
+        torch.save(model.state_dict(), f"models/checkpoint4_epoch_{epoch}.pth")
+    torch.save(checkpoint, 'models/best_dictionary_model2.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
