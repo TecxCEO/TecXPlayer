@@ -4,6 +4,7 @@
 import torch
 import torch.nn as nn
 import math
+from torch.nn import functional as F
 
 class DictionaryTransformer(nn.Module):
     def __init__(self, vocab_size, d_model, nhead, num_layers, num_classes):
@@ -32,6 +33,24 @@ class DictionaryTransformer(nn.Module):
         # Use the mean of the sequence for final classification
         x = x.mean(dim=1) 
         return self.fc_out(x)
+    ########
+    def generate_stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
+        for _ in range(max_new_tokens):
+            # 1. Get predictions
+            idx_cond = idx[:, -block_size:]
+            logits, _ = self(idx_cond)
+            logits = logits[:, -1, :] / temperature
+            # 2. Apply Top-K filtering
+            if top_k is not None:
+                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits < v[:, [-1]]] = -float('Inf')
+            # 3. Sample and Append
+            probs = F.softmax(logits, dim=-1)
+            idx_next = torch.multinomial(probs, num_samples=1)
+            idx = torch.cat((idx, idx_next), dim=1)
+            # 4. YIELD the newly generated token index
+            yield idx_next.item() 
+        #######
 if __name__ == "__main__":
     import importdataset as imd #
     
