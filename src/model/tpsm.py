@@ -6,7 +6,7 @@ import torch.nn as nn
 import math
 from torch.nn import functional as F
 
-"""
+#"" "
 batch_size = 64 # how many independent sequences will we process in parallel?
 block_size = 256 # what is the maximum context length for predictions?
 max_iters = 5000
@@ -19,7 +19,7 @@ n_head = 6
 n_layer = 6
 dropout = 0.2
 # ------------
-"""
+#" ""
 
 class DictionaryTransformer(nn.Module):
     def __init__(self, vocab_size, d_model, nhead, num_layers, num_classes):
@@ -49,7 +49,7 @@ class DictionaryTransformer(nn.Module):
         x = x.mean(dim=1) 
         return self.fc_out(x)
     ########
-    """
+    
     def generate_stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
         for _ in range(max_new_tokens):
             # 1. Get predictions
@@ -66,7 +66,7 @@ class DictionaryTransformer(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
             # 4. YIELD the newly generated token index
             yield idx_next.item() 
-        """
+        
         #######
 if __name__ == "__main__":
     import importdataset as imd #
