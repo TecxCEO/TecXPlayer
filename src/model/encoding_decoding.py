@@ -36,15 +36,27 @@ class EncodeDecode:
   
   def encoder(self, str_in):
     ##s= str_in ###
-    if self.stoi[str_in]:
+    ##if self.stoi[str_in]:
+    if self.encode(str_in):
       # Returns the value if found, otherwise returns None
-      encode = lambda str_in: self.stoi.get(str_in)
+      ##encode = lambda str_in: self.stoi.get(str_in)
       #return (
       #encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in] else continue]
-      return encode(str_in)
-    else:
+      return self.encode(str_in)
+    elif not self.encode(str_in) and not isinstance(str_in, (dict, list)):
       createTokens(str_in)
       return self.encode(str_in)
+    elif isinstance(str_in, (dict, list)):
+      for strin in str_in:
+        if isinstance(strin, (dict, list)):
+          if self.encode(strin):
+            return self.encode(strin)
+          else:
+            self.encoder(strin) 
+      #encoder(self, strin) for strin in str_in
+      # createTokens(str_in)
+      # return self.encode(str_in)
+    # elif 
   # return encode = lambda s: [self.stoi[c] if self.stoi[c] else createTokens(c) for c in str_in]
   
     # return encode
