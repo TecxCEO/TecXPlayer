@@ -5,14 +5,19 @@ import importDataset as imd
 import torch
 
 
-model = DictionaryTransformer()
+
 model_path ="model/checkpoint1_epoch_10.pth"
-#model = TecXModel(vocab_size=71)
-#model.load_state_dict(torch.load(model_path))
 checkpoint = torch.load(model_path)
 model_dict = checkpoint["state_dict"]
 edc.stoi = checkpoint["stoi"]
 edc.itos = checkpoint["itos"]
+vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
+model = DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
+###model = DictionaryTransformer()
+
+#model = TecXModel(vocab_size=71)
+#model.load_state_dict(torch.load(model_path))
+
 ##model_dict = model.state_dict()
 # Filter out layers with wrong shapes (like lm_head)
 ####pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
