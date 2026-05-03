@@ -1,0 +1,75 @@
+import
+
+
+
+model = TecXModel()
+#model = TecXModel(vocab_size=71)
+#model.load_state_dict(torch.load(model_path))
+checkpoint = torch.load(model_path)
+model_dict = checkpoint["state_dict"]
+##model_dict = model.state_dict()
+# Filter out layers with wrong shapes (like lm_head)
+####pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
+#####model_dict.update(pretrained_dict)
+model.load_state_dict(model_dict, strict=False)
+#model.to(device)
+# Ensure your model is in evaluation mode
+model.eval()
+print(f"tecxmodelgen created")
+m = model.to(device)
+m.eval()
+"""
+1. Set Up the Logger
+Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
+
+"""
+def log_conversation(prompt, response):
+    with open("generation_logs.txt", "a", encoding="utf-8") as f:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"\n{'='*50}\n")
+        f.write(f"TIMESTAMP: {timestamp}\n")
+        f.write(f"PROMPT: {prompt}\n")
+        f.write(f"RESPONSE: {response}\n")
+        f.write(f"{'='*50}\n")
+        
+
+"""
+Update the Interactive Loop
+Use sys.stdout.write and flush() to make the characters appear instantly on the same line.
+"""
+# ... inside your 'while True' loop ...
+while True:
+    # 1. Get custom text from the user
+    #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
+    user_prompt=input("\nEnter your starting text (or type 'exit' to quit): ")
+    if user_prompt.lower() == 'exit':
+        break
+    # Encode and setup context
+    #context_list = [stoi[c] for c in user_prompt if c in stoi]
+    #context = torch.tensor([context_list], dtype=torch.long, device=device)
+    context = torch.tensor([encode(user_prompt)], dtype=torch.long).to(device)
+    #data = torch.tensor(encode(user_prompt), dtype=torch.long)
+    print(f"\n[TECX LM]: ", end="")
+    sys.stdout.flush()
+    # Set the creativity (temperature) and focus (top_k)
+    temp = 0.4 # 1.0 is standard; higher is more creative, lower is more focused
+    top_k = None # 5   # Keeps the model focused on the top 5 most likely characters
+    tokens = 500 # Number of characters to generate
+    with torch.no_grad():
+        # Use the generator function
+        # 1. Initialize an empty string to hold the output
+        full_response = "" 
+        # 2. Start the streaming loop
+        #for token_id in model.generate_stream(context, tokens, temp, top_k):
+        for token_id in m.generate_stream(context, tokens, temp, top_k):
+            ##char = decode(token_id)
+            char = decode([token_id])
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            full_response += char # Collect for logging
+            # Optional: Add a tiny sleep to make it look like "typing"
+            time.sleep(0.01) 
+    print("\n" + "-"*30)
+    # Automatically save the conversation
+    log_conversation(user_prompt, full_response)
+    print("\n\n(Conversation saved to generation_logs.txt)")
