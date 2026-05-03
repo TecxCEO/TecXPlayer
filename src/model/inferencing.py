@@ -8,7 +8,7 @@ import torch
 
 model_path ="models/checkpoint1_epoch_10.pth"
 checkpoint = torch.load(model_path)
-model_dict = checkpoint["state_dict"]
+# model_dict = checkpoint["state_dict"]
 model_dict = checkpoint["model_state_dict"]
 edc.stoi = checkpoint["stoi"]
 edc.itos = checkpoint["itos"]
