@@ -172,7 +172,7 @@ if __name__ == "__main__":
     stmdl_in  = []
     stmdlin  = []
     stmdl_enc = []
-    stmdl_tensor = []
+    # stmdl_tensor = []
     for i in range(len(stmdl) // 3):
         stmdlin += stmdl[3*i] 
         stmdlin += ('<'+stmdl[3*i+1]+'>')
@@ -186,10 +186,10 @@ if __name__ == "__main__":
         stmdl_enc.append(edc.encode(stmdl_in))
         # import torch
         # Convert your list to a tensor
-        stmdl_tensor += torch.tensor(stmdl_enc)
-
-    # Pass the tensor to your model
-    model(stmdl_tensor)
+        ########stmdl_tensor += torch.tensor(stmdl_enc)
+        stmdl_tensor = torch.tensor(stmdl_enc)
+        # Pass the tensor to your model
+        model(stmdl_tensor)
     # model(stmd) #
     best_val_loss = float('inf') # Start with infinity
     ##
