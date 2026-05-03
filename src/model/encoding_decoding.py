@@ -1,6 +1,6 @@
 import string
 class EncodeDecode:
-  def __init__(self, full_text):
+  def __init__(self, full_text = None):
     self.full_text = full_text
     # here are all the unique characters that occur in this text
     # Define the components
