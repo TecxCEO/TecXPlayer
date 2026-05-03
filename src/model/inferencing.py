@@ -24,7 +24,7 @@ if 'model_state_dict' in checkpoint:
 
 print("Keys in this checkpoint:")
 for key in checkpoint.keys():
-    print(f"key of checkpoint= {keys()}\n")
+    print(f"key of checkpoint= {key()}\n")
     
     
 # model_dict = checkpoint["state_dict"]
