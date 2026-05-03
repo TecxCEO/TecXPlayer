@@ -13,8 +13,8 @@ print(checkpoint)
 # Load the file
 # checkpoint = torch.load('your_checkpoint.pth')
 # 1. Count top-level keys
-print(f"Top-level keys: {len(checkpoint)}")
-print(checkpoint.keys())
+print(f"Top-level keys: {len(checkpoint)}\n")
+print(f"{checkpoint.keys()}\n")
 # 2. Count model parameters (the actual weights)
 # Replace 'model_state_dict' with the key used in your save file
 if 'model_state_dict' in checkpoint:
