@@ -63,6 +63,10 @@ if __name__ == "__main__":
     print(f"itos len before = {edc.itos}")
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
     print(f"itos len after = {len(edc.itos)}")
+
+    print(f"itos len after = {edc.itos}")
+    print(f"stoi len after = {edc.stoi}")
+    
     print(f"stoi len after = {len(edc.stoi)}")
     # Setup Example
     # vocab_size = 80  # Size of your 'stoi' map
