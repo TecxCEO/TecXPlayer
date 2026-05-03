@@ -1,11 +1,12 @@
-from tpsm import 
+from tpsm import DictionaryTransformer
 # import tpsm as tm
 import encoding_decoding as ed
 import importDataset as imd
 import torch
 
 
-model = TecXModel()
+model = DictionaryTransformer()
+model_path = 
 #model = TecXModel(vocab_size=71)
 #model.load_state_dict(torch.load(model_path))
 checkpoint = torch.load(model_path)
