@@ -5,8 +5,8 @@ import importDataset as imd
 import torch
 
 
-# model_path = 'models/best_dictionary_model.pth'
-model_path ="models/checkpoint2_epoch_10.pth"
+model_path = 'models/best_dictionary_model.pth'
+# model_path ="models/checkpoint2_epoch_10.pth"
 checkpoint = torch.load(model_path)
 print(checkpoint)
 
