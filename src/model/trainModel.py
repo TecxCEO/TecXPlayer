@@ -208,11 +208,17 @@ if __name__ == "__main__":
         for i in range(len(stmdl) // 3):
             print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
             stmdlin  = []
-            stmdlin += [stmdl[3*i]]
+            stmdlin  = ['<sos>']
+            stmdlin += stmdl[3*i]
+            ####stmdlin += [stmdl[3*i]]
             # stmdlin += stmdl[3*i]
             stmdlin += ['<'+stmdl[3*i+1]+'>']
-            stmdlin += [stmdl[3*i+2]]
+            stmdlin += stmdl[3*i+2]
+            ########stmdlin += [stmdl[3*i+2]]
+            stmdlin  = ['<eos>']
             # stmdlin += stmdl[3*i+2]
+            # Prepend '<sos>' and append '<eos>' to every sentence
+            ##tagged_data = ['<sos> ' + x + ' <eos>' for x in stmdlin]
             print(f" stmdlin = {stmdlin}")
             stmdl_in += stmdlin
             print(f" stmdl_in = {stmdl_in}")
