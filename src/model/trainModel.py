@@ -215,7 +215,7 @@ if __name__ == "__main__":
             stmdlin += ['<'+stmdl[3*i+1]+'>']
             #stmdlin += stmdl[3*i+2]
             stmdlin += [stmdl[3*i+2]]
-            stmdlin  = ['<EOS>']
+            stmdlin += ['<EOS>']
             # stmdlin += stmdl[3*i+2]
             # Prepend '<sos>' and append '<eos>' to every sentence
             ##tagged_data = ['<sos> ' + x + ' <eos>' for x in stmdlin]
