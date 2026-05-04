@@ -113,9 +113,10 @@ while True:
     # Encode and setup context
     #context_list = [stoi[c] for c in user_prompt if c in stoi]
     #context = torch.tensor([context_list], dtype=torch.long, device=device)
-    context = torch.tensor([edc.encode(user_prompt)], dtype=torch.long).to(device)
+    context = torch.tensor([edc.encoder(user_prompt)], dtype=torch.long).to(device)
+    # context = torch.tensor([edc.encode(user_prompt)], dtype=torch.long).to(device)
     #data = torch.tensor(encode(user_prompt), dtype=torch.long)
-    print(f"\n[TECX LM]: ", end="")
+    print(f"\nTecX Player Solving Puzzle: ", end="")
     sys.stdout.flush()
     # Set the creativity (temperature) and focus (top_k)
     temp = 0.4 # 1.0 is standard; higher is more creative, lower is more focused
