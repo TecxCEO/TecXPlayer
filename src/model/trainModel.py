@@ -6,6 +6,8 @@ Add this logic inside your training loop, specifically right after the Validatio
     
 """
 
+########import tecXModel as tm
+#### 
 import tpsm as tm
 # from encoding_decoding import EncodeDecode as ed
 import encoding_decoding as ed
@@ -103,6 +105,8 @@ if __name__ == "__main__":
     #vocab_size =  len(checkpoint[ 'stoi']) # Size of your 'stoi' map
     vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
     max_epoch = 1 # 11
+    ###########tm.TecXModelTrain()
+    #####
     model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
     # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
     """
@@ -219,16 +223,19 @@ if __name__ == "__main__":
             # stmdlin += stmdl[3*i+2]
             # Prepend '<sos>' and append '<eos>' to every sentence
             ##tagged_data = ['<sos> ' + x + ' <eos>' for x in stmdlin]
-            print(f" stmdlin = {stmdlin}")
-            stmdl_in += stmdlin
-            print(f" stmdl_in = {stmdl_in}")
+            #######print(f" stmdlin = {stmdlin}")
+            ###############$$$$#stmdl_in += stmdlin
+            ######$print(f" stmdl_in = {stmdl_in}")
             #stmdl_enc.append(edc.encoder(stmdlin))
-            stmdl_enc.append(edc.encode(stmdlin))
+            stmdlenc = edc.encode(stmdlin)
+            #####stmdl_enc.append(edc.encode(stmdlin))
             #stmdl_enc.append(edc.encode(stmdl_in))
-            print(f" stmdl_enc = {stmdl_enc}")
-            stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
-            print(f" stmdl_tensor = {stmdl_tensor}")
-            model(stmdl_tensor)
+            ######print(f" stmdl_enc = {stmdl_enc}")
+            stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+            ##### stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
+            ######print(f" stmdl_tensor = {stmdl_tensor}")
+            model(stmdltensor)
+            ####model(stmdltensor)
         """
         # 1. Initialize the counter BEFORE the loop
         total_val_loss = 0.0  
@@ -264,6 +271,6 @@ if __name__ == "__main__":
             ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
             ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         # Save progress
-        torch.save(model.state_dict(), f"models/checkpoint4_epoch_{epoch}.pth")
-    torch.save(checkpoint, 'models/best_dictionary_model2.pth')
+        torch.save(model.state_dict(), f"models/checkpoint47_epoch_{epoch}.pth")
+    torch.save(checkpoint, 'models/best_dictionary_model3.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
