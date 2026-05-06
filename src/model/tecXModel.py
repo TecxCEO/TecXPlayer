@@ -6,56 +6,55 @@ from torch.nn import functional as F
 class TecXModelTrain:
     def __init__(self, data):
         self.data = data
-# hyperparameters
-batch_size = 64 # how many independent sequences will we process in parallel?
-block_size = 64 #256 # what is the maximum context length for predictions?
-max_iters = 5000
-eval_interval = 500
-learning_rate = 3e-4
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-eval_iters = 200
-n_embd = 384
-n_head = 6
-n_layer = 6
-dropout = 0.2
-# ------------
+    # hyperparameters
+    batch_size = 64 # how many independent sequences will we process in parallel?
+    block_size = 64 #256 # what is the maximum context length for predictions?
+    max_iters = 5000
+    eval_interval = 500
+    learning_rate = 3e-4
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    eval_iters = 200
+    n_embd = 384
+    n_head = 6
+    n_layer = 6
+    dropout = 0.2
+    # ------------
+    torch.manual_seed(1337)
+    # Train and test splits
+    data = self.data
+    ####data = torch.tensor(encode(text), dtype=torch.long)
+    # print(data) #
+    n = int(0.9*len(data)) # first 90% will be train, rest val
+    train_data = data[:n]
+    val_data = data[n:]
 
-torch.manual_seed(1337)
-
-# Train and test splits
-data = torch.tensor(encode(text), dtype=torch.long)
-# print(data) #
-n = int(0.9*len(data)) # first 90% will be train, rest val
-train_data = data[:n]
-val_data = data[n:]
-
-# data loading
-def get_batch(split):
-    ##print(f"In the get_batch") #
-    # generate a small batch of data of inputs x and targets y
-    data = train_data if split == 'train' else val_data
-    ix = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([data[i:i+block_size] for i in ix])
-    y = torch.stack([data[i+1:i+block_size+1] for i in ix])
-    x, y = x.to(device), y.to(device)
-    return x, y
-
-@torch.no_grad()
-def estimate_loss():
-    ##print(f" In the estimate_loss function ") #
-    out = {}
-    model.eval()
-    for split in ['train', 'val']:
-        losses = torch.zeros(eval_iters)
-        for k in range(eval_iters):
-            X, Y = get_batch(split)
-            logits, loss = model(X, Y)
-            losses[k] = loss.item()
-        out[split] = losses.mean()
-    model.train()
-    # p = model.train()
-    # print(p) #
-    return out
+    # data loading
+    def get_batch(split):
+        ##print(f"In the get_batch") #
+        # generate a small batch of data of inputs x and targets y
+        data = train_data if split == 'train' else val_data
+        ix = torch.randint(len(data) - block_size, (batch_size,))
+        x = torch.stack([data[i:i+block_size] for i in ix])
+        y = torch.stack([data[i+1:i+block_size+1] for i in ix])
+        x, y = x.to(device), y.to(device)
+        return x, y
+    
+    @torch.no_grad()
+    def estimate_loss():
+        ##print(f" In the estimate_loss function ") #
+        out = {}
+        model.eval()
+        for split in ['train', 'val']:
+            losses = torch.zeros(eval_iters)
+            for k in range(eval_iters):
+                X, Y = get_batch(split)
+                logits, loss = model(X, Y)
+                losses[k] = loss.item()
+                out[split] = losses.mean()
+        model.train()
+        # p = model.train()
+        # print(p) #
+        return out
 
 class Head(nn.Module):
     ##print(f" In the  Head Class") #
@@ -278,7 +277,7 @@ decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integ
         loss.backward()
         optimizer.step()
     #torch.save(m.state_dict(),"../TecXLM.pth")
-    torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'tecxlm/tecxmodel.pth')
+    torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
     #torch.save({'state_dict': model.state_dict(), 'chars': char_list}, 'model.pth')
 
     
