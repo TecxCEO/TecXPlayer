@@ -58,6 +58,7 @@ class TecXModelTrain:
         # print(p) #
         return out
     def trainModel():
+        epoch = 0
         model = TecXModel()
         m = model.to(device)
         # print the number of parameters in the model
@@ -77,8 +78,47 @@ class TecXModelTrain:
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             optimizer.step()
+
+              """
+        # 1. Initialize the counter BEFORE the loop
+        total_val_loss = 0.0  
+
+        # 2. Your validation loop
+        for batch in val_dataloader:
+            outputs = model(batch)
+            loss = criterion(outputs, targets)
+            # Add the current loss to the total
+            total_val_loss += loss.item()
+        # 3. NOW you can calculate the average
+        avg_val_loss = total_val_loss / len(val_dataloader)
+        """
+        # model(stmdl_tensor)
+        checkpoint = {
+            'epoch': epoch + 1,
+            'model_state_dict': model.state_dict(),
+            ##'optimizer_state_dict': optimizer.state_dict(),
+            'best_val_loss': best_val_loss,
+            #'stoi': ed.createTokens() # Saving the vocabulary is critical!
+            'stoi': edc.stoi, # Saving the vocabulary is critical!
+            'itos' : edc.itos
+        }
+    
+        # Inside your epoch loop, after calculating avg_val_loss:
+        # 1. Calculate the average loss (Total Loss / Number of Batches)
+        ####avg_val_loss = total_val_loss / len(dataloader)
+        #avg_val_loss = total_val_loss
+        # 2. Now you can check if it's the best one
+        ########if avg_val_loss < best_val_loss:
+            ######best_val_loss = avg_val_loss
+            # Save the model state
+            ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
+            ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+        # Save progress
+        torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
+    torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
+    print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         #torch.save(m.state_dict(),"../TecXLM.pth")
-        torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
+        ##torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
     
         
 
