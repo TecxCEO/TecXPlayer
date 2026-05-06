@@ -55,6 +55,30 @@ class TecXModelTrain:
         # p = model.train()
         # print(p) #
         return out
+    def trainModel():
+        model = TecXModel()
+        m = model.to(device)
+        # print the number of parameters in the model
+        print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
+        # create a PyTorch optimizer
+        optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+        for iter in range(max_iters):
+            print(f"In The Iteration no = {iter}")
+            # every once in a while evaluate the loss on train and val sets
+            if iter % eval_interval == 0 or iter == max_iters - 1:
+                losses = estimate_loss()
+                print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+            # sample a batch of data
+            xb, yb = get_batch('train')
+            # evaluate the loss
+            logits, loss = model(xb, yb)
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+        #torch.save(m.state_dict(),"../TecXLM.pth")
+        torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
+    
+        
 
 class Head(nn.Module):
     ##print(f" In the  Head Class") #
