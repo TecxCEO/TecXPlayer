@@ -3,6 +3,9 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+class TecXModelTrain:
+    def __init__(self, data):
+        self.data = data
 # hyperparameters
 batch_size = 64 # how many independent sequences will we process in parallel?
 block_size = 64 #256 # what is the maximum context length for predictions?
@@ -18,39 +21,7 @@ dropout = 0.2
 # ------------
 
 torch.manual_seed(1337)
-"""
-# wget https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
-with open('inputs/input.txt', 'r', encoding='utf-8-sig') as f:
-    text = f.read()
 
-# here are all the unique characters that occur in this text
-# Define the components
-lowercase = string.ascii_lowercase          # a-z (26)
-uppercase = string.ascii_uppercase          # A-Z (26)
-digits = string.digits                      # 0-9 (10)
-special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
-
-# Combine them into one string
-##chars = sorted(list(set(text)))
-##chars = lowercase + uppercase + digits + special + ''.join(chars)
-chars = lowercase + uppercase + digits + special
-chars = sorted(list(set(chars)))
-#chars = sorted(list(set(chars.replace(" ",""))))
-#chars = sorted(list(set(text)))
-
-print(chars)
-
-vocab_size = len(chars)
-
-print(''.join(chars))
-print(vocab_size)
-
-# create a mapping from characters to integers
-stoi = { ch:i for i,ch in enumerate(chars) }
-itos = { i:ch for i,ch in enumerate(chars) }
-encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
-decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
-"""
 # Train and test splits
 data = torch.tensor(encode(text), dtype=torch.long)
 # print(data) #
@@ -251,6 +222,42 @@ class TecXModel(nn.Module):
         
 
 if __name__ == "__main__":
+    """
+    # wget https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+    with open('inputs/input.txt', 'r', encoding='utf-8-sig') as f:
+    text = f.read()
+
+# here are all the unique characters that occur in this text
+# Define the components
+lowercase = string.ascii_lowercase          # a-z (26)
+uppercase = string.ascii_uppercase          # A-Z (26)
+digits = string.digits                      # 0-9 (10)
+special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
+
+# Combine them into one string
+##chars = sorted(list(set(text)))
+##chars = lowercase + uppercase + digits + special + ''.join(chars)
+chars = lowercase + uppercase + digits + special
+chars = sorted(list(set(chars)))
+#chars = sorted(list(set(chars.replace(" ",""))))
+#chars = sorted(list(set(text)))
+
+print(chars)
+
+vocab_size = len(chars)
+
+print(''.join(chars))
+print(vocab_size)
+
+# create a mapping from characters to integers
+stoi = { ch:i for i,ch in enumerate(chars) }
+itos = { i:ch for i,ch in enumerate(chars) }
+encode = lambda s: [stoi[c] for c in s] # encoder: take a string, output a list of integers
+decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integers, output a string
+"""
+    
+    ####
+    
     model = TecXModel()
     m = model.to(device)
     # print the number of parameters in the model
