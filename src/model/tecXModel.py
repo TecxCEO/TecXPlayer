@@ -4,8 +4,10 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 class TecXModelTrain:
-    def __init__(self, data):
+    def __init__(self, data, stoi, itos):
         self.data = data
+        self.stoi = stoi
+        self.itos = itos
     # hyperparameters
     batch_size = 64 # how many independent sequences will we process in parallel?
     block_size = 64 #256 # what is the maximum context length for predictions?
