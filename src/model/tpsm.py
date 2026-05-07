@@ -39,7 +39,9 @@ class DictionaryTransformer(nn.Module):
 
     def forward(self, x):
         # x shape: (batch_size, sequence_length)
-        seq_len = x.size(1)
+        ######seq_len = x.size(1)
+        seq_len = x.size(0)
+        ######seq_len = x.size(1)
         x = self.embedding(x) + self.pos_encoder[:, :seq_len, :]
         
         # Pass through Transformer
