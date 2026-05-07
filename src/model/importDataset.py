@@ -88,7 +88,7 @@ class ImportDataset():
                 if len(value)==(16,19):
                     stam = value['state']
                 #####yield (stbm, mv, stam)
-                if all(stbm, mv, stam) is not None:
+                if all([stbm, mv, stam])
                     yield (stbm, mv, stam)
     
     def convertStateToList(self, stbm, mv, stam):
