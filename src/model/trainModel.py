@@ -68,8 +68,8 @@ if __name__ == "__main__":
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
     print(f"itos len after = {len(edc.itos)}")
 
-    print(f"itos len after = {edc.itos}")
-    print(f"stoi len after = {edc.stoi}")
+    print(f"itos after = {edc.itos}")
+    print(f"stoi after = {edc.stoi}")
     
     print(f"stoi len after = {len(edc.stoi)}")
     # print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
@@ -228,10 +228,12 @@ if __name__ == "__main__":
             ######$print(f" stmdl_in = {stmdl_in}")
             #stmdl_enc.append(edc.encoder(stmdlin))
             stmdlenc = edc.encode(stmdlin)
+            print(f" stmdlenc = {stmdlenc}")
             #####stmdl_enc.append(edc.encode(stmdlin))
             #stmdl_enc.append(edc.encode(stmdl_in))
             ######print(f" stmdl_enc = {stmdl_enc}")
             stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+            print(f" stmdl_tensor = {stmdl_tensor}")
             ##### stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
             ######print(f" stmdl_tensor = {stmdl_tensor}")
             model(stmdltensor)
