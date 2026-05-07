@@ -27,7 +27,9 @@ def get_nested_data(data, edc, idc):
         st_mv_data = []
         
         st_mv_data += idc.createInputString(data["solution"])
-        
+        ####
+        stoi, itos = edc.createTokens(st_mv_data)
+        ####
         ##### stmdt = edc.encoder(st_mv_data) ####
         
         #### dict2.update(dict1) 
