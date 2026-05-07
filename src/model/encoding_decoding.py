@@ -26,11 +26,16 @@ class EncodeDecode:
     
     # encode=
     # decode=
-    self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
     self.stoi['<PAD>'] = 0
     self.stoi['<SOS>'] = 1
     self.stoi['<EOS>'] = 2
+    self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
+    
     self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
+    print(f" stoi = {stoi}")
+    print(f" stoi = {len(stoi)}")
+    print(f" itos = {itos}")
+    print(f" itos = {len(itos)}")
     ####self.stoi = stoi
     # Train and test splits
     ##data = torch.tensor(encode(text), dtype=torch.long)
