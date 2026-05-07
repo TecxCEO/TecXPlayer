@@ -21,6 +21,7 @@ def get_nested_data(data, edc, idc):
     smd = None
     smdl = None
     stmdl = None
+    ######## for key, value in data["solution"].items():
     for key, value in data["solution"].items():
         #####
         st_mv_data = []
