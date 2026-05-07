@@ -26,7 +26,7 @@ def get_nested_data(data, edc, idc):
     for key, value in data.items():
         #####
         st_mv_data = []
-        st_mv_data += idc.createInputString(value)
+        st_mv_data += idc.createInputString(value) if value['state'] and len(value) == (16,19) else None
         ####
         ######$#$st_mv_data += idc.createInputString(data["solution"])
         ####
