@@ -131,7 +131,7 @@ while True:
         for token_id in m.generate_stream(context, tokens, temp, top_k):
             ##char = decode(token_id)
             char = edc.decode([token_id])
-            sys.stdout.write(char)
+            sys.stdout.write(char+" ")
             sys.stdout.flush()
             full_response += char # Collect for logging
             # Optional: Add a tiny sleep to make it look like "typing"
