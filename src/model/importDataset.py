@@ -87,7 +87,10 @@ class ImportDataset():
                 print(f" value of value = {value}")
                 if value['state'] or len(value)==(16,19):
                     stam = value['state']
-                yield (stbm, mv, stam) if all(stbm, mv, stam) else continue
+                #####yield (stbm, mv, stam)
+                if all((stbm, mv, stam):
+                    yield (stbm, mv, stam)
+    
     def convertStateToList(self, stbm, mv, stam):
         stbml = []
         staml = []
