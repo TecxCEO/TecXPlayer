@@ -78,7 +78,7 @@ class EncodeDecode:
   #def createTokens(self, full_text):
   def createTokens(self, full_text):
     # full_text = self.full_text
-    t=len(self.stoi)-1
+    #######t=len(self.stoi)-1
     if isinstance(full_text, dict):
       #for key, value in (full_text):
       for key, value in full_text.items():
@@ -87,17 +87,20 @@ class EncodeDecode:
         str="<"+key+">"
         #if not self.stoi.get(key) and isinstance(value, dict):
         if not self.stoi.get(str) and isinstance(value, dict):
-          t+=1
+          t=len(self.stoi) ####
+          #######t+=1
           self.stoi[str] = t
           self.createTokens(value)
           #if isinstance(value, dict):
             #self.createTokens(value)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
-            t+=1
+            t=len(self.stoi) ######
+            #######t+=1
             self.stoi[key] = t
           if  not self.stoi.get(value):
-            t+=1
+            t=len(self.stoi)
+            ####### t+=1
             self.stoi[value] = t
         ########self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
       print(f"stoi len = {len(self.stoi)}")
