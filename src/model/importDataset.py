@@ -85,7 +85,7 @@ class ImportDataset():
             elif key != 'state' :
                 mv = key
                 print(f" value of value = {value}")
-                if value['state'] or len(value)==(16,19):
+                if len(value)==(16,19):
                     stam = value['state']
                 #####yield (stbm, mv, stam)
                 if all(stbm, mv, stam):
