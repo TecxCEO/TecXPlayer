@@ -105,13 +105,13 @@ class EncodeDecode:
             self.stoi[value] = t
         ########self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
       print(f"stoi len = {len(self.stoi)}")
-      print(f"stoi = {self.stoi}")
-      print(f"itos = {self.itos}")
+      ##print(f"stoi = {self.stoi}")
+      ##print(f"itos = {self.itos}")
       print(f"itos len = {len(self.itos)}")
       self.itos = {i: ch for ch, i in self.stoi.items()}
-      print(f"itos at the end of createTokens in encoding decoding = {self.itos}")
+      ##print(f"itos at the end of createTokens in encoding decoding = {self.itos}")
       print(f"itos len at the end of createTokens in encoding decoding = {len(self.itos)}")
-      print(f"stoi at the end of createTokens in encoding decoding = {self.stoi}")
+      ##print(f"stoi at the end of createTokens in encoding decoding = {self.stoi}")
       print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
       return self.stoi, self.itos
       # return stoi
