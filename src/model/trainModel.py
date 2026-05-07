@@ -66,8 +66,8 @@ if __name__ == "__main__":
     ## stoi, itos = edc.createTokens()
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
-    print(f"stoi len after = {len(edc.stoi)}")
-    print(f"itos len before= {len(edc.itos)}")
+    print(f"stoi len before = {len(edc.stoi)}")
+    print(f"itos len before = {len(edc.itos)}")
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
     ####print(f"itos len after = {len(edc.itos)}")
     print(f"itos after = {edc.itos}")
