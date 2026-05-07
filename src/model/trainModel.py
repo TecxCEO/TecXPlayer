@@ -15,12 +15,13 @@ import importDataset as imd
 # import import_dataset as imd
 import torch
 def get_nested_data(data, edc, idc):
-    stoi, itos = edc.createTokens(data)
+    stoi, itos = edc.createTokens(data["solution"])
+    ######stoi, itos = edc.createTokens(data)
     stmd = None
     smd = None
     smdl = None
     stmdl = None
-    for key, value in data.items():
+    for key, value in data["solution"].items():
         #####
         st_mv_data = []
         
