@@ -77,6 +77,7 @@ class ImportDataset():
                             yield from get_nested_value(value)
             print(f"At the end of get_nested_value function.\n")
     def createInputString(self, data):
+        stbm = None
         mv = None
         stam = None
         for key, value in data.items():
