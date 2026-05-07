@@ -60,17 +60,19 @@ if __name__ == "__main__":
     filepath = "./data/dataset/cube3x3solvingdataset.json"
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    
     idc = imd.ImportDataset(filepath) #
     edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
-    print(f"stoi len before = {edc.stoi}")
-    print(f"itos len before = {edc.itos}")
+    print(f"stoi before = {edc.stoi}")
+    print(f"itos before = {edc.itos}")
+    print(f"stoi len after = {len(edc.stoi)}")
+    print(f"itos len before= {len(edc.itos)}")
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
-    print(f"itos len after = {len(edc.itos)}")
-
-    print(f"itos after = {edc.itos}")
+    ####print(f"itos len after = {len(edc.itos)}")
+    prprint(f"itos after = {edc.itos}")
     print(f"stoi after = {edc.stoi}")
-    
+    print(f"itos len after = {len(edc.itos)}")
     print(f"stoi len after = {len(edc.stoi)}")
     # print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
     # print(f"stmdl = {stmdl[i]}\n") for i in range(len(stmd))
@@ -233,7 +235,7 @@ if __name__ == "__main__":
             #stmdl_enc.append(edc.encode(stmdl_in))
             ######print(f" stmdl_enc = {stmdl_enc}")
             stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
-            print(f" stmdl_tensor = {stmdl_tensor}")
+            print(f" stmdltensor = {stmdltensor}")
             ##### stmdl_tensor = torch.tensor(stmdl_enc, dtype=torch.long)
             ######print(f" stmdl_tensor = {stmdl_tensor}")
             model(stmdltensor)
