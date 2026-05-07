@@ -224,7 +224,7 @@ if __name__ == "__main__":
     """
     for epoch in range(max_epoch):
         print(epoch)
-        for i in range(len(stmdl) // 3):
+        for i in range(len(stmdl) // 3 if stmdl else 0):
             print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
             stmdlin  = []
             stmdlin  = ['<SOS>']
