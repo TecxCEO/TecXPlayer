@@ -15,14 +15,15 @@ import importDataset as imd
 # import import_dataset as imd
 import torch
 def get_nested_data(data, edc, idc):
-    stoi, itos = edc.createTokens(data["solution"])
+    stoi, itos = edc.createTokens(data)
+    #######stoi, itos = edc.createTokens(data["solution"])
     ######stoi, itos = edc.createTokens(data)
     stmd = None
     smd = None
     smdl = None
     stmdl = None
     ######## for key, value in data["solution"].items():
-    for key, value in data["solution"].items():
+    for key, value in data.items():
         #####
         st_mv_data = []
         st_mv_data += idc.createInputString(value)
@@ -71,11 +72,13 @@ if __name__ == "__main__":
     idc = imd.ImportDataset(filepath) #
     edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
+    data=idc.data["solution"]
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
     print(f"stoi len before = {len(edc.stoi)}")
     print(f"itos len before = {len(edc.itos)}")
-    edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
+    edc, idc, stmd, stmdl = get_nested_data(data, edc, idc)
+    ####edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
     ####print(f"itos len after = {len(edc.itos)}")
     print(f"itos after = {edc.itos}")
     print(f"stoi after = {edc.stoi}")
