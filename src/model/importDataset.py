@@ -87,7 +87,8 @@ class ImportDataset():
             elif key != 'state' :
                 mv = key
                 print(f" value of value = {value}")
-                stam = value['state']
+                if len(value)==(16,19):
+                    stam = value['state']
                 # stam = data[mv][state]
                 #stam = data[key][state]
                 yield (stbm, mv, stam)
