@@ -35,7 +35,7 @@ class EncodeDecode:
     self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
     
     ##########self.decode = lambda l: ([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
-    self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
+    self.decode = lambda l: ' '.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
     ####self.stoi = stoi
     # Train and test splits
     ##data = torch.tensor(encode(text), dtype=torch.long)
