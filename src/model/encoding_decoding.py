@@ -23,12 +23,13 @@ class EncodeDecode:
     #stoi = {ch: i + 3 for i, ch in enumerate(chars)} # Shift everything by 3
     self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
     self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
-    self.stoi['<PAD>'] = 0
-    self.stoi['<SOS>'] = 1
-    self.stoi['<EOS>'] = 2
+    
     # encode=
     # decode=
     self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
+    self.stoi['<PAD>'] = 0
+    self.stoi['<SOS>'] = 1
+    self.stoi['<EOS>'] = 2
     self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
     ####self.stoi = stoi
     # Train and test splits
