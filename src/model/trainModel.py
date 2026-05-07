@@ -70,7 +70,7 @@ if __name__ == "__main__":
     print(f"itos len before= {len(edc.itos)}")
     edc, idc, stmd, stmdl = get_nested_data(idc.data, edc, idc) ####
     ####print(f"itos len after = {len(edc.itos)}")
-    prprint(f"itos after = {edc.itos}")
+    print(f"itos after = {edc.itos}")
     print(f"stoi after = {edc.stoi}")
     print(f"itos len after = {len(edc.itos)}")
     print(f"stoi len after = {len(edc.stoi)}")
