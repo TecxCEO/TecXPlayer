@@ -50,7 +50,7 @@ class EncodeDecode:
       #encode = lambda str_in: [self.stoi[str_in] if self.stoi[str_in] else continue]
       return self.encode(str_in)
     elif not self.encode(str_in) and not isinstance(str_in, (dict, list)):
-      createTokens(str_in)
+      self.createTokens(str_in)
       return self.encode(str_in)
     elif isinstance(str_in, (dict, list)):
       for strin in str_in:
