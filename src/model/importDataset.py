@@ -13,6 +13,7 @@ class ImportDataset():
             # data = json.load(f)
         print(f"size of data{self.get_total_items(self.data)}")
     def get_total_items(self,d, count = []):
+        print(f"len of d in get_total_items {len(d)}")
         if count:
             count[-1]= len(d)
         else:
@@ -27,6 +28,7 @@ class ImportDataset():
                     ##c = count[-1]
                 # count += 
                 ##self.get_total_items(value,c)
+                print(f"len of value in for in get_total_items {len(value)}")
                 self.get_total_items(value,count[-1])
             #else:
                 #count += 1
