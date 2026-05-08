@@ -73,9 +73,10 @@ if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     idc = imd.ImportDataset(filepath) #
-    edc=ed.EncodeDecode(input)
+    #edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
     data=idc.data["solution"]
+    edc=ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
     print(f"stoi len before = {len(edc.stoi)}")
