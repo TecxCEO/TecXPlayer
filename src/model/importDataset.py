@@ -30,7 +30,7 @@ class ImportDataset():
                 # count += 
                 ##self.get_total_items(value,c)
                 print(f"len of value in for in get_total_items {len(value)}")
-                self.get_total_items(value,count[-1])
+                self.get_total_items(value,[count[-1]])
             #else:
                 #count += 1
         return count
