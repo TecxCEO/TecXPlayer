@@ -94,7 +94,7 @@ class EncodeDecode:
           self.stoi[str] = t
           print(f"deep dive in dict of {key} of {len(value)} len value.\n")
           if len(value) != 20 and len(value) == (16, 19):
-            self.createTokens(value)
+            self.stoi, self.itos = self.createTokens(value)
           #if isinstance(value, dict):
             #self.createTokens(value)
         elif not isinstance(value, (dict, list)):
