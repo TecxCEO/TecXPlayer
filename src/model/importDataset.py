@@ -17,14 +17,14 @@ class ImportDataset():
             count[-1]= [len(d)]
         else:
             count= [len(d)]
-    for value in d.values():
-        if isinstance(value, dict):
-            # Recursively count items in nested dicts
-            # count += 
-            self.get_total_items(value,count[-1])
-        #else:
-            #count += 1
-    return count
+        for value in d.values():
+            if isinstance(value, dict):
+                # Recursively count items in nested dicts
+                # count += 
+                self.get_total_items(value,count[-1])
+            #else:
+                #count += 1
+        return count
 
     def get_my_data(self):
         # Inside the class, use self
