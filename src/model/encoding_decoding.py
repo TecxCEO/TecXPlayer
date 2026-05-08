@@ -78,10 +78,11 @@ class EncodeDecode:
   # def createTokens(self, full_text = self.full_text):
   #def createTokens(self, full_text):
   def createTokens(self, full_text):
+    print(f"stoi len before token cretion = {len(self.stoi)}")
     # full_text = self.full_text
     #######t=len(self.stoi)-1
     if isinstance(full_text, dict):
-      #for key, value in (full_text):
+      print(f" full_text = {len(full_text)}")
       for key, value in full_text.items():
         #if not self.stoi.get(key) and isinstance(value, dict):
         # if not self.stoi.get(key) and key != "state" and isinstance(value, dict):  
@@ -91,6 +92,7 @@ class EncodeDecode:
           t=len(self.stoi) ####
           #######t+=1
           self.stoi[str] = t
+          print(f"deep dive in dict of {key} of {len(value) len value.}\n")
           self.createTokens(value)
           #if isinstance(value, dict):
             #self.createTokens(value)
@@ -104,7 +106,7 @@ class EncodeDecode:
             ####### t+=1
             self.stoi[value] = t
         ########self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
-      print(f"stoi len = {len(self.stoi)}")
+      ####print(f"stoi len = {len(self.stoi)}")
       ##print(f"stoi = {self.stoi}")
       ##print(f"itos = {self.itos}")
       print(f"itos len = {len(self.itos)}")
@@ -119,131 +121,6 @@ class EncodeDecode:
 
 # t=3+ len(chars)
 # t= len(stoi)-1
-
-"""
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi['<>'] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = t+=1
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-stoi[''] = 
-"""
 
 # itos = {i: ch for ch, i in stoi.items()} # Reverse map
 ###def createCharactarizedTokens(self, full_text=full_text):
