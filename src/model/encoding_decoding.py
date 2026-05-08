@@ -92,7 +92,7 @@ class EncodeDecode:
           t=len(self.stoi) ####
           #######t+=1
           self.stoi[str] = t
-          print(f"deep dive in dict of {key} of {len(value) len value.}\n")
+          print(f"deep dive in dict of {key} of {len(value)} len value.\n")
           self.createTokens(value)
           #if isinstance(value, dict):
             #self.createTokens(value)
