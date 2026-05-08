@@ -75,7 +75,7 @@ if __name__ == "__main__":
     idc = imd.ImportDataset(filepath) #
     #edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
-    data=idc.data["solution"]
+    data=idc.data["solution"].deepcopy
     edc=ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
