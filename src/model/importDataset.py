@@ -21,12 +21,13 @@ class ImportDataset():
         for value in d.values():
             if isinstance(value, dict):
                 # Recursively count items in nested dicts
-                if len(count)==1:
-                    c = count
-                else:
-                    c = count[-1]
+                ##if len(count)==1:
+                    ##c = count
+                ##else:
+                    ##c = count[-1]
                 # count += 
-                self.get_total_items(value,c)
+                ##self.get_total_items(value,c)
+                self.get_total_items(value,count[-1])
             #else:
                 #count += 1
         return count
