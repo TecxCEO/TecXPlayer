@@ -5,7 +5,7 @@ Add this logic inside your training loop, specifically right after the Validatio
 
     
 """
-
+import copy
 ########import tecXModel as tm
 #### 
 import tpsm as tm
