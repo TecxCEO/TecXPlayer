@@ -5,7 +5,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 
     
 """
-import copy
+#import copy
+from copy import deepcopy
 ########import tecXModel as tm
 #### 
 import tpsm as tm
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     #edc=ed.EncodeDecode(input)
     ## stoi, itos = edc.createTokens()
     #data=idc.data["solution"].deepcopy()
-    data=deepcopy(idc.data["solution"])
+    data=copy.deepcopy(idc.data["solution"])
     edc=ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
