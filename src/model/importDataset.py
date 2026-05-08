@@ -11,6 +11,21 @@ class ImportDataset():
         with open(self.file_path, 'r') as f:
             self.data = json.load(f)
             # data = json.load(f)
+        print(f"size of data{self.get_total_items(self.data)}")
+    def get_total_items(self,d, count = None):
+        if count:
+            count[-1]= [len(d)]
+        else:
+            count= [len(d)]
+    for value in d.values():
+        if isinstance(value, dict):
+            # Recursively count items in nested dicts
+            # count += 
+            self.get_total_items(value,count[-1])
+        #else:
+            #count += 1
+    return count
+
     def get_my_data(self):
         # Inside the class, use self
         return self.data["solution"]
