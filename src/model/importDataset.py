@@ -14,10 +14,11 @@ class ImportDataset():
         print(f"size of data{self.get_total_items(self.data)}")
     def get_total_items(self,d, count = []):
         print(f"len of d in get_total_items {len(d)}")
-        if count:
-            count[-1]= len(d)
-        else:
-            count= [(len(d))]
+        count+= [(len(d))]
+        ##if count:
+            ##count[-1]= len(d)
+        ##else:
+            ##count= [(len(d))]
         #count[-1]= len(d)
         for value in d.values():
             if isinstance(value, dict):
