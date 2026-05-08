@@ -12,7 +12,7 @@ class ImportDataset():
             self.data = json.load(f)
             # data = json.load(f)
         print(f"size of data{self.get_total_items(self.data)}")
-    def get_total_items(self,d, count = None):
+    def get_total_items(self,d, count = []):
         if count:
             count[-1]= [len(d)]
         else:
