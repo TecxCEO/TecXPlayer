@@ -79,8 +79,6 @@ class EncodeDecode:
   #def createTokens(self, full_text):
   def createTokens(self, full_text):
     print(f"stoi len before token cretion = {len(self.stoi)}")
-    # full_text = self.full_text
-    #######t=len(self.stoi)-1
     if isinstance(full_text, dict):
       print(f" full_text = {len(full_text)}")
       for key, value in full_text.items():
@@ -90,24 +88,18 @@ class EncodeDecode:
         #if not self.stoi.get(key) and isinstance(value, dict):
         if not self.stoi.get(str) and isinstance(value, dict):
           t=len(self.stoi) ####
-          #######t+=1
           self.stoi[str] = t
           if len(value) != 20 and len(value) == (16, 19):
             print(f"deep dive in dict of {key} of {len(value)} len value.\n")
             #self.stoi, self.itos = self.createTokens(value)
             self.createTokens(value)
-          #if isinstance(value, dict):
-            #self.createTokens(value)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
             t=len(self.stoi) ######
-            #######t+=1
             self.stoi[key] = t
           if  not self.stoi.get(value):
             t=len(self.stoi)
-            ####### t+=1
             self.stoi[value] = t
-        ########self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
       ####print(f"stoi len = {len(self.stoi)}")
       ##print(f"stoi = {self.stoi}")
       ##print(f"itos = {self.itos}")
@@ -118,7 +110,6 @@ class EncodeDecode:
       ##print(f"stoi at the end of createTokens in encoding decoding = {self.stoi}")
       print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
       return self.stoi, self.itos
-      # return stoi
 
 
 # t=3+ len(chars)
