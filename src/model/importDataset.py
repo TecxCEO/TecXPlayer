@@ -16,7 +16,7 @@ class ImportDataset():
         if count:
             count[-1]= len(d)
         else:
-            count= len(d)
+            count= [(len(d))]
         #count[-1]= len(d)
         for value in d.values():
             if isinstance(value, dict):
