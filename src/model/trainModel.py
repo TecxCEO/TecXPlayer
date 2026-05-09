@@ -45,7 +45,7 @@ def get_nested_data(data, edc, idc):
     for key, value in data.items():
         if key != 'state' and len(value) == (19, 16):
            edc, idc, smd, smdl =  get_nested_data(value, edc, idc)
-   """         
+    """         
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
         #####
@@ -81,7 +81,8 @@ def get_nested_data(data, edc, idc):
                 stmdl = st_mv_data_list
         """
         ########
-        """if key != 'state' and len(value) == (19, 16):
+        """
+        if key != 'state' and len(value) == (19, 16):
            # edc, idc, smd, smdl = get_nested_data(value, edc, idc)
            return get_nested_data(value, edc, idc)
         """ 
