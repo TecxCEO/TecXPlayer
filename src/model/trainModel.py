@@ -135,6 +135,8 @@ if __name__ == "__main__":
     print(f"stoi after = {edc.stoi}")
     print(f"itos len after = {len(edc.itos)}")
     print(f"stoi len after = {len(edc.stoi)}")
+    print(f"stmd len = {len(stmd)}\n")
+    print(f"stmdl len = {len(stmdl)}\n")
     # print(f"stmd = {stmd[i]}\n") for i in range(len(stmd))
     # print(f"stmdl = {stmdl[i]}\n") for i in range(len(stmd))
     """
