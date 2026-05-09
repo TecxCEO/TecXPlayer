@@ -16,7 +16,8 @@ import importDataset as imd
 # import import_dataset as imd
 import torch
 def get_nested_data(data, edc, idc):
-    stoi, itos = edc.createTokens(data)
+    ####stoi, itos = 
+    edc.createTokens(data)
     #######stoi, itos = edc.createTokens(data["solution"])
     ######stoi, itos = edc.createTokens(data)
     stmd = None
@@ -26,6 +27,7 @@ def get_nested_data(data, edc, idc):
     st_mv_data = []
     if data.get('state') and len(data) in (16, 19):
         st_mv_data += idc.createInputString(data)
+        print(f" st_mv_data = {st_mv_data}\n")
         if st_mv_data:
             #stoi, itos = edc.createTokens(st_mv_data[0])
             #stoi, itos = edc.createTokens(st_mv_data[2])
@@ -33,6 +35,7 @@ def get_nested_data(data, edc, idc):
                 stmd += st_mv_data
             else:
                 stmd = st_mv_data
+              print(f" stmd = {stmd}\n")
             for smdt in st_mv_data:
                 #stoi, itos = 
                 edc.createTokens(smdt[0]) #####
