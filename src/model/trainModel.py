@@ -26,9 +26,10 @@ def get_nested_data(data, edc, idc):
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
         #####
-        st_mv_data = []
+        st_mv_data = data['state'] if data.get('state') and len(data) == 19 else []
         ####st_mv_data += idc.createInputString(value) 
         if value.get('state') and len(value) in (16, 19):
+            
             st_mv_data += idc.createInputString(value)
             if st_mv_data:
                 stoi, itos = edc.createTokens(st_mv_data[0])
