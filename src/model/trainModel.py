@@ -45,6 +45,14 @@ def get_nested_data(data, edc, idc):
     for key, value in data.items():
         if key != 'state' and len(value) == (19, 16):
            edc, idc, smd, smdl =  get_nested_data(value, edc, idc)
+            if smd and len(smd) > 1:
+                stmd.extend(smd)
+            elif smd and len(smd) == 1:
+                stmd += smd
+            if smdl and len(smdl) > 1:
+                stmdl.extend(smdl)
+            elif smdl and len(smdl) == 1:
+                stmdl += smdl
     """         
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
@@ -85,7 +93,7 @@ def get_nested_data(data, edc, idc):
         if key != 'state' and len(value) == (19, 16):
            # edc, idc, smd, smdl = get_nested_data(value, edc, idc)
            return get_nested_data(value, edc, idc)
-        """ 
+        " "" 
         
         #############
         
@@ -99,6 +107,7 @@ def get_nested_data(data, edc, idc):
             stmdl.extend(smdl)
         elif smdl and len(smdl) == 1:
             stmdl += smdl
+        """
     return edc, idc, stmd, stmdl
 ##
 if __name__ == "__main__":
