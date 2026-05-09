@@ -24,7 +24,7 @@ def get_nested_data(data, edc, idc):
     smdl = None
     stmdl = None
     if data.get('state') and len(data) in (16, 19):
-        st_mv_data += idc.createInputString(value)
+        st_mv_data += idc.createInputString(data)
         if st_mv_data:
             #stoi, itos = edc.createTokens(st_mv_data[0])
             #stoi, itos = edc.createTokens(st_mv_data[2])
