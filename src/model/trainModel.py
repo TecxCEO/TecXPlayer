@@ -59,7 +59,8 @@ def get_nested_data(data, edc, idc):
                 stmdl.extend(smdl)
             elif smdl and len(smdl) == 1:
                 stmdl += smdl
-        print(f" Ending for loop, i = {i++}, stmd = {stmd},  stmdl = {stmdl}\n " )
+        i += 1
+        print(f" Ending for loop, i = {i}, stmd = {stmd},  stmdl = {stmdl}\n " )
     """         
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
