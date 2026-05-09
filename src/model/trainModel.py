@@ -23,6 +23,25 @@ def get_nested_data(data, edc, idc):
     smd = None
     smdl = None
     stmdl = None
+    if data.get('state') and len(data) in (16, 19):
+        st_mv_data += idc.createInputString(value)
+        if st_mv_data:
+            stoi, itos = edc.createTokens(st_mv_data[0])
+                stoi, itos = edc.createTokens(st_mv_data[2])
+                if stmd:
+                    stmd += st_mv_data
+                else:
+                    stmd = st_mv_data
+                for smd in st_mv_data:
+                    st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
+                if stmdl:
+                    stmdl += st_mv_data_list
+                else:
+                    stmdl = st_mv_data_list
+    for key, value in data.items():
+        if key != 'state' and len(value) == (19, 16):
+            return get_nested_data(value, edc, idc)
+   """         
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
         #####
@@ -56,10 +75,15 @@ def get_nested_data(data, edc, idc):
                 stmdl += st_mv_data_list
             else:
                 stmdl = st_mv_data_list
+        """
+        ########
         """if key != 'state' and len(value) == (19, 16):
            # edc, idc, smd, smdl = get_nested_data(value, edc, idc)
            return get_nested_data(value, edc, idc)
         """ 
+        
+        #############
+        """
         # stmd.extend(smd) if smd and len(smd)> 1 else stmd.append(smd)
         if smd and len(smd) > 1:
             stmd.extend(smd)
@@ -70,7 +94,7 @@ def get_nested_data(data, edc, idc):
             stmdl.extend(smdl)
         elif smdl and len(smdl) == 1:
             stmdl += smdl
-    
+        """
     return edc, idc, stmd, stmdl
 ##
 if __name__ == "__main__":
