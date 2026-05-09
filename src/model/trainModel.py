@@ -35,7 +35,7 @@ def get_nested_data(data, edc, idc):
                 stmd += st_mv_data
             else:
                 stmd = st_mv_data
-              print(f" stmd = {stmd}\n")
+            print(f" stmd = {stmd}\n")
             for smdt in st_mv_data:
                 #stoi, itos = 
                 edc.createTokens(smdt[0]) #####
