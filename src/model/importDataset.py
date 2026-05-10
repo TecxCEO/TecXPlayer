@@ -121,6 +121,7 @@ class ImportDataset():
                     stam = value['state']
                 #####yield (stbm, mv, stam)
                 if all([stbm, mv, stam]):
+                    print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
                     yield (stbm, mv, stam)
     
     def convertStateToList(self, stbm, mv, stam):
