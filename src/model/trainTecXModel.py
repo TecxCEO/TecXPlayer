@@ -9,11 +9,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 from copy import deepcopy
 ########
 import tecXModel as tm
-#### import tpsm as tm
-# from encoding_decoding import EncodeDecode as ed
 import encoding_decoding as ed
 import importDataset as imd
-# import import_dataset as imd
 import torch
 def get_nested_data(data, edc, idc):
     ####stoi, itos = 
@@ -35,8 +32,6 @@ def get_nested_data(data, edc, idc):
         st_mv_data += idc.createInputString(data)
         #print(f" st_mv_data len = {len(st_mv_data)}\n st_mv_data = {st_mv_data}")
         if st_mv_data:
-            #stoi, itos = edc.createTokens(st_mv_data[0])
-            #stoi, itos = edc.createTokens(st_mv_data[2])
             if stmd:
                 stmd += st_mv_data
             else:
@@ -96,9 +91,9 @@ if __name__ == "__main__":
     print(f"stmdl len = {len(stmdl)}\n")
     vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
     max_epoch = 1 # 11
-    ###########tm.TecXModelTrain()
+    tm.TecXModelTrain()
     #####
-    model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
+    ####model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
     # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
 
     
@@ -126,6 +121,7 @@ if __name__ == "__main__":
             stmdlin += ['<EOS>']
             stmdlenc = edc.encode(stmdlin)
             stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+            """
             model(stmdltensor)
         # model(stmdl_tensor)
         checkpoint = {
@@ -141,3 +137,4 @@ if __name__ == "__main__":
     torch.save(checkpoint, 'models/best_dictionary_model3.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
     print(f" stmdl len = {len(stmdl)} stmdl len3 = {len(stmdl) // 3}")
+    """
