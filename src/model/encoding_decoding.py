@@ -90,11 +90,11 @@ class EncodeDecode:
           t=len(self.stoi) ####
           self.stoi[str] = t
           #if len(value) != 20 and len(value) in (16, 19):
-          if len(value) in (16, 19, 20):
-            # This works! It checks if len(value) is 16, 19, or 20.
-            print(f"deep dive in dict of {key} of {len(value)} len value.\n")
-            #self.stoi, self.itos = self.createTokens(value)
-            self.createTokens(value)
+        if isinstance(value, dict) and len(value) in (16, 19, 20):
+          # This works! It checks if len(value) is 16, 19, or 20.
+          print(f"deep dive in dict of {key} of {len(value)} len value.\n")
+          #self.stoi, self.itos = self.createTokens(value)
+          self.createTokens(value)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
             t=len(self.stoi) ######
