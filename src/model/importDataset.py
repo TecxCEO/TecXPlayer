@@ -138,7 +138,8 @@ class ImportDataset():
         staml.extend(stam.values())
         
         #(staml+=value) for value in stbm.values()
-        return (stbml, mv, staml)
+        #return (stbml, mv, staml)
+        return [stbml, mv, staml]
 if __name__ == "__main__":
     idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
     # print()
