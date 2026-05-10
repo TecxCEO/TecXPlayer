@@ -20,10 +20,17 @@ def get_nested_data(data, edc, idc):
     edc.createTokens(data)
     #######stoi, itos = edc.createTokens(data["solution"])
     ######stoi, itos = edc.createTokens(data)
+    if not stmd and not smd and not smdl and not stmdl:
+        stmd = None
+        smd = None
+        smdl = None
+        stmdl = None
+    """
     stmd = None
     smd = None
     smdl = None
     stmdl = None
+    """
     st_mv_data = []
     if data.get('state') and len(data) in (16, 19):
         st_mv_data += idc.createInputString(data)
