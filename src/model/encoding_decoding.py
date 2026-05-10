@@ -76,8 +76,8 @@ class EncodeDecode:
   def return_stoi_size(self):
     return len(self.stoi)
   # def createTokens(self, full_text = self.full_text):
-  #def createTokens(self, full_text, stoi, itos):
-  def createTokens(self, full_text):
+  def createTokens(self, full_text, stoi, itos):
+    #######def createTokens(self, full_text):
     self.stoi = stoi
     self.itos = itos
     print(f"stoi len before token cretion = {len(self.stoi)}")
@@ -96,8 +96,8 @@ class EncodeDecode:
           # This works! It checks if len(value) is 16, 19, or 20.
           print(f"deep dive in dict of {key} of {len(value)} len value.\n")
           #self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
-          self.createTokens(value)
-          #####self.createTokens(value, self.stoi, self.itos)
+          ###########self.createTokens(value)
+          self.createTokens(value, self.stoi, self.itos)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
             t=len(self.stoi) ######
