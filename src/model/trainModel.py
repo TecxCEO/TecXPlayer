@@ -17,8 +17,8 @@ import importDataset as imd
 import torch
 def get_nested_data(data, edc, idc):
     ####stoi, itos = 
-    edc.createTokens(data)
-    #######self.stoi, self.itos = edc.createTokens(data["solution"], self.stoi, self.itos)
+    ##########edc.createTokens(data)
+    edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
     """
     if not stmd and not smd and not smdl and not stmdl:
         stmd = None
@@ -46,9 +46,11 @@ def get_nested_data(data, edc, idc):
             print(f" stmd = {stmd}\n")
             for smdt in st_mv_data:
                 #stoi, itos = 
-                edc.createTokens(smdt[0]) #####
+                #########edc.createTokens(smdt[0]) #####
+                edc.stoi, edc.itos = edc.createTokens(smdt[0], edc.stoi, edc.itos)
                 #stoi, itos = 
-                edc.createTokens(smdt[2]) ####
+                #####edc.createTokens(smdt[2]) ####
+                edc.stoi, edc.itos = edc.createTokens(smdt[2], edc.stoi, edc.itos)
                 #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 if stmdl:
