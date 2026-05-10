@@ -41,6 +41,8 @@ def get_nested_data(data, edc, idc):
                 stmd += st_mv_data
             else:
                 stmd = st_mv_data
+            print(f" st_mv_data len = {len(st_mv_data)}\n")
+            print(f" stmd len = {len(stmd)}\n")
             print(f" stmd = {stmd}\n")
             for smdt in st_mv_data:
                 #stoi, itos = 
