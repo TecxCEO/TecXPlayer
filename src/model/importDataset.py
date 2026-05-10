@@ -114,17 +114,17 @@ class ImportDataset():
         for key, value in data.items():
             if key == 'state' :
                 stbm = data[key]
-                print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
+                ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
             elif key != 'state' :
                 mv = key
                 ##print(f" value of value = {value}")
                 if len(value) in (16,19):
                     stam = value['state']
-                    print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
+                    ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
                 #####yield (stbm, mv, stam)
                 # if all([stbm, mv, stam]):
                 if stbm and mv and stam:
-                    print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
+                    ####print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
                     #yield (stbm, mv, stam)
                     yield [stbm, mv, stam]
     
