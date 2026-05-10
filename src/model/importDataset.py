@@ -120,7 +120,8 @@ class ImportDataset():
                 if len(value)==(16,19):
                     stam = value['state']
                 #####yield (stbm, mv, stam)
-                if all([stbm, mv, stam]):
+                # if all([stbm, mv, stam]):
+                if stbm and mv and stam:
                     print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
                     yield (stbm, mv, stam)
     
