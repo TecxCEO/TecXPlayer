@@ -7,9 +7,9 @@ Add this logic inside your training loop, specifically right after the Validatio
 """
 #import copy
 from copy import deepcopy
-########import tecXModel as tm
-#### 
-import tpsm as tm
+########
+import tecXModel as tm
+#### import tpsm as tm
 # from encoding_decoding import EncodeDecode as ed
 import encoding_decoding as ed
 import importDataset as imd
