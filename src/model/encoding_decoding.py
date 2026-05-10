@@ -97,7 +97,7 @@ class EncodeDecode:
           print(f"deep dive in dict of {key} of {len(value)} len value.\n")
           #self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
           ###########self.createTokens(value)
-          self.createTokens(value, self.stoi, self.itos)
+          self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
         elif not isinstance(value, (dict, list)):
           if not self.stoi.get(key) and key != "state":
             t=len(self.stoi) ######
