@@ -41,7 +41,8 @@ def get_nested_data(data, edc, idc):
                 edc.createTokens(smdt[0]) #####
                 #stoi, itos = 
                 edc.createTokens(smdt[2]) ####
-                st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
+                #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
+                st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
             if stmdl:
                 stmdl += st_mv_data_list
             else:
