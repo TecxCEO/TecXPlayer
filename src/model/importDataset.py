@@ -113,8 +113,10 @@ class ImportDataset():
         stam = None
         for key, value in data.items():
             if key == 'state' :
+                print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
                 stbm = data[key]
             elif key != 'state' :
+                print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
                 mv = key
                 ##print(f" value of value = {value}")
                 if len(value)==(16,19):
