@@ -359,4 +359,4 @@ if __name__ == "__main__":
         torch.save(model.state_dict(), f"models/checkpoint47_epoch_{epoch}.pth")
     torch.save(checkpoint, 'models/best_dictionary_model3.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
-    print(f" stmdl len = {len(stmdl)} stmdl len3 = {len(stmdl // 3)}")
+    print(f" stmdl len = {len(stmdl)} stmdl len3 = {len(stmdl) // 3}")
