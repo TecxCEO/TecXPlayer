@@ -27,7 +27,7 @@ def get_nested_data(data, edc, idc):
     st_mv_data = []
     if data.get('state') and len(data) in (16, 19):
         st_mv_data += idc.createInputString(data)
-        print(f" st_mv_data = {st_mv_data}\n")
+        print(f" st_mv_data len = {len(st_mv_data)}\n st_mv_data = {st_mv_data}")
         if st_mv_data:
             #stoi, itos = edc.createTokens(st_mv_data[0])
             #stoi, itos = edc.createTokens(st_mv_data[2])
@@ -47,7 +47,7 @@ def get_nested_data(data, edc, idc):
                 stmdl += st_mv_data_list
             else:
                 stmdl = st_mv_data_list
-    print(f" starting for loop \n stmd = {stmd}\n \n stmdl = {stmdl}\n " )
+    ####print(f" starting for loop \n stmd = {stmd}\n \n stmdl = {stmdl}\n " )
     i=0
     for key, value in data.items():
         if key != 'state' and len(value) == (19, 16):
@@ -61,7 +61,7 @@ def get_nested_data(data, edc, idc):
             elif smdl and len(smdl) == 1:
                 stmdl += smdl
         i += 1
-        print(f" Ending for loop, i = {i}, stmd = {stmd},  stmdl = {stmdl}\n " )
+        print(f" Ending for loop, i = {i}, stmd = {stmd}, \n stmdl = {stmdl}\n " )
     """         
     ######## for key, value in data["solution"].items():
     for key, value in data.items():
