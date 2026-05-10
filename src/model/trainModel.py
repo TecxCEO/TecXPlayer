@@ -51,10 +51,10 @@ def get_nested_data(data, edc, idc):
                 edc.createTokens(smdt[2]) ####
                 #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
-            if stmdl:
-                stmdl += st_mv_data_list
-            else:
-                stmdl = st_mv_data_list
+                if stmdl:
+                    stmdl += st_mv_data_list
+                else:
+                    stmdl = st_mv_data_list
     ####print(f" starting for loop \n stmd = {stmd}\n \n stmdl = {stmdl}\n " )
     i=0
     for key, value in data.items():
