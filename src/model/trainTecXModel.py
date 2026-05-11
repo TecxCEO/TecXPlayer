@@ -67,14 +67,10 @@ def get_nested_data(data, edc, idc):
                 stmdl += smdl
         #i += 1
         ########print(f" Ending for loop, i = {i}, stmd = {stmd}, \n stmdl = {stmdl}\n " )
-    
     return edc, idc, stmd, stmdl
-##
 if __name__ == "__main__":
     filepath = "./data/dataset/cube3x3solvingdataset.json"
-    
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    
     idc = imd.ImportDataset(filepath) #
     data=deepcopy(idc.data["solution"])
     edc=ed.EncodeDecode(data)
@@ -89,25 +85,8 @@ if __name__ == "__main__":
     print(f"stoi len after = {len(edc.stoi)}")
     print(f"stmd len = {len(stmd)}\n")
     print(f"stmdl len = {len(stmdl)}\n")
-    ###########$$vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
-    ###########max_epoch = 1 # 11
-    
-    #####
-    ####model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
-    # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
-
-    
-    ##############best_val_loss = float('inf') # Start with infinity
-    ##
-    ##model.to(device)
-    ##model.eval()
-    ##stmdl_in  = []
-    #stmdlin  = []
-    #stmdl_enc = []
-    # stmdl_tensor = []
     stmdlenc = []
     stmdltensor = []
-
     for epoch in range(max_epoch):
         ####print(epoch)
         for i in range(len(stmdl) // 3 if stmdl else 0):
@@ -123,24 +102,4 @@ if __name__ == "__main__":
             stmdlin += ['<EOS>']
             #stmdlenc = edc.encode(stmdlin)
             stmdlenc += edc.encode(stmdlin)
-
-    tm.TecXModelTrain(stmdlenc, databal, edc.stoi, edc.itos)
-            ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
-    
-            """
-            model(stmdltensor)
-        # model(stmdl_tensor)
-        checkpoint = {
-            'epoch': epoch + 1,
-            'model_state_dict': model.state_dict(),
-            ##'optimizer_state_dict': optimizer.state_dict(),
-            'best_val_loss': best_val_loss,
-            #'stoi': ed.createTokens() # Saving the vocabulary is critical!
-            'stoi': edc.stoi, # Saving the vocabulary is critical!
-            'itos' : edc.itos
-        }
-        torch.save(model.state_dict(), f"models/checkpoint47_epoch_{epoch}.pth")
-    torch.save(checkpoint, 'models/best_dictionary_model3.pth')
-    print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
-    print(f" stmdl len = {len(stmdl)} stmdl len3 = {len(stmdl) // 3}")
-    """
+    tm.TecXModelTrain(stmdlenc, databal, edc.stoi, edc.itos) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
