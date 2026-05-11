@@ -10,8 +10,8 @@ class TecXModelTrain:
         self.stoi = stoi
         self.itos = itos
     # hyperparameters
-    batch_size = 1 # 64 # how many independent sequences will we process in parallel?
-    block_size = 64 #256 # what is the maximum context length for predictions?
+    batch_size =64 # 32 #1 # 64 # how many independent sequences will we process in parallel?
+    block_size = 1 #64 #256 # what is the maximum context length for predictions?
     max_iters = len(self.data)//3 #5000
     eval_interval = 500
     learning_rate = 3e-4
@@ -38,9 +38,14 @@ class TecXModelTrain:
         ##print(f"In the get_batch") #
         # generate a small batch of data of inputs x and targets y
         data = train_data if split == 'train' else val_data
-        ix = torch.randint(len(data) - block_size, (batch_size,))
-        x = torch.stack([data[i:i+block_size] for i in ix])
-        y = torch.stack([data[i+1:i+block_size+1] for i in ix])
+        #ix = torch.randint(len(data) - block_size, (batch_size,))
+        #x = torch.stack([data[i:i+block_size] for i in ix])
+        #y = torch.stack([data[i+1:i+block_size+1] for i in ix])
+        #
+        ix = torch.randint(len(data),  (batch_size,))
+        x = torch.stack([data[i] for i in ix])
+        y = torch.stack([data[i+1] for i in ix])
+        #
         x, y = x.to(device), y.to(device)
         return x, y
     
@@ -83,7 +88,7 @@ class TecXModelTrain:
             loss.backward()
             optimizer.step()
 
-              """
+            """
         # 1. Initialize the counter BEFORE the loop
         total_val_loss = 0.0  
 
@@ -121,11 +126,6 @@ class TecXModelTrain:
         torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
     torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
     print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
-        #torch.save(m.state_dict(),"../TecXLM.pth")
-        ##torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
-    
-        
-
 class Head(nn.Module):
     ##print(f" In the  Head Class") #
     """ one head of self-attention """
