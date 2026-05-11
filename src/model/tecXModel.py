@@ -73,25 +73,26 @@ class TecXModelTrain:
         # print(p) #
         return out
     def trainModel():
-        epoch = 0
+        epochs = 11
         model = TecXModel()
         m = model.to(device)
         # print the number of parameters in the model
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
-        ####for epoch in range(epochs):
-        ####for iter in range(max_iters):
-        for iter in range(len(self.data)//3):
-            print(f"In The Iteration no = {iter}")
-            # every once in a while evaluate the loss on train and val sets
-            if iter % eval_interval == 0 or iter == max_iters - 1:
-                losses = estimate_loss()
-                print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
-            # sample a batch of data
-            xb, yb = get_batch('train')
-            # evaluate the loss
-            logits, loss = model(xb, yb)
+        best_val_loss = float('inf') # Start with infinity
+        for epoch in range(epochs):
+            ####for iter in range(max_iters):
+            for iter in range(len(self.data)//3):
+                print(f"In The Iteration no = {iter}")
+                # every once in a while evaluate the loss on train and val sets
+                if iter % eval_interval == 0 or iter == max_iters - 1:
+                    losses = estimate_loss()
+                    print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+                # sample a batch of data
+                xb, yb = get_batch('train')
+                # evaluate the loss
+                logits, loss = model(xb, yb)
             
             ####
             # 1. Initialize the counter BEFORE the loop
