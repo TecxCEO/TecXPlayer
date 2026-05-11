@@ -27,6 +27,8 @@ class TecXModelTrain:
     ######val_data = data[n:]
     train_data = [] # self.data #data
     val_data = [] #self.valdata
+    # 1. Initialize the counter BEFORE the loop
+    total_val_loss = 0.0  
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
@@ -78,6 +80,7 @@ class TecXModelTrain:
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+        ####for epoch in range(epochs):
         ####for iter in range(max_iters):
         for iter in range(len(self.data)//3):
             print(f"In The Iteration no = {iter}")
@@ -89,6 +92,23 @@ class TecXModelTrain:
             xb, yb = get_batch('train')
             # evaluate the loss
             logits, loss = model(xb, yb)
+            
+            ####
+            # 1. Initialize the counter BEFORE the loop
+            total_val_loss = 0.0 
+            # 2. Your validation loop
+            ####for batch in val_dataloader:
+                ##outputs = model(batch)
+                ###loss = criterion(outputs, targets)
+                # Add the current loss to the total
+                #total_val_loss += loss.item()  
+            for loss_item in loss.items():
+                # Add the current loss to the total
+                total_val_loss += loss_item
+            # 3. NOW you can calculate the average
+            #avg_val_loss = total_val_loss / len(val_dataloader)
+            avg_val_loss = total_val_loss / len(batch_size)
+        
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             optimizer.step()
@@ -106,31 +126,31 @@ class TecXModelTrain:
         # 3. NOW you can calculate the average
         avg_val_loss = total_val_loss / len(val_dataloader)
         """
-        # model(stmdl_tensor)
         checkpoint = {
             'epoch': epoch + 1,
             'model_state_dict': model.state_dict(),
-            ##'optimizer_state_dict': optimizer.state_dict(),
+            optimizer_state_dict': optimizer.state_dict(),
             'best_val_loss': best_val_loss,
-            #'stoi': ed.createTokens() # Saving the vocabulary is critical!
             'stoi': edc.stoi, # Saving the vocabulary is critical!
             'itos' : edc.itos
         }
-    
         # Inside your epoch loop, after calculating avg_val_loss:
         # 1. Calculate the average loss (Total Loss / Number of Batches)
-        ####avg_val_loss = total_val_loss / len(dataloader)
+        ##avg_val_loss = total_val_loss / len(dataloader)
         #avg_val_loss = total_val_loss
+        ###avg_val_loss = total_val_loss / len(batch_size)
         # 2. Now you can check if it's the best one
-        ########if avg_val_loss < best_val_loss:
-            ######best_val_loss = avg_val_loss
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
             # Save the model state
             ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
             ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+            torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
+            print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         # Save progress
         torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
-    torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
-    print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+        #torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
+        #print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
 class Head(nn.Module):
     ##print(f" In the  Head Class") #
     """ one head of self-attention """
