@@ -15,7 +15,7 @@ do
             cd TecXPlayer
             git pull
             clear
-            python 
+            python src/model/trainTecXModel.py
             ;;
         "Show System Info")
             echo "--- System Info ---"
