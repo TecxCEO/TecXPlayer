@@ -19,13 +19,13 @@ class TecXModelTrain:
     # ------------
     torch.manual_seed(1337)
     # Train and test splits
-    data = self.data
+    #data = [] # self.data
     ####data = torch.tensor(encode(text), dtype=torch.long)
     # print(data) #
     ######n = int(0.9*len(data)) # first 90% will be train, rest val
     ####train_data = data[:n]
     ######val_data = data[n:]
-    train_data = [] # self.data
+    train_data = [] # self.data #data
     val_data = [] #self.valdata
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
@@ -34,6 +34,7 @@ class TecXModelTrain:
         self.itos = itos
         #
         max_iters = len(self.data)//3 #5000
+        #data = [] # self.data
         train_data = self.data
         val_data = self.valdata
         #
