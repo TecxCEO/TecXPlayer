@@ -33,5 +33,3 @@ do
             ;;
     esac
 done
-
-cd TecXPlayer
