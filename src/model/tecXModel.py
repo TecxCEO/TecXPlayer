@@ -130,7 +130,7 @@ class TecXModelTrain:
         checkpoint = {
             'epoch': epoch + 1,
             'model_state_dict': model.state_dict(),
-            optimizer_state_dict': optimizer.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
             'best_val_loss': best_val_loss,
             'stoi': edc.stoi, # Saving the vocabulary is critical!
             'itos' : edc.itos
