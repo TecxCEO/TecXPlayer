@@ -4,12 +4,19 @@
 PS3="Please enter your choice (1-7): "
 
 # List the menu options
-options=("Show System Info" "Update Packages" "Print Hello World" "Exit")
+options=("Run TecXPlayer" "Run" "Show System Info" "Update Packages" "Print Hello World" "Exit")
 
 # Start the interactive loop
 select opt in "${options[@]}"
 do
     case $opt in
+        "Run TecXPlayer")
+            echo "--- Runnig file of  TecXPlayer---"
+            cd TecXPlayer
+            git pull
+            clear
+            python 
+            ;;
         "Show System Info")
             echo "--- System Info ---"
             uname -a
