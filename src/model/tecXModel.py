@@ -4,7 +4,7 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 class TecXModelTrain:
-    def __init__(self, data, valdata =[], stoi, itos):
+    def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
         self.stoi = stoi
