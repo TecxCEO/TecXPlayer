@@ -26,7 +26,7 @@ class TecXModelTrain:
     ####train_data = data[:n]
     ######val_data = data[n:]
     train_data = [] # self.data
-    val_data = a[] #self.valdata
+    val_data = [] #self.valdata
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
