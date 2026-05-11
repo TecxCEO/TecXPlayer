@@ -102,4 +102,5 @@ if __name__ == "__main__":
             stmdlin += ['<EOS>']
             #stmdlenc = edc.encode(stmdlin)
             stmdlenc += edc.encode(stmdlin)
-    tm.TecXModelTrain(stmdlenc, databal, edc.stoi, edc.itos) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+    dataval = []
+    tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
