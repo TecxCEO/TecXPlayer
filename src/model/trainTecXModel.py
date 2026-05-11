@@ -89,22 +89,24 @@ if __name__ == "__main__":
     print(f"stoi len after = {len(edc.stoi)}")
     print(f"stmd len = {len(stmd)}\n")
     print(f"stmdl len = {len(stmdl)}\n")
-    vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
-    max_epoch = 1 # 11
-    tm.TecXModelTrain()
+    ###########$$vocab_size =  edc.return_stoi_size # Size of your 'stoi' map
+    ###########max_epoch = 1 # 11
+    
     #####
     ####model = tm.DictionaryTransformer(vocab_size=int(vocab_size()), d_model=128, nhead=8, num_layers=4, num_classes=3)
     # model = DictionaryTransformer(vocab_size=vocab_size, d_model=128, nhead=20, num_layers=12, num_classes=3)
 
     
-    best_val_loss = float('inf') # Start with infinity
+    ##############best_val_loss = float('inf') # Start with infinity
     ##
-    model.to(device)
-    model.eval()
-    stmdl_in  = []
-    stmdlin  = []
-    stmdl_enc = []
+    ##model.to(device)
+    ##model.eval()
+    ##stmdl_in  = []
+    #stmdlin  = []
+    #stmdl_enc = []
     # stmdl_tensor = []
+    stmdlenc = []
+    stmdltensor = []
 
     for epoch in range(max_epoch):
         ####print(epoch)
@@ -119,8 +121,12 @@ if __name__ == "__main__":
             stmdlin += stmdl[3*i+2]
             #stmdlin += [stmdl[3*i+2]]
             stmdlin += ['<EOS>']
-            stmdlenc = edc.encode(stmdlin)
-            stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+            #stmdlenc = edc.encode(stmdlin)
+            stmdlenc += edc.encode(stmdlin)
+
+    tm.TecXModelTrain(stmdlenc, databal, edc.stoi, edc.itos)
+            ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+    
             """
             model(stmdltensor)
         # model(stmdl_tensor)
