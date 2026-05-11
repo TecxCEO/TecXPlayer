@@ -4,15 +4,10 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 class TecXModelTrain:
-    def __init__(self, data, stoi, itos, valdata =[]):
-        self.data = data
-        self.valdata = valdata
-        self.stoi = stoi
-        self.itos = itos
     # hyperparameters
     batch_size =64 # 32 #1 # 64 # how many independent sequences will we process in parallel?
     block_size = 1 #64 #256 # what is the maximum context length for predictions?
-    max_iters = len(self.data)//3 #5000
+    max_iters = 0# len(self.data)//3 #5000
     eval_interval = 500
     learning_rate = 3e-4
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -30,9 +25,18 @@ class TecXModelTrain:
     ######n = int(0.9*len(data)) # first 90% will be train, rest val
     ####train_data = data[:n]
     ######val_data = data[n:]
-    train_data = self.data
-    val_data = self.valdata
-
+    train_data = [] # self.data
+    val_data = a[] #self.valdata
+    def __init__(self, data, stoi, itos, valdata =[]):
+        self.data = data
+        self.valdata = valdata
+        self.stoi = stoi
+        self.itos = itos
+        #
+        max_iters = len(self.data)//3 #5000
+        train_data = self.data
+        val_data = self.valdata
+        #
     # data loading
     def get_batch(split):
         ##print(f"In the get_batch") #
