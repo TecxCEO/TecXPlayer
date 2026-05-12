@@ -69,12 +69,22 @@ def get_nested_data(data, edc, idc):
         ########print(f" Ending for loop, i = {i}, stmd = {stmd}, \n stmdl = {stmdl}\n " )
     return edc, idc, stmd, stmdl
 #####if __name__ == "__main__":
-def createTEData(file,
-    filepath = "./data/dataset/cube3x3solvingdataset.json"
+def createTVData(file, edctv = None, idctv = None):
+    ########filepath = "./data/dataset/cube3x3solvingdataset.json"
+    filepath = file
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    idc = imd.ImportDataset(filepath) #
+    #if idctv not None:
+    if idctv:
+        idc = idctv
+        idc(filepath)#
+    else:
+        imd.ImportDataset(filepath) 
     data=deepcopy(idc.data["solution"])
-    edc=ed.EncodeDecode(data)
+    if edctv:
+        edc = edctv
+        edc(data)
+    else:
+        ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
     print(f"stoi len before = {len(edc.stoi)}")
@@ -103,8 +113,11 @@ def createTEData(file,
             stmdlin += ['<EOS>']
             #stmdlenc = edc.encode(stmdlin)
             stmdlenc += edc.encode(stmdlin)
+    return stmdlenc, edc, idc
 if __name__ == "__main__":
-    datatraining = createTVData() ## 
-    dataval = createTVData() ## []
+    t_filepath = "./data/dataset/cube3x3trainingdataset.json"
+    v_filepath = "./data/dataset/cube3x3solvingdataset.json"
+    datatraining, edc, idc = createTVData(t_filepath) ## 
+    dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
     #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
     tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
