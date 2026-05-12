@@ -68,7 +68,8 @@ def get_nested_data(data, edc, idc):
         #i += 1
         ########print(f" Ending for loop, i = {i}, stmd = {stmd}, \n stmdl = {stmdl}\n " )
     return edc, idc, stmd, stmdl
-if __name__ == "__main__":
+#####if __name__ == "__main__":
+def createTEData(file,
     filepath = "./data/dataset/cube3x3solvingdataset.json"
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     idc = imd.ImportDataset(filepath) #
@@ -102,5 +103,8 @@ if __name__ == "__main__":
             stmdlin += ['<EOS>']
             #stmdlenc = edc.encode(stmdlin)
             stmdlenc += edc.encode(stmdlin)
-    dataval = []
-    tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+if __name__ == "__main__":
+    datatraining = createTVData() ## 
+    dataval = createTVData() ## []
+    #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+    tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
