@@ -121,22 +121,60 @@ def createTVData(file, edctv = None, idctv = None):
             #stmdlenc = edc.encode(stmdlin)
             stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
+def file_dir_nested(dir = "./data/dataset", d_list = []):
+    #dir = "./data/dataset"
+    dir_list = 
+    t_filepath = f"{dir}/cube3x3trainingdataset.json"
+    v_filepath = f"{dir}/cube3x3solvingdataset.json"
+    dir_list += file_dir_nested(dir, dir_list)
+    return dir_list
+        print(f"Started \n")
+        dir = "./data/dataset"
+        t_filepath = f"{dir}/cube3x3trainingdataset.json"
+        v_filepath = f"{dir}/cube3x3solvingdataset.json"
+        #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
+        #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
+        dataval, edc, idc = createTVData(v_filepath)
+        print(f"datatraining creating \n")
+        datatraining, edc, idc = createTVData(t_filepath) ## 
+        print(f"dataval creating \n")
+        dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
+        #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+        print(f"datatraining len = {len(datatraining)}")
+        print(f"datatraining 0= {datatraining[0]}")
+        print(f"datatraining 1 = {datatraining[1]}")
+        print(f"datatraining 2 = {datatraining[2]}")
+        print(f"dataval len = {len(dataval)}")
+        print(f"dataval 0 = {dataval[0]}")
+        print(f"dataval 1 = {dataval[1]}")
+        print(f"dataval 2 = {dataval[2]}")
+        tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        #dir_name = ""
+        #dir = dir + dir_name
+
 if __name__ == "__main__":
-    print(f"Started \n")
-    t_filepath = "./data/dataset/cube3x3trainingdataset.json"
-    v_filepath = "./data/dataset/cube3x3solvingdataset.json"
-    dataval, edc, idc = createTVData(v_filepath)
-    print(f"datatraining creating \n")
-    datatraining, edc, idc = createTVData(t_filepath) ## 
-    print(f"dataval creating \n")
-    dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
-    #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
-    print(f"datatraining len = {len(datatraining)}")
-    print(f"datatraining 0= {datatraining[0]}")
-    print(f"datatraining 1 = {datatraining[1]}")
-    print(f"datatraining 2 = {datatraining[2]}")
-    print(f"dataval len = {len(dataval)}")
-    print(f"dataval 0 = {dataval[0]}")
-    print(f"dataval 1 = {dataval[1]}")
-    print(f"dataval 2 = {dataval[2]}")
-    tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+    while True:
+        print(f"Started \n")
+        
+        dir = "./data/dataset"
+        t_filepath = f"{dir}/cube3x3trainingdataset.json"
+        v_filepath = f"{dir}/cube3x3solvingdataset.json"
+        #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
+        #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
+        dataval, edc, idc = createTVData(v_filepath)
+        print(f"datatraining creating \n")
+        datatraining, edc, idc = createTVData(t_filepath) ## 
+        print(f"dataval creating \n")
+        dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
+        #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+        print(f"datatraining len = {len(datatraining)}")
+        print(f"datatraining 0= {datatraining[0]}")
+        print(f"datatraining 1 = {datatraining[1]}")
+        print(f"datatraining 2 = {datatraining[2]}")
+        print(f"dataval len = {len(dataval)}")
+        print(f"dataval 0 = {dataval[0]}")
+        print(f"dataval 1 = {dataval[1]}")
+        print(f"dataval 2 = {dataval[2]}")
+        tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        #dir_name = ""
+        #dir = dir + dir_name
