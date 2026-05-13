@@ -153,10 +153,11 @@ def file_dir_nested(dir = "./data/dataset", d_list = []):
         #dir = dir + dir_name
 
 if __name__ == "__main__":
-    while True:
-        print(f"Started \n")
-        
-        dir = "./data/dataset"
+    print(f"Started \n")
+    t_data_dir_list = file_dir_nested("./data/dataset")
+    v_data_dir_list = file_dir_nested("./data/dataset")
+    for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
+        t_data_dir = t_data_dir_list[i]
         t_filepath = f"{dir}/cube3x3trainingdataset.json"
         v_filepath = f"{dir}/cube3x3solvingdataset.json"
         #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
