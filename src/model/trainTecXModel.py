@@ -82,6 +82,7 @@ def createTVData(file, edctv = None, idctv = None):
     else:
         print(f"imd in else statement.\n")
         imd.ImportDataset(filepath) 
+    print(f" data deep copy. \n")
     data=deepcopy(idc.data["solution"])
     if edctv:
         print(f"edctv in if statement \n")
