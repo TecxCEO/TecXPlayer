@@ -12,13 +12,14 @@ class ImportDataset():
             self.data = json.load(f)
             # data = json.load(f)
         ##print(f"size of data{self.get_total_items(self.data)}")
+        """
         import numpy as np
         arr = np.array(self.get_total_items(self.data), dtype=object)
         
         ####arr = np.array(self.get_total_items(self.data))
         print(arr.shape)  # Output: (2, 3)
         print(arr.ndim)   # Output: 2
-
+        """
     def get_total_items(self,d, count = []):
         ####print(f"len of d in get_total_items {len(d)}")
         count.append(len(d))
