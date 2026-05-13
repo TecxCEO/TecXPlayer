@@ -120,4 +120,12 @@ if __name__ == "__main__":
     datatraining, edc, idc = createTVData(t_filepath) ## 
     dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
     #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
+    print(f"datatraining len = {len(datatraining)}")
+    print(f"datatraining 0= {datatraining[0]}")
+    print(f"datatraining 1 = {datatraining[1]}")
+    print(f"datatraining 2 = {datatraining[2]}")
+    print(f"dataval len = {len(dataval)}")
+    print(f"dataval 0 = {dataval[0]}")
+    print(f"dataval 1 = {dataval[1]}")
+    print(f"dataval 2 = {dataval[2]}")
     tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
