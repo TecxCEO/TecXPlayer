@@ -73,18 +73,22 @@ def createTVData(file, edctv = None, idctv = None):
     ########filepath = "./data/dataset/cube3x3solvingdataset.json"
     filepath = file
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(f"Started \n")
+    print(f"idctv \n")
     #if idctv not None: 
     if idctv:
+        print(f"idctv in if statement  \n")
         idc = idctv
         idc(filepath)#
     else:
+        print(f"imd in else statement.\n")
         imd.ImportDataset(filepath) 
     data=deepcopy(idc.data["solution"])
     if edctv:
+        print(f"edctv in if statement \n")
         edc = edctv
         edc(data)
     else:
+        print(f"ed in else statement \n")
         ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
@@ -102,7 +106,8 @@ def createTVData(file, edctv = None, idctv = None):
     for epoch in range(max_epoch):
         ####print(epoch)
         for i in range(len(stmdl) // 3 if stmdl else 0):
-            ####print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
+            ####
+            print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
             stmdlin  = []
             stmdlin  = ['<SOS>']
             stmdlin += stmdl[3*i]
