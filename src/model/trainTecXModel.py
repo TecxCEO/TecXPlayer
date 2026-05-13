@@ -151,20 +151,22 @@ def file_dir_nested(dir = "./data/dataset", d_list = []):
         tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         #dir_name = ""
         #dir = dir + dir_name
-
 if __name__ == "__main__":
     print(f"Started \n")
     t_data_dir_list = file_dir_nested("./data/dataset")
     v_data_dir_list = file_dir_nested("./data/dataset")
+    edc = None
+    idc = None
+    model = None
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
         t_data_dir = t_data_dir_list[i]
-        t_filepath = f"{dir}/cube3x3trainingdataset.json"
-        v_filepath = f"{dir}/cube3x3solvingdataset.json"
+        v_data_dir = v_data_dir_list[i]
+        t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
+        v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
         #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
         #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
-        dataval, edc, idc = createTVData(v_filepath)
         print(f"datatraining creating \n")
-        datatraining, edc, idc = createTVData(t_filepath) ## 
+        datatraining, edc, idc = createTVData(t_filepath, edc, idc) ## 
         print(f"dataval creating \n")
         dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
         #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
@@ -176,6 +178,7 @@ if __name__ == "__main__":
         print(f"dataval 0 = {dataval[0]}")
         print(f"dataval 1 = {dataval[1]}")
         print(f"dataval 2 = {dataval[2]}")
-        tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval, model)
+        model = 
         #dir_name = ""
         #dir = dir + dir_name
