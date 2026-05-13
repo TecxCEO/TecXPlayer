@@ -73,7 +73,8 @@ def createTVData(file, edctv = None, idctv = None):
     ########filepath = "./data/dataset/cube3x3solvingdataset.json"
     filepath = file
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    #if idctv not None:
+    print(f"Started \n")
+    #if idctv not None: 
     if idctv:
         idc = idctv
         idc(filepath)#
@@ -115,10 +116,12 @@ def createTVData(file, edctv = None, idctv = None):
             stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
 if __name__ == "__main__":
-    print(f"Started \n /n")
+    print(f"Started \n")
     t_filepath = "./data/dataset/cube3x3trainingdataset.json"
     v_filepath = "./data/dataset/cube3x3solvingdataset.json"
+    print(f"datatraining creating \n")
     datatraining, edc, idc = createTVData(t_filepath) ## 
+    print(f"dataval creating \n")
     dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
     #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
     print(f"datatraining len = {len(datatraining)}")
