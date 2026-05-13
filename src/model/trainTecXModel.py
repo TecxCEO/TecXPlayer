@@ -115,7 +115,7 @@ def createTVData(file, edctv = None, idctv = None):
             stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
 if __name__ == "__main__":
-    print(Started)
+    print(f"Started \n /n")
     t_filepath = "./data/dataset/cube3x3trainingdataset.json"
     v_filepath = "./data/dataset/cube3x3solvingdataset.json"
     datatraining, edc, idc = createTVData(t_filepath) ## 
