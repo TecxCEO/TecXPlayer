@@ -8,9 +8,12 @@ class ImportDataset():
     def __init__(self, file_path):
         #super.__init__()
         self.file_path = file_path
+        print(f"data file going to load\n") 
         with open(self.file_path, 'r') as f:
+            print(f"loading file \n") 
             self.data = json.load(f)
             # data = json.load(f)
+        print(f"file loaded\n")
         ##print(f"size of data{self.get_total_items(self.data)}")
         """
         import numpy as np
