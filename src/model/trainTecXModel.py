@@ -125,6 +125,7 @@ if __name__ == "__main__":
     print(f"Started \n")
     t_filepath = "./data/dataset/cube3x3trainingdataset.json"
     v_filepath = "./data/dataset/cube3x3solvingdataset.json"
+    dataval, edc, idc = createTVData(v_filepath)
     print(f"datatraining creating \n")
     datatraining, edc, idc = createTVData(t_filepath) ## 
     print(f"dataval creating \n")
