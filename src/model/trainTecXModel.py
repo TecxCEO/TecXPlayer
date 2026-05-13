@@ -104,22 +104,22 @@ def createTVData(file, edctv = None, idctv = None):
     print(f"stmdl len = {len(stmdl)}\n")
     stmdlenc = []
     stmdltensor = []
-    for epoch in range(max_epoch):
-        ####print(epoch)
-        for i in range(len(stmdl) // 3 if stmdl else 0):
-            ####
-            print(f" Epoch no = {epoch}\n, Loop no = {i}\n")
-            stmdlin  = []
-            stmdlin  = ['<SOS>']
-            stmdlin += stmdl[3*i]
-            #stmdlin += [stmdl[3*i]]
-            # stmdlin += stmdl[3*i]
-            stmdlin += ['<'+stmdl[3*i+1]+'>']
-            stmdlin += stmdl[3*i+2]
-            #stmdlin += [stmdl[3*i+2]]
-            stmdlin += ['<EOS>']
-            #stmdlenc = edc.encode(stmdlin)
-            stmdlenc += edc.encode(stmdlin)
+    #for epoch in range(max_epoch):
+        ###print(epoch)
+    for i in range(len(stmdl) // 3 if stmdl else 0):
+        ####
+        print(f" Loop no = {i}\n")
+        stmdlin  = []
+        stmdlin  = ['<SOS>']
+        stmdlin += stmdl[3*i]
+        #stmdlin += [stmdl[3*i]]
+        # stmdlin += stmdl[3*i]
+        stmdlin += ['<'+stmdl[3*i+1]+'>']
+        stmdlin += stmdl[3*i+2]
+        #stmdlin += [stmdl[3*i+2]]
+        stmdlin += ['<EOS>']
+        #stmdlenc = edc.encode(stmdlin)
+        stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
 def file_dir_nested(dir = "./data/dataset", d_list = []):
     #dir = "./data/dataset"
