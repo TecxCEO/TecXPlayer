@@ -11,6 +11,7 @@ from copy import deepcopy
 import tecXModel as tm
 import encoding_decoding as ed
 import importDataset as imd
+import os
 import torch
 def get_nested_data(data, edc, idc):
     ####stoi, itos = 
@@ -136,17 +137,34 @@ if __name__ == "__main__":
     edc = None
     idc = None
     model = None
+    t = 0
+    v = 0
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
-        t_data_dir = t_data_dir_list[i]
-        v_data_dir = v_data_dir_list[i]
+        if len(t_data_dir_list) > len(v_data_dir_list) and i == len(v_data_dir_list):
+            v -= (len(t_data_dir_list) - len(v_data_dir_list))
+        elif len(t_data_dir_list) < len(v_data_dir_list) and i == len(t_data_dir_list):
+            t -= (len(v_data_dir_list) - len(t_data_dir_list))
+        t_data_dir = t_data_dir_list[i + t]
+        v_data_dir = v_data_dir_list[i + v]
         t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
         v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
         #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
         #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
         print(f"datatraining creating \n")
-        datatraining, edc, idc = createTVData(t_filepath, edc, idc) ## 
+        if os.path.exist(t_filepath):
+            datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
+        else:
+            t +=1
+            t_data_dir = t_data_dir_list[i + t]
+            t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
+            datatraining, edc, idc = createTVData(t_filepath, edc, idc)
         print(f"dataval creating \n")
-        dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
+        if os.path.exist(v_filepath):
+            dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
+        else:
+            v_data_dir = v_data_dir_list[i + v]
+            v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
+            dataval, edc, idc = createTVData(v_filepath, edc, idc)
         #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
         print(f"datatraining len = {len(datatraining)}")
         print(f"datatraining 0= {datatraining[0]}")
