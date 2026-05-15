@@ -131,6 +131,7 @@ def file_dir_nested(directory = "./data/dataset", d_list = []):
     dir_list = d_list
     for folder_name in folder_list:
         cur_dir = f"{dir}/{folder_name}"
+        #if os.path.isdir(cur_dir) :
         if os.path.exist(cur_dir) :
             #dir = dir + folder_name
             #dir_list += f"{dir}/{folder_name}"
@@ -160,7 +161,8 @@ if __name__ == "__main__":
         #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
         #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
         print(f"datatraining creating \n")
-        if os.path.exist(t_filepath):
+        #if os.path.exist(t_filepath):
+        if os.path.isdir(t_filepath):
             datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
         else:
             t +=1
@@ -168,7 +170,8 @@ if __name__ == "__main__":
             t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
             datatraining, edc, idc = createTVData(t_filepath, edc, idc)
         print(f"dataval creating \n")
-        if os.path.exist(v_filepath):
+        #if os.path.exist(v_filepath):
+        if os.path.isdir(v_filepath):
             dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
         else:
             v_data_dir = v_data_dir_list[i + v]
