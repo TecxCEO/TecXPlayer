@@ -147,6 +147,7 @@ if __name__ == "__main__":
     edc = None
     idc = None
     model = None
+    checkpoint = None
     t = 0
     v = 0
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
@@ -186,7 +187,7 @@ if __name__ == "__main__":
         print(f"dataval 0 = {dataval[0]}")
         print(f"dataval 1 = {dataval[1]}")
         print(f"dataval 2 = {dataval[2]}")
-        tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval, model)
-        model = 
+        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval, model)
+        model, checkpoint = tmt.trainModel(model, checkpoint)
         #dir_name = ""
         #dir = dir + dir_name
