@@ -144,6 +144,11 @@ if __name__ == "__main__":
     print(f"Started \n")
     t_data_dir_list = file_dir_nested("./data/dataset/training")
     v_data_dir_list = file_dir_nested("./data/dataset/validation")
+    dir_list = { "tddl" : t_data_dir_list,
+                "vddl" : v_data_dir_list
+               }
+    with open("./dir_list.json", "w") as dl:
+        json.dump(dir_list, dl)
     edc = None
     idc = None
     model = None
