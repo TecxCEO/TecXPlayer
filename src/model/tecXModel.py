@@ -72,14 +72,14 @@ class TecXModelTrain:
         # p = model.train()
         # print(p) #
         return out
-    def trainModel(model = None, checkpoint = None):
+    def trainModel(tmodel= None, m_checkpoint = None):
         epochs = 11
-        if checkpoint:
-            pass
+        if m_checkpoint:
+            checkpoint= m_checkpoint
         #else: 
             #checkpoint = torch.load_state_dict()
-        if model:
-            pass
+        if tmodel:
+            model = tmodel
         else:
             model = TecXModel()
             if checkpoint:
@@ -91,13 +91,12 @@ class TecXModelTrain:
                 # Ensure your model is in evaluation mode
         model.eval()
         m = model.to(device)
-        
         # print the number of parameters in the model
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
-       optimizer.load_state_dict(optimizer_dict, strict=False)
-       #####optimizer.eval()
+        optimizer.load_state_dict(optimizer_dict, strict=False)
+        #####optimizer.eval()
         best_val_loss = float('inf') # Start with infinity
         for epoch in range(epochs):
             ####for iter in range(max_iters):
