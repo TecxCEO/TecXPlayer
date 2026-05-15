@@ -187,7 +187,7 @@ if __name__ == "__main__":
         print(f"dataval 0 = {dataval[0]}")
         print(f"dataval 1 = {dataval[1]}")
         print(f"dataval 2 = {dataval[2]}")
-        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval, model)
+        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         model, checkpoint = tmt.trainModel(model, checkpoint)
         #dir_name = ""
         #dir = dir + dir_name
