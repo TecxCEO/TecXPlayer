@@ -82,11 +82,22 @@ class TecXModelTrain:
             pass
         else:
             model = TecXModel()
+        
+        model_dict = checkpoint["model_state_dict"]
+        optimizer_dict = checkpoint['optimizer_state_dict'],
+        edc.stoi = checkpoint["stoi"]
+        edc.itos = checkpoint["itos"]
+        model.load_state_dict(model_dict, strict=False)
+        # Ensure your model is in evaluation mode
+        model.eval()
         m = model.to(device)
+        
         # print the number of parameters in the model
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+       optimizer.load_state_dict(optimizer_dict, strict=False)
+       #####optimizer.eval()
         best_val_loss = float('inf') # Start with infinity
         for epoch in range(epochs):
             ####for iter in range(max_iters):
