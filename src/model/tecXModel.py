@@ -76,19 +76,19 @@ class TecXModelTrain:
         epochs = 11
         if checkpoint:
             pass
-        else: 
-            checkpoint = torch.load_state_dict()
+        #else: 
+            #checkpoint = torch.load_state_dict()
         if model:
             pass
         else:
             model = TecXModel()
-        
-        model_dict = checkpoint["model_state_dict"]
-        optimizer_dict = checkpoint['optimizer_state_dict'],
-        edc.stoi = checkpoint["stoi"]
-        edc.itos = checkpoint["itos"]
-        model.load_state_dict(model_dict, strict=False)
-        # Ensure your model is in evaluation mode
+            if checkpoint:
+                model_dict = checkpoint["model_state_dict"]
+                optimizer_dict = checkpoint['optimizer_state_dict']
+                edc.stoi = checkpoint["stoi"]
+                edc.itos = checkpoint["itos"]
+                model.load_state_dict(model_dict, strict=False)
+                # Ensure your model is in evaluation mode
         model.eval()
         m = model.to(device)
         
