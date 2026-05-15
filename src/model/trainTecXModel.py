@@ -142,8 +142,8 @@ def file_dir_nested(directory = "./data/dataset", d_list = []):
     return dir_list
 if __name__ == "__main__":
     print(f"Started \n")
-    t_data_dir_list = file_dir_nested("./data/dataset")
-    v_data_dir_list = file_dir_nested("./data/dataset")
+    t_data_dir_list = file_dir_nested("./data/dataset/training")
+    v_data_dir_list = file_dir_nested("./data/dataset/validation")
     edc = None
     idc = None
     model = None
