@@ -72,9 +72,16 @@ class TecXModelTrain:
         # p = model.train()
         # print(p) #
         return out
-    def trainModel():
+    def trainModel(model = None, checkpoint = None):
         epochs = 11
-        model = TecXModel()
+        if checkpoint:
+            pass
+        else: 
+            checkpoint = torch.load_state_dict()
+        if model:
+            pass
+        else:
+            model = TecXModel()
         m = model.to(device)
         # print the number of parameters in the model
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
@@ -152,6 +159,7 @@ class TecXModelTrain:
         torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
         #torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
         #print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+        return model, checkpoint
 class Head(nn.Module):
     ##print(f" In the  Head Class") #
     """ one head of self-attention """
