@@ -1,3 +1,4 @@
+import os
 import string
 import torch
 import torch.nn as nn
@@ -98,6 +99,9 @@ class TecXModelTrain:
         optimizer.load_state_dict(optimizer_dict, strict=False)
         #####optimizer.eval()
         best_val_loss = float('inf') # Start with infinity
+        # Initialize a variable outside your training loop to track the last saved file
+        prev_checkpoint_path = None
+        #for epoch in range(num_epochs):
         for epoch in range(epochs):
             ####for iter in range(max_iters):
             for iter in range(len(self.data)//3):
@@ -165,7 +169,20 @@ class TecXModelTrain:
                 torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
                 print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
             # Save progress
-            torch.save(checkpoint, f"models/tecx/tecx_model_epoch_{epoch}.pth")
+            # 1. Define the path for the current epoch
+            current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
+            # 2. Save the new model checkpoint
+            torch.save(checkpoint, current_checkpoint_path)
+            print(f"Saved: {current_checkpoint_path}")
+            #torch.save(checkpoint, current_checkpoint_path)
+            # 3. Delete the previous epoch's file if it exists
+            if prev_checkpoint_path and os.path.exists(prev_checkpoint_path):
+                os.remove(prev_checkpoint_path) [1]
+            print(f"Deleted previous checkpoint: {prev_checkpoint_path}")
+            # 4. Update the tracker to point to the current file for the next iteration
+            prev_checkpoint_path = current_checkpoint_path
+            #torch.save(checkpoint, f"models/tecx/tecx_model_epoch_{epoch}.pth")
+            #os.remove(f"models/tecx/tecx_model_epoch_{epoch-1}.pth")
         #torch.save(checkpoint, 'models/tecx/best_dictionary_model.pth')
         #print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
         return model, checkpoint
