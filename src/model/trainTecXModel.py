@@ -189,8 +189,8 @@ if __name__ == "__main__":
         print(f"dataval 2 = {dataval[2]}")
         tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         model, checkpoint = tmt.trainModel(model, checkpoint)
-    torch.save(checkpoint, 'models/tecx/final_tecx_model.pth')
-    print(f"--> Saved new final model with name as final_tecx_model.")
+    torch.save(checkpoint, 'models/tecx/tecx_cube_solver_model_final.pth')
+    print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
     # Save progress
     ##torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
 
