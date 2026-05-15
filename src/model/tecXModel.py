@@ -177,7 +177,7 @@ class TecXModelTrain:
             #torch.save(checkpoint, current_checkpoint_path)
             # 3. Delete the previous epoch's file if it exists
             if prev_checkpoint_path and os.path.exists(prev_checkpoint_path):
-                os.remove(prev_checkpoint_path) [1]
+                os.remove(prev_checkpoint_path)
             print(f"Deleted previous checkpoint: {prev_checkpoint_path}")
             # 4. Update the tracker to point to the current file for the next iteration
             prev_checkpoint_path = current_checkpoint_path
