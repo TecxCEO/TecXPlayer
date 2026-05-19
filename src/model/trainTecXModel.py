@@ -7,6 +7,7 @@ Add this logic inside your training loop, specifically right after the Validatio
 """
 #import copy
 from copy import deepcopy
+import json
 ########
 import tecXModel as tm
 import encoding_decoding as ed
