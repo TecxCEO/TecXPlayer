@@ -195,7 +195,8 @@ if __name__ == "__main__":
         #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
         print(f"datatraining creating \n")
         #if os.path.exist(t_filepath):
-        if os.path.isdir(t_filepath):
+        #if os.path.isdir(t_filepath):
+        if os.path.isfile(t_filepath):
             datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
         #else:
         elif len(t_data_dir_list) != len(v_data_dir_list):
