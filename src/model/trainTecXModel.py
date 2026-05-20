@@ -197,7 +197,7 @@ if __name__ == "__main__":
         
         #if os.path.isdir(t_filepath):
         #if os.path.isfile(t_filepath):
-        if os.path.exist(t_filepath):
+        if os.path.exists(t_filepath):
             datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
         #else:
         elif len(t_data_dir_list) != len(v_data_dir_list):
@@ -208,7 +208,7 @@ if __name__ == "__main__":
         print(f"dataval creating \n")
         
         #if os.path.isdir(v_filepath):
-        if os.path.exist(v_filepath):
+        if os.path.exists(v_filepath):
             dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
         #else:
         elif len(t_data_dir_list) != len(v_data_dir_list):
