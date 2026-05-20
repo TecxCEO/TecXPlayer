@@ -144,6 +144,7 @@ def file_dir_nested(directory, d_list = []):
                 dir_list += file_dir_nested(cur_dir, dir_list)
                 #dir_list += file_dir_nested(f"{dir}/{folder_name}", dir_list)
                 #dir_list += file_dir_nested(dir, dir_list)
+    print(f"dir_list = {dir_list}")
     return dir_list
 if __name__ == "__main__":
     print(f"Started \n")
