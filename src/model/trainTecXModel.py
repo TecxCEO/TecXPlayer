@@ -149,7 +149,10 @@ def file_dir_nested(directory, d_list = []):
 if __name__ == "__main__":
     print(f"Started \n")
     t_data_dir_list = file_dir_nested("./data/dataset/training")
+    print(f"after \n")
+    print(f" t_data_dir_list = {t_data_dir_list}")
     v_data_dir_list = file_dir_nested("./data/dataset/validation")
+    print(f" v_data_dir_list = {v_data_dir_list}")
     dir_list = { "tddl" : t_data_dir_list,
                 "vddl" : v_data_dir_list
                }
@@ -161,8 +164,6 @@ if __name__ == "__main__":
     checkpoint = None
     t = 0
     v = 0
-    print(f" t_data_dir_list = {t_data_dir_list}")
-    print(f" v_data_dir_list = {v_data_dir_list}")
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
         print(f" In the loop")
         if len(t_data_dir_list) > len(v_data_dir_list) and i == len(v_data_dir_list):
