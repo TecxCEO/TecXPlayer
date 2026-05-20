@@ -138,6 +138,11 @@ def file_dir_nested(directory, d_list = []):
         ####dir_list.append(base_path)
         dir_list += [directory]
         for folder_name in folder_list:
+            #cur_dir = f"{directory}/{folder_name}"
+            if os.path.exist(folder_name) :
+                dir_list +=  folder_name
+                dir_list += file_dir_nested(folder_name, dir_list)
+            """
             ##cur_dir = f"{dir}/{folder_name}"
             cur_dir = f"{directory}/{folder_name}"
             #if os.path.isdir(cur_dir) :
@@ -148,6 +153,7 @@ def file_dir_nested(directory, d_list = []):
                 dir_list += file_dir_nested(cur_dir, dir_list)
                 #dir_list += file_dir_nested(f"{dir}/{folder_name}", dir_list)
                 #dir_list += file_dir_nested(dir, dir_list)
+            """
     print(f"dir_list = {dir_list}")
     return dir_list
 if __name__ == "__main__":
