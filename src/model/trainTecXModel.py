@@ -198,23 +198,31 @@ if __name__ == "__main__":
         #if os.path.isdir(t_filepath):
         #if os.path.isfile(t_filepath):
         if os.path.exists(t_filepath):
+            print(f"t_filepath = {t_filepath}")
             datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
+            print(f"datatraining = {datatraining}")
         #else:
         elif len(t_data_dir_list) != len(v_data_dir_list):
+            print(f"")
             t +=1
             t_data_dir = t_data_dir_list[i + t]
             t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
             datatraining, edc, idc = createTVData(t_filepath, edc, idc)
+            print(f"")
         print(f"dataval creating \n")
         
         #if os.path.isdir(v_filepath):
         if os.path.exists(v_filepath):
+            print(f"v_filepath = {v_filepath}")
             dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
+            print(f"dataval {dataval}")
         #else:
         elif len(t_data_dir_list) != len(v_data_dir_list):
+            print(f"")
             v_data_dir = v_data_dir_list[i + v]
             v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
             dataval, edc, idc = createTVData(v_filepath, edc, idc)
+            print(f"")
         #######tm.TecXModelTrain(stmdlenc, edc.stoi, edc.itos, dataval) ####stmdltensor = torch.tensor(stmdlenc, dtype=torch.long)
         print(f"datatraining len = {len(datatraining)}")
         print(f"datatraining 0= {datatraining[0]}")
