@@ -177,6 +177,8 @@ if __name__ == "__main__":
     idc = None
     model = None
     checkpoint = None
+    datatraining = None
+    dataval = None
     t = 0
     v = 0
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
