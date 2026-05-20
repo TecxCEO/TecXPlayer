@@ -156,7 +156,10 @@ if __name__ == "__main__":
     checkpoint = None
     t = 0
     v = 0
+    print(f" t_data_dir_list = {t_data_dir_list}")
+    print(f" v_data_dir_list = {v_data_dir_list}")
     for i in range(max(len(t_data_dir_list),len(v_data_dir_list))):
+        print(f" In the loop")
         if len(t_data_dir_list) > len(v_data_dir_list) and i == len(v_data_dir_list):
             v -= (len(t_data_dir_list) - len(v_data_dir_list))
         elif len(t_data_dir_list) < len(v_data_dir_list) and i == len(t_data_dir_list):
