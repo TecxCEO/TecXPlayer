@@ -126,7 +126,8 @@ def createTVData(file, edctv = None, idctv = None):
 def file_dir_nested(directory = "./data/dataset", d_list = []):
     #dir = directory
     ##folder_list = directory ####
-    folder_list = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory,d))]
+    if directory == "./data/dataset":
+        folder_list = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory,d))]
     #for folder_name in folder_list:
     # directories = [d for d in os.listdir(path_given) if os.path.isdir(os.path.join(path_given,d))]
     #dir = "./data/dataset"
