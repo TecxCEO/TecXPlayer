@@ -127,16 +127,19 @@ def createTVData(file, edctv = None, idctv = None):
 def file_dir_nested(directory, d_list = []):
     # CRITICAL: Create a fresh local list inside the function
     dir_list = [] 
+    print(f"dir_list after initialization = {dir_list}")
     #dir = directory
     ##folder_list = directory ####
     if directory and directory != "./data/dataset":
         folder_list = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory,d))]
+        print(f"folder_list = {folder_list}")
         #for folder_name in folder_list:
         # directories = [d for d in os.listdir(path_given) if os.path.isdir(os.path.join(path_given,d))]
         #dir = "./data/dataset"
         dir_list = d_list
         ####dir_list.append(base_path)
         dir_list += [directory]
+        print(f"dir_list before loop = {dir_list}")
         for folder_name in folder_list:
             #cur_dir = f"{directory}/{folder_name}"
             if os.path.exist(folder_name) :
