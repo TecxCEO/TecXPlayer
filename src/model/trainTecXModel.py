@@ -195,7 +195,8 @@ if __name__ == "__main__":
         #if os.path.exist(t_filepath):
         if os.path.isdir(t_filepath):
             datatraining, edc, idc = createTVData(t_filepath, edc, idc) ##
-        else:
+        #else:
+        elif len(t_data_dir_list) != len(v_data_dir_list)
             t +=1
             t_data_dir = t_data_dir_list[i + t]
             t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
@@ -204,7 +205,8 @@ if __name__ == "__main__":
         #if os.path.exist(v_filepath):
         if os.path.isdir(v_filepath):
             dataval, edc, idc = createTVData(v_filepath, edc, idc) ## []
-        else:
+        #else:
+        elif len(t_data_dir_list) != len(v_data_dir_list)
             v_data_dir = v_data_dir_list[i + v]
             v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
             dataval, edc, idc = createTVData(v_filepath, edc, idc)
