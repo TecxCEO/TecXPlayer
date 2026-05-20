@@ -123,27 +123,27 @@ def createTVData(file, edctv = None, idctv = None):
         #stmdlenc = edc.encode(stmdlin)
         stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
-def file_dir_nested(directory = "./data/dataset", d_list = []):
+###def file_dir_nested(directory = "./data/dataset", d_list = []):
+def file_dir_nested(directory, d_list = []):
     #dir = directory
     ##folder_list = directory ####
-    if directory == "./data/dataset":
+    if directory and directory != "./data/dataset":
         folder_list = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory,d))]
-    #for folder_name in folder_list:
-    # directories = [d for d in os.listdir(path_given) if os.path.isdir(os.path.join(path_given,d))]
-    #dir = "./data/dataset"
-    dir_list = d_list
-    dir_list += [directory]
-    
-    for folder_name in folder_list:
-        cur_dir = f"{dir}/{folder_name}"
-        #if os.path.isdir(cur_dir) :
-        if os.path.exist(cur_dir) :
-            #dir = dir + folder_name
-            #dir_list += f"{dir}/{folder_name}"
-            dir_list +=  cur_dir
-            dir_list += file_dir_nested(cur_dir, dir_list)
-            #dir_list += file_dir_nested(f"{dir}/{folder_name}", dir_list)
-            #dir_list += file_dir_nested(dir, dir_list)
+        #for folder_name in folder_list:
+        # directories = [d for d in os.listdir(path_given) if os.path.isdir(os.path.join(path_given,d))]
+        #dir = "./data/dataset"
+        dir_list = d_list
+        dir_list += [directory]
+        for folder_name in folder_list:
+            cur_dir = f"{dir}/{folder_name}"
+            #if os.path.isdir(cur_dir) :
+            if os.path.exist(cur_dir) :
+                #dir = dir + folder_name
+                #dir_list += f"{dir}/{folder_name}"
+                dir_list +=  cur_dir
+                dir_list += file_dir_nested(cur_dir, dir_list)
+                #dir_list += file_dir_nested(f"{dir}/{folder_name}", dir_list)
+                #dir_list += file_dir_nested(dir, dir_list)
     return dir_list
 if __name__ == "__main__":
     print(f"Started \n")
