@@ -166,7 +166,8 @@ if __name__ == "__main__":
     print(f"after \n")
     print(f" t_data_dir_list = {t_data_dir_list}")
     #v_data_dir_list = [file_dir_nested("./data/dataset/validation")]
-    v_data_dir_list = file_dir_nested("./data/dataset/validation")
+    ####v_data_dir_list = file_dir_nested("./data/dataset/validation")
+    v_data_dir_list = file_dir_nested("./data/dataset/solving")
     print(f" v_data_dir_list = {v_data_dir_list}")
     dir_list = { "tddl" : t_data_dir_list,
                 "vddl" : v_data_dir_list
@@ -189,8 +190,10 @@ if __name__ == "__main__":
             t -= (len(v_data_dir_list) - len(t_data_dir_list))
         t_data_dir = t_data_dir_list[i + t]
         v_data_dir = v_data_dir_list[i + v]
-        t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
-        v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
+        #t_filepath = f"{t_data_dir}/cube3x3trainingdataset.json"
+        t_filepath = f"{t_data_dir}/cube3x3trainingdatasetforlowmemory.json"
+        #v_filepath = f"{v_data_dir}/cube3x3solvingdataset.json"
+        v_filepath = f"{v_data_dir}/cube3x3solvingdatasetforlowmemory.json"
         #t_filepath = "./data/dataset/cube3x3trainingdataset.json"
         #v_filepath = "./data/dataset/cube3x3solvingdataset.json"
         print(f"datatraining creating \n")
