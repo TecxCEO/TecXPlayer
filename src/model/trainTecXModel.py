@@ -136,9 +136,9 @@ def file_dir_nested(directory, d_list = None):
         #for folder_name in folder_list:
         # directories = [d for d in os.listdir(path_given) if os.path.isdir(os.path.join(path_given,d))]
         #dir = "./data/dataset"
-        dir_list = d_list
+        dir_list = d_list if d_list else []
         dir_list.append(directory)
-        ##dir_list += [directory] if dir_list else directory
+        ##dir_list += [directory]
         print(f"dir_list before loop = {dir_list}")
         for folder_name in folder_list:
             #cur_dir = f"{directory}/{folder_name}"
