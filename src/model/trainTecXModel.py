@@ -124,7 +124,7 @@ def createTVData(file, edctv = None, idctv = None):
         stmdlenc += edc.encode(stmdlin)
     return stmdlenc, edc, idc
 ###def file_dir_nested(directory = "./data/dataset", d_list = []):
-def file_dir_nested(directory, d_list = []):
+def file_dir_nested(directory, d_list = None):
     # CRITICAL: Create a fresh local list inside the function
     dir_list = [] 
     print(f"dir_list after initialization = {dir_list}")
