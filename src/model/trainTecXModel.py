@@ -83,7 +83,7 @@ def createTVData(file, edctv = None, idctv = None):
         idc = idctv
         print(f" idc idctv = {idc}")
         ##idc(filepath)#
-        idc.load_data(file_path)
+        idc.load_data(filepath)
     else:
         print(f"imd in else statement.\n")
         idc = imd.ImportDataset(filepath) 
