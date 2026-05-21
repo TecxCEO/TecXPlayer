@@ -6,14 +6,16 @@ import copy
 class ImportDataset():
     #def __init__(self, data, ...):
     def __init__(self, file_path):
+        self.data = None
         #super.__init__()
         self.file_path = file_path
-        print(f"data file going to load\n") 
-        with open(self.file_path, 'r') as f:
-            print(f"loading file \n") 
-            self.data = json.load(f)
+        load_data(file_path)
+        ##print(f"data file going to load\n") 
+        ##with open(self.file_path, 'r') as f:
+          ##  print(f"loading file \n") 
+          ##  self.data = json.load(f)
             # data = json.load(f)
-        print(f"file loaded\n")
+        ##print(f"file loaded\n")
         ##print(f"size of data{self.get_total_items(self.data)}")
         """
         import numpy as np
@@ -23,6 +25,13 @@ class ImportDataset():
         print(arr.shape)  # Output: (2, 3)
         print(arr.ndim)   # Output: 2
         """
+    def load_data(self, file_path):
+        # This updates the existing dictionary without wiping it out
+        ##self.data.update(new_data)
+        with open(self.file_path, 'r') as f:
+            #print(f"loading file \n") 
+            self.data = json.load(f)
+        #return self.data
     def get_total_items(self,d, count = []):
         ####print(f"len of d in get_total_items {len(d)}")
         count.append(len(d))
