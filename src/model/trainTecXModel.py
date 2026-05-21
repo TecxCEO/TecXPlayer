@@ -123,6 +123,7 @@ def createTVData(file, edctv = None, idctv = None):
         stmdlin += stmdl[3*i+2]
         #stmdlin += [stmdl[3*i+2]]
         stmdlin += ['<EOS>']
+        print(f" stmdlin = {stmdlin}")
         #stmdlenc = edc.encode(stmdlin)
         ####stmdlenc += edc.encode(stmdlin)
         stmdlenc += [edc.encode(stmdlin)] ####
