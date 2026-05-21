@@ -92,7 +92,7 @@ def createTVData(file, edctv = None, idctv = None):
     if edctv:
         print(f"edctv in if statement \n")
         edc = edctv
-        edc(data)
+        ###edc(data)
     else:
         print(f"ed in else statement \n")
         #ed.EncodeDecode(data)
