@@ -9,7 +9,7 @@ class ImportDataset():
         self.data = None
         #super.__init__()
         self.file_path = file_path
-        load_data(file_path)
+        self.load_data(file_path)
         ##print(f"data file going to load\n") 
         ##with open(self.file_path, 'r') as f:
           ##  print(f"loading file \n") 
