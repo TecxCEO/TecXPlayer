@@ -81,6 +81,7 @@ def createTVData(file, edctv = None, idctv = None):
     if idctv:
         print(f"idctv in if statement  \n")
         idc = idctv
+        print(f" idc idctv = {idc}")
         idc(filepath)#
     else:
         print(f"imd in else statement.\n")
