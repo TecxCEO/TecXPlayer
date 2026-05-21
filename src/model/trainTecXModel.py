@@ -17,7 +17,8 @@ import torch
 def get_nested_data(data, edc, idc):
     ####stoi, itos = 
     ##########edc.createTokens(data)
-    edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
+    #edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
+    edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos) if data["solution"] else  edc.createTokens(data, edc.stoi, edc.itos)
     """
     if not stmd and not smd and not smdl and not stmdl:
         stmd = None
