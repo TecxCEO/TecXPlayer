@@ -124,7 +124,8 @@ def createTVData(file, edctv = None, idctv = None):
         #stmdlin += [stmdl[3*i+2]]
         stmdlin += ['<EOS>']
         #stmdlenc = edc.encode(stmdlin)
-        stmdlenc += edc.encode(stmdlin)
+        ####stmdlenc += edc.encode(stmdlin)
+        stmdlenc += [edc.encode(stmdlin)] ####
     return stmdlenc, edc, idc
 ###def file_dir_nested(directory = "./data/dataset", d_list = []):
 def file_dir_nested(directory, d_list = None):
