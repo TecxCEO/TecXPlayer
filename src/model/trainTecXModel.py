@@ -92,7 +92,8 @@ def createTVData(file, edctv = None, idctv = None):
         edc(data)
     else:
         print(f"ed in else statement \n")
-        ed.EncodeDecode(data)
+        #ed.EncodeDecode(data)
+        edc = ed.EncodeDecode(data)
     print(f"stoi before = {edc.stoi}")
     print(f"itos before = {edc.itos}")
     print(f"stoi len before = {len(edc.stoi)}")
