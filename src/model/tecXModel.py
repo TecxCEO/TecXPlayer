@@ -22,7 +22,7 @@ torch.manual_seed(1337)
 ####val_data = [] #self.valdata
 # 1. Initialize the counter BEFORE the loop
 total_val_loss = 0.0  
-vocab_size = 300#None
+vocab_size = None
 class TecXModelTrain:
     """
     # hyperparameters
@@ -121,8 +121,9 @@ class TecXModelTrain:
         if tmodel:
             model = tmodel
         else:
-            model = TecXModel()
+            ####model = TecXModel()
             ####model = TecXModel(self.vocab_size)
+            model = TecXModel(vocab_size)
             ##if checkpoint is not None:
             if locals().get("checkpoint") is not None:
                 model_dict = checkpoint["model_state_dict"]
