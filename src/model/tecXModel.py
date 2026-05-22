@@ -58,6 +58,7 @@ class TecXModelTrain:
         self.stoi = stoi
         self.itos = itos
         self.vocab_size = len(stoi)
+        batch_size = len(self.train_data)
         #
         ####max_iters = len(self.train_data)//3 #5000
         #data = [] # self.data
