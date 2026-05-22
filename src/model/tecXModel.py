@@ -7,7 +7,8 @@ from torch.nn import functional as F
 # hyperparameters
 batch_size =16 # 32 #1 # 64 # how many independent sequences will we process in parallel?
 block_size =48 # 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
-##max_iters = 0# len(self.data)//3 #5000
+epochs = 
+max_iters = 1# len(self.data)//3 #5000
 eval_interval = 500
 learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -59,7 +60,7 @@ class TecXModelTrain:
         self.itos = itos
         self.vocab_size = len(stoi)
         batch_size = len(self.train_data)
-        #
+        max_iters = len(self.train_data)
         ####max_iters = len(self.train_data)//3 #5000
         #data = [] # self.data
         ###train_data = self.data
@@ -116,7 +117,7 @@ class TecXModelTrain:
     ####@staticmethod
     ###def trainModel(tmodel= None, m_checkpoint = None): 
     def trainModel(self, tmodel= None, m_checkpoint = None):
-        epochs = 11
+        ###epochs = 11
         if m_checkpoint:
             checkpoint= m_checkpoint
         #else: 
