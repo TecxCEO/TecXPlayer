@@ -77,7 +77,8 @@ class TecXModelTrain:
         #y = torch.stack([data[i+1:i+block_size+1] for i in ix])
         #
         data = self.train_data if split == 'train' else self.val_data
-        ix = torch.randint(len(data),  (batch_size,))
+        #####ix = torch.randint(len(data),  (batch_size,))
+        ix = torch.randint(len(data) - 1,  (batch_size,))
         ####x = torch.stack([data[i] for i in ix]) 
         # Use this if 'data' contains NumPy arrays (Fastest method)
         #x = torch.stack([torch.from_numpy(data[i]) for i in ix])
