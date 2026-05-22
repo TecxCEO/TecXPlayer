@@ -184,10 +184,13 @@ class TecXModelTrain:
                 # Add the current loss to the total
                 ##total_val_loss += loss_item
             total_val_loss += loss
+            print(f" total_val_loss = {total_val_loss}")
+            total_val_loss = loss
+            print(f" total_val_loss after = {total_val_loss}")
             # 3. NOW you can calculate the average
             #avg_val_loss = total_val_loss / len(val_dataloader)
-            avg_val_loss = total_val_loss / len(batch_size)
-        
+            avg_val_loss = total_val_loss / batch_size
+            print(f" avg_val_loss after = {avg_val_loss}")
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             optimizer.step()
