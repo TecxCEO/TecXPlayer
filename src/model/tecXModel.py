@@ -22,7 +22,7 @@ torch.manual_seed(1337)
 ####val_data = [] #self.valdata
 # 1. Initialize the counter BEFORE the loop
 total_val_loss = 0.0  
-vocab_size = None
+####vocab_size = None
 class TecXModelTrain:
     """
     # hyperparameters
@@ -57,13 +57,14 @@ class TecXModelTrain:
         self.val_data = valdata
         self.stoi = stoi
         self.itos = itos
+        self.vocab_size = len(stoi)
         #
         ####max_iters = len(self.train_data)//3 #5000
         #data = [] # self.data
         ###train_data = self.data
         ###val_data = self.valdata
-        ####self.vocab_size = len(stoi)
-        vocab_size = len(stoi)
+        ####vocab_size = len(stoi)
+        
     # data loading
     ##def get_batch(split):
     def get_batch(self, split):
@@ -121,12 +122,12 @@ class TecXModelTrain:
         if tmodel:
             model = tmodel
         else:
-            print(f" vocab_size = {vocab_size}")
+            print(f" vocab_size = {self.vocab_size}")
             ####model = TecXModel()
             ####model = TecXModel(self.vocab_size)
             ####model = TecXModel(vocab_size)
             # Strips away any tuple structures before model setup
-            model = TecXModel(int(vocab_size))
+            model = TecXModel(int(self.vocab_size))
 
             ##if checkpoint is not None:
             if locals().get("checkpoint") is not None:
