@@ -76,7 +76,14 @@ class TecXModelTrain:
         #
         data = self.train_data if split == 'train' else self.val_data
         ix = torch.randint(len(data),  (batch_size,))
-        x = torch.stack([data[i] for i in ix])
+        x = torch.stack([data[i] for i in ix]) 
+        # Use this if 'data' contains NumPy arrays (Fastest method)
+        #x = torch.stack([torch.from_numpy(data[i]) for i in ix])
+        # Alternative: Use this if 'data' contains regular Python lists
+        ##x = torch.stack([torch.tensor(data[i]) for i in ix])
+        # Convert integer STOI tokens to PyTorch Long Tensors before stacking
+        x = torch.stack([torch.tensor(data[i], dtype=torch.long) for i in ix])
+
         y = torch.stack([data[i+1] for i in ix])
         #
         x, y = x.to(device), y.to(device)
