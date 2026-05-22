@@ -121,6 +121,7 @@ class TecXModelTrain:
         if tmodel:
             model = tmodel
         else:
+            print(f" vocab_size = {vocab_size}")
             ####model = TecXModel()
             ####model = TecXModel(self.vocab_size)
             ####model = TecXModel(vocab_size)
@@ -319,9 +320,9 @@ class Block(nn.Module):
 #class TecXLanguageModel(nn.Module):
 class TecXModel(nn.Module):
     ##print(f" In the TecXLanguageModel Class") #
-    def __init__(self,vocab_size=vocab_size):
+    #########def __init__(self,vocab_size=vocab_size):
     ##def __init__(self):
-    ####def __init__(self,vocab_size):
+    def __init__(self,vocab_size):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
