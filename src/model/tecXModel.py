@@ -18,8 +18,8 @@ n_layer = 6
 dropout = 0.2
 # ------------
 torch.manual_seed(1337)
-train_data = [] # self.data #data
-val_data = [] #self.valdata
+####train_data = [] # self.data #data
+####val_data = [] #self.valdata
 # 1. Initialize the counter BEFORE the loop
 total_val_loss = 0.0  
 vocab_size = 300#None
@@ -53,15 +53,15 @@ class TecXModelTrain:
     ####vocab_size = None
     """
     def __init__(self, data, stoi, itos, valdata =[]):
-        self.data = data
-        self.valdata = valdata
+        self.train_data = data
+        self.val_data = valdata
         self.stoi = stoi
         self.itos = itos
         #
         max_iters = len(self.data)//3 #5000
         #data = [] # self.data
-        train_data = self.data
-        val_data = self.valdata
+        ###train_data = self.data
+        ###val_data = self.valdata
         ####self.vocab_size = len(stoi)
         vocab_size = len(stoi)
     # data loading
@@ -69,11 +69,12 @@ class TecXModelTrain:
     def get_batch(self, split):
         ##print(f"In the get_batch") #
         # generate a small batch of data of inputs x and targets y
-        data = train_data if split == 'train' else val_data
+        ####data = train_data if split == 'train' else val_data
         #ix = torch.randint(len(data) - block_size, (batch_size,))
         #x = torch.stack([data[i:i+block_size] for i in ix])
         #y = torch.stack([data[i+1:i+block_size+1] for i in ix])
         #
+        data = self.train_data if split == 'train' else self.val_data
         ix = torch.randint(len(data),  (batch_size,))
         x = torch.stack([data[i] for i in ix])
         y = torch.stack([data[i+1] for i in ix])
