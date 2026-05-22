@@ -63,7 +63,7 @@ class TecXModelTrain:
         train_data = self.data
         val_data = self.valdata
         ####self.vocab_size = len(stoi)
-        ####vocab_size = len(stoi)
+        vocab_size = len(stoi)
     # data loading
     def get_batch(split):
         ##print(f"In the get_batch") #
