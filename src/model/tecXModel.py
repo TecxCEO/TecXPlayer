@@ -123,7 +123,10 @@ class TecXModelTrain:
         else:
             ####model = TecXModel()
             ####model = TecXModel(self.vocab_size)
-            model = TecXModel(vocab_size)
+            ####model = TecXModel(vocab_size)
+            # Strips away any tuple structures before model setup
+            model = TecXModel(int(vocab_size))
+
             ##if checkpoint is not None:
             if locals().get("checkpoint") is not None:
                 model_dict = checkpoint["model_state_dict"]
