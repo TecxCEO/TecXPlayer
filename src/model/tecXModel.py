@@ -22,7 +22,7 @@ train_data = [] # self.data #data
 val_data = [] #self.valdata
 # 1. Initialize the counter BEFORE the loop
 total_val_loss = 0.0  
-vocab_size = None
+vocab_size = 300#None
 class TecXModelTrain:
     """
     # hyperparameters
