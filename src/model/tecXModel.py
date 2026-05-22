@@ -83,8 +83,9 @@ class TecXModelTrain:
         ##x = torch.stack([torch.tensor(data[i]) for i in ix])
         # Convert integer STOI tokens to PyTorch Long Tensors before stacking
         x = torch.stack([torch.tensor(data[i], dtype=torch.long) for i in ix])
-
-        y = torch.stack([data[i+1] for i in ix])
+        # Convert shifted integer STOI target tokens to PyTorch Long Tensors
+        y = torch.stack([torch.tensor(data[i+1], dtype=torch.long) for i in ix])
+        ####y = torch.stack([data[i+1] for i in ix])
         #
         x, y = x.to(device), y.to(device)
         return x, y
