@@ -83,7 +83,7 @@ class TecXModelTrain:
     @torch.no_grad()
     #def estimate_loss(self):
     #def estimate_loss():
-    def estimate_loss(self):
+    def estimate_loss(self, model):
         ##print(f" In the estimate_loss function ") #
         out = {}
         model.eval()
