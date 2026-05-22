@@ -138,8 +138,8 @@ class TecXModelTrain:
         #for epoch in range(num_epochs):
         for epoch in range(epochs):
             ####for iter in range(max_iters):
-            ##for iter in range(len(self.train_data)//3):
-            for iter in range(len(self.data)//3):
+            ##for iter in range(len(self.data)//3):
+            for iter in range(len(self.train_data)//3):
                 print(f"In The Iteration no = {iter}")
                 # every once in a while evaluate the loss on train and val sets
                 if iter % eval_interval == 0 or iter == max_iters - 1:
