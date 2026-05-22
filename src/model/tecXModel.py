@@ -4,7 +4,27 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+# hyperparameters
+batch_size =64 # 32 #1 # 64 # how many independent sequences will we process in parallel?
+block_size = 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
+max_iters = 0# len(self.data)//3 #5000
+eval_interval = 500
+learning_rate = 3e-4
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+eval_iters = 200
+n_embd = 384
+n_head = 6
+n_layer = 6
+dropout = 0.2
+# ------------
+torch.manual_seed(1337)
+train_data = [] # self.data #data
+val_data = [] #self.valdata
+# 1. Initialize the counter BEFORE the loop
+total_val_loss = 0.0  
+vocab_size = None
 class TecXModelTrain:
+    """
     # hyperparameters
     batch_size =64 # 32 #1 # 64 # how many independent sequences will we process in parallel?
     block_size = 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
@@ -31,6 +51,7 @@ class TecXModelTrain:
     # 1. Initialize the counter BEFORE the loop
     total_val_loss = 0.0  
     ####vocab_size = None
+    """
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
@@ -41,7 +62,7 @@ class TecXModelTrain:
         #data = [] # self.data
         train_data = self.data
         val_data = self.valdata
-        self.vocab_size = len(stoi)
+        ####self.vocab_size = len(stoi)
         ####vocab_size = len(stoi)
     # data loading
     def get_batch(split):
@@ -86,8 +107,8 @@ class TecXModelTrain:
         if tmodel:
             model = tmodel
         else:
-            ####model = TecXModel()
-            model = TecXModel(self.vocab_size)
+            model = TecXModel()
+            ####model = TecXModel(self.vocab_size)
             if checkpoint:
                 model_dict = checkpoint["model_state_dict"]
                 optimizer_dict = checkpoint['optimizer_state_dict']
@@ -276,9 +297,9 @@ class Block(nn.Module):
 #class TecXLanguageModel(nn.Module):
 class TecXModel(nn.Module):
     ##print(f" In the TecXLanguageModel Class") #
-    ##def __init__(self,vocab_size=vocab_size):
+    def __init__(self,vocab_size=vocab_size):
     ##def __init__(self):
-    def __init__(self,vocab_size):
+    ####def __init__(self,vocab_size):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
