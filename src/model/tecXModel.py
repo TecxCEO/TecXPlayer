@@ -30,6 +30,7 @@ class TecXModelTrain:
     val_data = [] #self.valdata
     # 1. Initialize the counter BEFORE the loop
     total_val_loss = 0.0  
+    vocab_size = None
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
@@ -40,7 +41,8 @@ class TecXModelTrain:
         #data = [] # self.data
         train_data = self.data
         val_data = self.valdata
-        self.vocab_size = len(stoi)
+        #self.vocab_size = len(stoi)
+        vocab_size = len(stoi)
     # data loading
     def get_batch(split):
         ##print(f"In the get_batch") #
@@ -73,6 +75,7 @@ class TecXModelTrain:
         # p = model.train()
         # print(p) #
         return out
+    ####@staticmethod
     ###def trainModel(tmodel= None, m_checkpoint = None): 
     def trainModel(self, tmodel= None, m_checkpoint = None):
         epochs = 11
