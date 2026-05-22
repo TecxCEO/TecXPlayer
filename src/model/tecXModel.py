@@ -123,7 +123,7 @@ class TecXModelTrain:
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
-        if locals().get("optimizer") is not None:
+        if locals().get("optimizer_dict") is not None:
             optimizer.load_state_dict(optimizer_dict, strict=False)#####
             optimizer.eval()
         best_val_loss = float('inf') # Start with infinity
