@@ -58,7 +58,7 @@ class TecXModelTrain:
         self.stoi = stoi
         self.itos = itos
         #
-        max_iters = len(self.data)//3 #5000
+        ####max_iters = len(self.train_data)//3 #5000
         #data = [] # self.data
         ###train_data = self.data
         ###val_data = self.valdata
@@ -138,6 +138,7 @@ class TecXModelTrain:
         #for epoch in range(num_epochs):
         for epoch in range(epochs):
             ####for iter in range(max_iters):
+            ##for iter in range(len(self.train_data)//3):
             for iter in range(len(self.data)//3):
                 print(f"In The Iteration no = {iter}")
                 # every once in a while evaluate the loss on train and val sets
