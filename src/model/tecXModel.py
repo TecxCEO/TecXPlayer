@@ -109,7 +109,8 @@ class TecXModelTrain:
         else:
             model = TecXModel()
             ####model = TecXModel(self.vocab_size)
-            if checkpoint:
+            if checkpoint is not None:
+            #if locals().get("checkpoint") is not None:
                 model_dict = checkpoint["model_state_dict"]
                 optimizer_dict = checkpoint['optimizer_state_dict']
                 edc.stoi = checkpoint["stoi"]
