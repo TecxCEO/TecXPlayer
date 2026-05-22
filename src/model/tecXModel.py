@@ -65,7 +65,8 @@ class TecXModelTrain:
         ####self.vocab_size = len(stoi)
         vocab_size = len(stoi)
     # data loading
-    def get_batch(split):
+    ##def get_batch(split):
+    def get_batch(self, split):
         ##print(f"In the get_batch") #
         # generate a small batch of data of inputs x and targets y
         data = train_data if split == 'train' else val_data
@@ -80,9 +81,10 @@ class TecXModelTrain:
         x, y = x.to(device), y.to(device)
         return x, y
     
-    @torch.no_grad()
+    @torch.no_grad()#
     #def estimate_loss(self):
     #def estimate_loss():
+    #@torch.no_grad()
     def estimate_loss(self, model):
         ##print(f" In the estimate_loss function ") #
         out = {}
@@ -90,7 +92,8 @@ class TecXModelTrain:
         for split in ['train', 'val']:
             losses = torch.zeros(eval_iters)
             for k in range(eval_iters):
-                X, Y = get_batch(split)
+                #X, Y = get_batch(split)
+                X, Y = self.get_batch(split)
                 logits, loss = model(X, Y)
                 losses[k] = loss.item()
                 out[split] = losses.mean()
