@@ -7,7 +7,7 @@ from torch.nn import functional as F
 # hyperparameters
 batch_size =16 # 32 #1 # 64 # how many independent sequences will we process in parallel?
 block_size =48 # 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
-epochs = 
+epochs = 11
 max_iters = 1# len(self.data)//3 #5000
 eval_interval = 500
 learning_rate = 3e-4
@@ -60,7 +60,8 @@ class TecXModelTrain:
         self.itos = itos
         self.vocab_size = len(stoi)
         batch_size = len(self.train_data)
-        max_iters = len(self.train_data)
+        ####epochs = 11
+        max_iters = len(self.train_data)/batch_size
         ####max_iters = len(self.train_data)//3 #5000
         #data = [] # self.data
         ###train_data = self.data
