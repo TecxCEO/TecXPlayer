@@ -164,7 +164,7 @@ class TecXModelTrain:
                     losses = self.estimate_loss(model)
                     print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
                 # sample a batch of data
-                xb, yb = get_batch('train')
+                xb, yb = self.get_batch('train')
                 # evaluate the loss
                 logits, loss = model(xb, yb)
             
