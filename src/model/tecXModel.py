@@ -81,7 +81,7 @@ class TecXModelTrain:
         return x, y
     
     @torch.no_grad()
-    def estimate_loss():
+    def estimate_loss(self):#def estimate_loss():
         ##print(f" In the estimate_loss function ") #
         out = {}
         model.eval()
@@ -136,7 +136,7 @@ class TecXModelTrain:
                 print(f"In The Iteration no = {iter}")
                 # every once in a while evaluate the loss on train and val sets
                 if iter % eval_interval == 0 or iter == max_iters - 1:
-                    losses = estimate_loss()
+                    losses = self.estimate_loss()
                     print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
                 # sample a batch of data
                 xb, yb = get_batch('train')
