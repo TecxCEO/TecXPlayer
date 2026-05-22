@@ -30,7 +30,7 @@ class TecXModelTrain:
     val_data = [] #self.valdata
     # 1. Initialize the counter BEFORE the loop
     total_val_loss = 0.0  
-    vocab_size = None
+    ####vocab_size = None
     def __init__(self, data, stoi, itos, valdata =[]):
         self.data = data
         self.valdata = valdata
@@ -41,8 +41,8 @@ class TecXModelTrain:
         #data = [] # self.data
         train_data = self.data
         val_data = self.valdata
-        #self.vocab_size = len(stoi)
-        vocab_size = len(stoi)
+        self.vocab_size = len(stoi)
+        ####vocab_size = len(stoi)
     # data loading
     def get_batch(split):
         ##print(f"In the get_batch") #
@@ -276,8 +276,9 @@ class Block(nn.Module):
 #class TecXLanguageModel(nn.Module):
 class TecXModel(nn.Module):
     ##print(f" In the TecXLanguageModel Class") #
-    def __init__(self,vocab_size=vocab_size):
+    ##def __init__(self,vocab_size=vocab_size):
     ##def __init__(self):
+    def __init__(self,vocab_size):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
