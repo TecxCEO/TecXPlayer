@@ -73,7 +73,8 @@ class TecXModelTrain:
         # p = model.train()
         # print(p) #
         return out
-    def trainModel(tmodel= None, m_checkpoint = None):
+    ###def trainModel(tmodel= None, m_checkpoint = None): 
+    def trainModel(self, tmodel= None, m_checkpoint = None):
         epochs = 11
         if m_checkpoint:
             checkpoint= m_checkpoint
