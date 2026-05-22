@@ -321,8 +321,8 @@ class TecXModel(nn.Module):
     ####def __init__(self,vocab_size):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
-        ###self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
-        self.token_embedding_table = nn.Embedding(vocab_size, n_embd[0])
+        self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
+        ####self.token_embedding_table = nn.Embedding(vocab_size, n_embd[0])
         
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
         self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
