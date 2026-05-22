@@ -5,9 +5,9 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # hyperparameters
-batch_size =64 # 32 #1 # 64 # how many independent sequences will we process in parallel?
-block_size = 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
-max_iters = 0# len(self.data)//3 #5000
+batch_size =15 # 32 #1 # 64 # how many independent sequences will we process in parallel?
+block_size =43 # 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
+##max_iters = 0# len(self.data)//3 #5000
 eval_interval = 500
 learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
