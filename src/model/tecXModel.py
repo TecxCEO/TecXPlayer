@@ -155,10 +155,10 @@ class TecXModelTrain:
         prev_checkpoint_path = None
         #for epoch in range(num_epochs):
         for epoch in range(epochs):
-            ####for iter in range(max_iters):
             ##for iter in range(len(self.data)//3):
             #########for iter in range(len(self.train_data)//3):
-            for iter in range(len(self.train_data)):
+            ####for iter in range(len(self.train_data)):
+            for iter in range(max_iters):
                 print(f"In The Iteration no = {iter}")
                 # every once in a while evaluate the loss on train and val sets
                 if iter % eval_interval == 0 or iter == max_iters - 1:
@@ -179,9 +179,11 @@ class TecXModelTrain:
                 ###loss = criterion(outputs, targets)
                 # Add the current loss to the total
                 #total_val_loss += loss.item()  
-            for loss_item in loss.items():
+            print(f" loss = {loss}")
+            ###for loss_item in loss.items():
                 # Add the current loss to the total
-                total_val_loss += loss_item
+                ##total_val_loss += loss_item
+            total_val_loss += loss
             # 3. NOW you can calculate the average
             #avg_val_loss = total_val_loss / len(val_dataloader)
             avg_val_loss = total_val_loss / len(batch_size)
