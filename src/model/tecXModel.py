@@ -212,8 +212,8 @@ class TecXModelTrain:
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
                 'best_val_loss': best_val_loss,
-                'stoi': edc.stoi, # Saving the vocabulary is critical!
-                'itos' : edc.itos
+                'stoi': locals().get("edc.stoi") #edc.stoi , # Saving the vocabulary is critical!
+                'itos' : locals().get("edc.itos") #edc.itos
             }
             # Inside your epoch loop, after calculating avg_val_loss:
             # 1. Calculate the average loss (Total Loss / Number of Batches)
