@@ -137,8 +137,10 @@ class TecXModelTrain:
             if locals().get("checkpoint") is not None:
                 model_dict = checkpoint["model_state_dict"]
                 optimizer_dict = checkpoint['optimizer_state_dict']
-                edc.stoi = checkpoint["stoi"]
-                edc.itos = checkpoint["itos"]
+                #edc.stoi = checkpoint["stoi"]
+                #edc.itos = checkpoint["itos"]
+                self.stoi = checkpoint["stoi"]
+                self.itos = checkpoint["itos"]
                 model.load_state_dict(model_dict, strict=False)
                 # Ensure your model is in evaluation mode
         model.eval()
