@@ -143,8 +143,9 @@ class TecXModelTrain:
                 self.itos = checkpoint["itos"]
                 model.load_state_dict(model_dict, strict=False)
                 # Ensure your model is in evaluation mode
-        print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
-        print(f" checkpoint itos at starting = {checkpoint["itos"]}")
+        if locals().get("checkpoint"):
+            print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
+            print(f" checkpoint itos at starting = {checkpoint["itos"]}")
         model.eval()
         m = model.to(device)
         # print the number of parameters in the model
@@ -220,7 +221,7 @@ class TecXModelTrain:
                 #checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
                 checkpoint.update({'stoi': locals().get("self.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
                 checkpoint.update({'itos' : locals().get("self.itos")}) #edc.itos
-            elif locals().get("checkpoint") is not None:
+            elif locals().get("checkpoint") is None:
                 checkpoint = {
                     'epoch': epoch + 1,
                     'model_state_dict': model.state_dict(),
