@@ -58,6 +58,8 @@ class TecXModelTrain:
         self.val_data = valdata
         self.stoi = stoi
         self.itos = itos
+        print(f" stoi in init fun = {self.stoi}")
+        print(f" itos in init fun = {self.itos}")
         self.vocab_size = len(stoi)
         batch_size = len(self.train_data)
         ####epochs = 11
@@ -143,6 +145,9 @@ class TecXModelTrain:
                 self.itos = checkpoint["itos"]
                 model.load_state_dict(model_dict, strict=False)
                 # Ensure your model is in evaluation mode
+        print(f" stoi in init fun = {self.stoi}")
+        print(f" itos in init fun = {self.itos}")
+        self.vocab_size = len(stoi)
         if locals().get("checkpoint"):
             print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
             print(f" checkpoint itos at starting = {checkpoint["itos"]}")
