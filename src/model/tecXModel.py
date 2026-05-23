@@ -149,8 +149,8 @@ class TecXModelTrain:
         print(f" itos in init fun = {self.itos}")
         #self.vocab_size = len(stoi)
         if locals().get("checkpoint"):
-            print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
-            print(f" checkpoint itos at starting = {checkpoint["itos"]}")
+            print(f" checkpoint stoi in tecxModel = {checkpoint["stoi"]}")
+            print(f" checkpoint itos in tecxModel = {checkpoint["itos"]}")
         model.eval()
         m = model.to(device)
         # print the number of parameters in the model
@@ -235,6 +235,7 @@ class TecXModelTrain:
                     'stoi': locals().get("self.stoi"), #edc.stoi , # Saving the vocabulary is critical!
                     'itos' : locals().get("self.itos") #edc.itos
                 }
+            print(f" checkpoint before save = {checkpoint}")
             # Inside your epoch loop, after calculating avg_val_loss:
             # 1. Calculate the average loss (Total Loss / Number of Batches)
             ##avg_val_loss = total_val_loss / len(dataloader)
