@@ -145,8 +145,8 @@ class TecXModelTrain:
                 self.itos = checkpoint["itos"]
                 model.load_state_dict(model_dict, strict=False)
                 # Ensure your model is in evaluation mode
-        print(f" stoi in init fun = {self.stoi}")
-        print(f" itos in init fun = {self.itos}")
+        print(f" stoi in tecxModel = {self.stoi}")
+        print(f" itos  in tecxModel = {self.itos}")
         #self.vocab_size = len(stoi)
         if locals().get("checkpoint"):
             print(f" checkpoint stoi in tecxModel = {checkpoint["stoi"]}")
@@ -222,18 +222,22 @@ class TecXModelTrain:
                 checkpoint.update({'model_state_dict': model.state_dict()})
                 checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
                 checkpoint.update({'best_val_loss': best_val_loss})
+                checkpoint.update({'stoi': self.stoi}) #edc.stoi , # Saving the vocabulary is critical!
+                checkpoint.update({'itos' : self.itos}) #edc.itos
                 #checkpoint.update({'stoi': locals().get("edc.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
                 #checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
-                checkpoint.update({'stoi': locals().get("self.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
-                checkpoint.update({'itos' : locals().get("self.itos")}) #edc.itos
+                #checkpoint.update({'stoi': locals().get("self.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
+                #checkpoint.update({'itos' : locals().get("self.itos")}) #edc.itos
             elif locals().get("checkpoint") is None:
                 checkpoint = {
                     'epoch': epoch + 1,
                     'model_state_dict': model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
                     'best_val_loss': best_val_loss,
-                    'stoi': locals().get("self.stoi"), #edc.stoi , # Saving the vocabulary is critical!
-                    'itos' : locals().get("self.itos") #edc.itos
+                    'stoi': self.stoi, #edc.stoi , # Saving the vocabulary is critical!
+                    'itos' : self.itos #edc.itos
+                    ##'stoi': locals().get("self.stoi"), #edc.stoi , # Saving the vocabulary is critical!
+                    ##'itos' : locals().get("self.itos") #edc.itos
                 }
             print(f" checkpoint before save = {checkpoint}")
             # Inside your epoch loop, after calculating avg_val_loss:
