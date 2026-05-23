@@ -207,7 +207,7 @@ class TecXModelTrain:
             # 3. NOW you can calculate the average
             avg_val_loss = total_val_loss / len(val_dataloader)
             """
-            if checkpoint:
+            if locals().get("checkpoint") :
                 checkpoint['epoch'] = epoch + 1
                 checkpoint.update({'model_state_dict': model.state_dict()})
                 checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
