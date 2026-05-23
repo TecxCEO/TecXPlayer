@@ -236,6 +236,8 @@ class TecXModelTrain:
                 ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
                 torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
                 print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+            print(f" checkpoint[stoi] = {checkpoint['stoi']}")
+            print(f" checkpoint[itos] = {checkpoint['itos']}")
             # Save progress
             # 1. Define the path for the current epoch
             current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
