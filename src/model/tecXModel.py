@@ -212,16 +212,18 @@ class TecXModelTrain:
                 checkpoint.update({'model_state_dict': model.state_dict()})
                 checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
                 checkpoint.update({'best_val_loss': best_val_loss})
-                checkpoint.update({'stoi': locals().get("edc.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
-                checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
+                #checkpoint.update({'stoi': locals().get("edc.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
+                #checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
+                checkpoint.update({'stoi': locals().get("self.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
+                checkpoint.update({'itos' : locals().get("self.itos")}) #edc.itos
             else:
                 checkpoint = {
                     'epoch': epoch + 1,
                     'model_state_dict': model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
                     'best_val_loss': best_val_loss,
-                    'stoi': locals().get("edc.stoi"), #edc.stoi , # Saving the vocabulary is critical!
-                    'itos' : locals().get("edc.itos") #edc.itos
+                    'stoi': locals().get("self.stoi"), #edc.stoi , # Saving the vocabulary is critical!
+                    'itos' : locals().get("self.itos") #edc.itos
                 }
             # Inside your epoch loop, after calculating avg_val_loss:
             # 1. Calculate the average loss (Total Loss / Number of Batches)
