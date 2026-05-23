@@ -218,7 +218,7 @@ class TecXModelTrain:
                 #checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
                 checkpoint.update({'stoi': locals().get("self.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
                 checkpoint.update({'itos' : locals().get("self.itos")}) #edc.itos
-            else:
+            elif locals().get("checkpoint") is not None:
                 checkpoint = {
                     'epoch': epoch + 1,
                     'model_state_dict': model.state_dict(),
