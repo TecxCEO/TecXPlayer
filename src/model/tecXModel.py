@@ -209,11 +209,11 @@ class TecXModelTrain:
             """
             if checkpoint:
                 checkpoint['epoch'] = epoch + 1
-                checkpoint.update('model_state_dict': model.state_dict())
-                checkpoint.update('optimizer_state_dict': optimizer.state_dict())
-                checkpoint.update('best_val_loss': best_val_loss)
-                checkpoint.update('stoi': locals().get("edc.stoi")) #edc.stoi , # Saving the vocabulary is critical!
-                checkpoint.update('itos' : locals().get("edc.itos")) #edc.itos
+                checkpoint.update({'model_state_dict': model.state_dict()})
+                checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
+                checkpoint.update({'best_val_loss': best_val_loss})
+                checkpoint.update({'stoi': locals().get("edc.stoi")}) #edc.stoi , # Saving the vocabulary is critical!
+                checkpoint.update({'itos' : locals().get("edc.itos")}) #edc.itos
             else:
                 checkpoint = {
                     'epoch': epoch + 1,
