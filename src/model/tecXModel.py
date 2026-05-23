@@ -143,6 +143,8 @@ class TecXModelTrain:
                 self.itos = checkpoint["itos"]
                 model.load_state_dict(model_dict, strict=False)
                 # Ensure your model is in evaluation mode
+        print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
+        print(f" checkpoint itos at starting = {checkpoint["itos"]}")
         model.eval()
         m = model.to(device)
         # print the number of parameters in the model
