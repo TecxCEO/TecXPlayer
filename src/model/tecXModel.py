@@ -147,7 +147,7 @@ class TecXModelTrain:
                 # Ensure your model is in evaluation mode
         print(f" stoi in init fun = {self.stoi}")
         print(f" itos in init fun = {self.itos}")
-        self.vocab_size = len(stoi)
+        #self.vocab_size = len(stoi)
         if locals().get("checkpoint"):
             print(f" checkpoint stoi at starting = {checkpoint["stoi"]}")
             print(f" checkpoint itos at starting = {checkpoint["itos"]}")
