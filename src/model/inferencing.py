@@ -112,6 +112,8 @@ while True:
     # 1. Get custom text from the user
     #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
     user_prompt=input("\nEnter your starting text (or type 'exit' to quit): ")
+    print(f" user_prompt = {user_prompt}")
+    print(f" user_prompt len = {len(user_prompt)}")
     if user_prompt.lower() == 'exit':
         break
     # Encode and setup context
