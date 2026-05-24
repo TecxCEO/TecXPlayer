@@ -1,5 +1,7 @@
-from tpsm import DictionaryTransformer
+from tecXModel import TecXModel
+####from tpsm import DictionaryTransformer
 import datetime
+
 # import tpsm as tm
 #from encoding_decoding import EncodeDecode as edc
 import encoding_decoding as ed
@@ -44,7 +46,8 @@ print(f"edc.stoi = {edc.stoi}\n")
 edc.itos = checkpoint["itos"]
 print(f"edc.itos= {edc.itos}\n")
 #vocab_size =  edc.return_stoi_size() # Size of your 'stoi' map
-model = DictionaryTransformer(vocab_size=int(len(edc.stoi)), d_model=128, nhead=8, num_layers=4, num_classes=3)
+####model = DictionaryTransformer(vocab_size=int(len(edc.stoi)), d_model=128, nhead=8, num_layers=4, num_classes=3)
+model = TecXModel(int(self.vocab_size))
 ###model = DictionaryTransformer()
 
 #model = TecXModel(vocab_size=71)
