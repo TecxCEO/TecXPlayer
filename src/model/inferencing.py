@@ -15,7 +15,7 @@ import torch
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 edc = ed.EncodeDecode()
-model_path = "models/tecx/tecx_model_epoch_5.pth"
+model_path = "models/tecx/tecx_model_epoch_6.pth"
 #####model_path ='models/tecx/tecx_best_model.pth'
 ####model_path ='models/tecx/tecx_cube_solver_model_final.pth'
 checkpoint = torch.load(model_path)
