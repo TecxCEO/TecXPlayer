@@ -114,6 +114,7 @@ p.extend(stk)
 p += "<rgy>"
 #p.extend(stv)
 #p += "<EOS>"
+print(f" p = {p}")
 # ... inside your 'while True' loop ...
 ####<SOS> rgy rgw rby rbw ogy ogw oby obw rb rg rw ry ob og ow oy by bw gw gy <rgb> ogw ybo ryg bwr yrb oyg owb wrg gy rw yr by gw bw oy ow go rb ob gr <EOS>
 while True:
