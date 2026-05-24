@@ -47,7 +47,7 @@ edc.itos = checkpoint["itos"]
 print(f"edc.itos= {edc.itos}\n")
 #vocab_size =  edc.return_stoi_size() # Size of your 'stoi' map
 ####model = DictionaryTransformer(vocab_size=int(len(edc.stoi)), d_model=128, nhead=8, num_layers=4, num_classes=3)
-model = TecXModel(int(self.vocab_size))
+model = TecXModel(vocab_size=int(len(edc.stoi)))
 ###model = DictionaryTransformer()
 
 #model = TecXModel(vocab_size=71)
