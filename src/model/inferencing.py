@@ -111,7 +111,7 @@ stk = state_given_to_solve.keys()
 stv = state_given_to_solve.values()
 p = ["<SOS>"]
 p.extend(stk)
-p += "<rgy>"
+p += ["<rgy>"]
 #p.extend(stv)
 #p += "<EOS>"
 print(f" p = {p}")
