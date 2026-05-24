@@ -108,6 +108,7 @@ print(f"Keys in state_given_to_solve = {state_given_to_solve.keys()}\n")
 ########
 print(f"Value in state_given_to_solve = {state_given_to_solve.values()}\n")
 # ... inside your 'while True' loop ...
+####<SOS> rgy rgw rby rbw ogy ogw oby obw rb rg rw ry ob og ow oy by bw gw gy <rgb> ogw ybo ryg bwr yrb oyg owb wrg gy rw yr by gw bw oy ow go rb ob gr <EOS>
 while True:
     # 1. Get custom text from the user
     #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
