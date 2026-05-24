@@ -111,8 +111,8 @@ print(f"Value in state_given_to_solve = {state_given_to_solve.values()}\n")
 ####<SOS> rgy rgw rby rbw ogy ogw oby obw rb rg rw ry ob og ow oy by bw gw gy <rgb> ogw ybo ryg bwr yrb oyg owb wrg gy rw yr by gw bw oy ow go rb ob gr <EOS>
 while True:
     # 1. Get custom text from the user
-    #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
-    user_prompt=[input("\nEnter your starting text (or type 'exit' to quit): ")]
+    user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
+    ####user_prompt=[input("\nEnter your starting text (or type 'exit' to quit): ")]
     print(f" user_prompt = {user_prompt}")
     print(f" user_prompt len = {len(user_prompt)}")
     #####if user_prompt.lower() == 'exit':
