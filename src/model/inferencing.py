@@ -133,6 +133,7 @@ while True:
     ###############2#context = torch.tensor([edc.encoder(user_prompt)], dtype=torch.long).to(device)
     # context = torch.tensor([edc.encode(user_prompt)], dtype=torch.long).to(device)
     #data = torch.tensor(encode(user_prompt), dtype=torch.long)
+    print(f" context = {context}")
     print(f"\nTecX Player Solving Puzzle: ", end="")
     sys.stdout.flush()
     # Set the creativity (temperature) and focus (top_k)
