@@ -109,7 +109,8 @@ print(f"Keys in state_given_to_solve = {state_given_to_solve.keys()}\n")
 print(f"Value in state_given_to_solve = {state_given_to_solve.values()}\n")
 stk = state_given_to_solve.keys()
 stv = state_given_to_solve.values()
-p = ["<SOS>"]
+p = []
+#####p = ["<SOS>"]
 p.extend(stk)
 p += ["<rgy>"]
 #p.extend(stv)
