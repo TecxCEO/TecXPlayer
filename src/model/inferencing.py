@@ -75,7 +75,9 @@ def log_conversation(prompt, response):
         f.write(f"\n{'='*50}\n")
         f.write(f"TIMESTAMP: {timestamp}\n")
         f.write(f"PROMPT: {prompt}\n")
+        f.write(f"PROMPT LENGTH: {len(prompt)}\n")
         f.write(f"RESPONSE: {response}\n")
+        f.write(f"RESPONSE LENGTH: {len(response)}\n")
         f.write(f"{'='*50}\n")
         
 
