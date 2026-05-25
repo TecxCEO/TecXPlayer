@@ -158,7 +158,7 @@ while True:
             full_response += char # Collect for logging
             # Optional: Add a tiny sleep to make it look like "typing"
             time.sleep(0.01) 
-    print(f" response length = {len(full_response)})
+    print(f" response length = {len(full_response)}")
     print("\n" + "-"*30)
     # Automatically save the conversation
     log_conversation(user_prompt, full_response)
