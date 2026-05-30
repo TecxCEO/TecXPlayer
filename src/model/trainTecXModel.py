@@ -194,8 +194,8 @@ if __name__ == "__main__":
     model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
     if os.path.exists(model_path):
         checkpoint = torch.load(model_path)
-        #model = TecXModel(vocab_size=int(len(edc.stoi)))
-        model = TecXModel(vocab_size=int(len(checkpoint["itos"])))
+        #model = tm.TecXModel(vocab_size=int(len(edc.stoi)))
+        model = tm.TecXModel(vocab_size=int(len(checkpoint["itos"])))
         if locals().get("checkpoint") is not None:
             model_dict = checkpoint["model_state_dict"]
             #optimizer_dict = checkpoint['optimizer_state_dict']
