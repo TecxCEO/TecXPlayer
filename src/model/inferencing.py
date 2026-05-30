@@ -141,7 +141,6 @@ while True:
     ###############2#context = torch.tensor([edc.encoder(user_prompt)], dtype=torch.long).to(device)
     # context = torch.tensor([edc.encode(user_prompt)], dtype=torch.long).to(device)
     #data = torch.tensor(encode(user_prompt), dtype=torch.long)
-    print(f" context = {context}")
     print(f"\nTecX Player Solving Puzzle: ", end="")
     sys.stdout.flush()
     # Set the creativity (temperature) and focus (top_k)
@@ -163,6 +162,7 @@ while True:
             # Optional: Add a tiny sleep to make it look like "typing"
             time.sleep(0.01) 
     print(f" response length = {len(full_response)}")
+    print(f" full_response = {full_response}")
     print("\n" + "-"*30)
     # Automatically save the conversation
     log_conversation(user_prompt, full_response)
