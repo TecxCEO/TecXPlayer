@@ -192,7 +192,7 @@ if __name__ == "__main__":
     v = 0
     # For start training last time train model state
     model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
-    if os.path.exist(model_path):
+    if os.path.exists(model_path):
         checkpoint = torch.load(model_path)
         #model = TecXModel(vocab_size=int(len(edc.stoi)))
         model = TecXModel(vocab_size=int(len(checkpoint["itos"])))
