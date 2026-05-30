@@ -127,6 +127,7 @@ class TecXModelTrain:
             #checkpoint = torch.load_state_dict()
         if tmodel:
             model = tmodel
+            print(f" Model training start from last time trained model.")
         else:
             print(f" vocab_size = {self.vocab_size}")
             ####model = TecXModel()
