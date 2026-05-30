@@ -158,7 +158,7 @@ while True:
             char = edc.decode([token_id])
             sys.stdout.write(char+" ")
             sys.stdout.flush()
-            full_response += char # Collect for logging
+            full_response += [char] # Collect for logging
             # Optional: Add a tiny sleep to make it look like "typing"
             time.sleep(0.01) 
     print(f" response length = {len(full_response)}")
