@@ -151,6 +151,7 @@ while True:
         # Use the generator function
         # 1. Initialize an empty string to hold the output
         full_response = "" 
+        ######full_response = []
         # 2. Start the streaming loop
         #for token_id in model.generate_stream(context, tokens, temp, top_k):
         for token_id in m.generate_stream(context, tokens, temp, top_k):
@@ -158,8 +159,8 @@ while True:
             char = edc.decode([token_id])
             sys.stdout.write(char+" ")
             sys.stdout.flush()
-            #full_response += [char] # Collect for logging
-            full_response.append(char) # Collect for logging
+            full_response += (" " + char) # Collect for logging
+            ######full_response.append(char) # Collect for logging
             # Optional: Add a tiny sleep to make it look like "typing"
             time.sleep(0.01) 
     print(f" response length = {len(full_response)}")
