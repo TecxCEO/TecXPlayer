@@ -129,6 +129,7 @@ while True:
     ####user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
     ####user_prompt=[input("\nEnter your starting text (or type 'exit' to quit): ")]
     context = torch.tensor([edc.encoder(p)], dtype=torch.long).to(device)
+    print(f" context = {context}")
     user_prompt = input("\nEnter your starting text (or type 'exit' to quit): ")
     print(f" user_prompt = {user_prompt}")
     print(f" user_prompt len = {len(user_prompt)}")
