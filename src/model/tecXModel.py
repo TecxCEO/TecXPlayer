@@ -294,7 +294,7 @@ class TecXModel(nn.Module):
         return logits, loss
 
     # 🌊 CRITICAL STREAM METHOD ADDED HERE
-    def generate_stream(self, idx):
+    def stream(self, idx):
         """
         Takes an input tensor 'idx' of shape (Batch_Size, Current_Sequence_Length).
         Accepts: 20 input state tokens + 1 move token (21 tokens total).
@@ -332,7 +332,7 @@ class TecXModel(nn.Module):
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
-    def stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
+    def generate_stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
         for _ in range(max_new_tokens):
             # 1. Get predictions
             idx_cond = idx[:, -block_size:]
