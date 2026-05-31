@@ -268,8 +268,8 @@ class Block(nn.Module):
 # =====================================================================
 # 3. MAIN PUZZLE MODEL CONTROLLER (With internal stream method)
 # =====================================================================
-
-class PuzzleModel(nn.Module):
+# class PuzzleModel(nn.Module):
+class TecXModel(nn.Module):
     def __init__(self, vocab_size):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, n_embed)
