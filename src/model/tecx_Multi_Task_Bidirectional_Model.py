@@ -198,7 +198,7 @@ class TecXModelTrain:
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
         if locals().get("optimizer_dict") is not None:
             optimizer.load_state_dict(optimizer_dict, strict=False)#####
-            optimizer.eval()
+            #optimizer.eval() # this will reset that
         best_val_loss = float('inf') # Start with infinity
         # Initialize a variable outside your training loop to track the last saved file
         prev_checkpoint_path = None
