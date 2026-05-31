@@ -9,8 +9,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 from copy import deepcopy
 import json
 ########
-####import tecXModel as tm
-import tecx_Multi_Task_Bidirectional_Model as tmtbm
+import tecXModel as tm
+#####import tecx_Multi_Task_Bidirectional_Model as tmtbm
 import encoding_decoding as ed
 import importDataset as imd
 import os
@@ -197,8 +197,8 @@ if __name__ == "__main__":
     if os.path.exists(model_path):
         checkpoint = torch.load(model_path)
         #model = tm.TecXModel(vocab_size=int(len(edc.stoi)))
-        #####model = tm.TecXModel(vocab_size=int(len(checkpoint["itos"])))
-        model = tmtbm.TecXBidirectionalPuzzleModel(vocab_size=int(len(checkpoint["itos"])))
+        model = tm.TecXModel(vocab_size=int(len(checkpoint["itos"])))
+        ######model = tmtbm.TecXBidirectionalPuzzleModel(vocab_size=int(len(checkpoint["itos"])))
         if locals().get("checkpoint") is not None:
             model_dict = checkpoint["model_state_dict"]
             #optimizer_dict = checkpoint['optimizer_state_dict']
@@ -261,10 +261,10 @@ if __name__ == "__main__":
         print(f"dataval 0 = {dataval[0]}")
         print(f"dataval 1 = {dataval[1]}")
         print(f"dataval 2 = {dataval[2]}")
-        ####tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
-        ####model, checkpoint = tmt.trainModel(model, checkpoint)
-        tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         model, checkpoint = tmt.trainModel(model, checkpoint)
+        #####tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        ####model, checkpoint = tmt.trainModel(model, checkpoint)
     torch.save(checkpoint, 'models/tecx/tecx_bidirectional_puzzle_engine_final.pth')
     print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
     # Save progress
