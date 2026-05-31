@@ -154,8 +154,8 @@ while True:
         ######full_response = []
         # 2. Start the streaming loop
         #for token_id in model.generate_stream(context, tokens, temp, top_k):
-        #######for token_id in m.generate_stream(context, tokens, temp, top_k):
-        for token_id in m.generate_stream(context):
+        for token_id in m.generate_stream(context, tokens, temp, top_k):
+            ####for token_id in m.stream(context):
             ##char = decode(token_id)
             char = edc.decode([token_id])
             sys.stdout.write(char+" ")
