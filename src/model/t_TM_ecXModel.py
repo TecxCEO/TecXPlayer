@@ -177,7 +177,6 @@ class Head(nn.Module):
         return out
 
 class MultiHeadAttention(nn.Module):
-    ##print(f" In the MultiHeadAttention Class") #
     """ multiple heads of self-attention in parallel """
 
     def __init__(self, num_heads, head_size):
@@ -221,8 +220,6 @@ class Block(nn.Module):
         x = x + self.sa(self.ln1(x))
         x = x + self.ffwd(self.ln2(x))
         return x
-
-#class TecXLanguageModel(nn.Module):
 class TecXModel(nn.Module):
     def __init__(self,vocab_size):
         super().__init__()
@@ -265,7 +262,6 @@ class TecXModel(nn.Module):
         return logits, loss
 
     def generate(self, idx, max_new_tokens):
-        ##print(f" In the TecXLanguageModel Class's generate function.") #
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
@@ -319,16 +315,10 @@ if __name__ == "__main__":
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
-    #torch.save(m.state_dict(),"../TecXLM.pth")
     torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model/tecx/tecxmodel.pth')
-    #torch.save({'state_dict': model.state_dict(), 'chars': char_list}, 'model.pth')
-
-    
-    # torch.save(m.state_dict(),"TecXLM.pt")
     # generate from the model
     context = torch.zeros((1, 1), dtype=torch.long, device=device)
     print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
-    #open('more.txt', 'w').write(decode(m.generate(context, max_new_tokens=10000)[0].tolist()))
     open('TecXLM_learned.txt', 'w').write(decode(m.generate(context, max_new_tokens=10000)[0].tolist()))
     
     """
@@ -367,7 +357,6 @@ if __name__ == "__main__":
             # 1. Initialize an empty string to hold the output
             full_response = "" 
             # 2. Start the streaming loop
-            #for token_id in model.generate_stream(context, tokens, temp, top_k):
             for token_id in m.generate_stream(context, tokens, temp, top_k):
                 char = decode([token_id])
                 sys.stdout.write(char)
