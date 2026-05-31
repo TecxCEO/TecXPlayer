@@ -112,6 +112,17 @@ class TecXModelTrain:
                 out[split] = losses.mean()
         model.train()
         return out
+    # 1. DEFINE THE FUNCTION HERE (Inside the main block)
+    def create_synthetic_data(count):
+        pool = []
+        for _ in range(count):
+            steps = 16  # Test exactly 16 moves sequences depth
+            pool.append({
+                'initial_state': [i % VOCAB_SIZE for i in range(20)],
+                'moves': [(i + 5) % VOCAB_SIZE for i in range(steps)],
+                'states_history': [[(i + j) % VOCAB_SIZE for i in range(20)] for j in range(steps)]
+            })
+        return pool
     def train_bidirectional_model(model, raw_puzzle_logs, epochs=5, lr=3e-4):
         """
         Executes the actual mathematical training across all 5 tasks simultaneously.
