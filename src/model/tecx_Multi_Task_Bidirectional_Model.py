@@ -170,6 +170,19 @@ class TecXModelTrain:
         m = model.to(device)
         # print the number of parameters in the model
         print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
+        """
+        ###############
+        ######
+        # 1. Generate 180 random synthetic puzzle profiles (10 batches of 18 parallel items)
+                my_raw_training_data = create_synthetic_data(180)
+                # 2. Initialize your bidirectional model container
+                model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
+                # 3. RUN THIS COMMAND TO TRAIN THE ENTIRE MODEL FRAMEWORK LIVE
+                train_bidirectional_model(model, my_raw_training_data, epochs=10)
+                # Now you can safely call your inference streamer functions using trained parameters!
+        ############
+        ###############
+        """
         # create a PyTorch optimizer
         optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
         if locals().get("optimizer_dict") is not None:
