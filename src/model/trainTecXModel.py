@@ -261,7 +261,7 @@ if __name__ == "__main__":
         print(f"dataval 2 = {dataval[2]}")
         ####tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         ####model, checkpoint = tmt.trainModel(model, checkpoint)
-        tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval))
+        tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         model, checkpoint = tmt.trainModel(model, checkpoint)
     torch.save(checkpoint, 'models/tecx/tecx_cube_solver_model_final.pth')
     print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
