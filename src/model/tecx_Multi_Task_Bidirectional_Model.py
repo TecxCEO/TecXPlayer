@@ -112,6 +112,36 @@ class TecXModelTrain:
                 out[split] = losses.mean()
         model.train()
         return out
+    def train_bidirectional_model(model, raw_puzzle_logs, epochs=5, lr=3e-4):
+        """
+        Executes the actual mathematical training across all 5 tasks simultaneously.
+        """
+        print(f"🏋️‍♂️ Initializing Multi-Task Training Pipeline on: {device}")
+        model.to(device)
+        # 1. Setup multi-task datasets and packaging streams
+        dataset = MultiTaskPuzzleDataset(raw_puzzle_logs)
+        dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+        # Standard transformer weight optimisation configuration
+        optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
+        # Activate internal training layers (Normalisation updates, Dropout filters)
+        model.train()
+        for epoch in range(epochs):
+            epoch_loss = 0.0
+            for batch_idx, (X_batch, Y_batch) in enumerate(dataloader):
+                X_batch, Y_batch = X_batch.to(device), Y_batch.to(device)
+                # -------------------------------------------------------------
+                # THE CRITICAL LINES THAT TRAIN THE MODEL:
+                # -------------------------------------------------------------
+                optimizer.zero_grad()                 # Line A: Clear old memories
+                logits, loss = model(X_b, targets=Y_b) # Line B: Calculate guess mistakes
+                loss.backward()                       # Line C: Backpropagate gradient error
+                optimizer.step()                      # Line D: Update neural weight nodes
+                # -------------------------------------------------------------
+                epoch_loss += loss.item()
+            print(f"🔥 Epoch [{epoch+1}/{epochs}] Complete. Cross-Entropy Loss: {epoch_loss / len(dataloader):.4f}")
+        print("🏆 Training complete! Saving bidirectional weights...")
+        torch.save(model.state_dict(), "bidirectional_puzzle_engine.pth")
+    
     def trainModel(self, tmodel= None, m_checkpoint = None):
         if m_checkpoint:
             checkpoint= m_checkpoint
@@ -191,6 +221,19 @@ class TecXModelTrain:
                     }
 
             """
+            ###########
+            ###########
+            if __name__ == "__main__":
+                # 1. Generate 180 random synthetic puzzle profiles (10 batches of 18 parallel items)
+                my_raw_training_data = create_synthetic_data(180)
+                # 2. Initialize your bidirectional model container
+                model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
+                # 3. RUN THIS COMMAND TO TRAIN THE ENTIRE MODEL FRAMEWORK LIVE
+                train_bidirectional_model(model, my_raw_training_data, epochs=10)
+                # Now you can safely call your inference streamer functions using trained parameters!
+    
+            ###########
+            ###########
             # Create simple dummy model instance
             model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
             model.eval()
