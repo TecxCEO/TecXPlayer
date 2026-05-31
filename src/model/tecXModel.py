@@ -294,7 +294,7 @@ class PuzzleModel(nn.Module):
         return logits, loss
 
     # 🌊 CRITICAL STREAM METHOD ADDED HERE
-    def stream(self, idx):
+    def generate_stream(self, idx):
         """
         Takes an input tensor 'idx' of shape (Batch_Size, Current_Sequence_Length).
         Accepts: 20 input state tokens + 1 move token (21 tokens total).
@@ -316,6 +316,38 @@ class PuzzleModel(nn.Module):
                 
                 # Yield current predictions across all batch tracks as a simple list
                 yield next_tokens.squeeze(-1).tolist()
+    def generate(self, idx, max_new_tokens):
+        # idx is (B, T) array of indices in the current context
+        for _ in range(max_new_tokens):
+            # crop idx to the last block_size tokens
+            idx_cond = idx[:, -block_size:]
+            # get the predictions
+            logits, loss = self(idx_cond)
+            # focus only on the last time step
+            logits = logits[:, -1, :] # becomes (B, C)
+            # apply softmax to get probabilities
+            probs = F.softmax(logits, dim=-1) # (B, C)
+            # sample from the distribution
+            idx_next = torch.multinomial(probs, num_samples=1) # (B, 1)
+            # append sampled index to the running sequence
+            idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
+        return idx
+    def stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
+        for _ in range(max_new_tokens):
+            # 1. Get predictions
+            idx_cond = idx[:, -block_size:]
+            logits, _ = self(idx_cond)
+            logits = logits[:, -1, :] / temperature
+            # 2. Apply Top-K filtering
+            if top_k is not None:
+                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits < v[:, [-1]]] = -float('Inf')
+            # 3. Sample and Append
+            probs = F.softmax(logits, dim=-1)
+            idx_next = torch.multinomial(probs, num_samples=1)
+            idx = torch.cat((idx, idx_next), dim=1)
+            # 4. YIELD the newly generated token index
+            yield idx_next.item() 
 
 # =====================================================================
 # 4. DATABASE PACKAGING INFRASTRUCTURE
