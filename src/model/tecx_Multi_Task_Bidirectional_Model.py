@@ -455,7 +455,7 @@ class MultiTaskPuzzleDataset(Dataset):
 
 if __name__ == "__main__":
     # Create simple dummy model instance 
-    model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
+    model = TecXBidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
     model.eval()
 
     print("🚀 TESTING LIVE MULTI-TASK BIDIRECTIONAL ENGINE OPERATIONS...")
