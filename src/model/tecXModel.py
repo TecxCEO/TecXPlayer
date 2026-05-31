@@ -4,6 +4,8 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import math
+import os
+import string
 import sys
 
 # =====================================================================
@@ -17,6 +19,163 @@ n_layer = 6           # Number of processing layers stacked sequentially
 dropout = 0.1         # Regularisation dropping probability
 VOCAB_SIZE = 50       # Number of unique puzzle elements / move IDs in your index
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+
+##№################################
+
+
+
+
+# hyperparameters
+#batch_size =16 # 32 #1 # 64 # how many independent sequences will we process in parallel?
+#block_size =48 # 1 # for [state move state] #3 for state move state #64 #256 # what is the maximum context length for predictions?
+epochs = 11
+max_iters = 1# len(self.data)//3 #5000
+eval_interval = 500
+learning_rate = 3e-4
+#device = 'cuda' if torch.cuda.is_available() else 'cpu'
+eval_iters = 200
+####n_embd = 384
+#n_head = 8 #20 #6
+#n_layer = 6 #20 # 6
+#dropout = 0.2
+
+torch.manual_seed(1337)
+total_val_loss = 0.0  
+
+class TecXModelTrain:
+    
+    def __init__(self, data, stoi, itos, valdata =[]):
+        self.train_data = data
+        self.val_data = valdata
+        self.stoi = stoi
+        self.itos = itos
+        print(f" stoi in init fun = {self.stoi}")
+        print(f" itos in init fun = {self.itos}")
+        self.vocab_size = len(stoi)
+        batch_size = len(self.train_data)
+        
+        max_iters = len(self.train_data)/batch_size
+    def get_batch(self, split):
+        data = self.train_data if split == 'train' else self.val_data
+        ix = torch.randint(len(data) - 1,  (batch_size,))
+        x = torch.stack([torch.tensor(data[i], dtype=torch.long) for i in ix])
+        # Convert shifted integer STOI target tokens to PyTorch Long Tensors
+        y = torch.stack([torch.tensor(data[i+1], dtype=torch.long) for i in ix])
+        
+        x, y = x.to(device), y.to(device)
+        return x, y
+    
+    @torch.no_grad()#
+    
+    def estimate_loss(self, model):
+        out = {}
+        model.eval()
+        for split in ['train', 'val']:
+            losses = torch.zeros(eval_iters)
+            for k in range(eval_iters):
+                X, Y = self.get_batch(split)
+                logits, loss = model(X, Y)
+                losses[k] = loss.item()
+                out[split] = losses.mean()
+        model.train()
+        return out
+    def trainModel(self, tmodel= None, m_checkpoint = None):
+        if m_checkpoint:
+            checkpoint= m_checkpoint
+        if tmodel:
+            model = tmodel
+            print(f" Model training start from last time trained model.")
+        else:
+            print(f" vocab_size = {self.vocab_size}")
+            model = TecXModel(int(self.vocab_size))
+            if locals().get("checkpoint") is not None:
+                model_dict = checkpoint["model_state_dict"]
+                optimizer_dict = checkpoint['optimizer_state_dict']
+                self.stoi = checkpoint["stoi"]
+                self.itos = checkpoint["itos"]
+                model.load_state_dict(model_dict, strict=False)
+                # Ensure your model is in evaluation mode
+        print(f" stoi in tecxModel = {self.stoi}")
+        print(f" itos  in tecxModel = {self.itos}")
+        if locals().get("checkpoint"):
+            print(f" checkpoint stoi in tecxModel = {checkpoint["stoi"]}")
+            print(f" checkpoint itos in tecxModel = {checkpoint["itos"]}")
+        model.eval()
+        m = model.to(device)
+        # print the number of parameters in the model
+        print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
+        # create a PyTorch optimizer
+        optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+        if locals().get("optimizer_dict") is not None:
+            optimizer.load_state_dict(optimizer_dict, strict=False)#####
+            optimizer.eval()
+        best_val_loss = float('inf') # Start with infinity
+        # Initialize a variable outside your training loop to track the last saved file
+        prev_checkpoint_path = None
+        for epoch in range(epochs):
+            for iter in range(max_iters):
+                print(f"In The Iteration no = {iter}")
+                # every once in a while evaluate the loss on train and val sets
+                if iter % eval_interval == 0 or iter == max_iters - 1:
+                    losses = self.estimate_loss(model)
+                    print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+                # sample a batch of data
+                xb, yb = self.get_batch('train')
+                # evaluate the loss
+                logits, loss = model(xb, yb)
+            # 1. Initialize the counter BEFORE the loop
+            total_val_loss = 0.0 
+            # 2. Your validation loop
+            print(f" loss = {loss}")
+            total_val_loss += loss
+            print(f" total_val_loss = {total_val_loss}")
+            total_val_loss = loss
+            print(f" total_val_loss after = {total_val_loss}")
+            # 3. NOW you can calculate the average
+            avg_val_loss = total_val_loss / batch_size
+            print(f" avg_val_loss after = {avg_val_loss}")
+            optimizer.zero_grad(set_to_none=True)
+            loss.backward()
+            optimizer.step()
+            if locals().get("checkpoint") :
+                checkpoint['epoch'] = epoch + 1
+                checkpoint.update({'model_state_dict': model.state_dict()})
+                checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
+                checkpoint.update({'best_val_loss': best_val_loss})
+                checkpoint.update({'stoi': self.stoi}) #edc.stoi , # Saving the vocabulary is critical!
+                checkpoint.update({'itos' : self.itos}) #edc.itos
+                elif locals().get("checkpoint") is None:
+                checkpoint = {
+                    'epoch': epoch + 1,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'best_val_loss': best_val_loss,
+                    'stoi': self.stoi, #edc.stoi , # Saving the vocabulary is critical!
+                    'itos' : self.itos #edc.itos
+                    }
+            print(f" checkpoint before save = {checkpoint}")
+            if avg_val_loss < best_val_loss:
+                best_val_loss = avg_val_loss
+                torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
+                print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+            print(f" checkpoint[stoi] = {checkpoint['stoi']}")
+            print(f" checkpoint[itos] = {checkpoint['itos']}")
+            # Save progress
+            # 1. Define the path for the current epoch
+            current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
+            # 2. Save the new model checkpoint
+            torch.save(checkpoint, current_checkpoint_path)
+            print(f"Saved: {current_checkpoint_path}")
+            # 3. Delete the previous epoch's file if it exists
+            if prev_checkpoint_path and os.path.exists(prev_checkpoint_path):
+                os.remove(prev_checkpoint_path)
+            print(f"Deleted previous checkpoint: {prev_checkpoint_path}")
+            # 4. Update the tracker to point to the current file for the next iteration
+            prev_checkpoint_path = current_checkpoint_path
+        return model, checkpoint
+    
+########################
 
 # =====================================================================
 # 2. TRANSFORMER INFRASTRUCTURE CLASSES
