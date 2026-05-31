@@ -9,7 +9,8 @@ Add this logic inside your training loop, specifically right after the Validatio
 from copy import deepcopy
 import json
 ########
-import tecXModel as tm
+####import tecXModel as tm
+import tecx_Multi-Task_Bidirectional_Model as tmtbm
 import encoding_decoding as ed
 import importDataset as imd
 import os
@@ -258,7 +259,9 @@ if __name__ == "__main__":
         print(f"dataval 0 = {dataval[0]}")
         print(f"dataval 1 = {dataval[1]}")
         print(f"dataval 2 = {dataval[2]}")
-        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        ####tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        ####model, checkpoint = tmt.trainModel(model, checkpoint)
+        tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval))
         model, checkpoint = tmt.trainModel(model, checkpoint)
     torch.save(checkpoint, 'models/tecx/tecx_cube_solver_model_final.pth')
     print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
