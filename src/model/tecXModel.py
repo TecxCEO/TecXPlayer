@@ -145,7 +145,7 @@ class TecXModelTrain:
                 checkpoint.update({'best_val_loss': best_val_loss})
                 checkpoint.update({'stoi': self.stoi}) #edc.stoi , # Saving the vocabulary is critical!
                 checkpoint.update({'itos' : self.itos}) #edc.itos
-                elif locals().get("checkpoint") is None:
+            elif locals().get("checkpoint") is None:
                 checkpoint = {
                     'epoch': epoch + 1,
                     'model_state_dict': model.state_dict(),
