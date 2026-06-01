@@ -265,7 +265,8 @@ if __name__ == "__main__":
         model, checkpoint = tmt.trainModel(model, checkpoint)
         #####tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
         ####model, checkpoint = tmt.trainModel(model, checkpoint)
-    model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
+    #model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
+    torch.save(checkpoint, model_path)
     ####torch.save(checkpoint, 'models/tecx/tecx_bidirectional_puzzle_engine_final.pth')
     print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
     # Save progress
