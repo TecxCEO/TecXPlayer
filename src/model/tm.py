@@ -16,6 +16,7 @@ n_embed = 512
 n_head = 8            
 n_layer = 8           
 dropout = 0.0         # Set to 0.0 since overfitting is impossible on 4 quadrillion states
+####VOCAB_SIZE = len(edc.stoi)
 VOCAB_SIZE = 50       # Base tokens (0 to 49)
 
 # Register Task and Structural Tokens
@@ -106,6 +107,66 @@ class BidirectionalPuzzleModel(nn.Module):
 # 3. ANTI-FLIP DICTIONARY MANAGEMENT ENGINE
 # =====================================================================
 
+# This code line change by me 
+
+# Split token IDs into 25 for 3-characters, 25 for 2-characters
+## VALID_3_CHAR_IDS = list(range(0, 25))  # 0 to 24
+## VALID_2_CHAR_IDS = list(range(25, 50)) # 25 to 49
+
+VALID_3_CHAR_IDS = list(range(0, 8))  # 0 to 7
+VALID_2_CHAR_IDS = list(range(8, 20)) # 8 to 20
+
+# Map every Token ID to a unique set of letters to track flips
+TOKEN_CHARACTER_MAP = {}
+
+# Define a baseline alphabet list to draw your structural pairs from cleanly
+####alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# =====================================================================
+# 1. THREE-PAIR SELECTION RULE FOR 3-CHARACTER TOKENS 
+# =====================================================================
+for idx, token_id in enumerate(VALID_3_CHAR_IDS):
+    pair1 = ('r','o')
+    pair2 = ('g','b')
+    pair3 = ('y','w')
+    # pair1 = (alphabet[idx % 26],       alphabet[(idx + 1) % 26])
+    # pair2 = (alphabet[(idx + 2) % 26], alphabet[(idx + 3) % 26])
+    # pair3 = (alphabet[(idx + 4) % 26], alphabet[(idx + 5) % 26])
+    
+    char1 = random.choice(pair1)
+    char2 = random.choice(pair2)
+    char3 = random.choice(pair3)
+    
+    # Wrap into order-invariant frozen set tracker mapping for this ID
+    TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2, char3])
+
+# =====================================================================
+# 2. UPDATED: THREE-PAIR SELECTION RULE FOR 2-CHARACTER TOKENS
+# =====================================================================
+for idx, token_id in enumerate(VALID_2_CHAR_IDS):
+    # Create 3 distinct pairs of 2 characters each using an indexing offset
+    three_pairs = [
+        ('r','o'),
+        ('g','b'),
+        ('y','w')
+    ]
+    # three_pairs = [
+        # (alphabet[(idx) % 26],     alphabet[(idx + 1) % 26]),
+        # (alphabet[(idx + 2) % 26], alphabet[(idx + 3) % 26]),
+        # (alphabet[(idx + 4) % 26], alphabet[(idx + 5) % 26])
+    # ]
+    
+    # Randomly select exactly 2 distinct pairs out of the 3 available pairs
+    chosen_two_pairs = random.sample(three_pairs, 2)
+    
+    # Randomly select exactly ONE character from each of the two chosen pairs
+    char1 = random.choice(chosen_two_pairs[0])
+    char2 = random.choice(chosen_two_pairs[1])
+    
+    # Wrap into an order-invariant frozen set tracker mapping for this ID
+    TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2])
+    
+"""
 # Split token IDs into 25 for 3-characters, 25 for 2-characters
 VALID_3_CHAR_IDS = list(range(0, 25))  # 0 to 24
 VALID_2_CHAR_IDS = list(range(25, 50)) # 25 to 49
@@ -125,6 +186,7 @@ for idx, token_id in enumerate(VALID_3_CHAR_IDS):
 for idx, token_id in enumerate(VALID_2_CHAR_IDS):
     chars = frozenset([alphabet[idx % 26], alphabet[(idx+4) % 26]])
     TOKEN_CHARACTER_MAP[token_id] = chars
+"""
 
 def generate_state_without_flips():
     """
