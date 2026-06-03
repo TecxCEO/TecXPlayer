@@ -16,7 +16,7 @@ class Solver(c3x3):
         "puzzle_given": self.current_state,
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
-        "moves_history":[]
+        "moves_history":None
       },
       "solution":self.current_state
     }
@@ -109,6 +109,7 @@ class Solver(c3x3):
                 ###########moved_history.update({key:""})
               data_batch.update({key:""})
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
+              print(f"moves_history = {moves_history}")
               self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               return ####
             #if status == True and mtsp:
