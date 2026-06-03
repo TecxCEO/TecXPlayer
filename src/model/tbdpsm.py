@@ -242,7 +242,7 @@ def train_on_live_stream_chunks(model, total_steps=100000):
             torch.save(model.state_dict(), f"puzzle_engine_step_{step_idx+1}.pth")
         if step_idx + 1 >= total_steps:
             break
-if name == "main":
+if __name__ == "main":
     puzzle_model = TecXBidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
     # 1. Run the safe memory infinite chunk optimizer pass
     train_on_live_stream_chunks(puzzle_model, total_steps=50000)
