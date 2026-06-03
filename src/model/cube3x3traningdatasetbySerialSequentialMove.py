@@ -24,6 +24,7 @@ class Solver(c3x3):
         json.dump(puzzle_data, f)
         #json.dump(puzzle_data, f, indent=4)
     while_loop=0
+    data_batch = {}
     while True:
       # 1. Load your file
       with open(self.filename, "r") as rf:
@@ -39,6 +40,7 @@ class Solver(c3x3):
         print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
         break
       print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
+      yield data_batch
   def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
@@ -68,22 +70,27 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += move_list[i]
+              #####data_batch.update({move_list[i]:states[i]}) ######
             if len(moves_history) == 15:
               moves_history += [mh]
+              data_batch.update({data.copy()}) #####
           return data, moves_history, status, moved_history
       if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
         del data[moves_history[0]][moves_history[1]][moves_history[2]][moves_history[3]][moves_history[4]][moves_history[5]][moves_history[6]][moves_history[7]][moves_history[8]][moves_history[9]][moves_history[10]][moves_history[11]][moves_history[12]][moves_history[13]][moves_history[14]][moves_history[15]]
       
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
+        data_batch.update({"state": data["state"]})
         for key, value in data.items():
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
             if (moves_history and moves_history[-1]!=key) or not moves_history:
               # if moved_history[key] and moved_history[key] is not in [None, ""]:
               # el
-              if moved_history is None:
-                moved_history.update({key:""})
-              self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
+              ##########if moved_history is None:
+                ###########moved_history.update({key:""})
+              data_batch.update({key:""})
+              # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
+              self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               return ####
             #if status == True and mtsp:
               #print(f"mtsp={mtsp}")
