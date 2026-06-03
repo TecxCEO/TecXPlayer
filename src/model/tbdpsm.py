@@ -218,9 +218,10 @@ class InfinitePuzzleStream(IterableDataset):
 # 6. PIPELINE REINFORCEMENT LOOP ENGINE=====================================================================
 
 def train_on_live_stream_chunks(model, total_steps=100000):
-    model.train()optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.01)
+    model.train()
+    optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.01)
     dataloader = DataLoader(InfinitePuzzleStream(puzzle_simulation_generator), batch_size=batch_size)
-    print(f"📡 Infinite Chunk Stream Online. Optimizing over {total_steps} unique data matrices...")
+    print(f" Infinite Chunk Stream Online. Optimizing over {total_steps} unique data matrices...")
     running_loss = 0.0
     for step_idx, (X, Y) in enumerate(dataloader):
         X, Y = X.to(device), Y.to(device)
@@ -230,10 +231,10 @@ def train_on_live_stream_chunks(model, total_steps=100000):
         optimizer.step()
         running_loss += loss.item()
         if (step_idx + 1) % 100 == 0:
-            print(f"⚙️ Step [{step_idx + 1}/{total_steps}] | Rolling Avg Loss: {running_loss / 100:.4f}")
+            print(f" Step [{step_idx + 1}/{total_steps}] | Rolling Avg Loss: {running_loss / 100:.4f}")
             running_loss = 0.0
         if (step_idx + 1) % 10000 == 0:
-            print("💾 Checkpoint interval reached. Saving secure brain weight snapshots...")
+            print(" Checkpoint interval reached. Saving secure brain weight snapshots...")
             torch.save(model.state_dict(), f"puzzle_engine_step_{step_idx+1}.pth")
         if step_idx + 1 >= total_steps:
             break
@@ -242,7 +243,7 @@ if name == "main":
     # 1. Run the safe memory infinite chunk optimizer pass
     train_on_live_stream_chunks(puzzle_model, total_steps=50000)
     # 2. Verify token-by-token live class generator streams safely
-    print("\n🎬 VERIFYING LIVE MODEL STREAM PASS:")
+    print("\n VERIFYING LIVE MODEL STREAM PASS:")
     mock_sos = torch.full((batch_size, 1), SOS_TOKEN, device=device)
     mock_task = torch.full((batch_size, 1), TASK_FWD, device=device)
     mock_input_state = torch.tensor([generate_state_with_strict_rules() for _ in range(batch_size)], device=device)
