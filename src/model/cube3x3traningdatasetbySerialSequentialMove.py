@@ -53,7 +53,7 @@ class Solver(c3x3):
     elif len(data_to_process) > 2 and  index < len(moves_history)-1:
       if index <  len(moves_history)-2:
         delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
-      elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15]
+      elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
         del data_to_process[moves_history[index]]
       return
       
