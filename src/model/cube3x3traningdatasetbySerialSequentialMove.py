@@ -92,7 +92,8 @@ class Solver(c3x3):
             if len(moves_history) == 15:
               moves_history += [mh]
               data_batch.update({data.copy()}) #####
-          return data, moves_history, status, moved_history
+          # return data, moves_history, status, moved_history
+          return data, moves_history, status, data_batch
       if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
         self.delete_and_clean(data, moves_history)
   
