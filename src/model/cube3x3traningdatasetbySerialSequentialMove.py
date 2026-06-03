@@ -46,10 +46,16 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
-          if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
-          del data_to_process[moves_history[index]]
-          elif len(data_to_process) > 2:
-            delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1):
+    if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
+      del data_to_process[moves_history[index]]
+      return 
+    elif len(data_to_process) > 2 and  index < len(moves_history)-1:
+      if index <  len(moves_history)-2:
+        delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1):
+      elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15]
+        del data_to_process[moves_history[index]]
+      return
+      
 
   #####def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
   def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
