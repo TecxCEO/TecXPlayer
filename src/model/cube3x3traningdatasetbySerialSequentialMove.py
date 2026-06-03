@@ -66,7 +66,7 @@ class Solver(c3x3):
     """
     #print(f"moves_history={moves_history}")##
     if moves_history is None:
-      moves_history = []
+      moves_history = 3 #[]
       status=False
     # If it's a dictionary, check keys or go deeper
     if isinstance(data, dict):
