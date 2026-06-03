@@ -99,7 +99,7 @@ class Block(nn.Module):
 # 3. BIDIRECTIONAL MODEL CLASS WITH SINGLE-STEP STREAMING METHOD
 # =====================================================================
 
-class BidirectionalPuzzleModel(nn.Module):
+class TecXBidirectionalPuzzleModel(nn.Module):
     def __init__(self, vocab_size):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, n_embed)
@@ -238,7 +238,7 @@ def train_on_live_stream_chunks(model, total_steps=100000):
         if step_idx + 1 >= total_steps:
             break
 if name == "main":
-    puzzle_model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
+    puzzle_model = TecXBidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
     # 1. Run the safe memory infinite chunk optimizer pass
     train_on_live_stream_chunks(puzzle_model, total_steps=50000)
     # 2. Verify token-by-token live class generator streams safely
