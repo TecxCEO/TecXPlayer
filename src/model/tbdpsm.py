@@ -225,7 +225,11 @@ def train_on_live_stream_chunks(model, total_steps=100000):
     running_loss = 0.0
     for step_idx, (X, Y) in enumerate(dataloader):
         X, Y = X.to(device), Y.to(device)
-        optimizer.zero_grad(), loss = model(X, targets=Y)
+        #
+        # optimizer.zero_grad(), loss = model(X, targets=Y)
+        optimizer.zero_grad()
+        _, loss = model(X, targets=Y)
+        #
         loss.backward()
         torch.nn.utils.clip_grad_norm(model.parameters(), max_norm=1.0)
         optimizer.step()
