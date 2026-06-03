@@ -76,7 +76,7 @@ class Solver(c3x3):
               data_batch.update({data.copy()}) #####
           return data, moves_history, status, moved_history
       if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
-        del data[moves_history[0]][moves_history[1]][moves_history[2]][moves_history[3]][moves_history[4]][moves_history[5]][moves_history[6]][moves_history[7]][moves_history[8]][moves_history[9]][moves_history[10]][moves_history[11]][moves_history[12]][moves_history[13]][moves_history[14]][moves_history[15]]
+        del data[moves_history[0]][moves_history[1]][moves_history[2]][moves_history[3]][moves_history[4]][moves_history[5]][moves_history[6]][moves_history[7]][moves_history[8]][moves_history[9]][moves_history[10]][moves_history[11]][moves_history[12]][moves_history[13]][moves_history[14]] # [moves_history[15]]
       
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
