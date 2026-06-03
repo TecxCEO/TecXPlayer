@@ -2,6 +2,7 @@
 import json
 from cube3x3 import Cube3x3 as c3x3
 import os
+import sys
 
 class Solver(c3x3):
   def __init__(self):
@@ -152,5 +153,10 @@ if __name__=="__main__":
       "gy":"gy"
     }
   s=Solver()
-  result=s.solve(state_given_to_solve)
-  print(result)
+  # result=s.solve(state_given_to_solve)
+  # print(result)
+  for char in s.solve(state_given_to_solve)
+            sys.stdout.write(char+" ")
+            sys.stdout.flush()
+            full_response += (" " + char) # Collect for logging
+            time.sleep(0.01) 
