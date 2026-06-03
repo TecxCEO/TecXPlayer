@@ -29,9 +29,12 @@ class Solver(c3x3):
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
+      if len(my_data["puzzle"]["moves_history"]) == 16:
+        #### del data_batch
+        data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
-        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"])
+        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
         with open(self.filename, "w") as wf:
           json.dump(my_data, wf)
           #json.dump(my_data, wf, indent=4)
@@ -40,8 +43,10 @@ class Solver(c3x3):
         print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
         break
       print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
-      yield data_batch
-  def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
+      if len(my_data["puzzle"]["moves_history"]) == 16:
+        yield data_batch
+  #####def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
