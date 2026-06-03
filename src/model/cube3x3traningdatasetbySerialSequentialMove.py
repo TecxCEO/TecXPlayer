@@ -71,7 +71,8 @@ class Solver(c3x3):
         for key, value in data.items():
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
             if (moves_history and moves_history[-1]!=key) or not moves_history:
-              ####moved_history.update({move_list[i]:""})
+              if moved_history is None:
+                moved_history.update({key:""})
               self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
             if status == True and mtsp:
               print(f"mtsp={mtsp}")
