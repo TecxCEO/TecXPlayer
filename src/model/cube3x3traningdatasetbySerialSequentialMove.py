@@ -65,12 +65,13 @@ class Solver(c3x3):
             #print(f"data length= {len(data)}")
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
-              moved_history.update({move_list[i]:""}) ####
+              ####moved_history.update({move_list[i]:""}) ####
           return data, moves_history, status, moved_history
       if len(data)==16 or len(data)==19 or len(data)==20:
         for key, value in data.items():
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
             if (moves_history and moves_history[-1]!=key) or not moves_history:
+              ####moved_history.update({move_list[i]:""})
               self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
             if status == True and mtsp:
               print(f"mtsp={mtsp}")
