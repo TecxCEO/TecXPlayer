@@ -233,8 +233,22 @@ def train_on_live_stream_chunks(model, total_steps=100000):
           print(f"⚙️ Step [{step_idx + 1}/{total_steps}] | Rolling Avg Loss: {running_loss / 100:.4f}")
           running_loss = 0.0
     if (step_idx + 1) % 10000 == 0:
-print("💾 Checkpoint interval reached. Saving secure brain weight snapshots...")
-torch.save(model.state_dict(), f"puzzle_engine_step_{step_idx+1}.pth")
-if step_idx + 1 >= total_steps:breakif name == "main":puzzle_model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
+        print("💾 Checkpoint interval reached. Saving secure brain weight snapshots...")
+    torch.save(model.state_dict(), f"puzzle_engine_step_{step_idx+1}.pth")
+    if step_idx + 1 >= total_steps:
+        break
+    if name == "main":
+        puzzle_model = BidirectionalPuzzleModel(vocab_size=ACTUAL_VOCAB_SIZE).to(device)
     # 1. Run the safe memory infinite chunk optimizer pass
-train_on_live_stream_chunks(puzzle_model, total_steps=50000)# 2. Verify token-by-token live class generator streams safelyprint("\n🎬 VERIFYING LIVE MODEL STREAM PASS:")mock_sos = torch.full((batch_size, 1), SOS_TOKEN, device=device)mock_task = torch.full((batch_size, 1), TASK_FWD, device=device)mock_input_state = torch.tensor([generate_state_with_strict_rules() for _ in range(batch_size)], device=device)mock_move = torch.randint(0, 72, (batch_size, 1), device=device)streaming_prompt = torch.cat([mock_sos, mock_task, mock_input_state, mock_move], dim=-1) # Shape (18, 23)token_generator = puzzle_model.stream_single_step(streaming_prompt)for idx, (live_tokens, _) in enumerate(token_generator):if idx < 20:print(f"  Slot [Output Position {idx+1:02d}/20] -> Streaming Parallel Tokens: {live_tokens}")else:print(f"  Slot [Closing Boundary EOS ] -> Streaming Parallel Tokens: {live_tokens}")
+    train_on_live_stream_chunks(puzzle_model, total_steps=50000)
+# 2. Verify token-by-token live class generator streams safely
+print("\n🎬 VERIFYING LIVE MODEL STREAM PASS:")
+        mock_sos = torch.full((batch_size, 1), SOS_TOKEN, device=device)
+mock_task = torch.full((batch_size, 1), TASK_FWD, device=device)
+        mock_input_state = torch.tensor([generate_state_with_strict_rules() for _ in range(batch_size)], device=device)
+mock_move = torch.randint(0, 72, (batch_size, 1), device=device)
+        streaming_prompt = torch.cat([mock_sos, mock_task, mock_input_state, mock_move], dim=-1) # Shape (18, 23)
+    token_generator = puzzle_model.stream_single_step(streaming_prompt)
+for idx, (live_tokens, _) in enumerate(token_generator):
+    if idx < 20:
+        print(f"  Slot [Output Position {idx+1:02d}/20] -> Streaming Parallel Tokens: {live_tokens}")else:print(f"  Slot [Closing Boundary EOS ] -> Streaming Parallel Tokens: {live_tokens}")
