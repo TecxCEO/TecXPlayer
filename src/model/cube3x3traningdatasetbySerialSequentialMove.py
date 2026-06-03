@@ -45,6 +45,12 @@ class Solver(c3x3):
       print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
+  def delete_and_clean(self, data_to_process, moves_history, index=0):
+          if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
+          del data_to_process[moves_history[index]]
+          elif len(data_to_process) > 2:
+            delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1):
+
   #####def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
   def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
     """
@@ -81,8 +87,22 @@ class Solver(c3x3):
               data_batch.update({data.copy()}) #####
           return data, moves_history, status, moved_history
       if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
-        del data[moves_history[0]][moves_history[1]][moves_history[2]][moves_history[3]][moves_history[4]][moves_history[5]][moves_history[6]][moves_history[7]][moves_history[8]][moves_history[9]][moves_history[10]][moves_history[11]][moves_history[12]][moves_history[13]][moves_history[14]] # [moves_history[15]]
-      
+        self.delete_and_clean(data, moves_history)
+        #####data[moves_history[index+=1]]
+        ####del data[
+        ####del data[moves_history[0]][moves_history[1]][moves_history[2]][moves_history[3]][moves_history[4]][moves_history[5]][moves_history[6]][moves_history[7]][moves_history[8]][moves_history[9]][moves_history[10]][moves_history[11]][moves_history[12]][moves_history[13]][moves_history[14]] # [moves_history[15]]
+        ##del current[last_key]
+        # Check if your history path has reached the target length of 16 elements (indices 0 to 15)
+        #####if len(moves_history) == 16:
+        # Navigate down to the second-to-last nested level
+        ####current = data
+        #####for key in moves_history[:-1]:
+        ###current = current[key]
+    
+    # Delete the final target element using the last key in the history
+    last_key = moves_history[-1]
+    del current[last_key]
+  
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
         data_batch.update({"state": data["state"]})
