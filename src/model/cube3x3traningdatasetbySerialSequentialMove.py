@@ -20,6 +20,8 @@ class Solver(c3x3):
       },
       "solution":self.current_state
     }
+    print(f" puzzle_data = {puzzle_data}")
+    print(f"moves_history in loop = {puzzle_data["puzzle"]["moves_history"]}")
     if not os.path.isfile(self.filename):
       with open(self.filename, "w") as f:
         json.dump(puzzle_data, f)
@@ -33,6 +35,7 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         data_batch = {}
+      print(f" my_data = {my_data}")
       print(f"moves_history in loop = {my_data["puzzle"]["moves_history"]}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
