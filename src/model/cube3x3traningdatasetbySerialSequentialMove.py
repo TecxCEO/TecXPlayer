@@ -45,7 +45,7 @@ class Solver(c3x3):
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
-      print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
+      #print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
@@ -66,18 +66,17 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    print(f"moves_history at starting = {moves_history}")
+    ####print(f"moves_history at starting = {moves_history}")
     ###
     if moves_history is None:
       moves_history = []
-      print(f"moves_history was None in if statement now = {moves_history}")
+      ####print(f"moves_history was None in if statement now = {moves_history}")
       status=False
     # If it's a dictionary, check keys or go deeper
     if isinstance(data, dict):
       #print(f"data length={len(data)}")
       if len(data)==20:
-        print(f"moves_history in isinstance statement = {moves_history}")
-        #print(f"so i am in if =20 condition")
+        ####print(f"moves_history in isinstance statement = {moves_history}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           states,move_list,status=super().moves(data,mtsp,moves_history)
           #print(f"moves_history={moves_history}")
@@ -122,12 +121,12 @@ class Solver(c3x3):
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
               #### print(f"data = {data}")
               moves_history += [key]
-              print(f"moves_history before calling in the nested function = {moves_history}")
+              ######print(f"moves_history before calling in the nested function = {moves_history}")
               
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
               #### print(f"data after nested calling = {data}")
-              print(f"moves_history after nested calling= {moves_history}")
+              ####print(f"moves_history after nested calling= {moves_history}")
               return ####
             #if status == True and mtsp:
               #print(f"mtsp={mtsp}")
