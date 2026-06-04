@@ -167,5 +167,5 @@ if __name__=="__main__":
     # sys.stdout.write(char+" ")
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
-    full_response += (" " + char) # Collect for logging
+    full_response += (" " + str(char)) # Collect for logging
     time.sleep(0.01) 
