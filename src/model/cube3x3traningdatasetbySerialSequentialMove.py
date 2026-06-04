@@ -109,8 +109,11 @@ class Solver(c3x3):
                 ###########moved_history.update({key:""})
               data_batch.update({key:""})
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
+              print(f"data = {data}")
               print(f"moves_history = {moves_history}")
               self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
+              print(f"data = {data}")
+              print(f"moves_history = {moves_history}")
               return ####
             #if status == True and mtsp:
               #print(f"mtsp={mtsp}")
