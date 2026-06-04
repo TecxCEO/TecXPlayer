@@ -33,6 +33,7 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         data_batch = {}
+        print(f"moves_history in loop = {my_data["puzzle"]["moves_to_solve_puzzle"]}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
@@ -64,9 +65,11 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    #print(f"moves_history={moves_history}")##
+    print(f"moves_history = {moves_history}")
+    ###
     if moves_history is None:
       moves_history = 3 #[]
+      print(f"moves_history in if statement = {moves_history}")
       status=False
     # If it's a dictionary, check keys or go deeper
     if isinstance(data, dict):
