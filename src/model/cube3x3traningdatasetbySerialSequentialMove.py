@@ -29,7 +29,7 @@ class Solver(c3x3):
     data_batch = {}
     print(f"while loop is going to started.")
     while True:
-      print(f"while loop no = {while_loop }  are started.")
+      ####print(f"while loop no = {while_loop }  are started.")
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
@@ -45,6 +45,7 @@ class Solver(c3x3):
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
+      while_loop += 1
       #print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
