@@ -100,7 +100,8 @@ class Solver(c3x3):
               moves_history += [mh]
               if isinstance(data_batch, str):
                 data_batch = {}
-              data_batch.update({data.copy()}) #####
+              data_batch.update(data.copy())
+              # data_batch.update(data.copy()) #####
           # return data, moves_history, status, moved_history
           return data, moves_history, status, data_batch
       if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
