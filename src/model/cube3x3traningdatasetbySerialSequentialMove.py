@@ -21,7 +21,7 @@ class Solver(c3x3):
       "solution":self.current_state
     }
     print(f" puzzle_data = {puzzle_data}")
-    print(f"moves_history in loop = {puzzle_data["puzzle"]["moves_history"]}")
+    print(f"moves_history at initialize = {puzzle_data["puzzle"]["moves_history"]}")
     if not os.path.isfile(self.filename):
       with open(self.filename, "w") as f:
         json.dump(puzzle_data, f)
