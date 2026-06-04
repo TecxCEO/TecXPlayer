@@ -51,6 +51,7 @@ class Solver(c3x3):
         #### print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
         break
       print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
+      print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"]}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
