@@ -163,7 +163,8 @@ if __name__=="__main__":
   # result=s.solve(state_given_to_solve)
   # print(result)
   for char in s.solve(state_given_to_solve):
-            sys.stdout.write(char+" ")
-            sys.stdout.flush()
-            full_response += (" " + char) # Collect for logging
-            time.sleep(0.01) 
+    # sys.stdout.write(char+" ")
+    sys.stdout.write(str(char) + " ")
+    sys.stdout.flush()
+    full_response += (" " + char) # Collect for logging
+    time.sleep(0.01) 
