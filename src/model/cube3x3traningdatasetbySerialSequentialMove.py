@@ -21,12 +21,10 @@ class Solver(c3x3):
       },
       "solution":self.current_state
     }
-    #### print(f" puzzle_data = {puzzle_data}")
-    #### print(f"moves_history at initialize = {puzzle_data["puzzle"]["moves_history"]}")
     if not os.path.isfile(self.filename):
       with open(self.filename, "w") as f:
-        json.dump(puzzle_data, f)
-        #json.dump(puzzle_data, f, indent=4)
+        #json.dump(puzzle_data, f)
+        json.dump(puzzle_data, f, indent=4)
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
@@ -38,19 +36,15 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         data_batch = {}
-      #### print(f" my_data = {my_data}")
-      ##### print(f"moves_history in loop = {my_data["puzzle"]["moves_history"]}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
         with open(self.filename, "w") as wf:
-          json.dump(my_data, wf)
-          #json.dump(my_data, wf, indent=4)
+          #json.dump(my_data, wf)
+          json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
-        #### print( f"This Puzzle has been solved and The moves which were used to solve it, as followings")
-        #### print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
         break
-      print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
+      #print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
       print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         yield data_batch
