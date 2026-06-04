@@ -16,7 +16,7 @@ class Solver(c3x3):
         "puzzle_given": self.current_state,
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
-        "moves_history":3# None #[]
+        "moves_history": 3 # None #[]
       },
       "solution":self.current_state
     }
@@ -33,7 +33,7 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         data_batch = {}
-      print(f"moves_history in loop = {my_data["puzzle"]["moves_to_solve_puzzle"]}")
+      print(f"moves_history in loop = {my_data["puzzle"]["moves_history"]}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
