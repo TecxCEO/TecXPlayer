@@ -16,7 +16,7 @@ class Solver(c3x3):
         "puzzle_given": self.current_state,
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
-        "moves_history": 3 # None #[]
+        "moves_history": None #[]
       },
       "solution":self.current_state
     }
@@ -78,6 +78,7 @@ class Solver(c3x3):
     if isinstance(data, dict):
       #print(f"data length={len(data)}")
       if len(data)==20:
+        print(f"moves_history in isinstance statement = {moves_history}")
         #print(f"so i am in if =20 condition")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           states,move_list,status=super().moves(data,mtsp,moves_history)
