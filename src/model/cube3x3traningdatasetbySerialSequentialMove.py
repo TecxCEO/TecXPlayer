@@ -118,10 +118,10 @@ class Solver(c3x3):
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
               print(f"data = {data}")
               moves_history += [key]
-              print(f"moves_history = {moves_history}")
+              print(f"moves_history before calling = {moves_history}")
               
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
-              self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
+              self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
               print(f"data after nested calling = {data}")
               print(f"moves_history after nested calling= {moves_history}")
               return ####
