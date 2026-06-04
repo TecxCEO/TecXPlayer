@@ -3,6 +3,7 @@ import json
 from cube3x3 import Cube3x3 as c3x3
 import os
 import sys
+import time
 
 class Solver(c3x3):
   def __init__(self):
@@ -94,7 +95,7 @@ class Solver(c3x3):
             mh = []
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
-              mh += move_list[i]
+              mh += [move_list[i]]
               #####data_batch.update({move_list[i]:states[i]}) ######
             if len(moves_history) == 15:
               moves_history += [mh]
