@@ -29,7 +29,9 @@ class Solver(c3x3):
         #json.dump(puzzle_data, f, indent=4)
     while_loop=0
     data_batch = {}
+    print(f"while loop is going to started.")
     while True:
+      print(f"while loop no = {while_loop }  are started.")
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
@@ -170,3 +172,4 @@ if __name__=="__main__":
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
     time.sleep(0.01) 
+print(f" full_response = {full_response}")
