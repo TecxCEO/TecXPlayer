@@ -21,8 +21,8 @@ class Solver(c3x3):
       },
       "solution":self.current_state
     }
-    print(f" puzzle_data = {puzzle_data}")
-    print(f"moves_history at initialize = {puzzle_data["puzzle"]["moves_history"]}")
+    #### print(f" puzzle_data = {puzzle_data}")
+    #### print(f"moves_history at initialize = {puzzle_data["puzzle"]["moves_history"]}")
     if not os.path.isfile(self.filename):
       with open(self.filename, "w") as f:
         json.dump(puzzle_data, f)
@@ -36,8 +36,8 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         data_batch = {}
-      print(f" my_data = {my_data}")
-      print(f"moves_history in loop = {my_data["puzzle"]["moves_history"]}")
+      #### print(f" my_data = {my_data}")
+      ##### print(f"moves_history in loop = {my_data["puzzle"]["moves_history"]}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
@@ -45,8 +45,8 @@ class Solver(c3x3):
           json.dump(my_data, wf)
           #json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
-        print( f"This Puzzle has been solved and The moves which were used to solve it, as followings")
-        print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
+        #### print( f"This Puzzle has been solved and The moves which were used to solve it, as followings")
+        #### print(f"The moves for given puzzles solution ={my_data["puzzle"]["moves_to_solve_puzzle"]}")
         break
       print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
       if len(my_data["puzzle"]["moves_history"]) == 16:
@@ -69,11 +69,11 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    print(f"moves_history = {moves_history}")
+    print(f"moves_history at starting = {moves_history}")
     ###
     if moves_history is None:
       moves_history = []
-      print(f"moves_history in if statement = {moves_history}")
+      print(f"moves_history was None in if statement now = {moves_history}")
       status=False
     # If it's a dictionary, check keys or go deeper
     if isinstance(data, dict):
@@ -110,7 +110,7 @@ class Solver(c3x3):
   
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
-        print(f" data_batch = { data_batch}")
+        #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
@@ -123,13 +123,13 @@ class Solver(c3x3):
                 ###########moved_history.update({key:""})
               data_batch.update({key:""})
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
-              print(f"data = {data}")
+              #### print(f"data = {data}")
               moves_history += [key]
-              print(f"moves_history before calling = {moves_history}")
+              print(f"moves_history before calling in the nested function = {moves_history}")
               
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-              print(f"data after nested calling = {data}")
+              #### print(f"data after nested calling = {data}")
               print(f"moves_history after nested calling= {moves_history}")
               return ####
             #if status == True and mtsp:
