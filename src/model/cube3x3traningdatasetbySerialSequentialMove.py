@@ -16,7 +16,7 @@ class Solver(c3x3):
         "puzzle_given": self.current_state,
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
-        "moves_history": '4'
+        "moves_history": None
       },
       "solution":self.current_state
     }
@@ -71,7 +71,7 @@ class Solver(c3x3):
     print(f"moves_history = {moves_history}")
     ###
     if moves_history is None:
-      moves_history = 3 #[]
+      moves_history = []
       print(f"moves_history in if statement = {moves_history}")
       status=False
     # If it's a dictionary, check keys or go deeper
