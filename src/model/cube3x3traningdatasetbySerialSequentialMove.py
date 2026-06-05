@@ -35,6 +35,8 @@ class Solver(c3x3):
         my_data = json.load(rf)
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
+        print(f"data_batch before start = {data_batch}")
+        print(f"moves_history before start = {moves_history}")
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
@@ -48,7 +50,8 @@ class Solver(c3x3):
       while_loop += 1
       #print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
-        print(f"data_batch = {data_batch}")
+        print(f"data_batch after function call = {data_batch}")
+        print(f"moves_history after function call  = {moves_history}")
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
