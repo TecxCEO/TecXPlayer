@@ -30,6 +30,7 @@ class Solver(c3x3):
     print(f"while loop is going to started.")
     while True:
       ####print(f"while loop no = {while_loop }  are started.")
+      print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
