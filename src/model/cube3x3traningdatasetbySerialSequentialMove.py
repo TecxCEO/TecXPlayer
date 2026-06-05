@@ -98,9 +98,15 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
+            print(f" mh = {mh}")
               #####data_batch.update({move_list[i]:states[i]}) ######
             if len(moves_history) == 15:
               moves_history += [mh]
+              print(f" moves_history = {moves_history}")
+              print(f" moves_history at length = {len(moves_history)}")
+              print(f" moves_history = {moves_history}")
+              print(f" moves_history[15] at length = {len(moves_history[15])}")
+              print(f" moves_history[15] at length = {moves_history[15]}")
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
