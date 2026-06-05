@@ -36,7 +36,7 @@ class Solver(c3x3):
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #### del data_batch
         print(f"data_batch before start = {data_batch}")
-        print(f"moves_history before start = {moves_history}")
+        print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
