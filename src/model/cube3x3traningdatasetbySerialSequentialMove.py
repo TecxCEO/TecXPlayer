@@ -147,7 +147,7 @@ class Solver(c3x3):
               # if (moves_history and moves_history[-1]!=key) or not moves_history:
               if not moves_history or isinstance(value, dict) and len(value) == 20:
                 moves_history += [key]
-              if moves_history and len(moves_history) >1:
+              if moves_history and len(moves_history) >1 and key != moves_history[0] :
                 removed_key = moves_history.pop(0)
                 print(f" Remove key from 0 = { removed_key }")
                 #data_batch.update({"state": data["state"]})
