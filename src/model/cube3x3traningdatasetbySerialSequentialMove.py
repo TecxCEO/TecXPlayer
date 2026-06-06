@@ -130,7 +130,7 @@ class Solver(c3x3):
       if len(data) < 20 and len(moves_history) < 16:
         print(f" In the nested calling if condition.")
         if len(moves_history) ==15:
-          moves_history += 16
+          moves_history += [16]
         #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
                 data_batch = {}
