@@ -133,7 +133,8 @@ class Solver(c3x3):
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
         print(f" In the nested calling if condition.")
-        if len(moves_history) ==15:
+        if len(moves_history) ==14:
+          moves_history += [15]
           moves_history += [16]
         #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
@@ -157,7 +158,11 @@ class Solver(c3x3):
               print(f"data_batch = {data_batch}")
               # if (moves_history and moves_history[-1]!=key) or not moves_history:
               if not moves_history or isinstance(value, dict) and len(value) == 20:
-                moves_history += [key]
+                if moves_history and moves_history[-1] == 16:
+                  moves_history[-2] = key
+                else:
+                  moves_history += [key] 
+              print(f"moves history = {moves_history}")
               if moves_history and len(moves_history) >1 and key != moves_history[0] :
                 removed_key = moves_history.pop(0)
                 print(f" Remove key from 0 = { removed_key }")
