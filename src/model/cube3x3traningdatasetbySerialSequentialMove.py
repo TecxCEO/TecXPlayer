@@ -156,7 +156,7 @@ class Solver(c3x3):
               data_batch.update({key:""})
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
               print(f" data_batch = {data_batch} ")
-              print(f" value = {value}")
+              ###print(f" value = {value}")
               # if (moves_history and moves_history[-1]!=key) or not moves_history:
               if not moves_history or isinstance(value, dict) and len(value) == 20:
                 print("In the if for add key")
@@ -166,8 +166,8 @@ class Solver(c3x3):
                 else:
                   print("In the if for add key by else")
                   moves_history += [key] 
-              print(f"moves history = {moves_history}")
-              if moves_history and len(moves_history) >1 and key != moves_history[0] :
+              print(f"moves history for remove 0 key = {moves_history}")
+              if moves_history and (( len(moves_history) >1 and key != moves_history[0])  or  len(moves_history) == 16):
                 removed_key = moves_history.pop(0)
                 print(f" Remove key from 0 = { removed_key }")
                 #data_batch.update({"state": data["state"]})
