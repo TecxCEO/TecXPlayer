@@ -119,7 +119,7 @@ class Solver(c3x3):
           # return data, moves_history, status, moved_history
           return data, moves_history, status, data_batch
       # if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
-      if if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
+      if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
         print(f" moves_history at length = {len(moves_history)}")
         print(f" moves_history = {moves_history}")
         print(f" moves_history[15] at length = {len(moves_history[15])}")
