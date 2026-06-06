@@ -144,15 +144,19 @@ class Solver(c3x3):
               data_batch.update({key:""})
               # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
               print(f"data_batch = {data_batch}")
-              if (moves_history and moves_history[-1]!=key) or not moves_history:
+              if (moves_history and moves_history[-1]!=key) or 
+              if not moves_history:
                 moves_history += [key]
-                ###### removed_item = items.pop(0)
+              if moves_history and len(moves_history) >= 1:
+                removed_key = moves_history.pop(0)
                 #data_batch.update({"state": data["state"]})
               print(f"moves_history before calling in the nested function = {moves_history}")
               print(f"moves_history length = {len(moves_history)}")
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
-              self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-              items.insert(0, "A")
+              if key == removed_key:
+                self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
+              #if len(data.items())>len(moves_history):
+              moves_history.insert(0, key)
               #### print(f"data after nested calling = {data}")
               ####print(f"moves_history after nested calling= {moves_history}")
               return ####
