@@ -82,6 +82,7 @@ class Solver(c3x3):
     if isinstance(data, dict):
       #print(f"data length={len(data)}")
       if len(data)==20:
+        print(f" In the if condition 20.")
         ####print(f"moves_history in isinstance statement = {moves_history}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           states,move_list,status=super().moves(data,mtsp,moves_history)
@@ -122,6 +123,7 @@ class Solver(c3x3):
   
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
+        print(f" In the nested calling if condition.")
         #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
                 data_batch = {}
