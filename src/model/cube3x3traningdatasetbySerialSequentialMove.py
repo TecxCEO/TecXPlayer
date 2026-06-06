@@ -114,7 +114,8 @@ class Solver(c3x3):
               # data_batch.update(data.copy()) #####
           # return data, moves_history, status, moved_history
           return data, moves_history, status, data_batch
-      if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
+      # if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
+      if len(moves_history) in [18, 15]:
         print(f" moves_history at length = {len(moves_history)}")
         print(f" moves_history = {moves_history}")
         print(f" moves_history[15] at length = {len(moves_history[15])}")
@@ -124,6 +125,8 @@ class Solver(c3x3):
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
       if len(data) < 20 and len(moves_history) < 16:
         print(f" In the nested calling if condition.")
+        if len(moves_history) ==15:
+          moves_history += 16
         #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
                 data_batch = {}
@@ -155,7 +158,8 @@ class Solver(c3x3):
               print(f"moves_history length = {len(moves_history)}")
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               #if key == removed_key:
-              if key == moves_history[0]:
+              #if key == moves_history[0]:
+              if moves_history[0] in (key, 16):
                 self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
               #if len(data.items())>len(moves_history):
               #moves_history.insert(0, key) if locals().get("removed_key") and removed_key == key else None
