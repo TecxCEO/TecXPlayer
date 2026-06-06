@@ -60,7 +60,7 @@ class Solver(c3x3):
       return 
     elif len(data_to_process) > 2 and  index < len(moves_history)-1:
       if index <  len(moves_history)-2:
-        delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
+        self.delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
         del data_to_process[moves_history[index]]
       return
@@ -146,7 +146,8 @@ class Solver(c3x3):
               print(f"data_batch = {data_batch}")
               if (moves_history and moves_history[-1]!=key):
                 moves_history += [key]
-              ######print(f"moves_history before calling in the nested function = {moves_history}")
+                #data_batch.update({"state": data["state"]})
+              print(f"moves_history before calling in the nested function = {moves_history}")
               
               # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
