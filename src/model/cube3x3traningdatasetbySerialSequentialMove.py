@@ -174,11 +174,8 @@ if __name__=="__main__":
       "gy":"gy"
     }
   s=Solver()
-  # result=s.solve(state_given_to_solve)
-  # print(result)
   full_response = []
   for char in s.solve(state_given_to_solve):
-    # sys.stdout.write(char+" ")
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
