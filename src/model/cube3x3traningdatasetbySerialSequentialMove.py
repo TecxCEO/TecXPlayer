@@ -147,7 +147,7 @@ class Solver(c3x3):
               # if (moves_history and moves_history[-1]!=key) or not moves_history:
               if not moves_history:
                 moves_history += [key]
-              if moves_history and len(moves_history) >= 1:
+              if moves_history and len(moves_history) >1:
                 removed_key = moves_history.pop(0)
                 #data_batch.update({"state": data["state"]})
               print(f"moves_history before calling in the nested function = {moves_history}")
