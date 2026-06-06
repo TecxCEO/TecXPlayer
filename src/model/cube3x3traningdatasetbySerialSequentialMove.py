@@ -132,7 +132,8 @@ class Solver(c3x3):
         self.delete_and_clean(data, moves_history)
   
       # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
-      if len(data) < 20 and len(moves_history) < 16:
+      #if len(data) < 20 and len(moves_history) < 16:
+      if len(data) < 20 and len(moves_history) <= 16:
         print(f" In the nested calling if condition.")
         if len(moves_history) ==14:
           moves_history += [15]
@@ -168,7 +169,8 @@ class Solver(c3x3):
                   print("In the if for add key by else")
                   moves_history += [key] 
               print(f"moves history for remove 0 key = {moves_history}")
-              if moves_history and (( len(moves_history) >1 and key != moves_history[0])  or  len(moves_history) == 16):
+              #if moves_history and (( len(moves_history) >1 and key != moves_history[0])  or  len(moves_history) == 16):
+              if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
                 removed_key = moves_history.pop(0)
                 print(f" Remove key from 0 = { removed_key }")
                 #data_batch.update({"state": data["state"]})
