@@ -108,12 +108,13 @@ class Solver(c3x3):
             #if moves_history == 16:
             print(f" moves_history ={moves_history}")
             if moves_history and moves_history[-1] ==16:
-              moves_history += [mh]
+              #moves_history += [mh]
+              moves_history[-1]= [mh]
               print(f" moves_history = {moves_history}")
               print(f" moves_history at length = {len(moves_history)}")
               print(f" moves_history = {moves_history}")
-              print(f" moves_history[15] at length = {len(moves_history[15])}")
-              print(f" moves_history[15] at length = {moves_history[15]}")
+              print(f" moves_history[15] at length = {len(moves_history[-1])}")
+              print(f" moves_history[15] at length = {moves_history[-1]}")
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
