@@ -129,7 +129,7 @@ class Solver(c3x3):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
         #items_list = list(data.items())
-        items_list = list((data.copy).items())
+        items_list = list(data.copy.items())
         #items_list = [item for item in data.items()]
         #for key, value in data.items():
         for key, value in items_list:
