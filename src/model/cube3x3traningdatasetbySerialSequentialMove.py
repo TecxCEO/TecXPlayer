@@ -157,7 +157,13 @@ class Solver(c3x3):
               if key == moves_history[0]:
                 self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
               #if len(data.items())>len(moves_history):
-              moves_history.insert(0, key) if locals().get("removed_key") and removed_key == key else None 
+              #moves_history.insert(0, key) if locals().get("removed_key") and removed_key == key else None
+              if locals().get("removed_key") and removed_key == key:
+                moves_history.insert(0, key)
+                print(f"moves_history after calling the nested function = {moves_history}")
+                print(f"moves_history length = {len(moves_history)}")
+              else:
+                print(f" Not added last time removed key, removed_key = { removed_key }")
               #### print(f"data after nested calling = {data}")
               ####print(f"moves_history after nested calling= {moves_history}")
               return ####
