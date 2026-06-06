@@ -85,7 +85,7 @@ class Solver(c3x3):
         print(f" In the if condition 20.")
         ####print(f"moves_history in isinstance statement = {moves_history}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
-          if moves_history[-1] ==16:
+          if moves_history and moves_history[-1] ==16:
             states,move_list,status=super().moves(data,mtsp,moves_history[0])
           else:
             states,move_list,status=super().moves(data,mtsp,moves_history)
