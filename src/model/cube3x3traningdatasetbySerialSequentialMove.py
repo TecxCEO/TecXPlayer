@@ -129,7 +129,7 @@ class Solver(c3x3):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
         items_list = list(data.items())
-        for key, value in data.items():
+        #for key, value in data.items():
         for key, value in items_list:
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
             if (moves_history and moves_history[-1]!=key) or not moves_history:
