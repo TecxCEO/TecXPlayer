@@ -118,6 +118,7 @@ class Solver(c3x3):
               data_batch.update(data.copy())
               # data_batch.update(data.copy()) #####
           # return data, moves_history, status, moved_history
+          print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
       # if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
       print(f" moves_history ={moves_history}")
