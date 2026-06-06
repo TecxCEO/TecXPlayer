@@ -106,6 +106,7 @@ class Solver(c3x3):
               #####data_batch.update({move_list[i]:states[i]}) ######
             # if len(moves_history) == 15:
             #if moves_history == 16:
+            print(f" moves_history ={moves_history}")
             if moves_history and moves_history[-1] ==16:
               moves_history += [mh]
               print(f" moves_history = {moves_history}")
