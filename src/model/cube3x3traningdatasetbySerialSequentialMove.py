@@ -149,6 +149,7 @@ class Solver(c3x3):
                 moves_history += [key]
               if moves_history and len(moves_history) >1:
                 removed_key = moves_history.pop(0)
+                print(f" Remove key from 0 = { removed_key }")
                 #data_batch.update({"state": data["state"]})
               print(f"moves_history before calling in the nested function = {moves_history}")
               print(f"moves_history length = {len(moves_history)}")
@@ -162,7 +163,8 @@ class Solver(c3x3):
               ###print(f" Removed_key = { removed_key }")
               #if locals().get("removed_key") and removed_key == key:
               if locals().get("removed_key") :
-                moves_history.insert(0, key)
+                # moves_history.insert(0, key)
+                moves_history.insert(0, removed_key)
                 print(f"moves_history after calling the nested function = {moves_history}")
                 print(f"moves_history length = {len(moves_history)}")
               elif locals().get("removed_key"):
