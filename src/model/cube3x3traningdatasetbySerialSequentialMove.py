@@ -35,7 +35,6 @@ class Solver(c3x3):
         my_data = json.load(rf)
       print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
-        #### del data_batch
         print(f"data_batch before start = {data_batch}")
         print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
         data_batch = {}
@@ -49,7 +48,6 @@ class Solver(c3x3):
         break
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
       while_loop += 1
-      #print(f"my_data[puzzle][moves_history] len = {len(my_data["puzzle"]["moves_history"])}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         print(f"data_batch after function call = {data_batch}")
         print(f"moves_history after function call  = {my_data["puzzle"]["moves_history"]}")
@@ -64,48 +62,35 @@ class Solver(c3x3):
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
         del data_to_process[moves_history[index]]
       return
-      
-
-  #####def update_nested_key(self,data,status,mtsp,moves_history=None,moved_history=None):
   def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    ####print(f"moves_history at starting = {moves_history}")
     ###
     if moves_history is None:
       moves_history = []
-      ####print(f"moves_history was None in if statement now = {moves_history}")
       status=False
     # If it's a dictionary, check keys or go deeper
     if isinstance(data, dict):
-      #print(f"data length={len(data)}")
       if len(data)==20:
         print(f" In the if condition 20.")
-        ####print(f"moves_history in isinstance statement = {moves_history}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] ==16:
             states,move_list,status=super().moves(data,mtsp,moves_history[0])
           else:
             states,move_list,status=super().moves(data,mtsp,moves_history)
-          #print(f"moves_history={moves_history}")
           data.update({"state":data.copy()})
           for dic_key in list(data.keys()):
             dic_value=data[dic_key]
             if not isinstance (dic_value,(dict,list)) and dic_key != "state":
               del data[dic_key]
-          #if len(states) in [15,18] and len(move_list) in [15,18] and status is False:
           if len(states) in [1,15,18] and len(move_list) in [1,15,18]:
-            #print(f"data length= {len(data)}")
             mh = []
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
             print(f" mh = {mh}")
-              #####data_batch.update({move_list[i]:states[i]}) ######
-            # if len(moves_history) == 15:
-            #if moves_history == 16:
             print(f" moves_history ={moves_history}")
             if moves_history and moves_history[-1] ==16:
               #moves_history += [mh]
@@ -118,49 +103,28 @@ class Solver(c3x3):
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-              # data_batch.update(data.copy()) #####
           # return data, moves_history, status, moved_history
           print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
-      # if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
-      print(f" moves_history ={moves_history}")
-      #if len(moves_history) == 16 and len(moves_history[15]) in [18, 15]:
       if len(moves_history) == 16 and len(str(moves_history[15])) in [18, 15]:
         print(f" moves_history at length = {len(moves_history)}")
         print(f" moves_history = {moves_history}")
         print(f" moves_history[15] at length = {len(moves_history[15])}")
         print(f" moves_history[15] at length = {moves_history[15]}")
         self.delete_and_clean(data, moves_history)
-  
-      # if (len(data)==16 or len(data)==19 or len(data)==20 )and len(moves_history) <16:
-      #if len(data) < 20 and len(moves_history) < 16:
       if len(data) < 20 and len(moves_history) <= 16:
         print(f" In the nested calling if condition.")
         if len(moves_history) ==14 and moves_history[-1] != 16 :
           moves_history += [15]
           moves_history += [16]
-        #### print(f" data_batch = { data_batch}")
         if isinstance(data_batch, str):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
-        #items_list = list(data.items())
-        ########items_list = list(data.copy().items())
-        #items_list = list(data.copy.items())
-        #items_list = [item for item in data.items()]
         for key, value in data.items():
-          #for key, value in items_list:
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
-            #if (moves_history and moves_history[-1]!=key) or not moves_history:
               print(f" key = {key}")
-              # if moved_history[key] and moved_history[key] is not in [None, ""]:
-              # el
-              ##########if moved_history is None:
-                ###########moved_history.update({key:""})
               data_batch.update({key:""})
-              # self.update_nested_key(value,status,mtsp,moves_history+[key], moved_history[key])
               print(f" data_batch = {data_batch} ")
-              ###print(f" value = {value}")
-              # if (moves_history and moves_history[-1]!=key) or not moves_history:
               if not moves_history or isinstance(value, dict) and len(value) == 20:
                 print("In the if for add key")
                 if moves_history and moves_history[-1] == 16:
@@ -170,37 +134,21 @@ class Solver(c3x3):
                   print("In the if for add key by else")
                   moves_history += [key] 
               print(f"moves history for remove 0 key = {moves_history}")
-              #if moves_history and (( len(moves_history) >1 and key != moves_history[0])  or  len(moves_history) == 16):
               if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
                 removed_key = moves_history.pop(0)
                 print(f" Remove key from 0 = { removed_key }")
-                #data_batch.update({"state": data["state"]})
               print(f"moves_history before calling in the nested function = {moves_history}")
               print(f"moves_history length = {len(moves_history)}")
-              # self.update_nested_key(value,status,mtsp,moves_history+[key], data_batch[key])
-              #if key == removed_key:
               if key == moves_history[0]:
-                # if moves_history[0] in (key, 16):
                 self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-              #if len(data.items())>len(moves_history):
-              #moves_history.insert(0, key) if locals().get("removed_key") and removed_key == key else None
               print(f" After function return, key = { key }")
-              ###print(f" Removed_key = { removed_key }")
-              #if locals().get("removed_key") and removed_key == key:
               if locals().get("removed_key") :
-                # moves_history.insert(0, key)
                 moves_history.insert(0, removed_key)
                 print(f"moves_history after calling the nested function = {moves_history}")
                 print(f"moves_history length = {len(moves_history)}")
               elif locals().get("removed_key"):
                 print(f" Not added last time removed key, removed_key = { removed_key }")
-              #### print(f"data after nested calling = {data}")
-              ####print(f"moves_history after nested calling= {moves_history}")
-              return ####
-            #if status == True and mtsp:
-              #print(f"mtsp={mtsp}")
-              #return
-        #print(f"rec loop end.")
+              return
         return
 if __name__=="__main__":
   state_given_to_solve={
