@@ -163,8 +163,8 @@ class Solver(c3x3):
         print(f" data len = {len(data)}")
         for key, value in data.items():
           # if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
-          #if key!="state" and ((len(value) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <=20 and len(data[key]) not in [16, 17, 19])):
-          if key!="state" and ((len(value)) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <= 20 and len(data[key]) not in [16, 17, 19])):
+          if key!="state" and ((len(value) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <=20 and len(data[key]) not in [16, 17, 19])):
+            #if key!="state" and ((len(value)) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <= 20 and len(data[key]) not in [16, 17, 19])):
               
               print(f" key = {key}")
               data_batch.update({key:""})
