@@ -83,7 +83,8 @@ class Solver(c3x3):
         #print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         self.delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
-        if data_to_process[moves_history[index]] and len(data_to_process[moves_history[index]]) == 1 and data_to_process[moves_history[index]][0] == "state":
+        #if data_to_process[moves_history[index]] and len(data_to_process[moves_history[index]]) == 1 and data_to_process[moves_history[index]][0] == "state":
+        if data_to_process[moves_history[index]] and len(data_to_process[moves_history[index]]) == 1 and data_to_process[moves_history[index]] == "state":
           del data_to_process[moves_history[index]]
           del moves_history[index]
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
