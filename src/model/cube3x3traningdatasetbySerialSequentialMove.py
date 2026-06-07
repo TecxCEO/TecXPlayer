@@ -159,7 +159,7 @@ class Solver(c3x3):
         if isinstance(data_batch, str):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
-        print(f" data keys = {data.key()}")
+        print(f" data keys = {data.keys()}")
         print(f" data len = {len(data)}")
         for key, value in data.items():
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
