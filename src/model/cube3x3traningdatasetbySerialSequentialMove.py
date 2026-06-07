@@ -99,7 +99,8 @@ class Solver(c3x3):
             print(f" moves_history ={moves_history}")
             if moves_history and moves_history[-1] ==16:
               #moves_history += [mh]
-              moves_history[-1]= [mh]
+              #moves_history[-1]= [mh]
+              moves_history[-1]= mh
               print(f" moves_history = {moves_history}")
               print(f" moves_history at length = {len(moves_history)}")
               print(f" moves_history = {moves_history}")
