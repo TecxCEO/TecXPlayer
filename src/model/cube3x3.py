@@ -152,6 +152,7 @@ class Cube3x3:
     while cur_state and i<len(moves_to):
       if move_path_history!="" and move_path_history:
         last_move=move_path_history[-1]
+        print(f"last move from moves funcion of cube3x3 = {last_move}")
       if last_move.strip()[:2]!=moves_to[i].strip()[:2] or not last_move:
         states+= [self.mover(moves_to[i],cur_state)]
         moved_options_list+=[moves_to[i]]
