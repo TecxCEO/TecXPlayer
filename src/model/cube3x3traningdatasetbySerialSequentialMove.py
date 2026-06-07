@@ -194,8 +194,8 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
               #print(f"moves_history after calling the nested function = {moves_history}")
               #print(f"moves_history length = {len(moves_history)}")
-            elif locals().get("removed_key"):
-              ##print(f" Not added last time removed key, removed_key = { removed_key }")
+            ####elif locals().get("removed_key"):
+              ####print(f" Not added last time removed key, removed_key = { removed_key }")
             return
         return
 if __name__=="__main__":
