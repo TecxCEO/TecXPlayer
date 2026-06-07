@@ -58,28 +58,33 @@ class Solver(c3x3):
     print(f" In The delete_and_clean function ")
     print(f" data_to_process at length = {len(data_to_process)}")
     print(f" data_to_process keys = {data_to_process.keys()}")
+    print(f" index = {index}")
     #print(f" data_to_process = {data_to_process}")
     if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
       print(f"In The delete_and_clean function's if statement")
       print(f" data_to_process at length = {len(data_to_process)}")
+      print(f" index = {index}")
       #print(f" data_to_process = {data_to_process}")
       print(f" data_to_process keys = {data_to_process.keys()}")
       del data_to_process[moves_history[index]]
       return 
     elif len(data_to_process) > 2 and  index < len(moves_history)-1:
+      print(f" In The delete_and_clean function's elif statement")
       print(f" data_to_process at length = {len(data_to_process)}")
       #print(f" data_to_process = {data_to_process}")
-      print(f" In The delete_and_clean function's elif statement")
+      print(f" index = {index}")
       if index <  len(moves_history)-2:
         print(f" In The delete_and_clean function's elif's if ")
         print(f" data_to_process at length = {len(data_to_process)}")
         print(f" data_to_process keys = {data_to_process.keys()}")
+        print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         self.delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
         print(f"  In The delete_and_clean function's elif's elif. ")
         print(f" data_to_process at length = {len(data_to_process)}")
         print(f" data_to_process keys = {data_to_process.keys()}")
+        print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         del data_to_process[moves_history[index]]
       return
