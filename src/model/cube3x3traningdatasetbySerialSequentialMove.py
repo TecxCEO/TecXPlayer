@@ -173,8 +173,8 @@ class Solver(c3x3):
               #print(f" data_batch = {data_batch} ")
               if not moves_history or isinstance(value, dict) and len(value) == 20:
                 print("In the if for add key")
-                #####if moves_history and moves_history[-1] == 16:
-                if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
+                if moves_history and moves_history[-1] == 16:
+                  #if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
                   print("In the if for add key by if.")
                   moves_history[-2] = key
                 else:
