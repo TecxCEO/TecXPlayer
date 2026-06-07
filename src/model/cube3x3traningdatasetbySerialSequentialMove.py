@@ -206,7 +206,8 @@ class Solver(c3x3):
               #print(f"moves_history length = {len(moves_history)}")
             ####elif locals().get("removed_key"):
               ####print(f" Not added last time removed key, removed_key = { removed_key }")
-            return
+            return data, moves_history, status, data_batch
+            ####return
         return
 if __name__=="__main__":
   state_given_to_solve={
