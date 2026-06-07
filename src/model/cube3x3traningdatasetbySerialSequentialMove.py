@@ -29,7 +29,8 @@ class Solver(c3x3):
     data_batch = {}
     print(f"while loop is going to started.")
     while True:
-      print(f"\n\nwhile loop no = {while_loop }  are started.")
+      print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
+      #print(f"\n\nwhile loop no = {while_loop }  are started.")
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
@@ -46,7 +47,8 @@ class Solver(c3x3):
           json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
-      print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
+      #print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
+      print(f"While loop no = {while_loop}  are done.") ##########
       ##############while_loop += 1
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #print(f"data_batch after function call = {data_batch}")
@@ -54,6 +56,8 @@ class Solver(c3x3):
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     print(f" In The delete_and_clean function ")
+    print(f" data_to_process at length = {len(data_to_process)}")
+    print(f" data_to_process = {data_to_process}")
     if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
       print(f"In The delete_and_clean function's if statement")
       del data_to_process[moves_history[index]]
@@ -82,13 +86,13 @@ class Solver(c3x3):
         print(f" In the if condition 20.")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] ==16:
-            print(f" moves_history ={moves_history}")
-            print(f" moves_history at length = {len(moves_history)}")
+            #print(f" moves_history ={moves_history}")
+            #print(f" moves_history at length = {len(moves_history)}")
             #states,move_list,status=super().moves(data,mtsp,moves_history[0])
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
-            print(f" moves_history -2 ={moves_history[-2]}")
+            #print(f" moves_history -2 ={moves_history[-2]}")
           else:
-            print(f" moves from else")
+            #print(f" moves from else")
             states,move_list,status=super().moves(data,mtsp,moves_history)
           data.update({"state":data.copy()})
           for dic_key in list(data.keys()):
@@ -100,19 +104,19 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
-            print(f" mh = {mh}")
+            #print(f" mh = {mh}")
             if moves_history and moves_history[-1] ==16:
               #moves_history += [mh]
               #moves_history[-1]= [mh]
               moves_history[-1]= mh
-              print(f" moves_history = {moves_history}")
-              print(f" moves_history at length = {len(moves_history)}")
-              print(f" moves_history[15] at length = {len(moves_history[-1])}")
-              print(f" moves_history[15] at length = {moves_history[-1]}")
+              #print(f" moves_history = {moves_history}")
+              #print(f" moves_history at length = {len(moves_history)}")
+              #print(f" moves_history[15] at length = {len(moves_history[-1])}")
+              #print(f" moves_history[15] at length = {moves_history[-1]}")
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-          print(f" moves_history ={moves_history}")
+          #print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
       if len(moves_history) == 16 and isinstance(moves_history[-1], list):
         print(f" moves_history at length = {len(moves_history)}")
