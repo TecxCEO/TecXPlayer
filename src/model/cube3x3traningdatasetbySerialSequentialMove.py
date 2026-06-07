@@ -170,13 +170,13 @@ class Solver(c3x3):
             print(f" key = {key}")
             data_batch.update({key:""})
             #print(f" data_batch = {data_batch} ")
-            if not moves_history or isinstance(value, dict) and len(value) == 20:
+            if not moves_history or( isinstance(value, dict) and len(value) == 20):
               print("In the if for add key")
               if moves_history and moves_history[-1] == 16:
                 #if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
                 print("In the if for add key by if.")
                 moves_history[-2] = key
-              elif moves_history and moves_history[-1] != 16:
+              elif not moves_history or (moves_history and moves_history[-1] != 16):
                 print("In the if for add key by else")
                 moves_history += [key] 
             print(f"moves history for remove 0 key = {moves_history}")
