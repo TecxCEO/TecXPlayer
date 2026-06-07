@@ -164,9 +164,9 @@ class Solver(c3x3):
         if len(moves_history) ==14 and moves_history[-1] != 16 :
           moves_history += [15]
           moves_history += [16]
-        print(f" data batch = {data_batch}")
-        if isinstance(data_batch, str):
-                data_batch = {}
+        print(f" data batch at starting of nested function if statement = {data_batch}")
+        #if isinstance(data_batch, str):
+                #data_batch = {}
         print(f" data batch = {data_batch}")
         data_batch.update({"state": data["state"]})
         print(f" data batch = {data_batch}")
@@ -178,7 +178,7 @@ class Solver(c3x3):
             ######if key!="state" and ((len(value) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <=20 and len(data[key]) not in [16, 17, 19])):
             #if key!="state" and ((len(value)) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <= 20 and len(data[key]) not in [16, 17, 19])):
             ##print(f" key = {key}")
-            data_batch.update({key:""})
+            data_batch.update({key:{}})
             print(f" data batch = {data_batch}")
             #print(f" data_batch = {data_batch} ")
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
