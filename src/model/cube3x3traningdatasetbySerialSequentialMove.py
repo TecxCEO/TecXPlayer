@@ -35,19 +35,19 @@ class Solver(c3x3):
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
       #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
-      print(f" data batch = {data_batch}")
+      ##print(f" data batch = {data_batch}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
         #print(f"data_batch before start = {data_batch}")
         #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
         data_batch = {}
-      print(f" data batch = {data_batch}")
+      ####print(f" data batch = {data_batch}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
           json.dump(my_data, wf, indent=4)
-        print(f" data batch = {data_batch}")
+        ####print(f" data batch = {data_batch}")
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
@@ -145,11 +145,11 @@ class Solver(c3x3):
               #print(f" moves_history at length = {len(moves_history)}")
               #print(f" moves_history[15] at length = {len(moves_history[-1])}")
               #print(f" moves_history[15] at length = {moves_history[-1]}")
-              print(f" data batch = {data_batch}")
+              #####print(f" data batch = {data_batch}")
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-              print(f" data batch = {data_batch}")
+              ####print(f" data batch = {data_batch}")
           #print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
       if len(moves_history) == 16 and isinstance(moves_history[-1], list):
@@ -164,12 +164,12 @@ class Solver(c3x3):
         if len(moves_history) ==14 and moves_history[-1] != 16 :
           moves_history += [15]
           moves_history += [16]
-        print(f" data batch at starting of nested function if statement = {data_batch}")
+        ####print(f" data batch at starting of nested function if statement = {data_batch}")
         #if isinstance(data_batch, str):
                 #data_batch = {}
-        print(f" data batch = {data_batch}")
+        ####print(f" data batch = {data_batch}")
         data_batch.update({"state": data["state"]})
-        print(f" data batch = {data_batch}")
+        ####print(f" data batch = {data_batch}")
         ##print(f" data keys = {data.keys()}")
         ##print(f" data len = {len(data)}")
         for key, value in data.items():
@@ -179,7 +179,7 @@ class Solver(c3x3):
             #if key!="state" and ((len(value)) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <= 20 and len(data[key]) not in [16, 17, 19])):
             ##print(f" key = {key}")
             data_batch.update({key:{}})
-            print(f" data batch = {data_batch}")
+            ####print(f" data batch = {data_batch}")
             #print(f" data_batch = {data_batch} ")
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
               ##print("In the if for add key")
@@ -199,7 +199,7 @@ class Solver(c3x3):
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             ##print(f" After function return, key = { key }")
-            print(f" data batch after return from nested fun = {data_batch}")
+            ####print(f" data batch after return from nested fun = {data_batch}")
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
               #print(f"moves_history after calling the nested function = {moves_history}")
