@@ -85,7 +85,7 @@ class Solver(c3x3):
             print(f" moves_history ={moves_history}")
             print(f" moves_history at length = {len(moves_history)}")
             #states,move_list,status=super().moves(data,mtsp,moves_history[0])
-            states,move_list,status=super().moves(data,mtsp,moves_history[-2])
+            states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
             print(f" moves_history -2 ={moves_history[-2]}")
           else:
             print(f" moves from else")
