@@ -199,7 +199,7 @@ class Solver(c3x3):
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             ##print(f" After function return, key = { key }")
-            print(f" data batch = {data_batch}")
+            print(f" data batch after return from nested fun = {data_batch}")
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
               #print(f"moves_history after calling the nested function = {moves_history}")
