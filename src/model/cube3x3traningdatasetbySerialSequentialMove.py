@@ -33,10 +33,10 @@ class Solver(c3x3):
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
-      print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
+      #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
       if len(my_data["puzzle"]["moves_history"]) == 16:
-        print(f"data_batch before start = {data_batch}")
-        print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
+        #print(f"data_batch before start = {data_batch}")
+        #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
@@ -46,20 +46,25 @@ class Solver(c3x3):
           json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
-      #print(f"Move no = {(while_loop := while_loop + 1)}  are done.")
-      while_loop += 1
+      print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
+      ##############while_loop += 1
       if len(my_data["puzzle"]["moves_history"]) == 16:
-        print(f"data_batch after function call = {data_batch}")
-        print(f"moves_history after function call  = {my_data["puzzle"]["moves_history"]}")
+        #print(f"data_batch after function call = {data_batch}")
+        #print(f"moves_history after function call  = {my_data["puzzle"]["moves_history"]}")
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
+    print(f" In The delete_and_clean function ")
     if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
+      print(f"In The delete_and_clean function's if statement")
       del data_to_process[moves_history[index]]
       return 
     elif len(data_to_process) > 2 and  index < len(moves_history)-1:
+      print(f" In The delete_and_clean function's elif statement")
       if index <  len(moves_history)-2:
+        print(f" In The delete_and_clean function's elif's if ")
         self.delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
+        print(f"  In The delete_and_clean function's elif's elif. ")
         del data_to_process[moves_history[index]]
       return
   def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
