@@ -87,6 +87,8 @@ class Solver(c3x3):
         print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         del data_to_process[moves_history[index]]
+        del moves_history[index+1]
+        del moves_history[index]
       return
   def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
     """
