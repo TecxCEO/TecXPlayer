@@ -167,35 +167,34 @@ class Solver(c3x3):
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             ######if key!="state" and ((len(value) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <=20 and len(data[key]) not in [16, 17, 19])):
             #if key!="state" and ((len(value)) <= 20 and len(value) not in [17, 18]) or (len(data[key]) <= 20 and len(data[key]) not in [16, 17, 19])):
-              
-              print(f" key = {key}")
-              data_batch.update({key:""})
-              #print(f" data_batch = {data_batch} ")
-              if not moves_history or isinstance(value, dict) and len(value) == 20:
-                print("In the if for add key")
-                if moves_history and moves_history[-1] == 16:
-                  #if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
-                  print("In the if for add key by if.")
-                  moves_history[-2] = key
-                else:
-                  print("In the if for add key by else")
-                  moves_history += [key] 
-              print(f"moves history for remove 0 key = {moves_history}")
-              if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
-                removed_key = moves_history.pop(0)
-                print(f" Remove key from 0 = { removed_key }")
-              print(f"moves_history before calling in the nested function = {moves_history}")
-              print(f"moves_history length = {len(moves_history)}")
-              if key == moves_history[0]:
-                self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-              print(f" After function return, key = { key }")
-              if locals().get("removed_key") :
-                moves_history.insert(0, removed_key)
-                #print(f"moves_history after calling the nested function = {moves_history}")
-                #print(f"moves_history length = {len(moves_history)}")
-              elif locals().get("removed_key"):
-                print(f" Not added last time removed key, removed_key = { removed_key }")
-              return
+            print(f" key = {key}")
+            data_batch.update({key:""})
+            #print(f" data_batch = {data_batch} ")
+            if not moves_history or isinstance(value, dict) and len(value) == 20:
+              print("In the if for add key")
+              if moves_history and moves_history[-1] == 16:
+                #if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
+                print("In the if for add key by if.")
+                moves_history[-2] = key
+              elif moves_history[-1] != 16
+                print("In the if for add key by else")
+                moves_history += [key] 
+            print(f"moves history for remove 0 key = {moves_history}")
+            if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
+              removed_key = moves_history.pop(0)
+              print(f" Remove key from 0 = { removed_key }")
+            print(f"moves_history before calling in the nested function = {moves_history}")
+            print(f"moves_history length = {len(moves_history)}")
+            if key == moves_history[0]:
+              self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
+            print(f" After function return, key = { key }")
+            if locals().get("removed_key") :
+              moves_history.insert(0, removed_key)
+              #print(f"moves_history after calling the nested function = {moves_history}")
+              #print(f"moves_history length = {len(moves_history)}")
+            elif locals().get("removed_key"):
+              print(f" Not added last time removed key, removed_key = { removed_key }")
+            return
         return
 if __name__=="__main__":
   state_given_to_solve={
