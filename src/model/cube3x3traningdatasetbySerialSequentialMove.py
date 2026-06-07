@@ -56,9 +56,9 @@ class Solver(c3x3):
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     print(f" In The delete_and_clean function ")
-    print(f" data_to_process at length = {len(data_to_process)}")
-    print(f" data_to_process keys = {data_to_process.keys()}")
-    print(f" index = {index}")
+    #print(f" data_to_process at length = {len(data_to_process)}")
+    #print(f" data_to_process keys = {data_to_process.keys()}")
+    #print(f" index = {index}")
     """
     #print(f" data_to_process = {data_to_process}")
     if len(data_to_process) <=2 and (data_to_process.keys() in [[moves_history[index]], "state" ]):
@@ -73,14 +73,14 @@ class Solver(c3x3):
     ####elif len(data_to_process) > 2 and  index < len(moves_history)-1:
     if len(data_to_process) >= 2 and  index < len(moves_history)-1:
       print(f" In The delete_and_clean function's elif statement")
-      print(f" data_to_process at length = {len(data_to_process)}")
+      #print(f" data_to_process at length = {len(data_to_process)}")
       #print(f" data_to_process = {data_to_process}")
-      print(f" index = {index}")
+      #print(f" index = {index}")
       if index <  len(moves_history)-2:
         print(f" In The delete_and_clean function's elif's if ")
-        print(f" data_to_process at length = {len(data_to_process)}")
-        print(f" data_to_process keys = {data_to_process.keys()}")
-        print(f" index = {index}")
+        #print(f" data_to_process at length = {len(data_to_process)}")
+        #print(f" data_to_process keys = {data_to_process.keys()}")
+        #print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         self.delete_and_clean(data_to_process[moves_history[index]], moves_history, index+1)
         if data_to_process[moves_history[index]] and len(data_to_process[moves_history[index]]) == 1 and data_to_process[moves_history[index]][0] == "state":
@@ -88,9 +88,9 @@ class Solver(c3x3):
           del moves_history[index]
       elif index == len(moves_history)-2 and len(data_to_process[moves_history[index]]) in [16, 15] :
         print(f"  In The delete_and_clean function's elif's elif. ")
-        print(f" data_to_process at length = {len(data_to_process)}")
-        print(f" data_to_process keys = {data_to_process.keys()}")
-        print(f" index = {index}")
+        #print(f" data_to_process at length = {len(data_to_process)}")
+        #print(f" data_to_process keys = {data_to_process.keys()}")
+        #print(f" index = {index}")
         #print(f" data_to_process = {data_to_process}")
         del data_to_process[moves_history[index]]
         del moves_history[index+1]
@@ -145,10 +145,10 @@ class Solver(c3x3):
           #print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
       if len(moves_history) == 16 and isinstance(moves_history[-1], list):
-        print(f" moves_history at length = {len(moves_history)}")
-        print(f" moves_history = {moves_history}")
-        print(f" moves_history[15] at length = {len(moves_history[15])}")
-        print(f" moves_history[15] at length = {moves_history[15]}")
+        #print(f" moves_history at length = {len(moves_history)}")
+        #print(f" moves_history = {moves_history}")
+        #print(f" moves_history[15] at length = {len(moves_history[15])}")
+        #print(f" moves_history[15] at length = {moves_history[15]}")
         if len(list(moves_history[15])) in [18, 15]:
           self.delete_and_clean(data, moves_history)
       if len(data) < 20 and len(moves_history) <= 16: # and ( len(list(moves_history[15])) !> 1: and not isinstance(moves_history[-1], list)
@@ -159,11 +159,13 @@ class Solver(c3x3):
         if isinstance(data_batch, str):
                 data_batch = {}
         data_batch.update({"state": data["state"]})
+        print(f" data keys = {data.key()}")
+        print(f" data len = {len(data)}")
         for key, value in data.items():
           if key!="state" and (len(value) in [16,19,20] or len(data[key]) in [15,18,20]):
               print(f" key = {key}")
               data_batch.update({key:""})
-              print(f" data_batch = {data_batch} ")
+              #print(f" data_batch = {data_batch} ")
               if not moves_history or isinstance(value, dict) and len(value) == 20:
                 print("In the if for add key")
                 if moves_history and moves_history[-1] == 16:
@@ -183,8 +185,8 @@ class Solver(c3x3):
               print(f" After function return, key = { key }")
               if locals().get("removed_key") :
                 moves_history.insert(0, removed_key)
-                print(f"moves_history after calling the nested function = {moves_history}")
-                print(f"moves_history length = {len(moves_history)}")
+                #print(f"moves_history after calling the nested function = {moves_history}")
+                #print(f"moves_history length = {len(moves_history)}")
               elif locals().get("removed_key"):
                 print(f" Not added last time removed key, removed_key = { removed_key }")
               return
