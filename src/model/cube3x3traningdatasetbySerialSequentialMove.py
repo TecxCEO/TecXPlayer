@@ -117,7 +117,7 @@ class Solver(c3x3):
         print(f" moves_history[15] at length = {len(moves_history[15])}")
         print(f" moves_history[15] at length = {moves_history[15]}")
         if len(list(moves_history[15])) in [18, 15]:
-        self.delete_and_clean(data, moves_history)
+          self.delete_and_clean(data, moves_history)
       if len(data) < 20 and len(moves_history) <= 16: # and ( len(list(moves_history[15])) !> 1: and not isinstance(moves_history[-1], list)
         print(f" In the nested calling if condition.")
         if len(moves_history) ==14 and moves_history[-1] != 16 :
