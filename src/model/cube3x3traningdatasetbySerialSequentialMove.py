@@ -108,16 +108,15 @@ class Solver(c3x3):
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-          # return data, moves_history, status, moved_history
           print(f" moves_history ={moves_history}")
           return data, moves_history, status, data_batch
-      if len(moves_history) == 16 and len(str(moves_history[15])) in [18, 15]:
+      if len(moves_history) == 16 and len(list(moves_history[15])) in [18, 15]:
         print(f" moves_history at length = {len(moves_history)}")
         print(f" moves_history = {moves_history}")
         print(f" moves_history[15] at length = {len(moves_history[15])}")
         print(f" moves_history[15] at length = {moves_history[15]}")
         self.delete_and_clean(data, moves_history)
-      if len(data) < 20 and len(moves_history) <= 16:
+      if len(data) < 20 and len(moves_history) <= 16: # and ( len(list(moves_history[15])) !> 1: and not isinstance(moves_history[-1], list)
         print(f" In the nested calling if condition.")
         if len(moves_history) ==14 and moves_history[-1] != 16 :
           moves_history += [15]
