@@ -82,7 +82,10 @@ class Solver(c3x3):
         print(f" In the if condition 20.")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] ==16:
-            states,move_list,status=super().moves(data,mtsp,moves_history[0])
+            print(f" moves_history ={moves_history}")
+            print(f" moves_history at length = {len(moves_history)}")
+            #states,move_list,status=super().moves(data,mtsp,moves_history[0])
+            states,move_list,status=super().moves(data,mtsp,moves_history[-2])
           else:
             states,move_list,status=super().moves(data,mtsp,moves_history)
           data.update({"state":data.copy()})
@@ -96,14 +99,12 @@ class Solver(c3x3):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
             print(f" mh = {mh}")
-            print(f" moves_history ={moves_history}")
             if moves_history and moves_history[-1] ==16:
               #moves_history += [mh]
               #moves_history[-1]= [mh]
               moves_history[-1]= mh
               print(f" moves_history = {moves_history}")
               print(f" moves_history at length = {len(moves_history)}")
-              print(f" moves_history = {moves_history}")
               print(f" moves_history[15] at length = {len(moves_history[-1])}")
               print(f" moves_history[15] at length = {moves_history[-1]}")
               if isinstance(data_batch, str):
