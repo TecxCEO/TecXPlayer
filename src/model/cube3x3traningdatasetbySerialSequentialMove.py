@@ -176,7 +176,7 @@ class Solver(c3x3):
                 #if moves_history and moves_history[-1] == 16 and len(moves_history)<4:
                 print("In the if for add key by if.")
                 moves_history[-2] = key
-              elif moves_history[-1] != 16:
+              elif moves_history and moves_history[-1] != 16:
                 print("In the if for add key by else")
                 moves_history += [key] 
             print(f"moves history for remove 0 key = {moves_history}")
