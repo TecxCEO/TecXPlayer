@@ -128,7 +128,8 @@ class AdvancedCustomVocabularyRegistry:
     #for m in range(1, 19):
     for m in range(18):
       ##self.move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
-      move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
+      ####move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
+      move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
       # self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
       ##self._add_token(f"{move_paths[m]}", "Tier_5_Cube", "Action_Move_Token")
       self._add_token(move_paths[m], "Tier_5_Cube", "Action_Move_Token")
