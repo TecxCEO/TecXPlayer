@@ -141,16 +141,16 @@ class AdvancedCustomVocabularyRegistry:
   
     with open(self.ledger_path, "w", encoding="utf-8") as f:
       json.dump(self.vocab_map, f, indent=4, ensure_ascii=False)
- @property
- def total_vocab_size(self):
-   return self.current_id
- def encode_sequence(self, string_list):
-   return torch.tensor([self.string_to_id[s] for s in string_list], dtype=torch.long)
+  @property
+  def total_vocab_size(self):
+    return self.current_id
+  def encode_sequence(self, string_list):
+    return torch.tensor([self.string_to_id[s] for s in string_list], dtype=torch.long)
   
- def decode_sequence(self, tensor_or_list):
-   if isinstance(tensor_or_list, torch.Tensor):
-     tensor_or_list = tensor_or_list.tolist()
-   return [self.vocab_map[idx]["string_representation"] for idx in tensor_or_list]
+  def decode_sequence(self, tensor_or_list):
+    if isinstance(tensor_or_list, torch.Tensor):
+      tensor_or_list = tensor_or_list.tolist()
+    return [self.vocab_map[idx]["string_representation"] for idx in tensor_or_list]
 """
 #=============================================================================
 # 3. ENFORCED GEOMETRIC MODEL ARCHITECTURE
