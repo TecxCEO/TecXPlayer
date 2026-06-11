@@ -102,9 +102,8 @@ class AdvancedCustomVocabularyRegistry:
 
        
         # self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
-        self._add_token(f"{bow}", "Tier_5_Cube", "3_Char_Family_Token")
-
-       
+        #####self._add_token(f"{bow}", "Tier_5_Cube", "3_Char_Family_Token")
+        self._add_token(f"bow", "Tier_5_Cube", "3_Char_Family_Token")
     # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
     two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
   
