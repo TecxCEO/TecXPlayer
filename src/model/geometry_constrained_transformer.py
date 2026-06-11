@@ -121,7 +121,47 @@ class AdvancedCustomVocabularyRegistry:
         ####self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
         self._add_token(f"bo ", "Tier_5_Cube", "2_Char_Family_Token")
        
-       
+    # =====================================================================
+    # 3. ANTI-FLIP DICTIONARY MANAGEMENT ENGINE
+    # ====================================================================
+    VALID_3_CHAR_IDS = list(range(0, 8))  # 0 to 7
+    VALID_2_CHAR_IDS = list(range(8, 20)) # 8 to 20
+    # Map every Token ID to a unique set of letters to track flips
+    TOKEN_CHARACTER_MAP = {}
+    # =====================================================================
+    # 1. THREE-PAIR SELECTION RULE FOR 3-CHARACTER TOKENS 
+    # =====================================================================
+    pair1 = ('r','o')
+    pair2 = ('g','b')
+    pair3 = ('y','w')
+    # Create 3 distinct pairs of 2 characters each using an indexing offset
+    three_pairs = [
+      ('r','o'),
+      ('g','b'),
+      ('y','w')
+    ]
+    
+    for idx, token_id in enumerate(VALID_3_CHAR_IDS):
+      char1 = random.choice(pair1)
+      char2 = random.choice(pair2)
+      char3 = random.choice(pair3)
+      # Wrap into order-invariant frozen set tracker mapping for this ID
+      TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2, char3])
+    # =====================================================================
+    # 2. UPDATED: THREE-PAIR SELECTION RULE FOR 2-CHARACTER TOKENS
+    # =====================================================================
+    for idx, token_id in enumerate(VALID_2_CHAR_IDS):
+      # Randomly select exactly 2 distinct pairs out of the 3 available pairs
+      chosen_two_pairs = random.sample(three_pairs, 2)
+    
+      # Randomly select exactly ONE character from each of the two chosen pairs
+      char1 = random.choice(chosen_two_pairs[0])
+      char2 = random.choice(chosen_two_pairs[1])
+    
+      # Wrap into an order-invariant frozen set tracker mapping for this ID
+      TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2])
+      
+    ########$$$$$#####
        
     # 3. Possible Action Move Vectors (18 Tokens)
   
