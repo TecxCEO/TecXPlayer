@@ -130,7 +130,7 @@ class AdvancedCustomVocabularyRegistry:
       move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
       # self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
       ##self._add_token(f"{move_paths[m]}", "Tier_5_Cube", "Action_Move_Token")
-      self._add_token(f"move_paths[m]", "Tier_5_Cube", "Action_Move_Token")
+      self._add_token(move_paths[m], "Tier_5_Cube", "Action_Move_Token")
     # 4. Functional Meta Command Cues (5 Tokens)
     self._add_token("SOS", "Tier_5_Cube", "Control_SOS")
     self._add_token("EOS_US", "Tier_5_Cube", "Control_EOS_US")
