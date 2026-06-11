@@ -211,3 +211,8 @@ while True:
       else:
         no_improvement_counter += 1
       """
+if __name__ == "__main__":
+  acvr = AdvancedCustomVocabularyRegistry()
+  print(f" vocab map = {acrv.vocab_map}")
+  print(f" string to id = {acrv.string_to_id}")
+
