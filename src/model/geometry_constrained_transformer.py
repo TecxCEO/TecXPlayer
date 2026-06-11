@@ -214,6 +214,6 @@ while True:
       """
 if __name__ == "__main__":
   acvr = AdvancedCustomVocabularyRegistry()
-  print(f" vocab map = {acvr.vocab_map}")
+  print(f" vocab map = {acvr.vocab_map}\n#\n")
   print(f" string to id = {acvr.string_to_id}")
 
