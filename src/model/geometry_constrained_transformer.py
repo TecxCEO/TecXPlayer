@@ -118,7 +118,8 @@ class AdvancedCustomVocabularyRegistry:
 
        
         #self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
-        self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
+        ####self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
+        self._add_token(f"bo ", "Tier_5_Cube", "2_Char_Family_Token")
        
        
        
