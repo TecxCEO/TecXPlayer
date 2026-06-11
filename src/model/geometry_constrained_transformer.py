@@ -90,20 +90,46 @@ class AdvancedCustomVocabularyRegistry:
    # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
    
    three_char_families = ["F_ALPHA", "F_BETA", "F_GAMMA", "F_DELTA", "F_EPSILON","F_ZETA", "F_ETA", "F_THETA"]
+   
+   
    flip_variants_3ch = ["FLIP_0", "FLIP_1", "FLIP_2", "FLIP_3", "FLIP_4", "FLIP_5"]
+
+   
    for family in three_char_families:
+
+     
      for flip in flip_variants_3ch:
-       self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
+
+       
+       # self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
+       self._add_token(f"{bow}", "Tier_5_Cube", "3_Char_Family_Token")
+
+       
    # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
    two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
+  
+   
    flip_variants_2ch = ["FLIP_A", "FLIP_B"]
+   
+   
    for family in two_char_families:
+
+     
      for flip in flip_variants_2ch:
-       self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
+
+       
+       #self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
+       self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
+       
+       
+       
    # 3. Possible Action Move Vectors (18 Tokens)
   
    for m in range(1, 19):
-     self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
+     self.move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
+     # self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
+     
+     self._add_token(f"{move_paths[m]}", "Tier_5_Cube", "Action_Move_Token")
    # 4. Functional Meta Command Cues (5 Tokens)
    self._add_token("SOS", "Tier_5_Cube", "Control_SOS")
    self._add_token("EOS_US", "Tier_5_Cube", "Control_EOS_US")
