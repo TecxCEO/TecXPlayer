@@ -47,19 +47,19 @@ class AdvancedCustomVocabularyRegistry:
     self.string_to_id = {}
     self.current_id = 0
     self._compile_exhaustive_hierarchy()
-    def _add_token(self, token_str, tier_type, sub_category=""):
-      if token_str not in self.string_to_id:
-        token_id = self.current_id
-        self.vocab_map[token_id] = {
-          "token_id": token_id,
-          "string_representation": token_str,
-          "tier_type": tier_type,
-          "sub_category": sub_category
-        }
-        self.string_to_id[token_str] = token_id
-        self.current_id += 1
-    def _compile_exhaustive_hierarchy(self):
-      """
+  def _add_token(self, token_str, tier_type, sub_category=""):
+    if token_str not in self.string_to_id:
+      token_id = self.current_id
+      self.vocab_map[token_id] = {
+        "token_id": token_id,
+        "string_representation": token_str,
+        "tier_type": tier_type,
+        "sub_category": sub_category
+      }
+      self.string_to_id[token_str] = token_id
+      self.current_id += 1
+  def _compile_exhaustive_hierarchy(self):
+    """
       # ---------------------------------------------------------------------
       # TIER 1: Foundational Atomic Characters
       # ---------------------------------------------------------------------
@@ -84,34 +84,37 @@ class AdvancedCustomVocabularyRegistry:
       # Sub-Block B: Set Theory, Mathematical Logic & Proof Markerslogic_symbols = ["∀", "∃", "∄", "∈", "∉", "∋", "ℵ", "∅", "⊆", "⊇", "⊂", "⊃", "∪", "cap","∧", "∨", "¬", "⇒", "⇔", "∴", "∵", "■"]
       # Sub-Block C: Spaces, Set Enforcers & Matrix Fieldsmatrix_fields = ["ℝ", "ℂ", "ℤ", "ℕ", "ℚ", "d_model", "n_head", "d_ff"]# Sub-Block D: Geometric Properties & Equationsgeometry_symbols = ["≈", "≠", "≡", "≅", "∝", "∼", "≤", "≥", "≪", "≫", "∥", "⊥", "∠","measuredangle"]
       # Sub-Block E: Physics Constants & Electrical Engineeringphysics_units = ["ℏ", "h_bar", "μ_0", "ε_0", "k_B", "m_e", "m_p", "Ω", "mho", "λ", "Å", "μ", "σ", "ρ", "τ"]# Sub-Block F: Chemical Equations & Thermodynamicschem_thermo = ["ΔH", "ΔS", "pH", "⇌", "→", "←", "↑", "↓", "[CHEM]", "[PHYS]"]# Sub-Block G: Tensor Matrix Topology, AI/ML Formulations & Quantum Computeai_tensor_quantum = ["⊗", "⊕", "⊙", "×_n", ".T", ".†", "⟨", "⟩", "|", "ψ", "ϕ", "σ_x", "σ_y", "σ_z", "𝒪", "Null"]# Sub-Block H: Full Classical Greek Alphabet Matrix (Calculus & Physics Variables)greek_alphabet = ["α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ","ψ", "ω","Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ","Φ", "Χ", "Ψ", "Ω"]for s in math_symbols: self._add_token(s, "Tier_3_Scientific", "Calculus_Math")for s in logic_symbols: self._add_token(s, "Tier_3_Scientific", "Logic_Proof")for s in matrix_fields: self._add_token(s, "Tier_3_Scientific", "Matrix_Fields")for s in geometry_symbols: self._add_token(s, "Tier_3_Scientific", "Geometry_Relations")for s in physics_units: self._add_token(s, "Tier_3_Scientific", "Physics_Engineering")for s in chem_thermo: self._add_token(s, "Tier_3_Scientific","Chemistry_Thermodynamics")for s in ai_tensor_quantum: self._add_token(s, "Tier_3_Scientific","AI_ML_Quantum_Tensors")for s in greek_alphabet: self._add_token(s, "Tier_3_Scientific","Greek_Linguistic_Variables")# ---------------------------------------------------------------------# TIER 4: Grammatical Part-of-Speech & Context Word Tokens# ---------------------------------------------------------------------grammar_cues = ["[NOUN]", "[VERB]", "[ADJ]", "[ADV]", "[PRON]", "[PREP]", "[CONJ]","[PAST_TENSE]", "[PLURAL]"]technical_lexicon = ["derive", "integrate", "transform", "vectorize", "tensorize", "converge", "gradient","optimize", "parameter", "matrix", "qubit", "entangle", "manifold", "orthogonal"]for s in grammar_cues: self._add_token(s, "Tier_4_Grammar", "Syntactic_Markers")for s in technical_lexicon: self._add_token(s, "Tier_4_Grammar", "Technical_Root_Words")# ---------------------------------------------------------------------
-      """
-# TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
-# ---------------------------------------------------------------------
-# 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
-
-three_char_families = ["F_ALPHA", "F_BETA", "F_GAMMA", "F_DELTA", "F_EPSILON","F_ZETA", "F_ETA", "F_THETA"]
-flip_variants_3ch = ["FLIP_0", "FLIP_1", "FLIP_2", "FLIP_3", "FLIP_4", "FLIP_5"]
-for family in three_char_families:
-  for flip in flip_variants_3ch:
-    self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
-    # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
-    two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
-    flip_variants_2ch = ["FLIP_A", "FLIP_B"]
-    for family in two_char_families:
-      for flip in flip_variants_2ch:
-        self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
-        # 3. Possible Action Move Vectors (18 Tokens)
-for m in range(1, 19):
-  self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
-  # 4. Functional Meta Command Cues (5 Tokens)
-  self._add_token("SOS", "Tier_5_Cube", "Control_SOS")
-  self._add_token("EOS_US", "Tier_5_Cube", "Control_EOS_US")
-  self._add_token("TASK_FWD", "Tier_5_Cube", "Control_TASK_FWD")
-  self._add_token("TASK_REV", "Tier_5_Cube", "Control_TASK_REV")
-  self._add_token("TASK_SOLV", "Tier_5_Cube", "Control_TASK_SOLV")
-  # Write absolute compiled snapshot map ledger out to disk
-  with open(self.ledger_path, "w", encoding="utf-8") as f:
-    json.dump(self.vocab_map, f, indent=4, ensure_ascii=False)
+   """
+   # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
+   # ---------------------------------------------------------------------
+   # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
+   
+   three_char_families = ["F_ALPHA", "F_BETA", "F_GAMMA", "F_DELTA", "F_EPSILON","F_ZETA", "F_ETA", "F_THETA"]
+   flip_variants_3ch = ["FLIP_0", "FLIP_1", "FLIP_2", "FLIP_3", "FLIP_4", "FLIP_5"]
+   for family in three_char_families:
+     for flip in flip_variants_3ch:
+       self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
+   # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
+   two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
+   flip_variants_2ch = ["FLIP_A", "FLIP_B"]
+   for family in two_char_families:
+     for flip in flip_variants_2ch:
+       self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
+   # 3. Possible Action Move Vectors (18 Tokens)
+  
+   for m in range(1, 19):
+     self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
+   # 4. Functional Meta Command Cues (5 Tokens)
+   self._add_token("SOS", "Tier_5_Cube", "Control_SOS")
+   self._add_token("EOS_US", "Tier_5_Cube", "Control_EOS_US")
+   self._add_token("TASK_FWD", "Tier_5_Cube", "Control_TASK_FWD")
+   self._add_token("TASK_REV", "Tier_5_Cube", "Control_TASK_REV")
+   self._add_token("TASK_SOLV", "Tier_5_Cube", "Control_TASK_SOLV")
+  
+   # Write absolute compiled snapshot map ledger out to disk
+  
+   with open(self.ledger_path, "w", encoding="utf-8") as f:
+     json.dump(self.vocab_map, f, indent=4, ensure_ascii=False)
 @property
 def total_vocab_size(self):
   return self.current_id
