@@ -94,14 +94,14 @@ class AdvancedCustomVocabularyRegistry:
     for fc in mosf.keys():
       for sc in mosf.keys():
         for tc in mosf.keys():
-        #if sc != fc and sc != mosf[fc]:
-        if sc not in [fc, mosf[fc]] and tc not in [fc, mosf[fc], sc, mosf[sc]]:
-          self._add_token(f"{f}{s}{c}", "Tier_5_Cube", "3_Char_Family_Token")
-          self._add_token(f"{f}{c}{s}", "Tier_5_Cube", "3_Char_Family_Token")
-          self._add_token(f"{s}{f}{c}", "Tier_5_Cube", "3_Char_Family_Token")
-          self._add_token(f"{s}{c}{f}", "Tier_5_Cube", "3_Char_Family_Token")
-          self._add_token(f"{c}{f}{s}", "Tier_5_Cube", "3_Char_Family_Token")
-          self._add_token(f"{c}{s}{f}", "Tier_5_Cube", "3_Char_Family_Token")
+          #if sc != fc and sc != mosf[fc]:
+          if sc not in [fc, mosf[fc]] and tc not in [fc, mosf[fc], sc, mosf[sc]]:
+            self._add_token(f"{f}{s}{c}", "Tier_5_Cube", "3_Char_Family_Token")
+            self._add_token(f"{f}{c}{s}", "Tier_5_Cube", "3_Char_Family_Token")
+            self._add_token(f"{s}{f}{c}", "Tier_5_Cube", "3_Char_Family_Token")
+            self._add_token(f"{s}{c}{f}", "Tier_5_Cube", "3_Char_Family_Token")
+            self._add_token(f"{c}{f}{s}", "Tier_5_Cube", "3_Char_Family_Token")
+            self._add_token(f"{c}{s}{f}", "Tier_5_Cube", "3_Char_Family_Token")
     
     # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
     for fc in mosf.keys():
