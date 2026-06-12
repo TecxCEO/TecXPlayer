@@ -87,91 +87,101 @@ class AdvancedCustomVocabularyRegistry:
     """
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
     # ---------------------------------------------------------------------
-    # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
-   
-    three_char_families = ["F_ALPHA", "F_BETA", "F_GAMMA", "F_DELTA", "F_EPSILON","F_ZETA", "F_ETA", "F_THETA"]
-   
-   
-    flip_variants_3ch = ["FLIP_0", "FLIP_1", "FLIP_2", "FLIP_3", "FLIP_4", "FLIP_5"]
-
-   
-    for family in three_char_families:
-
-     
-      for flip in flip_variants_3ch:
-
-       
-        # self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
-        #####self._add_token(f"{bow}", "Tier_5_Cube", "3_Char_Family_Token")
-        self._add_token(f"bow", "Tier_5_Cube", "3_Char_Family_Token")
-    # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
-    two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
-  
+    ##self.mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
+    mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
     
-    flip_variants_2ch = ["FLIP_A", "FLIP_B"]
+    # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
+    for fc in mosf.keys():
+      for sc in mosf.keys():
+        for tc in mosf.keys():
+        #if sc != fc and sc != mosf[fc]:
+        if sc not in [fc, mosf[fc]] and tc not in [fc, mosf[fc], sc, mosf[sc]]:
+          self._add_token(f"{f}{s}{c}", "Tier_5_Cube", "3_Char_Family_Token")
+          self._add_token(f"{f}{c}{s}", "Tier_5_Cube", "3_Char_Family_Token")
+          self._add_token(f"{s}{f}{c}", "Tier_5_Cube", "3_Char_Family_Token")
+          self._add_token(f"{s}{c}{f}", "Tier_5_Cube", "3_Char_Family_Token")
+          self._add_token(f"{c}{f}{s}", "Tier_5_Cube", "3_Char_Family_Token")
+          self._add_token(f"{c}{s}{f}", "Tier_5_Cube", "3_Char_Family_Token")
+    
+    # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
+    for fc in mosf.keys():
+      for sc in mosf.keys():
+        #if sc != fc and sc != mosf[fc]:
+        if sc not in [fc, mosf[fc]]:
+          # and tc not in [fc, mosf[fc], sc, mosf[sc]]:
+          self._add_token(f"{f}{s}", "Tier_5_Cube", "2_Char_Family_Token")
+          self._add_token(f"{s}{f}", "Tier_5_Cube", "2_Char_Family_Token")
+    
+    # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
+    
+    # # three_char_families = ["F_ALPHA", "F_BETA", "F_GAMMA", "F_DELTA", "F_EPSILON","F_ZETA", "F_ETA", "F_THETA"]
    
    
-    for family in two_char_families:
+    # # flip_variants_3ch = ["FLIP_0", "FLIP_1", "FLIP_2", "FLIP_3", "FLIP_4", "FLIP_5"]
 
-     
-      for flip in flip_variants_2ch:
-
-       
-        #self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
-        ####self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
-        self._add_token(f"bo ", "Tier_5_Cube", "2_Char_Family_Token")
-       
-    # =====================================================================
+    ####
     # 3. ANTI-FLIP DICTIONARY MANAGEMENT ENGINE
     # ====================================================================
-    VALID_3_CHAR_IDS = list(range(0, 8))  # 0 to 7
-    VALID_2_CHAR_IDS = list(range(8, 20)) # 8 to 20
+    # # VALID_3_CHAR_IDS = list(range(0, 8))  # 0 to 7
+    # # VALID_2_CHAR_IDS = list(range(8, 20)) # 8 to 20
     # Map every Token ID to a unique set of letters to track flips
-    TOKEN_CHARACTER_MAP = {}
+    # # TOKEN_CHARACTER_MAP = {}
     # =====================================================================
     # 1. THREE-PAIR SELECTION RULE FOR 3-CHARACTER TOKENS 
     # =====================================================================
-    pair1 = ('r','o')
-    pair2 = ('g','b')
-    pair3 = ('y','w')
+    # # pair1 = ('b','g')
+    # # pair2 = ('o','r')
+    # # pair3 = ('w','y')
     # Create 3 distinct pairs of 2 characters each using an indexing offset
-    three_pairs = [
-      ('r','o'),
-      ('g','b'),
-      ('y','w')
-    ]
+    # # three_pairs = [
+      # # ('b','g'),
+      # # ('o','r'),
+      # # ('w','y')
+    # ]
+    # # for family in three_char_families: 
+      # # for flip in flip_variants_3ch:
+        # self._add_token(f"{family}_{flip}", "Tier_5_Cube", "3_Char_Family_Token")
+        #####self._add_token(f"{bow}", "Tier_5_Cube", "3_Char_Family_Token")
+    # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
+    # # two_char_families = [f"CAT_{i:02d}" for i in range(1, 13)]
+    # # flip_variants_2ch = ["FLIP_A", "FLIP_B"]
+    # # for family in two_char_families:
+      # # for flip in flip_variants_2ch:
+        #self._add_token(f"{family}_{flip}", "Tier_5_Cube", "2_Char_Family_Token")
+        ####self._add_token(f"{bo} ", "Tier_5_Cube", "2_Char_Family_Token")
     
-    for idx, token_id in enumerate(VALID_3_CHAR_IDS):
-      char1 = random.choice(pair1)
-      char2 = random.choice(pair2)
-      char3 = random.choice(pair3)
+    # =====================================================================
+    
+    # # for idx, token_id in enumerate(VALID_3_CHAR_IDS):
+      # # char1 = random.choice(pair1)
+      # # char2 = random.choice(pair2)
+      # # char3 = random.choice(pair3)
       # Wrap into order-invariant frozen set tracker mapping for this ID
-      TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2, char3])
+      # # TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2, char3])
     # =====================================================================
     # 2. UPDATED: THREE-PAIR SELECTION RULE FOR 2-CHARACTER TOKENS
     # =====================================================================
-    for idx, token_id in enumerate(VALID_2_CHAR_IDS):
+    # # for idx, token_id in enumerate(VALID_2_CHAR_IDS):
       # Randomly select exactly 2 distinct pairs out of the 3 available pairs
-      chosen_two_pairs = random.sample(three_pairs, 2)
+      # # chosen_two_pairs = random.sample(three_pairs, 2)
     
       # Randomly select exactly ONE character from each of the two chosen pairs
-      char1 = random.choice(chosen_two_pairs[0])
-      char2 = random.choice(chosen_two_pairs[1])
+      # # char1 = random.choice(chosen_two_pairs[0])
+      # # char2 = random.choice(chosen_two_pairs[1])
     
       # Wrap into an order-invariant frozen set tracker mapping for this ID
-      TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2])
+      # # TOKEN_CHARACTER_MAP[token_id] = frozenset([char1, char2])
       
     ########$$$$$#####
        
     # 3. Possible Action Move Vectors (18 Tokens)
+
+    ##self.move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
+    ####move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
+    move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
   
     #for m in range(1, 19):
     for m in range(18):
-      ##self.move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
-      ####move_paths=["rgy","rgw","rgo","rby","rbw","rbo","grw","gry","grb","gow","goy","gob","yrg","yrb","yrw","yog","yob","yow"]
-      move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
-      ####self.mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
-      mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
       # self._add_token(f"MOVE_{m:02d}", "Tier_5_Cube", "Action_Move_Token")
       ##self._add_token(f"{move_paths[m]}", "Tier_5_Cube", "Action_Move_Token")
       self._add_token(move_paths[m], "Tier_5_Cube", "Action_Move_Token")
