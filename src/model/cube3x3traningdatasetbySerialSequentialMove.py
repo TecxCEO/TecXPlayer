@@ -10,6 +10,8 @@ class Solver(c3x3):
     super().__init__()
     self.filename = "cube3x3trainingdataset.json"
     self.filepath="../data/cube3x3/solution"
+    max_steps = 20
+    
   def solve(self,given_state):
     self.current_state=given_state.copy()
     puzzle_data={
