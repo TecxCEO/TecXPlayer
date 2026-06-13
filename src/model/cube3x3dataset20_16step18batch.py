@@ -36,13 +36,8 @@ class Solver(c3x3):
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
-      #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
-      ##print(f" data batch = {data_batch}")
-      if len(my_data["puzzle"]["moves_history"]) == 16:
-        #print(f"data_batch before start = {data_batch}")
-        #print(f"moves_history before start = {my_data["puzzle"]["moves_history"]}")
+      if len(my_data["puzzle"]["moves_history"]) == max_steps:
         data_batch = {}
-      ####print(f" data batch = {data_batch}")
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
