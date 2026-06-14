@@ -101,8 +101,7 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
-            #moves_history = mh if len(mh) == 18 else None
-            
+            moves_history = mh if len(mh) == 18 else None
             if moves_history and moves_history[-1] == self.max_steps:  # 16: ####
               moves_history[-1]= mh
               if isinstance(data_batch, str):
