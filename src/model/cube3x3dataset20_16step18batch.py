@@ -101,18 +101,31 @@ class Solver(c3x3):
         if len(list(moves_history[max_steps-1])) in [18, 15]:
           self.delete_and_clean(data, moves_history)
       if len(data) < 20 and len(moves_history) <= max_steps:
-        if len(moves_history) == max_steps -2 and moves_history[-1] != 16 :
+        if len(moves_history) == max_steps -2 and moves_history[-1] != max_steps :
           moves_history += [max_steps -1]
           moves_history += [max_steps]
         data_batch.update({"state": data["state"]})
         for key, value in data.items():
+          ######
+          ######
+          print(f" current key is {key}, ")
+          if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
+            if key == moves_history[0] and len(moves_history) == max_steps and moves_history[-1] != max_steps:
+              del moves_history
+              moves_history[0] = "change it"
+              print(f" The Key is being change from {key} to ")
+              continue
+            elif moves_history[0] == "change it":
+              moves_history = []
+          ######
+          ######
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
               ##print("In the if for add key")
-              if moves_history and moves_history[-1] == 16:
+              if moves_history and moves_history[-1] == max_steps:
                 moves_history[-2] = key
-              elif not moves_history or (moves_history and moves_history[-1] != 16):
+              elif not moves_history or (moves_history and moves_history[-1] != max_steps):
                 moves_history += [key]
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
