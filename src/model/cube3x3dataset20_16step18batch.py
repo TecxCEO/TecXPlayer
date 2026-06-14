@@ -109,7 +109,6 @@ class Solver(c3x3):
         for key, value in data.items():
           ######
           ######
-          """
           print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
@@ -119,7 +118,6 @@ class Solver(c3x3):
               continue
             elif moves_history[0] == "change it":
               moves_history = []
-              """
           ######
           ######
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
