@@ -177,11 +177,12 @@ class Solver(c3x3):
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
             print(f"I am here.")
-            #if pk==0 and p_moves_history ==[] and len(moves_history)==18 :
+            #if pk==0 and p_moves_history ==[] and # len(moves_history)==18 :
             if pk is not None and pk >=0:
               print(f" pk = {pk}")
               print(f" p_moves_history = {p_moves_history} ")
               print(f" p_moves_history length = {len(p_moves_history)} ")
+              print(f" moves_history length = {moves_history} ")
               p_moves_history[pk] = moves_history
             elif pk == None:
                 p_moves_history= moves_history
