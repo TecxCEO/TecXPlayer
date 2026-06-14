@@ -164,7 +164,7 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
             if pk and pk >=0:
                 p_moves_history[pk] = moves_history
-            elif pk == Nome:
+            elif pk == None:
                 p_moves_history= moves_history
             """
             if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
