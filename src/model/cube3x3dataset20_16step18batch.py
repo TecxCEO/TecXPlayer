@@ -6,13 +6,13 @@ import sys
 import time
 
 class Solver(c3x3):
-  # def __init__(self, max_step = 20, batch = 1):
+  # def __init__(self, max_steps = 20, batch = 1):
   def __init__(self):
     super().__init__()
     self.filename = "cube3x3trainingdataset.json"
     self.filepath="../data/cube3x3/solution"
-    # max_steps = max_step
-    max_steps = 20
+    # self.max_steps = max_steps
+    self.max_steps = 20
     
   def solve(self,given_state):
     self.current_state=given_state.copy()
@@ -77,7 +77,7 @@ class Solver(c3x3):
     if isinstance(data, dict):
       if len(data)==20:
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
-          if moves_history and moves_history[-1] == max_steps: # 16: ####
+          if moves_history and moves_history[-1] == self.max_steps: # 16: ####
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
           else:
             states,move_list,status=super().moves(data,mtsp,moves_history)
@@ -91,7 +91,7 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
-            if moves_history and moves_history[-1] == max_steps:  # 16: ####
+            if moves_history and moves_history[-1] == self.max_steps:  # 16: ####
               moves_history[-1]= mh
               if isinstance(data_batch, str):
                 data_batch = {}
@@ -100,8 +100,8 @@ class Solver(c3x3):
       if len(moves_history) == max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[max_steps-1])) in [18, 15]:
           self.delete_and_clean(data, moves_history)
-      if len(data) < 20 and len(moves_history) <= max_steps:
-        if len(moves_history) == max_steps -2 and moves_history[-1] != max_steps :
+      if len(data) < 20 and len(moves_history) <= self.max_steps:
+        if len(moves_history) == max_steps -2 and moves_history[-1] != self.max_steps :
           moves_history += [max_steps -1]
           moves_history += [max_steps]
         data_batch.update({"state": data["state"]})
@@ -110,7 +110,7 @@ class Solver(c3x3):
           ######
           print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
-            if key == moves_history[0] and len(moves_history) == max_steps and moves_history[-1] != max_steps:
+            if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               del moves_history
               moves_history[0] = "change it"
               print(f" The Key is being change from {key} to ")
@@ -123,9 +123,9 @@ class Solver(c3x3):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
               ##print("In the if for add key")
-              if moves_history and moves_history[-1] == max_steps:
+              if moves_history and moves_history[-1] == self.max_steps:
                 moves_history[-2] = key
-              elif not moves_history or (moves_history and moves_history[-1] != max_steps):
+              elif not moves_history or (moves_history and moves_history[-1] != self.max_steps):
                 moves_history += [key]
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
