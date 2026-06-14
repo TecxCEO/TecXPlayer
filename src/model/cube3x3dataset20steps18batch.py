@@ -149,6 +149,7 @@ class Solver(c3x3):
           ######
           ######
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
+            print(f"I am here.")
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
               ##print("In the if for add key")
