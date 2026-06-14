@@ -140,7 +140,7 @@ class Solver(c3x3):
                   p_moves_history[pk] = []
                   moves_history = []
               # moves_history[0] = "change it"
-              moves_history = p_moves_history[pk]  else []
+              # moves_history = p_moves_history[pk]
               print(f" The Key is being change from {key} to ")
               continue
             #elif moves_history[0] == "change it":
