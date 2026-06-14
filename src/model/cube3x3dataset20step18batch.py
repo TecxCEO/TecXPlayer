@@ -6,15 +6,13 @@ import sys
 import time
 
 class Solver(c3x3):
-  def __init__(self, max_steps = 20, batch = 1):
+  def __init__(self, max_steps = 20, batch = 18):
     # def __init__(self):
     super().__init__()
-    self.filename = "cube3x3dataset20_16step18batch.json"
+    self.filename = "cube3x3dataset20steps18batch.json"
     # self.filename = "cube3x3trainingdataset.json"
     self.filepath="../data/cube3x3/solution"
-    self.max_steps = max_steps
-    # self.max_steps = 20
-    
+    self.max_steps = max_steps 
   def solve(self,given_state):
     self.current_state=given_state.copy()
     puzzle_data={
@@ -67,7 +65,6 @@ class Solver(c3x3):
         del moves_history[index+1]
         del moves_history[index]
       return
-  #def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
   def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
     """
     Searches recursively for 'target_key' and updates its value.
