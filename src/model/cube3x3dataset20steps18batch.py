@@ -163,7 +163,7 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
             if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
               p_moves_history[pk] = moves_history
-            return data, moves_history, status, data_batch
+            return data, p_moves_history, status, data_batch
         return
 if __name__=="__main__":
   state_given_to_solve={
