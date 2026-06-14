@@ -71,6 +71,8 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
+    print(f"p_moves_history at start of loop = {p_moves_history} ")
+    
     moves_history = []
     if pk is not None:
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
