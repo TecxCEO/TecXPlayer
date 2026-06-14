@@ -9,7 +9,8 @@ class Solver(c3x3):
   def __init__(self, max_steps = 20, batch = 1):
     # def __init__(self):
     super().__init__()
-    self.filename = "cube3x3trainingdataset.json"
+    self.filename = "cube3x3dataset20_16step18batch.json"
+    # self.filename = "cube3x3trainingdataset.json"
     self.filepath="../data/cube3x3/solution"
     self.max_steps = max_steps
     # self.max_steps = 20
