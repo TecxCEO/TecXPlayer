@@ -139,7 +139,7 @@ class Solver(c3x3):
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               print(f" pk in loop = {pk} ")
               # del moves_history
-              if pk < 17 :
+              if pk : # and pk < 17 :
                 print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
