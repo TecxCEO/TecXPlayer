@@ -102,8 +102,8 @@ class Solver(c3x3):
           self.delete_and_clean(data, moves_history)
       if len(data) < 20 and len(moves_history) <= self.max_steps:
         if len(moves_history) == self.max_steps -2 and moves_history[-1] != self.max_steps :
-          moves_history += [max_steps -1]
-          moves_history += [max_steps]
+          moves_history += [self.max_steps -1]
+          moves_history += [self.max_steps]
         data_batch.update({"state": data["state"]})
         for key, value in data.items():
           ######
