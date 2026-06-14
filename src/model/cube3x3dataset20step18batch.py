@@ -71,8 +71,11 @@ class Solver(c3x3):
     Works for both nested dictionaries and lists of dictionaries.
     """
     moves_history = []
-    if pk and p_moves_history[pk] and len(p_moves_history[pk])>1:
-      moves_history = p_moves_history[pk]
+    if pk:
+      if p_moves_history[pk] and len(p_moves_history[pk])>1:
+        moves_history = p_moves_history[pk]
+      elif not p_moves_history[pk] and (pk >0 and p_moves_history[pk - 1]):
+        p_moves_history[pk] = []
     else:
       moves_history = p_moves_history
     ###
