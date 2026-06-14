@@ -167,6 +167,6 @@ if __name__=="__main__":
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
-    time.sleep(1)
-    time.sleep(0.01) 
+    time.sleep(11)
+    #time.sleep(0.01) 
 print(f" full_response = {full_response}")
