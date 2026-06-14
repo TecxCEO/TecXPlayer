@@ -138,8 +138,8 @@ class Solver(c3x3):
               print(f" self.max_steps in loop = {self.max_steps} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               print(f" pk in loop after if = {pk} ")
-              print(f" pk in loop before if 17 = {pk} ") if pk else None
-              if pk and pk < 17 :
+              print(f" pk in loop before if 17 = {pk} ") if pk is not None else None
+              if pk is not None and pk < 17 :
                 print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
