@@ -144,6 +144,8 @@ class Solver(c3x3):
                 pk +=1 
                 print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
+                  print(f" p_moves_history in loop if 17 = {p_moves_history} ")
+                  print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
                   moves_history = p_moves_history[pk] 
                 elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
                   moves_history = [p_moves_history[pk]]
