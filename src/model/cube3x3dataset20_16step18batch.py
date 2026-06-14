@@ -111,7 +111,7 @@ class Solver(c3x3):
           self.delete_and_clean(data, moves_history)
       """
       if pk and pk == 17:
-        while pk >=0 and :
+        while pk >=0:
           moves_history = p_moves_history[pk]
           if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
             if len(list(moves_history[self.max_steps-1])) in [18, 15]:
