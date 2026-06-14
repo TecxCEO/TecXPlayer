@@ -109,6 +109,7 @@ class Solver(c3x3):
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
+              p_moves_history[-1]= mh
             print(f"p_moves_history in if 20 = {p_moves_history} ")
           return data, p_moves_history, status, data_batch
       """
