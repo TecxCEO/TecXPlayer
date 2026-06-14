@@ -75,7 +75,7 @@ class Solver(c3x3):
     if pk is not None:
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
         moves_history = p_moves_history[pk]
-      elif not p_moves_history[pk] and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
+      elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
     else:
       print(f" moves_history in else before  = {moves_history} ")
