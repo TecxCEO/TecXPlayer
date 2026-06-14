@@ -108,7 +108,7 @@ class Solver(c3x3):
                 data_batch = {}
               data_batch.update(data.copy())
             print(f"moves_history in if 20 = {moves_history} ")
-          return data, moves_history, status, data_batch
+          return data, p_moves_history, status, data_batch
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[self.max_steps-1])) in [18, 15]:
