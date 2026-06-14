@@ -6,14 +6,12 @@ import sys
 import time
 
 class Solver(c3x3):
-  def __init__(self, max_steps = 20, batch = 1):
+  def __init__(self, max_steps = 20):
     # def __init__(self):
     super().__init__()
-    self.filename = "cube3x3dataset20_16step18batch.json"
-    # self.filename = "cube3x3trainingdataset.json"
-    self.filepath="../data/cube3x3/solution"
+    self.filename = "cube3x3dataset20steps.json"
+    self.filepath="./data/cube3x3/solution"
     self.max_steps = max_steps
-    # self.max_steps = 20
     
   def solve(self,given_state):
     self.current_state=given_state.copy()
