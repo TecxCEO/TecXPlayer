@@ -152,6 +152,7 @@ class Solver(c3x3):
                 continue
           ######
           ######
+          print(f" moves_history at if start.  = {moves_history} ")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
@@ -181,6 +182,7 @@ class Solver(c3x3):
               if pk and pk >=0:
                 p_moves_history[pk] = moves_history
                 """
+            print(f" moves_history at end before return = {moves_history} ")
             return data, p_moves_history, status, data_batch,pk
         return
 if __name__=="__main__":
