@@ -131,11 +131,13 @@ class Solver(c3x3):
           ######
           print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
+            print(f" moves_history  = {moves_history} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               # del moves_history
               if pk and pk < 17 :
+                print(f" pk in loop = {pk} ")
                 pk +=1 
-                print(f" pk ,= {pk} ")
+                print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and (len(p_moves_history[pk])>1 or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
                   moves_history = p_moves_history[pk]
                 else:
