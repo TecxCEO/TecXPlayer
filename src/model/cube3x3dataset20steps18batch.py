@@ -78,8 +78,9 @@ class Solver(c3x3):
       elif not p_moves_history[pk] and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
     else:
+      print(f" moves_history in else before  = {moves_history} ")
       moves_history = p_moves_history
-    ###
+      print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       #moves_history = []
       status=False
@@ -131,7 +132,6 @@ class Solver(c3x3):
           ######
           print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
-            print(f" moves_history  = {moves_history} ")
             print(f" moves_history length = {len(moves_history)} ")
             print(f" moves_history[-1] in loop = {moves_history[-1]} ")
             if moves_history[-1] != self.max_steps:
