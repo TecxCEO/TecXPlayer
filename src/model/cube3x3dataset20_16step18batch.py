@@ -6,13 +6,13 @@ import sys
 import time
 
 class Solver(c3x3):
-  # def __init__(self, max_steps = 20, batch = 1):
-  def __init__(self):
+  def __init__(self, max_steps = 20, batch = 1):
+    # def __init__(self):
     super().__init__()
     self.filename = "cube3x3trainingdataset.json"
     self.filepath="../data/cube3x3/solution"
-    # self.max_steps = max_steps
-    self.max_steps = 20
+    self.max_steps = max_steps
+    # self.max_steps = 20
     
   def solve(self,given_state):
     self.current_state=given_state.copy()
@@ -38,7 +38,7 @@ class Solver(c3x3):
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
-      if len(my_data["puzzle"]["moves_history"]) == max_steps:
+      if len(my_data["puzzle"]["moves_history"]) == self.max_steps:
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
