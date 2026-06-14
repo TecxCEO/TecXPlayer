@@ -149,7 +149,7 @@ class Solver(c3x3):
                 pk +=1 
                 print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
-                  print(f" p_moves_history in loop if 17 = {p_moves_history} ")
+                  
                   print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
                   moves_history = p_moves_history[pk] 
                 elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
@@ -179,7 +179,10 @@ class Solver(c3x3):
             print(f"I am here.")
             #if pk==0 and p_moves_history ==[] and len(moves_history)==18 :
             if pk is not None and pk >=0:
-                p_moves_history[pk] = moves_history
+              print(f" pk = {pk}")
+              print(f" p_moves_history = {p_moves_history} ")
+              print(f" p_moves_history length = {len(p_moves_history)} ")
+              p_moves_history[pk] = moves_history
             elif pk == None:
                 p_moves_history= moves_history
             """
