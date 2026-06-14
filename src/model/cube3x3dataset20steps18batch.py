@@ -134,9 +134,10 @@ class Solver(c3x3):
             print(f" moves_history  = {moves_history} ")
             print(f" moves_history length = {len(moves_history)} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
+              print(f" pk in loop = {pk} ")
               # del moves_history
               if pk and pk < 17 :
-                print(f" pk in loop = {pk} ")
+                print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and (len(p_moves_history[pk])>1 or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
@@ -149,14 +150,14 @@ class Solver(c3x3):
           ######
           ######
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
-            print(f"I am here.")
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
-              ##print("In the if for add key")
+              print("In the if for add key")
               if moves_history and moves_history[-1] == self.max_steps:
                 moves_history[-2] = key
               elif not moves_history or (moves_history and moves_history[-1] != self.max_steps):
                 moves_history += [key]
+            print(f"I am here.")
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
             if moves_history and key == moves_history[0]:
