@@ -72,20 +72,20 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    print(f"p_moves_history at start of loop = {p_moves_history} ")
+    #print(f"p_moves_history at start of loop = {p_moves_history} ")
     
     moves_history = []
     if pk is not None:
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
         moves_history = [p_moves_history[pk]]
         #moves_history += p_moves_history[pk]
-        print(f"moves_history at start of loop = {moves_history} ")
+        #print(f"moves_history at start of loop = {moves_history} ")
       elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
     else:
-      print(f" moves_history in else before  = {moves_history} ")
+      #print(f" moves_history in else before  = {moves_history} ")
       moves_history = p_moves_history
-      print(f" moves_history in else after = {moves_history} ")
+      #print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       #moves_history = []
       status=False
@@ -113,7 +113,7 @@ class Solver(c3x3):
                 data_batch = {}
               data_batch.update(data.copy())
               p_moves_history[-1]= mh
-            print(f"p_moves_history in if 20 = {p_moves_history} ")
+            #print(f"p_moves_history in if 20 = {p_moves_history} ")
           return data, p_moves_history, status, data_batch
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
@@ -138,37 +138,37 @@ class Solver(c3x3):
         for key, value in data.items():
           ######
           ######
-          print(f" current key is {key}, ")
+          #print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
-            print(f" moves_history length = {len(moves_history)} ")
-            print(f" moves_history[-1] in loop = {moves_history[-1]} ")
+            #print(f" moves_history length = {len(moves_history)} ")
+            #print(f" moves_history[-1] in loop = {moves_history[-1]} ")
             if moves_history[-1] != self.max_steps:
-              print(f" self.max_steps in loop = {self.max_steps} ")
+              #print(f" self.max_steps in loop = {self.max_steps} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
-              print(f" pk in loop after if = {pk} ")
-              print(f" pk in loop before if 17 = {pk} ") if pk is not None else None
+              #print(f" pk in loop after if = {pk} ")
+              #print(f" pk in loop before if 17 = {pk} ") if pk is not None else None
               if pk is not None and pk < 17 :
-                print(f" pk in loop if 17 = {pk} ")
+                #print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
-                print(f" pk in loop = {pk} ")
+                #print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
                   
-                  print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
+                  #print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
                   moves_history = p_moves_history[pk] 
                 elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
                   moves_history = [p_moves_history[pk]]
                 elif not p_moves_history[pk] :
                   p_moves_history[pk] = []
                   moves_history = []
-                print(f" The Key is being change from {key} to ")
+                #print(f" The Key is being change from {key} to ")
                 continue
           ######
           ######
-          print(f" moves_history at if start.  = {moves_history} ")
+          #print(f" moves_history at if start.  = {moves_history} ")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
-              print("In the if for add key")
+              #print("In the if for add key")
               if moves_history and moves_history[-1] == self.max_steps:
                 moves_history[-2] = key
               elif not moves_history or (moves_history and moves_history[-1] != self.max_steps):
@@ -179,14 +179,14 @@ class Solver(c3x3):
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
-            print(f"I am here.")
+            #print(f"I am here.")
             if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
               p_moves_history += moves_history
             if pk is not None and pk >0:
-              print(f" pk = {pk}")
-              print(f" p_moves_history = {p_moves_history} ")
-              print(f" p_moves_history length = {len(p_moves_history)} ")
-              print(f" moves_history length = {moves_history} ")
+              #print(f" pk = {pk}")
+              #print(f" p_moves_history = {p_moves_history} ")
+              #print(f" p_moves_history length = {len(p_moves_history)} ")
+              #print(f" moves_history length = {moves_history} ")
               p_moves_history[pk] = moves_history
             elif pk == None:
                 p_moves_history= [moves_history]
@@ -232,6 +232,6 @@ if __name__=="__main__":
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
-    time.sleep(11)
+    time.sleep(4)
     #time.sleep(0.01) 
 print(f" full_response = {full_response}")
