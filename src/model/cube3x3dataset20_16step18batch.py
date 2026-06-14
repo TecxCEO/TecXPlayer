@@ -99,7 +99,7 @@ class Solver(c3x3):
               data_batch.update(data.copy())
           return data, moves_history, status, data_batch
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
-        if len(list(moves_history[max_steps-1])) in [18, 15]:
+        if len(list(moves_history[self.max_steps-1])) in [18, 15]:
           self.delete_and_clean(data, moves_history)
       if len(data) < 20 and len(moves_history) <= self.max_steps:
         if len(moves_history) == self.max_steps -2 and moves_history[-1] != self.max_steps :
