@@ -43,6 +43,7 @@ class Solver(c3x3):
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
+        print(f" pk ,= {pk} ")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
           json.dump(my_data, wf, indent=4)
@@ -161,14 +162,20 @@ class Solver(c3x3):
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
+            if pk and pk >=0:
+                p_moves_history[pk] = moves_history
+            elif pk == Nome:
+                p_moves_history= moves_history
+            """
             if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
               if pk and pk >=0:
                 p_moves_history[pk] = moves_history
               elif pk == Nome:
-                p_moves_history[pk] = moves_history
+                p_moves_history[0] = moves_history
             elif moves_history and len(moves_history)<self.max_steps:
               if pk and pk >=0:
                 p_moves_history[pk] = moves_history
+                """
             return data, p_moves_history, status, data_batch
         return
 if __name__=="__main__":
