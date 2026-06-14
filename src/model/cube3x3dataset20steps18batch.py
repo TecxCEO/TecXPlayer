@@ -133,6 +133,9 @@ class Solver(c3x3):
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             print(f" moves_history  = {moves_history} ")
             print(f" moves_history length = {len(moves_history)} ")
+            print(f" moves_history[-1} in loop = {moves_history[-1]} ")
+            if moves_history[-1] != self.max_steps:
+              print(f" self.max_steps in loop = {self.max_steps} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               print(f" pk in loop = {pk} ")
               # del moves_history
@@ -157,13 +160,13 @@ class Solver(c3x3):
                 moves_history[-2] = key
               elif not moves_history or (moves_history and moves_history[-1] != self.max_steps):
                 moves_history += [key]
-            print(f"I am here.")
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
+            print(f"I am here.")
             if pk and pk >=0:
                 p_moves_history[pk] = moves_history
             elif pk == None:
