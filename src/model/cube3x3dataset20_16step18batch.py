@@ -44,7 +44,7 @@ class Solver(c3x3):
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
-        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch)
+        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
           json.dump(my_data, wf, indent=4)
@@ -76,7 +76,8 @@ class Solver(c3x3):
     moves_history = []
     if pk and p_moves_history[pk] and len(p_moves_history[pk])>1:
       moves_history = p_moves_history[pk]
-    else moves_history = p_moves_history
+    else:
+      moves_history = p_moves_history
     ###
     if moves_history is None:
       #moves_history = []
@@ -104,9 +105,21 @@ class Solver(c3x3):
                 data_batch = {}
               data_batch.update(data.copy())
           return data, moves_history, status, data_batch
+      """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[self.max_steps-1])) in [18, 15]:
           self.delete_and_clean(data, moves_history)
+      """
+      if pk and pk == 17:
+        while pk >=0 and :
+          moves_history = p_moves_history[pk]
+          if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
+            if len(list(moves_history[self.max_steps-1])) in [18, 15]:
+              self.delete_and_clean(data, moves_history)
+              pk -= 1
+            else:
+              break
+        
       if len(data) < 20 and len(moves_history) <= self.max_steps:
         if len(moves_history) == self.max_steps -2 and moves_history[-1] != self.max_steps :
           moves_history += [self.max_steps -1]
@@ -119,9 +132,15 @@ class Solver(c3x3):
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
               # del moves_history
-              pk +=1
+              if pk and pk < 17 :
+                pk +=1 
+                if p_moves_history[pk] and (len(p_moves_history[pk])>1 or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
+                  moves_history = p_moves_history[pk]
+                else:
+                  p_moves_history[pk] = []
+                  moves_history = []
               # moves_history[0] = "change it"
-              moves_history = p_moves_history[pk] if p_moves_history[pk] and len(p_moves_history[pk])>1 else []
+              moves_history = p_moves_history[pk]  else []
               print(f" The Key is being change from {key} to ")
               continue
             #elif moves_history[0] == "change it":
