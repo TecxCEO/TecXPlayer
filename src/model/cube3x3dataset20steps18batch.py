@@ -135,6 +135,7 @@ class Solver(c3x3):
               # del moves_history
               if pk and pk < 17 :
                 pk +=1 
+                print(f" pk ,= {pk} ")
                 if p_moves_history[pk] and (len(p_moves_history[pk])>1 or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
                   moves_history = p_moves_history[pk]
                 else:
