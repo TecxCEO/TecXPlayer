@@ -109,7 +109,7 @@ class Solver(c3x3):
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-            print(f"moves_history in if 20 = {moves_history} ")
+            print(f"p_moves_history in if 20 = {p_moves_history} ")
           return data, p_moves_history, status, data_batch
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
