@@ -33,6 +33,7 @@ class Solver(c3x3):
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
+    pk = 0
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
       #print(f"\n\nwhile loop no = {while_loop }  are started.")
@@ -66,14 +67,19 @@ class Solver(c3x3):
         del moves_history[index+1]
         del moves_history[index]
       return
-  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
+  #def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None):
+  def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
+    moves_history = []
+    if pk and p_moves_history[pk] and len(p_moves_history[pk])>1:
+      moves_history = p_moves_history[pk]
+    else moves_history = p_moves_history
     ###
     if moves_history is None:
-      moves_history = []
+      #moves_history = []
       status=False
     if isinstance(data, dict):
       if len(data)==20:
@@ -112,12 +118,14 @@ class Solver(c3x3):
           print(f" current key is {key}, ")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
-              del moves_history
-              moves_history[0] = "change it"
+              # del moves_history
+              pk +=1
+              # moves_history[0] = "change it"
+              moves_history = p_moves_history[pk] if p_moves_history[pk] and len(p_moves_history[pk])>1 else []
               print(f" The Key is being change from {key} to ")
               continue
-            elif moves_history[0] == "change it":
-              moves_history = []
+            #elif moves_history[0] == "change it":
+              #moves_history = []
           ######
           ######
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
