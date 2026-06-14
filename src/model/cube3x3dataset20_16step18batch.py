@@ -77,7 +77,7 @@ class Solver(c3x3):
     if isinstance(data, dict):
       if len(data)==20:
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
-          if moves_history and moves_history[-1] == max_steps # 16: ####
+          if moves_history and moves_history[-1] == max_steps: # 16: ####
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
           else:
             states,move_list,status=super().moves(data,mtsp,moves_history)
