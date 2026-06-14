@@ -44,6 +44,7 @@ class Solver(c3x3):
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         print(f" pk in while loop = {pk} ")
+        print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
           json.dump(my_data, wf, indent=4)
@@ -177,7 +178,8 @@ class Solver(c3x3):
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
             print(f"I am here.")
-            #if pk==0 and p_moves_history ==[] and # len(moves_history)==18 :
+            if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
+              p_moves_history = moves_history
             if pk is not None and pk >=0:
               print(f" pk = {pk}")
               print(f" p_moves_history = {p_moves_history} ")
