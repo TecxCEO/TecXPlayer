@@ -72,7 +72,7 @@ class Solver(c3x3):
     Works for both nested dictionaries and lists of dictionaries.
     """
     moves_history = []
-    if pk:
+    if pk is not None:
       if p_moves_history[pk] and len(p_moves_history[pk])>1:
         moves_history = p_moves_history[pk]
       elif not p_moves_history[pk] and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
@@ -101,11 +101,14 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
+            #moves_history = mh if len(mh) == 18 else None
+            
             if moves_history and moves_history[-1] == self.max_steps:  # 16: ####
               moves_history[-1]= mh
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
+            print(f"moves_history in if 20 = {moves_history} ")
           return data, moves_history, status, data_batch
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
@@ -143,7 +146,7 @@ class Solver(c3x3):
                 print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
-                if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
+                if p_moves_history[pk] and len(p_moves_history[pk])>3 #1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
                   print(f" p_moves_history in loop if 17 = {p_moves_history} ")
                   print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
                   moves_history = p_moves_history[pk] 
@@ -172,7 +175,8 @@ class Solver(c3x3):
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
             print(f"I am here.")
-            if pk and pk >=0:
+            if pk==0 and p_moves_history ==[] and len(moves_history)==18 :
+            elif pk and pk >=0:
                 p_moves_history[pk] = moves_history
             elif pk == None:
                 p_moves_history= moves_history
