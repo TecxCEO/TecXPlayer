@@ -176,7 +176,7 @@ class Solver(c3x3):
               if pk and pk >=0:
                 p_moves_history[pk] = moves_history
                 """
-            return data, p_moves_history, status, data_batch
+            return data, p_moves_history, status, data_batch,pk
         return
 if __name__=="__main__":
   state_given_to_solve={
