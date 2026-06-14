@@ -161,8 +161,8 @@ class Solver(c3x3):
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
-            ##if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
-              ##p_moves_history[pk] = moves_history
+            if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
+              p_moves_history[pk] = moves_history
             return data, moves_history, status, data_batch
         return
 if __name__=="__main__":
