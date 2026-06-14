@@ -133,7 +133,7 @@ class Solver(c3x3):
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             print(f" moves_history  = {moves_history} ")
             print(f" moves_history length = {len(moves_history)} ")
-            print(f" moves_history[-1} in loop = {moves_history[-1]} ")
+            print(f" moves_history[-1] in loop = {moves_history[-1]} ")
             if moves_history[-1] != self.max_steps:
               print(f" self.max_steps in loop = {self.max_steps} ")
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
