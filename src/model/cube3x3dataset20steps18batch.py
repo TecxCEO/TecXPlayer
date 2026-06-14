@@ -143,9 +143,11 @@ class Solver(c3x3):
                 print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
-                if p_moves_history[pk] and (len(p_moves_history[pk])>1 or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
-                  moves_history = p_moves_history[pk]
-                else:
+                if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
+                  moves_history = p_moves_history[pk] 
+                elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
+                  moves_history = [p_moves_history[pk]]
+                elif not p_moves_history[pk] :
                   p_moves_history[pk] = []
                   moves_history = []
                 print(f" The Key is being change from {key} to ")
