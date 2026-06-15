@@ -82,7 +82,8 @@ class Solver(c3x3):
         if isinstance(p_moves_history[pk], str):
           moves_history = [p_moves_history[pk]]
         elif isinstance(p_moves_history[pk], list):
-          moves_history += p_moves_history[pk]
+          #moves_history += p_moves_history[pk]
+          moves_history.extend(p_moves_history[pk])
         #print(f"moves_history at start of loop = {moves_history} ")
       elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
@@ -166,7 +167,8 @@ class Solver(c3x3):
                   if isinstance(p_moves_history[pk], str):
                     moves_history = [p_moves_history[pk]]
                   elif isinstance(p_moves_history[pk], list):
-                    moves_history += p_moves_history[pk]
+                    #moves_history += p_moves_history[pk]
+                    moves_history.extend(p_moves_history[pk])
                 elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
                   moves_history = [p_moves_history[pk]]
                 elif not p_moves_history[pk] :
@@ -197,6 +199,7 @@ class Solver(c3x3):
               print(f" p_moves_history length = {len(p_moves_history)} ")
               print(f" moves_history = {moves_history} ")
               p_moves_history += moves_history
+              #moves_history.extend(p_moves_history[pk])
               print(f" p_moves_history after = {p_moves_history} ")
               print(f" p_moves_history length = {len(p_moves_history)} ")
               print(f" moves_history = {moves_history} ")
