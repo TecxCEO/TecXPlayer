@@ -195,12 +195,13 @@ class Solver(c3x3):
             print(f" p_moves_history before = {p_moves_history} ")
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-            print(f" p_moves_history aft= {p_moves_history} ")
-            #return
+            #print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
+            print(f" p_moves_history aft= {p_moves_history} ")
+            print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
             if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
               print(f" p_moves_history before = {p_moves_history} ")
@@ -217,10 +218,12 @@ class Solver(c3x3):
               #print(f" p_moves_history length = {len(p_moves_history)} ")
               #print(f" moves_history length = {moves_history} ")
               p_moves_history[pk] = moves_history
+              print(f" p_moves_history in pk is not None after = {p_moves_history} ")
             elif pk == None:
-              p_moves_history= [moves_history]
+              print(f" p_moves_history in pk is None before= {p_moves_history} ")
+              #p_moves_history= [moves_history]
               p_moves_history.extend(moves_history)
-              
+              print(f" p_moves_history in pk is None after = {p_moves_history} ")
             """
             if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
               if pk and pk >=0:
