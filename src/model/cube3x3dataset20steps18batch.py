@@ -42,6 +42,7 @@ class Solver(c3x3):
         data_batch = {}
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
+        #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         print(f" pk in while loop = {pk} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
@@ -124,7 +125,7 @@ class Solver(c3x3):
               p_moves_history[-1]= mh
             #print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
-          return data,status,p_moves_history,data_batch,pk
+          return data,status,mtsp,p_moves_history,data_batch,pk
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[self.max_steps-1])) in [18, 15]:
@@ -224,7 +225,7 @@ class Solver(c3x3):
             print(f" moves_history at end before return = {moves_history} ")
             print(f" p_moves_history at end before return = {p_moves_history} ")
             #return data, p_moves_history, status, data_batch,pk
-            return data,status,p_moves_history,data_batch,pk
+            return data,status,mtsp,p_moves_history,data_batch,pk
             
         return
 if __name__=="__main__":
