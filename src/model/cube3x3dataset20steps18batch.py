@@ -77,21 +77,28 @@ class Solver(c3x3):
     #print(f"p_moves_history at start of loop = {p_moves_history} ")
     
     moves_history = []
+    print (f" pk = {pk}")
     if pk is not None:
+      print ("at line 82")
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
         ##moves_history = [p_moves_history[pk]]
+        print ("at line 85")
         if isinstance(p_moves_history[pk], str):
+          print ("at line 87")
           print(f"moves_history at start of loop before = {moves_history} ")
           moves_history = [p_moves_history[pk]]
           print(f"moves_history at start of loop after = {moves_history} ") 
         elif isinstance(p_moves_history[pk], list):
+          print ("at line 92")
           #moves_history += p_moves_history[pk]
           moves_history.extend(p_moves_history[pk]).copy()
         #print(f"moves_history at start of loop = {moves_history} ")
       elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
+        print ("at line 98")
     else:
       #print(f" moves_history in else before  = {moves_history} ")
+      print ("at line 101")
       moves_history = p_moves_history.copy()
     print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
