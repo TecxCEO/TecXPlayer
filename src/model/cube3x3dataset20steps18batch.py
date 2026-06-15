@@ -45,6 +45,7 @@ class Solver(c3x3):
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         print(f" pk in while loop = {pk} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
+        print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
           json.dump(my_data, wf, indent=4)
@@ -77,8 +78,11 @@ class Solver(c3x3):
     moves_history = []
     if pk is not None:
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
-        moves_history = [p_moves_history[pk]]
-        #moves_history += p_moves_history[pk]
+        ##moves_history = [p_moves_history[pk]]
+        if isinstance(p_moves_history[pk], str):
+          moves_history = [p_moves_history[pk]]
+        elif isinstance(p_moves_history[pk], list):
+          moves_history += p_moves_history[pk]
         #print(f"moves_history at start of loop = {moves_history} ")
       elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
@@ -106,7 +110,11 @@ class Solver(c3x3):
             for i in range(len(states)):
               data.update({move_list[i]:states[i]})
               mh += [move_list[i]]
-            p_moves_history = mh if len(mh) == 18 else None
+            
+            #p_moves_history = mh if len(mh) == 18 else None
+            if len(mh) == 18 :
+              p_moves_history = mh
+              print(f"p_moves_history  = {p_moves_history} at first move it's length = {len(p_moves_history)} ")
             if moves_history and moves_history[-1] == self.max_steps:  # 16: ####
               moves_history[-1]= mh
               if isinstance(data_batch, str):
@@ -114,7 +122,8 @@ class Solver(c3x3):
               data_batch.update(data.copy())
               p_moves_history[-1]= mh
             #print(f"p_moves_history in if 20 = {p_moves_history} ")
-          return data, p_moves_history, status, data_batch
+          #return data, p_moves_history, status, data_batch
+          return data,status,p_moves_history,data_batch,pk
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[self.max_steps-1])) in [18, 15]:
@@ -152,9 +161,12 @@ class Solver(c3x3):
                 pk +=1 
                 #print(f" pk in loop = {pk} ")
                 if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
-                  
                   #print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
-                  moves_history = p_moves_history[pk] 
+                  #moves_history = p_moves_history[pk]
+                  if isinstance(p_moves_history[pk], str):
+                    moves_history = [p_moves_history[pk]]
+                  elif isinstance(p_moves_history[pk], list):
+                    moves_history += p_moves_history[pk]
                 elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
                   moves_history = [p_moves_history[pk]]
                 elif not p_moves_history[pk] :
@@ -201,7 +213,9 @@ class Solver(c3x3):
                 p_moves_history[pk] = moves_history
                 """
             print(f" moves_history at end before return = {moves_history} ")
-            return data, p_moves_history, status, data_batch,pk
+            #return data, p_moves_history, status, data_batch,pk
+            return data,status,p_moves_history,data_batch,pk
+            
         return
 if __name__=="__main__":
   state_given_to_solve={
