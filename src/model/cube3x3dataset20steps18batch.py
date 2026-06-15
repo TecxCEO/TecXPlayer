@@ -86,13 +86,13 @@ class Solver(c3x3):
           print(f"moves_history at start of loop after = {moves_history} ") 
         elif isinstance(p_moves_history[pk], list):
           #moves_history += p_moves_history[pk]
-          moves_history.extend(p_moves_history[pk])
+          moves_history.extend(p_moves_history[pk]).copy()
         #print(f"moves_history at start of loop = {moves_history} ")
       elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
         p_moves_history[pk] = []
     else:
       #print(f" moves_history in else before  = {moves_history} ")
-      moves_history = p_moves_history
+      moves_history = p_moves_history.copy()
     print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       #moves_history = []
