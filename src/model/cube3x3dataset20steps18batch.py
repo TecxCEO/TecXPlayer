@@ -212,8 +212,8 @@ class Solver(c3x3):
               print(f" p_moves_history length = {len(p_moves_history)} ")
               print(f" moves_history = {moves_history} ")
             if pk is not None and pk >0:
-              #print(f" pk = {pk}")
-              #print(f" p_moves_history = {p_moves_history} ")
+              print(f" pk = {pk}")
+              print(f" p_moves_history in pk is not None = {p_moves_history} ")
               #print(f" p_moves_history length = {len(p_moves_history)} ")
               #print(f" moves_history length = {moves_history} ")
               p_moves_history[pk] = moves_history
