@@ -11,7 +11,7 @@ class Solver(c3x3):
     super().__init__()
     self.filename = "cube3x3dataset20steps18batch.json"
     # self.filename = "cube3x3trainingdataset.json"
-    self.filepath="../data/cube3x3/solution"
+    self.filepath="./data/cube3x3/solution"
     self.max_steps = max_steps 
   def solve(self,given_state):
     self.current_state=given_state.copy()
@@ -81,7 +81,9 @@ class Solver(c3x3):
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
         ##moves_history = [p_moves_history[pk]]
         if isinstance(p_moves_history[pk], str):
+          print(f"moves_history at start of loop before = {moves_history} ")
           moves_history = [p_moves_history[pk]]
+          print(f"moves_history at start of loop after = {moves_history} ") 
         elif isinstance(p_moves_history[pk], list):
           #moves_history += p_moves_history[pk]
           moves_history.extend(p_moves_history[pk])
@@ -91,7 +93,7 @@ class Solver(c3x3):
     else:
       #print(f" moves_history in else before  = {moves_history} ")
       moves_history = p_moves_history
-      #print(f" moves_history in else after = {moves_history} ")
+    print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       #moves_history = []
       status=False
@@ -123,7 +125,7 @@ class Solver(c3x3):
                 data_batch = {}
               data_batch.update(data.copy())
               p_moves_history[-1]= mh
-            #print(f"p_moves_history in if 20 = {p_moves_history} ")
+          print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,p_moves_history,data_batch,pk
       """
