@@ -191,9 +191,15 @@ class Solver(c3x3):
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
-            #print(f"I am here.")
+            print(f"I am here.")
             if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
+              print(f" p_moves_history before = {p_moves_history} ")
+              print(f" p_moves_history length = {len(p_moves_history)} ")
+              print(f" moves_history = {moves_history} ")
               p_moves_history += moves_history
+              print(f" p_moves_history after = {p_moves_history} ")
+              print(f" p_moves_history length = {len(p_moves_history)} ")
+              print(f" moves_history = {moves_history} ")
             if pk is not None and pk >0:
               #print(f" pk = {pk}")
               #print(f" p_moves_history = {p_moves_history} ")
@@ -213,6 +219,7 @@ class Solver(c3x3):
                 p_moves_history[pk] = moves_history
                 """
             print(f" moves_history at end before return = {moves_history} ")
+            print(f" p_moves_history at end before return = {p_moves_history} ")
             #return data, p_moves_history, status, data_batch,pk
             return data,status,p_moves_history,data_batch,pk
             
