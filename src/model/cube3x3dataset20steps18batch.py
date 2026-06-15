@@ -74,7 +74,7 @@ class Solver(c3x3):
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
-    #print(f"p_moves_history at start of loop = {p_moves_history} ")
+    print(f"p_moves_history at start of loop = {p_moves_history} ")
     
     moves_history = []
     print (f" pk = {pk}")
@@ -124,7 +124,8 @@ class Solver(c3x3):
             
             #p_moves_history = mh if len(mh) == 18 else None
             if len(mh) == 18 :
-              p_moves_history = mh
+              #p_moves_history = mh
+              p_moves_history.extend(mh)
               print(f"p_moves_history  = {p_moves_history} at first move it's length = {len(p_moves_history)} ")
             if moves_history and moves_history[-1] == self.max_steps:  # 16: ####
               moves_history[-1]= mh
@@ -135,6 +136,7 @@ class Solver(c3x3):
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,p_moves_history,data_batch,pk
+          # return
       """
       if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
         if len(list(moves_history[self.max_steps-1])) in [18, 15]:
