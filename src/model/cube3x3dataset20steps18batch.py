@@ -197,6 +197,7 @@ class Solver(c3x3):
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             #print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
+            print(f" p_moves_history after nested calling  = {p_moves_history} ")
             
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
