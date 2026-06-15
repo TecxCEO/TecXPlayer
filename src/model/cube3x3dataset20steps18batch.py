@@ -218,7 +218,9 @@ class Solver(c3x3):
               #print(f" moves_history length = {moves_history} ")
               p_moves_history[pk] = moves_history
             elif pk == None:
-                p_moves_history= [moves_history]
+              p_moves_history= [moves_history]
+              p_moves_history.extend(moves_history)
+              
             """
             if moves_history and len(moves_history)==self.max_steps and moves_history[-1] !=self.max_steps:
               if pk and pk >=0:
