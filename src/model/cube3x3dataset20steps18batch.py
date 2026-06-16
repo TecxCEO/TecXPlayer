@@ -213,6 +213,10 @@ class Solver(c3x3):
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
+            #
+            del p_moves_history[pk]
+            p_moves_history[pk] = moves_history
+            #
             """
             if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
               print(f" p_moves_history before = {p_moves_history} ")
