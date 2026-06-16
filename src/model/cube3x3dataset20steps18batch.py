@@ -82,6 +82,16 @@ class Solver(c3x3):
       # moves_history.extend(p_moves_history[pk]).copy() #
       moves_history.extend(p_moves_history[pk]) #
       #moves_history = p_moves_history[pk] #
+      if moves_history:
+        del moves_history
+      #if p_moves_history[pk]:
+        #moves_history.extend(p_moves_history[pk])
+        #moves_history = p_moves_history[pk]
+      # el
+      if not p_moves_history[pk] :
+        p_moves_history[pk] = []
+      moves_history = p_moves_history[pk]
+                #print(f" The K
     """
       print ("at line 82")
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
@@ -197,12 +207,13 @@ class Solver(c3x3):
                 
                 if moves_history:
                   del moves_history
-                if p_moves_history[pk]:
-                  moves_history.extend(p_moves_history[pk])
+                #if p_moves_history[pk]:
+                  #moves_history.extend(p_moves_history[pk])
                   #moves_history = p_moves_history[pk]
-                elif not p_moves_history[pk] :
+                # el
+                if not p_moves_history[pk] :
                   p_moves_history[pk] = []
-                  moves_history = p_moves_history[pk]
+                moves_history = p_moves_history[pk]
                 #print(f" The Key is being change from {key} to ")
                 continue
           ######
