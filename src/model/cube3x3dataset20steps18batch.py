@@ -93,7 +93,7 @@ class Solver(c3x3):
         if pk >= len(p_moves_history): # or (pk < len(p_moves_history) and not p_moves_history[pk] ):
           p_moves_history += []
           #p_moves_history[pk] = []
-          print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
+          # print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
         print(f"p_moves_history = {p_moves_history} ")
         moves_history = p_moves_history[pk]
     if pk is None:
