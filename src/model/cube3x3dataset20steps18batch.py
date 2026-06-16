@@ -94,10 +94,14 @@ class Solver(c3x3):
           p_moves_history += []
           #p_moves_history[pk] = []
           # print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
-        print(f"DEBUG: pk value is {pk}, list total length is {len(p_moves_history)}")
-        #print(f"p_moves_history[{pk}] = {p_moves_history[pk]}")
-        print(f"p_moves_history = {p_moves_history} ")
-        moves_history = p_moves_history[pk] if p_moves_history and locals().get(p_moves_history[pk]) else p_moves_history
+        if p_moves_history and locals().get(p_moves_history[pk]):
+          moves_history = p_moves_history[pk]
+          print(f"DEBUG: pk value is {pk}, list total length is {len(p_moves_history)}")
+          print(f"p_moves_history[{pk}] = {p_moves_history[pk]}")
+        else:
+          moves_history = p_moves_history
+          print(f"p_moves_history = {p_moves_history} ")
+        ######moves_history = p_moves_history[pk] if p_moves_history and locals().get(p_moves_history[pk]) else p_moves_history
     if pk is None:
       moves_history = p_moves_history
     print(f"moves_history after get value from p_m = {moves_history} ")
