@@ -93,6 +93,8 @@ class Solver(c3x3):
           p_moves_history[pk] = []
         moves_history = p_moves_history[pk]
                 #print(f" The K
+    if pk is None:
+      moves_history = p_moves_history
     """
       print ("at line 82")
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
