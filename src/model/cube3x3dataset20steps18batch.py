@@ -202,8 +202,10 @@ class Solver(c3x3):
               removed_key = moves_history.pop(0)
             print(f" moves_history before nested calling  = {moves_history} ")
             print(f" p_moves_history before = {p_moves_history} ")
+            print(f" data_batch[{key}] before nested calling = {data_batch[key]} ")
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
+            print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
             #print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f" p_moves_history after nested calling  = {p_moves_history} ")
@@ -214,8 +216,11 @@ class Solver(c3x3):
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
             #
-            del p_moves_history[pk]
+            if p_moves_history[pk] and pk is not None:
+              del p_moves_history[pk] 
             p_moves_history[pk] = moves_history
+            #else
+            
             #
             """
             if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
