@@ -89,12 +89,16 @@ class Solver(c3x3):
         #moves_history = p_moves_history[pk]
       # el
       if pk:
+        print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
+    
         if not p_moves_history[pk] :
           p_moves_history[pk] = []
         moves_history = p_moves_history[pk]
                 #print(f" The K
     if pk is None:
       moves_history = p_moves_history
+    print(f"moves_history after get value from p_m = {moves_history} ")
+    
     """
       print ("at line 82")
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
