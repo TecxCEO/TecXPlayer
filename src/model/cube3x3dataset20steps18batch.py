@@ -218,20 +218,22 @@ class Solver(c3x3):
                 #print(f" The Key is being change from {key} to ")
                 continue
           ######
-          print(f" moves_history at if start.  = {moves_history} ")
+          print(f" moves_history at if start for add key.  = {moves_history} ")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
-              #print("In the if for add key")
+              print("In the if for add key")
               if moves_history and moves_history[-1] == self.max_steps:
                 moves_history[-2] = key
               elif not moves_history or (moves_history and moves_history[-1] != self.max_steps):
                 moves_history += [key]
+              print(f" moves_history after added key.  = {moves_history} ")
+              #
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
             print(f" moves_history before nested calling  = {moves_history} ")
             print(f" p_moves_history before = {p_moves_history} ")
-            print(f" data_batch[{key}] before nested calling = {data_batch[key]} ")
+            print(f" data_batch[] before nested calling = {data_batch} ")
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
