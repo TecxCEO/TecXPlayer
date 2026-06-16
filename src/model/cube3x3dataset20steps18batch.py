@@ -80,7 +80,7 @@ class Solver(c3x3):
     print (f" pk = {pk}")
     if pk is not None:
       # moves_history.extend(p_moves_history[pk]).copy() #
-      moves_history.extend(p_moves_history[pk]) #
+      ####moves_history.extend(p_moves_history[pk]) #
       #moves_history = p_moves_history[pk] #
       if moves_history:
         del moves_history
