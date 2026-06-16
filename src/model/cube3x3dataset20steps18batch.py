@@ -88,7 +88,7 @@ class Solver(c3x3):
         #moves_history.extend(p_moves_history[pk])
         #moves_history = p_moves_history[pk]
       # el
-      if not p_moves_history[pk] :
+      if pk and not p_moves_history[pk] :
         p_moves_history[pk] = []
       moves_history = p_moves_history[pk]
                 #print(f" The K
