@@ -91,7 +91,7 @@ class Solver(c3x3):
       if pk>=0:
         # if not locals().get(p_moves_history[pk]) :
         if pk >= len(p_moves_history): # or (pk < len(p_moves_history) and not p_moves_history[pk] ):
-          p_moves_history[pk] += []
+          p_moves_history += []
           #p_moves_history[pk] = []
         print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
         moves_history = p_moves_history[pk]
@@ -220,7 +220,7 @@ class Solver(c3x3):
                 # el
                 #if not locals().get(p_moves_history[pk]) :
                 if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
-                  p_moves_history[pk] += []
+                  p_moves_history += []
                   # p_moves_history[pk] = []
                 moves_history = p_moves_history[pk]
                 #print(f" The Key is being change from {key} to ")
@@ -288,7 +288,7 @@ class Solver(c3x3):
               if pk>=0:
                 #if not locals().get(p_moves_history[pk]) :
                 if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk] ):
-                  p_moves_history[pk] += []
+                  p_moves_history += []
                   # p_moves_history[pk] = []
                   #p_moves_history[pk] = moves_history
               p_moves_history[pk] = moves_history
