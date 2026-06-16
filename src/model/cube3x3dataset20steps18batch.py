@@ -95,7 +95,7 @@ class Solver(c3x3):
           #p_moves_history[pk] = []
           # print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
         print(f"p_moves_history = {p_moves_history} ")
-        moves_history = p_moves_history[pk]
+        moves_history = p_moves_history[pk] if not locals().get(p_moves_history[pk]) else None
     if pk is None:
       moves_history = p_moves_history
     print(f"moves_history after get value from p_m = {moves_history} ")
