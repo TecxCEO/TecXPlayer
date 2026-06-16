@@ -88,7 +88,7 @@ class Solver(c3x3):
         #moves_history.extend(p_moves_history[pk])
         #moves_history = p_moves_history[pk]
       # el
-      if pk:
+      if pk>=0:
         print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
     
         if not p_moves_history[pk] :
@@ -283,7 +283,7 @@ class Solver(c3x3):
               print(f" p_moves_history in pk is None after = {p_moves_history} ")
             """
             if pk is not None:
-              if pk:
+              if pk>=0:
                 if not p_moves_history[pk] :
                   p_moves_history[pk] = []
                   #p_moves_history[pk] = moves_history
