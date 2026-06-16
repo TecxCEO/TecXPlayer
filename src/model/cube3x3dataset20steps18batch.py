@@ -79,6 +79,10 @@ class Solver(c3x3):
     moves_history = []
     print (f" pk = {pk}")
     if pk is not None:
+      # moves_history.extend(p_moves_history[pk]).copy() #
+      moves_history.extend(p_moves_history[pk]) #
+      #moves_history = p_moves_history[pk] #
+    """
       print ("at line 82")
       if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
         ##moves_history = [p_moves_history[pk]]
@@ -100,6 +104,7 @@ class Solver(c3x3):
       #print(f" moves_history in else before  = {moves_history} ")
       print ("at line 101")
       moves_history = p_moves_history.copy()
+    """
     print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       #moves_history = []
@@ -172,7 +177,8 @@ class Solver(c3x3):
               if pk is not None and pk < 17 :
                 #print(f" pk in loop if 17 = {pk} ")
                 pk +=1 
-                #print(f" pk in loop = {pk} ")
+                print(f" pk in loop = {pk} ")
+                """
                 if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
                   #print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
                   #moves_history = p_moves_history[pk]
@@ -186,6 +192,17 @@ class Solver(c3x3):
                 elif not p_moves_history[pk] :
                   p_moves_history[pk] = []
                   moves_history = []
+                """
+                ####
+                
+                if moves_history:
+                  del moves_history
+                if p_moves_history[pk]:
+                  moves_history.extend(p_moves_history[pk])
+                  #moves_history = p_moves_history[pk]
+                elif not p_moves_history[pk] :
+                  p_moves_history[pk] = []
+                  moves_history = p_moves_history[pk]
                 #print(f" The Key is being change from {key} to ")
                 continue
           ######
@@ -216,9 +233,9 @@ class Solver(c3x3):
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
             #
-            if p_moves_history[pk] and pk is not None:
-              del p_moves_history[pk] 
-            p_moves_history[pk] = moves_history
+            ##if p_moves_history[pk] and pk is not None:
+              ##del p_moves_history[pk] 
+            ###p_moves_history[pk] = moves_history
             #else
             
             #
