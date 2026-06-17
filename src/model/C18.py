@@ -179,7 +179,11 @@ class Solver(c3x3):
               #print(f" pk in loop before if 17 = {pk} ") if pk is not None else None
               if pk is not None and pk < 17 :
                 #print(f" pk in loop if 17 = {pk} ")
-                p_moves_history[pk] = moves_history
+                #
+                #### p_moves_history[pk] = moves_history
+                if p_moves_history[pk] == moves_history[0]:
+                  p_moves_history[pk].expand(moves_history[1:])
+                #
                 pk +=1 
                 print(f" pk in loop = {pk} ")
                 if moves_history:
