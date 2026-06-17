@@ -197,8 +197,8 @@ class Solver(c3x3):
                 print(f" pk in loop = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
-                if moves_history:
-                  del moves_history
+                ####if moves_history:
+                  ####del moves_history
                 #if p_moves_history[pk]:
                   #moves_history.extend(p_moves_history[pk])
                   #moves_history = p_moves_history[pk]
