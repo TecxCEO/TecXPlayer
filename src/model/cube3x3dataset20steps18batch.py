@@ -313,11 +313,12 @@ class Solver(c3x3):
               del p_moves_history
               p_moves_history = []
               p_moves_history.extend(moves_history)
+              print(f" p_moves_history in if none by extend= {p_moves_history} ")
             print(f" moves_history at end before return = {moves_history} ")
             print(f" p_moves_history at end before return = {p_moves_history} ")
             #return data, p_moves_history, status, data_batch,pk
             time.sleep(1)
-            return
+            #return
             if pk is not None :
               return data,status,mtsp,p_moves_history,data_batch,pk
             elif pk is None :
