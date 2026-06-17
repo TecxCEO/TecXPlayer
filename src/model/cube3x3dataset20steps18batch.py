@@ -107,7 +107,7 @@ class Solver(c3x3):
     if pk is None:
       #moves_history = p_moves_history
       moves_history.extend(p_moves_history)
-      print(f"moves_history from if pk is None)
+      print(f"moves_history from if pk is None")
     print(f"moves_history after get value from p_m = {moves_history} ")
     
     """
