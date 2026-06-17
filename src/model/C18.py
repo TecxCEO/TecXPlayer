@@ -117,6 +117,7 @@ class Solver(c3x3):
       moves_history = []
       status=False
     if isinstance(data, dict):
+      print(f" in data ==20 value as data {data}")
       if len(data)==20:
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
@@ -233,6 +234,7 @@ class Solver(c3x3):
             print(f" p_moves_history before = {p_moves_history} ")
             ####print(f" data_batch[] before nested calling = {data_batch} ")
             if moves_history and key == moves_history[0]:
+              print(f" value {value}")
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             ####print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
             #print(f" p_moves_history aft= {p_moves_history} ")
