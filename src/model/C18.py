@@ -264,7 +264,7 @@ class Solver(c3x3):
             # elif pk is None :
               # return data,status,mtsp,p_moves_history,data_batch
             """
-            time.sleep(1)
+            ####time.sleep(1)
             return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
