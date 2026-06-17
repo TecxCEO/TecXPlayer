@@ -194,6 +194,7 @@ class Solver(c3x3):
                   # p_moves_history[pk] = list(moves_history[0:])
                   # p_moves_history[pk] = list(moves_history)
                 #
+                print(f" pk in loop = {pk} ")
                 pk +=1 
                 print(f" pk in loop = {pk} ")
                 if moves_history:
@@ -209,6 +210,10 @@ class Solver(c3x3):
                   # p_moves_history[pk] = []
                 moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps else []
                 #print(f" The Key is being change from {key} to ")
+                if len(p_moves_history[pk]) == self.max_steps-2:
+                  moves_history = p_moves_history[pk]
+                  # return
+                  return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
                 continue
           ######
           print(f" moves_history at if start for add key.  = {moves_history} ")
