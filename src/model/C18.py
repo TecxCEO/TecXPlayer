@@ -145,7 +145,7 @@ class Solver(c3x3):
               #p_moves_history[-1]= mh
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
-          return data,status,mtsp,moves_history,data_batch,pk,moves_history
+          return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
       if pk and pk == 17:
         while pk >=0:
           moves_history = p_moves_history[pk]
@@ -191,7 +191,7 @@ class Solver(c3x3):
                 if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
-                moves_history = p_moves_history[pk]
+                moves_history = p_moves_history[pk] if len(p_moves_history)>1 else []
                 #print(f" The Key is being change from {key} to ")
                 continue
           ######
@@ -223,6 +223,7 @@ class Solver(c3x3):
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
+            """
             if pk is not None:
               if pk>=0:
                 #if not locals().get(p_moves_history[pk]) :
@@ -242,11 +243,12 @@ class Solver(c3x3):
             #return data, p_moves_history, status, data_batch,pk
             time.sleep(1)
             #return
-            if pk is not None :
-              return data,status,mtsp,p_moves_history,data_batch,pk
-            elif pk is None :
-              return data,status,mtsp,p_moves_history,data_batch
-            
+            # if pk is not None :
+              # return data,status,mtsp,p_moves_history,data_batch,pk
+            # elif pk is None :
+              # return data,status,mtsp,p_moves_history,data_batch
+            """
+            return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
   state_given_to_solve={
