@@ -96,8 +96,13 @@ class Solver(c3x3):
           # print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
         elif p_moves_history and pk < len(p_moves_history) and p_moves_history[pk]:
           # elif p_moves_history and pk < len(p_moves_history) and locals().get(p_moves_history[pk]):
-          #moves_history = p_moves_history[pk]
-          moves_history.extend(p_moves_history[pk])
+          if isinstance(p_moves_history[pk], str) and len(p_moves_history[pk])==3:
+            moves_history = [p_moves_history[pk]]
+            print(f"moves_history from pk not none and str  = {moves_history} ")
+          elif isinstance(p_moves_history[pk], list) and len(p_moves_history[pk])>1:
+            moves_history.extend(p_moves_history[pk])
+            print(f"moves_history from pk not none and list  = {moves_history} ")
+          elif isinstan
           print(f"DEBUG: pk value is {pk}, list total length is {len(p_moves_history)}")
           print(f"p_moves_history[{pk}] = {p_moves_history[pk]}")
       else:
