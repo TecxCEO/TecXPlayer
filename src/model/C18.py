@@ -20,7 +20,7 @@ class Solver(c3x3):
         "puzzle_given": self.current_state,
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
-        "moves_history": []
+        "moves_history": [],
         "p_moves_history": []
       },
       "solution":self.current_state
