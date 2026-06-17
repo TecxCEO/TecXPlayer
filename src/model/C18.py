@@ -79,6 +79,7 @@ class Solver(c3x3):
     """
     print(f"p_moves_history at start of loop = {p_moves_history} ")
     
+    """
     moves_history = []
     print (f" pk = {pk}")
     if pk is not None:
@@ -111,6 +112,7 @@ class Solver(c3x3):
       print(f"moves_history from if pk is None")
     print(f"moves_history after get value from p_m = {moves_history} ")
     print(f" moves_history in else after = {moves_history} ")
+    """
     if moves_history is None:
       moves_history = []
       status=False
