@@ -21,6 +21,7 @@ class Solver(c3x3):
         "puzzle_status":False,
         "moves_to_solve_puzzle":"",
         "moves_history": []
+        "p_moves_history": []
       },
       "solution":self.current_state
     }
@@ -43,7 +44,8 @@ class Solver(c3x3):
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
-        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
+        #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["moves_history"])
+        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
         print(f" pk in while loop = {pk} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
         #print(f" my data = { my_data}")
@@ -69,7 +71,8 @@ class Solver(c3x3):
         del moves_history[index+1]
         del moves_history[index]
       return
-  def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
+  #def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
