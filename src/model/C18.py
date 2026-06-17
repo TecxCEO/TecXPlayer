@@ -193,7 +193,7 @@ class Solver(c3x3):
                 if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
-                moves_history = p_moves_history[pk] if len(p_moves_history)>1 else []
+                moves_history = p_moves_history[pk] if len(p_moves_history[pk])>1 else []
                 #print(f" The Key is being change from {key} to ")
                 continue
           ######
@@ -250,6 +250,7 @@ class Solver(c3x3):
             # elif pk is None :
               # return data,status,mtsp,p_moves_history,data_batch
             """
+            time.sleep(1)
             return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
