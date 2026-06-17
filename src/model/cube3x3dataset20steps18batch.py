@@ -311,6 +311,7 @@ class Solver(c3x3):
             elif pk is None:
               ####p_moves_history = moves_history
               del p_moves_history
+              p_moves_history = []
               p_moves_history.extend(moves_history)
             print(f" moves_history at end before return = {moves_history} ")
             print(f" p_moves_history at end before return = {p_moves_history} ")
