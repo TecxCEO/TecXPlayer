@@ -82,15 +82,8 @@ class Solver(c3x3):
     moves_history = []
     print (f" pk = {pk}")
     if pk is not None:
-      # moves_history.extend(p_moves_history[pk]).copy() #
-      ####moves_history.extend(p_moves_history[pk]) #
-      #moves_history = p_moves_history[pk] #
       if moves_history:
         del moves_history
-      #if p_moves_history[pk]:
-        #moves_history.extend(p_moves_history[pk])
-        #moves_history = p_moves_history[pk]
-      # el
       if pk>=0:
         # if not locals().get(p_moves_history[pk]) :
         if pk >= len(p_moves_history): # or (pk < len(p_moves_history) and not p_moves_history[pk] ):
@@ -117,30 +110,6 @@ class Solver(c3x3):
       moves_history.extend(p_moves_history)
       print(f"moves_history from if pk is None")
     print(f"moves_history after get value from p_m = {moves_history} ")
-    
-    """
-      print ("at line 82")
-      if p_moves_history and len(p_moves_history)>pk and len(p_moves_history[pk])>1:
-        ##moves_history = [p_moves_history[pk]]
-        print ("at line 85")
-        if isinstance(p_moves_history[pk], str):
-          print ("at line 87")
-          print(f"moves_history at start of loop before = {moves_history} ")
-          moves_history = [p_moves_history[pk]]
-          print(f"moves_history at start of loop after = {moves_history} ") 
-        elif isinstance(p_moves_history[pk], list):
-          print ("at line 92")
-          #moves_history += p_moves_history[pk]
-          moves_history.extend(p_moves_history[pk]).copy()
-        #print(f"moves_history at start of loop = {moves_history} ")
-      elif p_moves_history and len(p_moves_history) <= pk and (pk >0 and p_moves_history[pk - 1] and len(p_moves_history[pk - 1])>1):
-        p_moves_history[pk] = []
-        print ("at line 98")
-    else:
-      #print(f" moves_history in else before  = {moves_history} ")
-      print ("at line 101")
-      moves_history = p_moves_history.copy()
-    """
     print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
       moves_history = []
@@ -177,12 +146,6 @@ class Solver(c3x3):
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,moves_history,data_batch,pk,moves_history
-          # return
-      """
-      if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
-        if len(list(moves_history[self.max_steps-1])) in [18, 15]:
-          self.delete_and_clean(data, moves_history)
-      """
       if pk and pk == 17:
         while pk >=0:
           moves_history = p_moves_history[pk]
@@ -207,7 +170,9 @@ class Solver(c3x3):
             #print(f" moves_history[-1] in loop = {moves_history[-1]} ")
             ##if moves_history[-1] != self.max_steps:
               ##print(f" self.max_steps in loop = {self.max_steps} ")
-            if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
+            ####if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
+            if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps and (isinstance(moves_history[-1], list) and len(moves_history[-1])==15 ):
+              #print(f
               #print(f" pk in loop after if = {pk} ")
               #print(f" pk in loop before if 17 = {pk} ") if pk is not None else None
               if pk is not None and pk < 17 :
@@ -215,23 +180,6 @@ class Solver(c3x3):
                 p_moves_history[pk] = moves_history
                 pk +=1 
                 print(f" pk in loop = {pk} ")
-                """
-                if p_moves_history[pk] and len(p_moves_history[pk])>1 : # or ( len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist )):
-                  #print(f" p_moves_history[pk] in loop if 17 = {p_moves_history[pk]} ")
-                  #moves_history = p_moves_history[pk]
-                  if isinstance(p_moves_history[pk], str):
-                    moves_history = [p_moves_history[pk]]
-                  elif isinstance(p_moves_history[pk], list):
-                    #moves_history += p_moves_history[pk]
-                    moves_history.extend(p_moves_history[pk])
-                elif len(p_moves_history[pk]) == 1 and p_moves_history[pk+1] is not exist :
-                  moves_history = [p_moves_history[pk]]
-                elif not p_moves_history[pk] :
-                  p_moves_history[pk] = []
-                  moves_history = []
-                """
-                ####
-                
                 if moves_history:
                   del moves_history
                 #if p_moves_history[pk]:
@@ -239,6 +187,7 @@ class Solver(c3x3):
                   #moves_history = p_moves_history[pk]
                 # el
                 #if not locals().get(p_moves_history[pk]) :
+                moves_history = []
                 if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
@@ -274,36 +223,6 @@ class Solver(c3x3):
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here.")
-            #
-            ##if p_moves_history[pk] and pk is not None:
-              ##del p_moves_history[pk] 
-            ###p_moves_history[pk] = moves_history
-            #else
-            
-            #
-            """
-            if pk==0 and p_moves_history ==[] and len(moves_history)>0 : # len(moves_history)==18 :
-              print(f" p_moves_history before = {p_moves_history} ")
-              print(f" p_moves_history length = {len(p_moves_history)} ")
-              print(f" moves_history = {moves_history} ")
-              p_moves_history += moves_history
-              #moves_history.extend(p_moves_history[pk])
-              print(f" p_moves_history after = {p_moves_history} ")
-              print(f" p_moves_history length = {len(p_moves_history)} ")
-              print(f" moves_history = {moves_history} ")
-            if pk is not None and pk >0:
-              print(f" pk = {pk}")
-              print(f" p_moves_history in pk is not None = {p_moves_history} ")
-              #print(f" p_moves_history length = {len(p_moves_history)} ")
-              #print(f" moves_history length = {moves_history} ")
-              p_moves_history[pk] = moves_history
-              print(f" p_moves_history in pk is not None after = {p_moves_history} ")
-            elif pk == None:
-              print(f" p_moves_history in pk is None before= {p_moves_history} ")
-              #p_moves_history= [moves_history]
-              p_moves_history.extend(moves_history)
-              print(f" p_moves_history in pk is None after = {p_moves_history} ")
-            """
             if pk is not None:
               if pk>=0:
                 #if not locals().get(p_moves_history[pk]) :
