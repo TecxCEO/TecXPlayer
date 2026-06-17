@@ -231,10 +231,10 @@ class Solver(c3x3):
               removed_key = moves_history.pop(0)
             print(f" moves_history before nested calling  = {moves_history} ")
             print(f" p_moves_history before = {p_moves_history} ")
-            print(f" data_batch[] before nested calling = {data_batch} ")
+            ####print(f" data_batch[] before nested calling = {data_batch} ")
             if moves_history and key == moves_history[0]:
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
-            print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
+            ####print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
             #print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f" p_moves_history after nested calling  = {p_moves_history} ")
