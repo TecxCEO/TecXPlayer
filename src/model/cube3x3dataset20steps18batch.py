@@ -102,7 +102,6 @@ class Solver(c3x3):
           elif isinstance(p_moves_history[pk], list) and len(p_moves_history[pk])>1:
             moves_history.extend(p_moves_history[pk])
             print(f"moves_history from pk not none and list  = {moves_history} ")
-          elif isinstan
           print(f"DEBUG: pk value is {pk}, list total length is {len(p_moves_history)}")
           print(f"p_moves_history[{pk}] = {p_moves_history[pk]}")
       else:
