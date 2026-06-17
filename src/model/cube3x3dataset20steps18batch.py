@@ -314,6 +314,7 @@ class Solver(c3x3):
             print(f" p_moves_history at end before return = {p_moves_history} ")
             #return data, p_moves_history, status, data_batch,pk
             time.sleep(1)
+            return
             if pk is not None :
               return data,status,mtsp,p_moves_history,data_batch,pk
             elif pk is None :
