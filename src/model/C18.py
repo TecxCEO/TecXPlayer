@@ -143,7 +143,7 @@ class Solver(c3x3):
     """
     print(f" moves_history in else after = {moves_history} ")
     if moves_history is None:
-      #moves_history = []
+      moves_history = []
       status=False
     if isinstance(data, dict):
       if len(data)==20:
