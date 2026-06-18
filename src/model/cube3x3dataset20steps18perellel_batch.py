@@ -181,7 +181,13 @@ class Solver(c3x3):
                 #print(f" pk in loop if 17 = {pk} ")
                 #
                 #### p_moves_history[pk] = moves_history
-                if p_moves_history[pk] == moves_history[0] or locals.get(p_moves_history[pk][0]) == moves_history[0]:
+                #########if p_moves_history[pk] == moves_history[0] or locals.get(p_moves_history[pk][0]) == moves_history[0]:
+                # Extract the element once to make the code cleaner
+                current_element = p_moves_history[pk]
+                # Check if it matches directly, OR if it's a list/sequence and the first item matches
+                if current_element == moves_history[0] or (isinstance(current_element, list) and len(current_element) > 0 and current_element[0] == moves_history[0]):
+                  # Your code here...
+  
                   # Check if it is currently a string type
                   ####if isinstance(p_moves_history[pk], str):
                     # Convert the string into a list containing that string
