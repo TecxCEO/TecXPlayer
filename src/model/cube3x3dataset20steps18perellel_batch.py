@@ -78,46 +78,11 @@ class Solver(c3x3):
     Works for both nested dictionaries and lists of dictionaries.
     """
     print(f"p_moves_history at start of loop = {p_moves_history} ")
-    
-    """
-    moves_history = []
-    print (f" pk = {pk}")
-    if pk is not None:
-      if moves_history:
-        del moves_history
-      if pk>=0:
-        # if not locals().get(p_moves_history[pk]) :
-        if pk >= len(p_moves_history): # or (pk < len(p_moves_history) and not p_moves_history[pk] ):
-          p_moves_history += []
-          #p_moves_history[pk] = []
-          # print(f"p_moves_history[{pk}] = {p_moves_history[pk]} ")
-        elif p_moves_history and pk < len(p_moves_history) and p_moves_history[pk]:
-          # elif p_moves_history and pk < len(p_moves_history) and locals().get(p_moves_history[pk]):
-          if isinstance(p_moves_history[pk], str) and len(p_moves_history[pk])==3:
-            ####moves_history = [p_moves_history[pk]]
-            print(f"moves_history from pk not none and str  = {moves_history} ")
-          elif isinstance(p_moves_history[pk], list) and len(p_moves_history[pk])>1:
-            moves_history.extend(p_moves_history[pk])
-            print(f"moves_history from pk not none and list  = {moves_history} ")
-          print(f"DEBUG: pk value is {pk}, list total length is {len(p_moves_history)}")
-          print(f"p_moves_history[{pk}] = {p_moves_history[pk]}")
-      else:
-        #moves_history = p_moves_history
-        moves_history.extend(p_moves_history)
-        print(f"p_moves_history from else = {p_moves_history} ")
-        ######moves_history = p_moves_history[pk] if p_moves_history and locals().get(p_moves_history[pk]) else p_moves_history
-    if pk is None:
-      #moves_history = p_moves_history
-      moves_history.extend(p_moves_history)
-      print(f"moves_history from if pk is None")
-    print(f"moves_history after get value from p_m = {moves_history} ")
-    print(f" moves_history in else after = {moves_history} ")
-    """
     if moves_history is None:
       moves_history = []
       status=False
     if isinstance(data, dict):
-      print(f" in data ==20 value as data = {data}")
+      #####print(f" in data ==20 value as data = {data}")
       if len(data)==20:
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
@@ -252,31 +217,7 @@ class Solver(c3x3):
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here. at return")
-            """
-            if pk is not None:
-              if pk>=0:
-                #if not locals().get(p_moves_history[pk]) :
-                if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk] ):
-                  p_moves_history += []
-                  # p_moves_history[pk] = []
-                  #p_moves_history[pk] = moves_history
-              p_moves_history[pk] = moves_history
-            elif pk is None:
-              ####p_moves_history = moves_history
-              del p_moves_history
-              p_moves_history = []
-              p_moves_history.extend(moves_history)
-              print(f" p_moves_history in if none by extend= {p_moves_history} ")
-            print(f" moves_history at end before return = {moves_history} ")
-            print(f" p_moves_history at end before return = {p_moves_history} ")
-            #return data, p_moves_history, status, data_batch,pk
-            time.sleep(1)
-            #return
-            # if pk is not None :
-              # return data,status,mtsp,p_moves_history,data_batch,pk
-            # elif pk is None :
-              # return data,status,mtsp,p_moves_history,data_batch
-            """
+            time.sleep(4) if key ==rgw else None
             if len(moves_history) <a:
               print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               time.sleep(30)
