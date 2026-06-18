@@ -32,7 +32,7 @@ class Solver(c3x3):
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
-    pk = [0]
+    pk = 0
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
       #print(f"\n\nwhile loop no = {while_loop }  are started.")
@@ -45,7 +45,7 @@ class Solver(c3x3):
       if my_data["puzzle"]["puzzle_status"]==False:
         #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["moves_history"])
-        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
+        my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
         print(f" pk in while loop = {pk} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
         #print(f" my data = { my_data}")
@@ -57,7 +57,7 @@ class Solver(c3x3):
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
       print(f"While loop no = {while_loop}  are done.") ##########
       ##############while_loop += 1
-      if len(my_data["puzzle"]["p_moves_history"][pk[0]]) == self.max_steps:
+      if len(my_data["puzzle"]["p_moves_history"][pk]) == self.max_steps:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     if len(data_to_process) >= 2 and  index < len(moves_history)-1:
@@ -167,8 +167,8 @@ class Solver(c3x3):
                   # p_moves_history[pk] = list(moves_history)
                 #
                 print(f" pk in if <17 = {pk} ")
-                #######pk +=1 
-                pk[0] = pk[0] + 1
+                pk +=1 
+                #### pk[0] = pk[0] + 1
                 print(f" pk in if <17= {pk} ")
                 ####if moves_history:
                   ####del moves_history
@@ -226,9 +226,9 @@ class Solver(c3x3):
             ####time.sleep(1)
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
-            if pk == None or pk == 0:
+            if pk == None:
               return data,status,mtsp,moves_history,data_batch,p_moves_history
-            elif pk != None and pk[0] > 0:
+            elif pk != None:
               return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
