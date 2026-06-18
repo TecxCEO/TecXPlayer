@@ -113,8 +113,8 @@ class Solver(c3x3):
               #p_moves_history[-1]= mh
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
-          ####return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
-          return data,status,mtsp,moves_history,data_batch,p_moves_history
+          return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
+          ####return data,status,mtsp,moves_history,data_batch,p_moves_history
       if pk and pk == 17:
         while pk >=0:
           moves_history = p_moves_history[pk]
@@ -227,7 +227,7 @@ class Solver(c3x3):
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
             if pk == None:
-              return data,status,mtsp,moves_history,data_batch,p_moves_history
+              return data,status,mtsp,moves_history,data_batch,pk=0,p_moves_history
             elif pk != None:
               return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
