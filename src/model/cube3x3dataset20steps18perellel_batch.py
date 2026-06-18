@@ -48,9 +48,9 @@ class Solver(c3x3):
         ####my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
         print(f" pk in while loop = {pk} ")
-        print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} ")
+        print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
-        time.sleep(4)
+        time.sleep(7)
         #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
@@ -211,7 +211,7 @@ class Solver(c3x3):
             print(f" p_moves_history before = {p_moves_history} ")
             ####print(f" data_batch[] before nested calling = {data_batch} ")
             if moves_history and key == moves_history[0]:
-              print(f" value {value}")
+              #####print(f" value = {value}")
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             ####print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
             #print(f" p_moves_history aft= {p_moves_history} ")
@@ -227,7 +227,7 @@ class Solver(c3x3):
             if len(moves_history) <a:
               print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               time.sleep(30)
-            time.sleep(1)
+            time.sleep(4)
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
             #if pk == None:
@@ -264,6 +264,6 @@ if __name__=="__main__":
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
-    time.sleep(4)
+    time.sleep(7)
     #time.sleep(0.01) 
 print(f" full_response = {full_response}")
