@@ -162,7 +162,7 @@ class Solver(c3x3):
                   # Now it is safely a list! Use .extend() to add multiple items
                   ####p_moves_history[pk].extend(moves_history[1:])
                   ####p_moves_history[pk].expand(moves_history[1:])
-                  p_moves_history[pk] = moves_history
+                  p_moves_history[pk] = moves_history.copy()
                   # Directly assign the slice to the index
                   # p_moves_history[pk] = list(moves_history[0:])
                   # p_moves_history[pk] = list(moves_history)
