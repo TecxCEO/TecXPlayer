@@ -227,7 +227,7 @@ class Solver(c3x3):
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
             if pk == None:
-              return data,status,mtsp,moves_history,data_batch,pk=0,p_moves_history
+              return data,status,mtsp,moves_history,data_batch,(pk=0),p_moves_history
             elif pk != None:
               return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
