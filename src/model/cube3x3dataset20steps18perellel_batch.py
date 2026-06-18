@@ -117,7 +117,7 @@ class Solver(c3x3):
       moves_history = []
       status=False
     if isinstance(data, dict):
-      print(f" in data ==20 value as data {data}")
+      print(f" in data ==20 value as data = {data}")
       if len(data)==20:
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
@@ -158,7 +158,6 @@ class Solver(c3x3):
               pk -= 1
             else:
               break
-        
       if len(data) < 20 and len(moves_history) <= self.max_steps:
         if len(moves_history) == self.max_steps -2 and moves_history[-1] != self.max_steps :
           moves_history += [self.max_steps -1]
@@ -182,7 +181,7 @@ class Solver(c3x3):
                 #print(f" pk in loop if 17 = {pk} ")
                 #
                 #### p_moves_history[pk] = moves_history
-                if p_moves_history[pk] == moves_history[0]:
+                if p_moves_history[pk] == moves_history[0] or locals.get(p_moves_history[pk][0]) == moves_history[0]:
                   # Check if it is currently a string type
                   ####if isinstance(p_moves_history[pk], str):
                     # Convert the string into a list containing that string
@@ -195,9 +194,9 @@ class Solver(c3x3):
                   # p_moves_history[pk] = list(moves_history[0:])
                   # p_moves_history[pk] = list(moves_history)
                 #
-                print(f" pk in loop = {pk} ")
+                print(f" pk in if <17 = {pk} ")
                 pk +=1 
-                print(f" pk in loop = {pk} ")
+                print(f" pk in if <17= {pk} ")
                 ####if moves_history:
                   ####del moves_history
                 #if p_moves_history[pk]:
@@ -206,7 +205,7 @@ class Solver(c3x3):
                 # el
                 #if not locals().get(p_moves_history[pk]) :
                 moves_history = []
-                if pk >= len(p_moves_history) : #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
+                if pk >= len(p_moves_history) and len(p_moves_history) <= 18: #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
                 moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps else []
@@ -228,6 +227,7 @@ class Solver(c3x3):
                 moves_history += [key]
               print(f" moves_history after added key.  = {moves_history} ")
               #
+            a = len(moves_history)
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
             print(f" moves_history before nested calling  = {moves_history} ")
@@ -245,7 +245,7 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
-            print(f"I am here.")
+            print(f"I am here. at return")
             """
             if pk is not None:
               if pk>=0:
@@ -271,6 +271,9 @@ class Solver(c3x3):
             # elif pk is None :
               # return data,status,mtsp,p_moves_history,data_batch
             """
+            if len(moves_history) <a:
+              print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
+              time.sleep(30)
             ####time.sleep(1)
             return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
