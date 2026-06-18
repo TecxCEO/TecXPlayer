@@ -32,7 +32,7 @@ class Solver(c3x3):
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
-    pk = 0
+    pk = [0]
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
       #print(f"\n\nwhile loop no = {while_loop }  are started.")
@@ -168,7 +168,7 @@ class Solver(c3x3):
                 #
                 print(f" pk in if <17 = {pk} ")
                 #######pk +=1 
-                pk = pk + 1
+                pk[0] = pk[0] + 1
                 print(f" pk in if <17= {pk} ")
                 ####if moves_history:
                   ####del moves_history
