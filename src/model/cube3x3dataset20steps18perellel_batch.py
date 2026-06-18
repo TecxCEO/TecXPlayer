@@ -217,7 +217,7 @@ class Solver(c3x3):
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here. at return")
-            time.sleep(4) if key ==rgw else None
+            time.sleep(4) if key == 'rgw' else None
             if len(moves_history) <a:
               print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               time.sleep(30)
