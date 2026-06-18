@@ -166,7 +166,8 @@ class Solver(c3x3):
                   # p_moves_history[pk] = list(moves_history)
                 #
                 print(f" pk in if <17 = {pk} ")
-                pk +=1 
+                #######pk +=1 
+                pk = pk + 1
                 print(f" pk in if <17= {pk} ")
                 ####if moves_history:
                   ####del moves_history
