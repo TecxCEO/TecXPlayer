@@ -185,7 +185,7 @@ class Solver(c3x3):
                 if pk >= len(p_moves_history) and len(p_moves_history) <= 18: #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
-                moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps else []
+                moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps else None
                 #print(f" The Key is being change from {key} to ")
                 if len(p_moves_history[pk]) == self.max_steps-2:
                   moves_history = p_moves_history[pk]
