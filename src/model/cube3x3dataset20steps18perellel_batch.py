@@ -227,12 +227,13 @@ class Solver(c3x3):
             ####if len(moves_history) <a:
               ####print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               ####time.sleep(30)
-            time.sleep(4)
+            ####time.sleep(4)
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
             #if pk == None:
               #return data,status,mtsp,moves_history,data_batch,(pk:=0),p_moves_history
             #elif pk != None:
+            time.sleep(4)
             return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
