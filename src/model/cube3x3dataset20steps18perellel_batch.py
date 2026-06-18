@@ -185,7 +185,7 @@ class Solver(c3x3):
                 if pk >= len(p_moves_history) and len(p_moves_history) <= 18: #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
-                moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps
+                #####moves_history = p_moves_history[pk] if len(p_moves_history[pk]) == self.max_steps
                 #print(f" The Key is being change from {key} to ")
                 if len(p_moves_history[pk]) == self.max_steps-2 or len(p_moves_history[pk]) == self.max_steps:
                   moves_history = p_moves_history[pk]
@@ -204,19 +204,19 @@ class Solver(c3x3):
                 moves_history += [key]
               print(f" moves_history after added key.  = {moves_history} ")
               #
-            a = len(moves_history)
+            #####a = len(moves_history)
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
-            print(f" moves_history before nested calling  = {moves_history} ")
-            print(f" p_moves_history before = {p_moves_history} ")
+            ####print(f" moves_history before nested calling  = {moves_history} ")
+            ####print(f" p_moves_history before = {p_moves_history} ")
             ####print(f" data_batch[] before nested calling = {data_batch} ")
             if moves_history and key == moves_history[0]:
               #####print(f" value = {value}")
               self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
             ####print(f" data_batch[{key}] after nested calling = {data_batch[key]} ")
             #print(f" p_moves_history aft= {p_moves_history} ")
-            print(f" moves_history after nested calling  = {moves_history} ")
-            print(f" p_moves_history after nested calling  = {p_moves_history} ")
+            ####print(f" moves_history after nested calling  = {moves_history} ")
+            ####print(f" p_moves_history after nested calling  = {p_moves_history} ")
             
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
@@ -224,9 +224,9 @@ class Solver(c3x3):
             print(f" moves_history after nested calling  = {moves_history} ")
             print(f"I am here. at return")
             time.sleep(4) if key == 'rgw' else None
-            if len(moves_history) <a:
-              print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
-              time.sleep(30)
+            ####if len(moves_history) <a:
+              ####print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
+              ####time.sleep(30)
             time.sleep(4)
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
