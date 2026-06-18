@@ -178,7 +178,8 @@ class Solver(c3x3):
                   #moves_history = p_moves_history[pk]
                 # el
                 #if not locals().get(p_moves_history[pk]) :
-                moves_history = []
+                #####moves_history = []
+                moves_history.clear() 
                 if pk >= len(p_moves_history) and len(p_moves_history) <= 18: #or (pk < len(p_moves_history) and not p_moves_history[pk]) :
                   p_moves_history += []
                   # p_moves_history[pk] = []
