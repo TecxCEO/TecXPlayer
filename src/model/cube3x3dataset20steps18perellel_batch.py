@@ -225,7 +225,7 @@ class Solver(c3x3):
             if len(moves_history) <a:
               print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               time.sleep(30)
-            ####time.sleep(1)
+            time.sleep(1)
             print(f" pk before return = {pk} ")
             print(f" moves_history before return.  = {moves_history} ")
             #if pk == None:
