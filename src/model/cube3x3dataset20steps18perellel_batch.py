@@ -222,6 +222,8 @@ class Solver(c3x3):
               print(f"moves_history changed why = {moves_history}, moves_history  len {len(moves_history)} waiting 30 seconds.")
               time.sleep(30)
             ####time.sleep(1)
+            print(f" pk before return = {pk} ")
+            print(f" moves_history before return.  = {moves_history} ")
             return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
         return
 if __name__=="__main__":
