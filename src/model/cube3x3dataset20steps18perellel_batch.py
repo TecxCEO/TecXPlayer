@@ -51,7 +51,7 @@ class Solver(c3x3):
         print(f" pkm in while loop = {self.pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
-        
+        time.sleep(21)
         #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
@@ -76,7 +76,7 @@ class Solver(c3x3):
         del moves_history[index]
       return
   #def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
-  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=[]):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
     #def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
