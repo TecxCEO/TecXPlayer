@@ -44,8 +44,9 @@ class Solver(c3x3):
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
-        my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
+        #####my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
         ########$$self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
+        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch,my_data["puzzle"]["p_moves_history"])
         print(f" pkm in while loop = {pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
@@ -73,11 +74,15 @@ class Solver(c3x3):
         del moves_history[index]
       return
   #def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
-  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
+  ####def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
     """
+    if len(data) ==19:
+      nonlocal pkm
+      pk = pkm
     print(f"p_moves_history at start of loop = {p_moves_history} ")
     if moves_history is None:
       moves_history = []
@@ -114,7 +119,7 @@ class Solver(c3x3):
               #p_moves_history[-1]= mh
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
-          return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
+          return data,status,mtsp,moves_history,data_batch,p_moves_history
           ####return data,status,mtsp,moves_history,data_batch,p_moves_history
       if pk and pk == 17:
         while pk >=0:
@@ -146,8 +151,9 @@ class Solver(c3x3):
                   # Now it is safely a list! Use .extend() to add multiple items
                   p_moves_history[pk] = moves_history.copy()
                 print(f" pk in if <17 = {pk} ")
-                pk +=1 
-                #### pk[0] = pk[0] + 1
+                ####pk +=1 
+                pkm +=1
+                pk = pkm
                 print(f" pk in if <17= {pk} ")
                 moves_history.clear() 
                 if pk >= len(p_moves_history) and len(p_moves_history) <= 18:
@@ -155,7 +161,7 @@ class Solver(c3x3):
                 if len(p_moves_history[pk]) == self.max_steps-2 or len(p_moves_history[pk]) == self.max_steps:
                   moves_history = p_moves_history[pk]
                   print(f"Returning from pk is not None and pk < 17 ")
-                  return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
+                  return data,status,mtsp,moves_history,data_batch,pkm,p_moves_history
                 continue
           print(f"Moves_history at if start for add key = {moves_history}.")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
@@ -171,7 +177,7 @@ class Solver(c3x3):
               removed_key = moves_history.pop(0)
             if moves_history and key == moves_history[0]:
               #####print(f" value = {value}")
-              self.update_nested_key(value,status,mtsp,moves_history, data_batch[key])
+              self.update_nested_key(value,status,mtsp,moves_history,data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
             print(f" p_moves_history aft= {p_moves_history} ")
@@ -186,7 +192,7 @@ class Solver(c3x3):
               #return data,status,mtsp,moves_history,data_batch,(pk:=0),p_moves_history
             #elif pk != None:
             #######time.sleep(4)
-            return data,status,mtsp,moves_history,data_batch,pk,p_moves_history
+            return data,status,mtsp,moves_history,data_batch,p_moves_history
         return
 if __name__=="__main__":
   state_given_to_solve={
