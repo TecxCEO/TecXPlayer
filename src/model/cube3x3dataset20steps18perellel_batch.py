@@ -32,7 +32,7 @@ class Solver(c3x3):
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
-    pk = 0
+    pkm = 0
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
       #print(f"\n\nwhile loop no = {while_loop }  are started.")
@@ -45,8 +45,8 @@ class Solver(c3x3):
       if my_data["puzzle"]["puzzle_status"]==False:
         #self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk)
         ####my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
-        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pk,my_data["puzzle"]["p_moves_history"])
-        print(f" pk in while loop = {pk} ")
+        self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
+        print(f" pkm in while loop = {pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
         time.sleep(7)
@@ -57,7 +57,7 @@ class Solver(c3x3):
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       print(f"While loop no = {while_loop}  are done.") ##########
-      if len(my_data["puzzle"]["p_moves_history"][pk]) == self.max_steps:
+      if len(my_data["puzzle"]["p_moves_history"][pkm]) == self.max_steps:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     if len(data_to_process) >= 2 and  index < len(moves_history)-1:
