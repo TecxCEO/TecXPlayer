@@ -139,6 +139,7 @@ class Solver(c3x3):
           moves_history += [self.max_steps]
         data_batch.update({"state": data["state"]})
         for key, value in data.items():
+          print(f" key = {key}")
           if len(data) ==19 and key!="state" and moves_history: #( moves_history and key == moves_history[0]):
             ####if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps and (isinstance(moves_history[-1], list) and len(moves_history[-1])==15 ):
