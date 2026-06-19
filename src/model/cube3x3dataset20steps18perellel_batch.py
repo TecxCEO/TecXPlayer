@@ -13,6 +13,7 @@ class Solver(c3x3):
     # self.filename = "cube3x3trainingdataset.json"
     self.filepath="./data/cube3x3/solution"
     self.max_steps = max_steps 
+    pkm = 0
   def solve(self,given_state):
     self.current_state=given_state.copy()
     puzzle_data={
@@ -32,7 +33,7 @@ class Solver(c3x3):
     while_loop=0
     data_batch = {}
     print(f"while loop is going to started.")
-    pkm = 0
+    #pk = 0
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") ##########
       #print(f"\n\nwhile loop no = {while_loop }  are started.")
