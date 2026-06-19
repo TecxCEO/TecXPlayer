@@ -59,7 +59,6 @@ class Solver(c3x3):
         break
       #print(f"Move no = {(while_loop := while_loop + 1)}  are done.") ##########
       print(f"While loop no = {while_loop}  are done.") ##########
-      ##############while_loop += 1
       if len(my_data["puzzle"]["p_moves_history"][pk]) == self.max_steps:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
