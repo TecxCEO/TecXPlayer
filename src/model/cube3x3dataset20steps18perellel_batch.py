@@ -181,7 +181,7 @@ class Solver(c3x3):
             ####time.sleep(30)
             ####time.sleep(4)
             print(f" pk before return = {pk} ")
-            print(f" moves_history before return.  = {moves_history} ")
+            print(f" moves_history before return.  = {moves_history} and len = {len(moves_history)}")
             #if pk == None:
               #return data,status,mtsp,moves_history,data_batch,(pk:=0),p_moves_history
             #elif pk != None:
