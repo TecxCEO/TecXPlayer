@@ -173,6 +173,8 @@ class Solver(c3x3):
                   return data,status,mtsp,moves_history,data_batch,self.pkm,p_moves_history
                 continue
           print(f"Moves_history at if start for add key = {moves_history}.")
+          print(f" len of data check = {len(data)}")
+          print(f" len of value check = {len(value)}")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
             data_batch.update({key:{}})
             if not moves_history or( isinstance(value, dict) and len(value) == 20):
