@@ -141,6 +141,8 @@ class Solver(c3x3):
             ####if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps:
             if key == moves_history[0] and len(moves_history) == self.max_steps and moves_history[-1] != self.max_steps and (isinstance(moves_history[-1], list) and len(moves_history[-1])==15 ):
               if pk is not None and pk < 17 :
+                print(f" pk in pk is not none and if <17= {pk} ")
+                print(f" p_moves_history aft= {p_moves_history} ")
                 # Extract the element once to make the code cleaner
                 current_element = p_moves_history[pk]
                 # Check if it matches directly, OR if it's a list/sequence and the first item matches
