@@ -51,7 +51,7 @@ class Solver(c3x3):
         print(f" pkm in while loop = {self.pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
-        time.sleep(2)
+        time.sleep(while_loop)
         #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
@@ -61,7 +61,7 @@ class Solver(c3x3):
       print(f"While loop no = {while_loop}  are done.") ##########
       #if len(locals.get(my_data["puzzle"]["p_moves_history"][self.pkm])) == self.max_steps:
       if self.pkm < len(my_data["puzzle"]["p_moves_history"]) and len(my_data["puzzle"]["p_moves_history"][self.pkm]) == self.max_steps:
-        time.sleep(27)
+        time.sleep(2)
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
     if len(data_to_process) >= 2 and  index < len(moves_history)-1:
@@ -91,6 +91,7 @@ class Solver(c3x3):
     if isinstance(data, dict):
       #####print(f" in data ==20 value as data = {data}")
       if len(data)==20:
+        print( f" move histiry for move in if 20 move 15 or 18 {moves_history}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
@@ -183,7 +184,7 @@ class Solver(c3x3):
             if moves_history and ( len(moves_history) >1 and key != moves_history[0]) :
               removed_key = moves_history.pop(0)
             if moves_history and key == moves_history[0]:
-              #####print(f" value = {value}")
+              print(f" value which will input in function = {value}")
               self.update_nested_key(value,status,mtsp,moves_history,data_batch[key])
             if locals().get("removed_key") :
               moves_history.insert(0, removed_key)
