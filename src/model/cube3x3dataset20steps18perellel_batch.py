@@ -60,7 +60,7 @@ class Solver(c3x3):
         break
       print(f"While loop no = {while_loop}  are done.") ##########
       #if len(locals.get(my_data["puzzle"]["p_moves_history"][self.pkm])) == self.max_steps:
-      if self.pkm < len(my_data["puzzle"]["p_moves_history"]) and len(locals.get(my_data["puzzle"]["p_moves_history"][self.pkm])) == self.max_steps:
+      if self.pkm < len(my_data["puzzle"]["p_moves_history"]) and len(my_data["puzzle"]["p_moves_history"][self.pkm]) == self.max_steps:
         time.sleep(27)
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
