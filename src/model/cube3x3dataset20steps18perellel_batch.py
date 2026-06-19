@@ -82,7 +82,6 @@ class Solver(c3x3):
     Works for both nested dictionaries and lists of dictionaries.
     """
     if len(data) ==19:
-      nonlocal self.pkm
       pk = self.pkm
     print(f"p_moves_history at start of loop = {p_moves_history} ")
     if moves_history is None:
@@ -129,6 +128,7 @@ class Solver(c3x3):
             if len(list(moves_history[self.max_steps-1])) in [18, 15]:
               self.delete_and_clean(data, moves_history)
               pk -= 1
+              self.pkm = pk
             else:
               break
       if len(data) < 20 and len(moves_history) <= self.max_steps:
@@ -153,7 +153,7 @@ class Solver(c3x3):
                   p_moves_history[pk] = moves_history.copy()
                 print(f" pk in if <17 = {pk} ")
                 ####pk +=1 
-                pkm +=1
+                self.pkm +=1
                 pk = self.pkm
                 print(f" pk in if <17= {pk} ")
                 moves_history.clear() 
