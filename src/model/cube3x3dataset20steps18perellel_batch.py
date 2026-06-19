@@ -92,6 +92,7 @@ class Solver(c3x3):
       #####print(f" in data ==20 value as data = {data}")
       if len(data)==20:
         print( f" move histiry for move in if 20 move 15 or 18 {moves_history}")
+        print(f" data in if 20 before moves = { data}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
@@ -118,8 +119,8 @@ class Solver(c3x3):
               if isinstance(data_batch, str):
                 data_batch = {}
               data_batch.update(data.copy())
-              print(f" data in if 20 = { data}")
               #p_moves_history[-1]= mh
+          print(f" data in if 20 after moved = { data}")
           print(f"p_moves_history in if 20 = {p_moves_history} ")
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,moves_history,data_batch,p_moves_history
