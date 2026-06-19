@@ -13,7 +13,7 @@ class Solver(c3x3):
     # self.filename = "cube3x3trainingdataset.json"
     self.filepath="./data/cube3x3/solution"
     self.max_steps = max_steps 
-    pkm = 0
+    self.pkm = 0
   def solve(self,given_state):
     self.current_state=given_state.copy()
     puzzle_data={
@@ -48,7 +48,7 @@ class Solver(c3x3):
         #####my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"]= self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
         ########$$self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch, pkm,my_data["puzzle"]["p_moves_history"])
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch,my_data["puzzle"]["p_moves_history"])
-        print(f" pkm in while loop = {pkm} ")
+        print(f" pkm in while loop = {self.pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
         
@@ -59,7 +59,7 @@ class Solver(c3x3):
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       print(f"While loop no = {while_loop}  are done.") ##########
-      if len(my_data["puzzle"]["p_moves_history"][pkm]) == self.max_steps:
+      if len(my_data["puzzle"]["p_moves_history"][self.pkm]) == self.max_steps:
         time.sleep(27)
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
@@ -82,8 +82,8 @@ class Solver(c3x3):
     Works for both nested dictionaries and lists of dictionaries.
     """
     if len(data) ==19:
-      nonlocal pkm
-      pk = pkm
+      nonlocal self.pkm
+      pk = self.pkm
     print(f"p_moves_history at start of loop = {p_moves_history} ")
     if moves_history is None:
       moves_history = []
@@ -154,7 +154,7 @@ class Solver(c3x3):
                 print(f" pk in if <17 = {pk} ")
                 ####pk +=1 
                 pkm +=1
-                pk = pkm
+                pk = self.pkm
                 print(f" pk in if <17= {pk} ")
                 moves_history.clear() 
                 if pk >= len(p_moves_history) and len(p_moves_history) <= 18:
@@ -162,7 +162,7 @@ class Solver(c3x3):
                 if len(p_moves_history[pk]) == self.max_steps-2 or len(p_moves_history[pk]) == self.max_steps:
                   moves_history = p_moves_history[pk]
                   print(f"Returning from pk is not None and pk < 17 ")
-                  return data,status,mtsp,moves_history,data_batch,pkm,p_moves_history
+                  return data,status,mtsp,moves_history,data_batch,self.pkm,p_moves_history
                 continue
           print(f"Moves_history at if start for add key = {moves_history}.")
           if key!="state" and (len(value) <=20 or len(data[key]) <= 20) and (len(value) >0 or len(data[key]) >0):
