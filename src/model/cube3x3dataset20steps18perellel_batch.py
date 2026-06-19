@@ -121,7 +121,7 @@ class Solver(c3x3):
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,moves_history,data_batch,p_moves_history
           ####return data,status,mtsp,moves_history,data_batch,p_moves_history
-      if pk and pk == 17:
+      if locals.get(pk) and pk == 17:
         while pk >=0:
           moves_history = p_moves_history[pk]
           if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
