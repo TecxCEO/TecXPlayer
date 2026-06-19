@@ -76,7 +76,7 @@ class Solver(c3x3):
         del moves_history[index]
       return
   #def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
-  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None, pk = None):
     #def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
