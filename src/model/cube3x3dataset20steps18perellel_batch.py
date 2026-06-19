@@ -75,8 +75,8 @@ class Solver(c3x3):
         del moves_history[index]
       return
   #def update_nested_key(self,data,status,mtsp,p_moves_history=None,data_batch=None, pk = None):
-  ####def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
-  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None):
+  def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None, pk = None,p_moves_history=None):
+    #def update_nested_key(self,data,status,mtsp,moves_history=None,data_batch=None,p_moves_history=None):
     """
     Searches recursively for 'target_key' and updates its value.
     Works for both nested dictionaries and lists of dictionaries.
@@ -121,7 +121,7 @@ class Solver(c3x3):
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,moves_history,data_batch,p_moves_history
           ####return data,status,mtsp,moves_history,data_batch,p_moves_history
-      if locals.get(pk) and pk == 17:
+      if pk is not None and pk == 17:
         while pk >=0:
           moves_history = p_moves_history[pk]
           if len(moves_history) == self.max_steps  and isinstance(moves_history[-1], list):
