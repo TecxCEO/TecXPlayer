@@ -154,8 +154,8 @@ class Solver(c3x3):
                     # Convert the string into a list containing that string
                     ####p_moves_history[pk] = [p_moves_history[pk]]
                   # Now it is safely a list! Use .extend() to add multiple items
-                  ####p_moves_history[pk] = moves_history.copy()
-                  p_moves_history[pk] = moves_history
+                  p_moves_history[pk] = moves_history.copy()
+                  ####p_moves_history[pk] = moves_history
                 print(f" pk in if <17 = {pk} ")
                 ####pk +=1 
                 self.pkm +=1
