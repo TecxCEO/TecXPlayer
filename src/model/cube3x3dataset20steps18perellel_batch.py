@@ -191,7 +191,7 @@ class Solver(c3x3):
             if moves_history and key == moves_history[0]:
               ###print(f" value which will input in function = {value}")
               self.update_nested_key(value,status,mtsp,moves_history,data_batch[key])
-              if locals().get("removed_key") and removed_key != moves_history[0]):
+              if locals().get("removed_key") and removed_key != moves_history[0]:
                 moves_history.insert(0, removed_key)
             elif moves_history and ( len(moves_history) >=1 and key != moves_history[0]) :
               print(f" going back to shift next key.")
