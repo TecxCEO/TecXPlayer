@@ -193,6 +193,7 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
+            print(f" data[{key}] = {data[key]}, length = len(data[key]), data keys = {data.keys()}")
             print(f"I am here. at return")
             time.sleep(4) if key == 'rgw' else None
             ####time.sleep(30)
