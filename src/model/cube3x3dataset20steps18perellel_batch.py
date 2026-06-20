@@ -51,7 +51,7 @@ class Solver(c3x3):
         print(f" pkm in while loop = {self.pkm} ")
         print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
-        time.sleep(while_loop)
+        time.sleep(7)
         #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           #json.dump(my_data, wf)
