@@ -93,6 +93,7 @@ class Solver(c3x3):
       if len(data)==20:
         print( f" move histiry for move in if 20 move 15 or 18 {moves_history}")
         print(f" data in if 20 before moves = { data}")
+        print(f" data= {data}, data length = {len(data)}, data keys = {data.keys()}")
         if all(key and len(value) not in [15,18,20] for key, value in data.items()):
           if moves_history and moves_history[-1] == self.max_steps: # 16: ####
             states,move_list,status=super().moves(data,mtsp,[moves_history[-2]])
@@ -122,6 +123,7 @@ class Solver(c3x3):
               #p_moves_history[-1]= mh
           print(f" data in if 20 after moved = { data}")
           print(f"p_moves_history in if 20 = {p_moves_history} ")
+          print(f" data= {data}, data length = {len(data)}, data keys = {data.keys()}")
           #return data, p_moves_history, status, data_batch
           return data,status,mtsp,moves_history,data_batch,p_moves_history
           ####return data,status,mtsp,moves_history,data_batch,p_moves_history
@@ -193,7 +195,7 @@ class Solver(c3x3):
               moves_history.insert(0, removed_key)
             print(f" p_moves_history aft= {p_moves_history} ")
             print(f" moves_history after nested calling  = {moves_history} ")
-            print(f" data[{key}] = {data[key]}, length = len(data[key]), data keys = {data.keys()}")
+            print(f" data[{key}] = {data[key]}, data length = {len(data[key])}, data keys = {data.keys()}")
             print(f"I am here. at return")
             time.sleep(4) if key == 'rgw' else None
             ####time.sleep(30)
