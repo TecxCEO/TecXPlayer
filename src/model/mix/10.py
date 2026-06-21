@@ -243,12 +243,126 @@ class FiniteChunkDataset:
         return self
 
     def __next__(self):
-
-##############
-
-#######2222###
-
-if self.current_step >= self.total_steps:raise StopIterationself.current_step += 1return self.current_stepclass ChunkedDataStreamer:def init(self):self.current_chunk_id = 0def load_next_chunk(self):self.current_chunk_id += 1print(f"\n[STREAM ENGINE] Loading Incoming Data Chunk #{self.current_chunk_id} into Pipeline Context...")return FiniteChunkDataset(total_steps=100000)def get_batch(self, dataset_iterator, device='cuda'):_ = next(dataset_iterator)x = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)y = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)return x, ydef get_batch_simulated(self, batch_size=BATCH_SIZE, device='cuda'):x = torch.randint(0, ACTUAL_VOCAB_SIZE, (batch_size, BLOCK_SIZE), device=device)y = torch.randint(0, ACTUAL_VOCAB_SIZE, (batch_size, BLOCK_SIZE), device=device)return x, y=============================================================================5. LIFELONG LOOP CONTROLLER WITH ENFORCED COMPLETION CHECKS=============================================================================def execute_lifelong_training():device = 'cuda' if torch.cuda.is_available() else 'cpu'print(f"System Online. Targeted Core Execution Hardware: {device.upper()}")model = CustomTransformer()model.to(device)data_streamer = ChunkedDataStreamer()logger = MetricLogger(CSV_LOG_FILE)base_lr = 6e-4min_lr = 6e-5weight_decay = 0.1while True:# --- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---dataset_chunk = data_streamer.load_next_chunk()chunk_id = data_streamer.current_chunk_idbest_loss_this_chunk = float('inf')optimizer = torch.optim.AdamW(model.parameters(), lr=base_lr, betas=(0.9, 0.95), weight_decay=weight_decay)chunk_iterator = iter(dataset_chunk)print(f"--> [PHASE 1] Training Loop Active for Chunk {chunk_id} (Enforcing Cosine LR Decay)")model.train()while True:try:X, Y = data_streamer.get_batch(chunk_iterator, device=device)current_step = dataset_chunk.current_stepexcept StopIteration:print(f"\n[DATA BOUNDARY] All input items for Chunk {chunk_id} processed cleanly.")break# --- FEATURE 1: COSINE ANNEALING LEARNING RATE DECAY ---# Gradually steps down the learning rate across the 1,00,000 progress markersprogress = current_step / dataset_chunk.total_stepscosine_lr = min_lr + 0.5 * (base_lr - min_lr) * (1.0 + math.cos(math.pi * progress))for param_group in optimizer.param_groups:param_group['lr'] = cosine_lrlogits, loss = model(X, Y)optimizer.zero_grad(set_to_none=True)loss.backward()torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)optimizer.step()if current_step % 1000 == 0:in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)print(f"Chunk {chunk_id} | Step {current_step}/{dataset_chunk.total_steps} | Loss: {loss.item():.4f} | Input Acc: {in_acc:.2%} | LR: {cosine_lr:.6f}")logger.log_step(chunk_id, 0, current_step, "Phase1", loss.item(), in_acc, out_acc, cosine_lr)if loss.item() < best_loss_this_chunk:best_loss_this_chunk = loss.item()torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")# --- PHASE 2: CONVERGENCE LOOP WITH ACCURACY PERFORMANCE GATE ---print(f"--> [PHASE 2] Launching Fine-Tuning Optimization Epochs for Chunk {chunk_id}...")# Lock fine-tuning updates to 10% of the maximum engine scalefor param_group in optimizer.param_groups:param_group['lr'] = base_lr * 0.1no_improvement_counter = 0epoch_count = 0while True:epoch_count += 1post_step = 0chunk_iterator = iter(data_streamer.load_next_chunk())print(f"    [EPOCH PASSTHROUGH] Starting Pass #{epoch_count} for Structural Parameter Optimization...")while True:try:X, Y = data_streamer.get_batch(chunk_iterator, device=device)post_step += 1except StopIteration:breaklogits, loss = model(X, Y)optimizer.zero_grad(set_to_none=True)loss.backward()torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)optimizer.step()current_loss = loss.item()# Evaluate both structural layout constraints and loss floor changesif current_loss < (best_loss_this_chunk - 1e-4):# --- FEATURE 2: ACCURACY PERFORMANCE GATE ---# Checks accuracy within targeted geometric zones before saving weightsin_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)if in_acc >= ACCURACY_GATE_MIN and out_acc >= ACCURACY_GATE_MIN:print(f"        [GATE PASSED] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.6f} | Acc: {in_acc:.2%}. Saving.")best_loss_this_chunk = current_lossno_improvement_counter = 0torch.save({'chunk_id': chunk_id,'epoch': epoch_count,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,'input_accuracy': in_acc,}, f"best_final_optimized_model_chunk_{chunk_id}.pt")else:# Increases patience counter if zone accuracy drops below the thresholdno_improvement_counter += 1else:no_improvement_counter += 1if post_step % 5000 == 0:in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)print(f"        [MONITOR] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.4f} | Patience: {no_improvement_counter}/{PATIENCE_STEPS}")logger.log_step(chunk_id, epoch_count, post_step, "Phase2", current_loss, in_acc, out_acc, base_lr * 0.1)if no_improvement_counter >= PATIENCE_STEPS:breakif no_improvement_counter >= PATIENCE_STEPS:print(f"\n[SATURATION REACHED] No further improvement found over {PATIENCE_STEPS} steps.")print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")print("================================================================================")breakif name == 'main':execute_lifelong_training()
+        if self.current_step >= self.total_steps:
+            raise StopIteration
+        self.current_step += 1
+        return self.current_step
+class ChunkedDataStreamer:
+    def init(self):
+        self.current_chunk_id = 0
+    def load_next_chunk(self):
+        self.current_chunk_id += 1
+        print(f"\n[STREAM ENGINE] Loading Incoming Data Chunk #{self.current_chunk_id} into Pipeline Context...")
+        return FiniteChunkDataset(total_steps=100000)
+    def get_batch(self, dataset_iterator, device='cuda'):
+        _ = next(dataset_iterator)
+        x = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)
+        y = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)
+        return x, y
+    def get_batch_simulated(self, batch_size=BATCH_SIZE, device='cuda'):
+        x = torch.randint(0, ACTUAL_VOCAB_SIZE, (batch_size, BLOCK_SIZE), device=device)
+        y = torch.randint(0, ACTUAL_VOCAB_SIZE, (batch_size, BLOCK_SIZE), device=device)
+        return x, y
+    
+#=============================================================================
+# 5. LIFELONG LOOP CONTROLLER WITH ENFORCED COMPLETION CHECKS
+# =============================================================================
+def execute_lifelong_training():
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print(f"System Online. Targeted Core Execution Hardware: {device.upper()}")
+    model = CustomTransformer()
+    model.to(device)
+    data_streamer = ChunkedDataStreamer()
+    logger = MetricLogger(CSV_LOG_FILE)
+    base_lr = 6e-4
+    min_lr = 6e-5
+    weight_decay = 0.1
+    while True:
+        #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
+        dataset_chunk = data_streamer.load_next_chunk()
+        chunk_id = data_streamer.current_chunk_id
+        best_loss_this_chunk = float('inf')
+        optimizer = torch.optim.AdamW(model.parameters(), lr=base_lr, betas=(0.9, 0.95), weight_decay=weight_decay)
+        chunk_iterator = iter(dataset_chunk)
+        print(f"--> [PHASE 1] Training Loop Active for Chunk {chunk_id} (Enforcing Cosine LR Decay)")
+        model.train()
+        while True:
+            try:
+                X, Y = data_streamer.get_batch(chunk_iterator, device=device)
+                current_step = dataset_chunk.current_step
+            except StopIteration:
+                print(f"\n[DATA BOUNDARY] All input items for Chunk {chunk_id} processed cleanly.")
+                break
+            # --- FEATURE 1: COSINE ANNEALING LEARNING RATE DECAY --- 
+            # Gradually steps down the learning rate across the 1,00,000 progress markers
+            progress = current_step / dataset_chunk.total_steps
+            cosine_lr = min_lr + 0.5 * (base_lr - min_lr) * (1.0 + math.cos(math.pi * progress))
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = cosine_lr
+                logits, loss = model(X, Y)
+                optimizer.zero_grad(set_to_none=True)
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                optimizer.step()
+                if current_step % 1000 == 0:
+                    in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)
+                    print(f"Chunk {chunk_id} | Step {current_step}/{dataset_chunk.total_steps} | Loss: {loss.item():.4f} | Input Acc: {in_acc:.2%} | LR: {cosine_lr:.6f}")
+                    logger.log_step(chunk_id, 0, current_step, "Phase1", loss.item(), in_acc, out_acc, cosine_lr)
+                if loss.item() < best_loss_this_chunk:
+                    best_loss_this_chunk = loss.item()
+                    torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")
+        # --- PHASE 2: CONVERGENCE LOOP WITH ACCURACY PERFORMANCE GATE ---
+        print(f"--> [PHASE 2] Launching Fine-Tuning Optimization Epochs for Chunk {chunk_id}...")
+        # Lock fine-tuning updates to 10% of the maximum engine scale
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = base_lr * 0.1
+            no_improvement_counter = 0
+            epoch_count = 0
+            while True:
+                epoch_count += 1
+                post_step = 0
+                chunk_iterator = iter(data_streamer.load_next_chunk())
+                print(f"    [EPOCH PASSTHROUGH] Starting Pass #{epoch_count} for Structural Parameter Optimization...")
+                while True:
+                    try:
+                        X, Y = data_streamer.get_batch(chunk_iterator, device=device)
+                        post_step += 1
+                    except StopIteration:
+                        break
+                    logits, loss = model(X, Y)
+                    optimizer.zero_grad(set_to_none=True)
+                    loss.backward()
+                    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                    optimizer.step()
+                    current_loss = loss.item()
+                    # Evaluate both structural layout constraints and loss floor changes
+                    if current_loss < (best_loss_this_chunk - 1e-4):
+                        # --- FEATURE 2: ACCURACY PERFORMANCE GATE ---
+                        # Checks accuracy within targeted geometric zones before saving weights
+                        in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)
+                        if in_acc >= ACCURACY_GATE_MIN and out_acc >= ACCURACY_GATE_MIN:
+                            print(f"        [GATE PASSED] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.6f} | Acc: {in_acc:.2%}. Saving.")
+                            best_loss_this_chunk = current_loss
+                            no_improvement_counter = 0
+                            torch.save({'chunk_id': chunk_id,'epoch': epoch_count,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,'input_accuracy': in_acc,}, f"best_final_optimized_model_chunk_{chunk_id}.pt")
+                        else:
+                            # Increases patience counter if zone accuracy drops below the threshold
+                            no_improvement_counter += 1
+                    else:
+                        no_improvement_counter += 1
+                        if post_step % 5000 == 0:
+                            in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)
+                            print(f"        [MONITOR] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.4f} | Patience: {no_improvement_counter}/{PATIENCE_STEPS}")
+                            logger.log_step(chunk_id, epoch_count, post_step, "Phase2", current_loss, in_acc, out_acc, base_lr * 0.1)
+                        if no_improvement_counter >= PATIENCE_STEPS:
+                            break
+                    if no_improvement_counter >= PATIENCE_STEPS:
+                        print(f"\n[SATURATION REACHED] No further improvement found over {PATIENCE_STEPS} steps.")
+                        print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
+                        print("================================================================================")
+                        break
+if name == 'main':
+    execute_lifelong_training()
 
 
   """
