@@ -252,7 +252,59 @@ class FiniteChunkDataset:
 
 ########
 
-if loss.item() < best_loss_this_chunk:best_loss_this_chunk = loss.item()torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")# --- PHASE 2: LAUNCH POST-OPTIMIZATION EPOCH CONTROLLER (RUN UNTIL SATURATION) ---print(f"--> [PHASE 2] Launching Post-Optimization Epoch Core Loops for Chunk {chunk_id}...")for param_group in optimizer.param_groups:param_group['lr'] = base_lr * 0.1no_improvement_counter = 0epoch_count = 0# This controller executes iterative validation passes over the finalized parameters.# It optimizes the weights until no further performance gains are possible.while True:epoch_count += 1post_step = 0# Reset chunk dataset iterator to perform an entire fresh optimized passchunk_iterator = iter(data_streamer.load_next_chunk())print(f"    [POST-LOOP] Initiating Optimization Epoch Tracker #{epoch_count} for Fine-Tuning Parameter Adjustments...")while True:try:X, Y = data_streamer.get_batch(chunk_iterator, device=device)post_step += 1except StopIteration:# Epoch completebreaklogits, loss = model(X, Y)optimizer.zero_grad(set_to_none=True)loss.backward()torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)optimizer.step()current_loss = loss.item()if current_loss < (best_loss_this_chunk - 1e-4):print(f"        [PROGRESS] Epoch {epoch_count} Step {post_step} | Enhanced Weights Saved! Loss: {current_loss:.6f}")best_loss_this_chunk = current_lossno_improvement_counter = 0torch.save({'chunk_id': chunk_id,'epoch': epoch_count,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"best_final_optimized_model_chunk_{chunk_id}.pt")else:no_improvement_counter += 1if post_step % 5000 == 0:in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)print(f"        [MONITOR] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.4f} | Patience: {no_improvement_counter}/{PATIENCE_STEPS}")logger.log_step(chunk_id, epoch_count, post_step, "Phase2", current_loss, in_acc, out_acc)# If saturation patience is triggered, terminate the interior step loopif no_improvement_counter >= PATIENCE_STEPS:break# --- THE SATURATION ESCAPE CHECK LINE ---if no_improvement_counter >= PATIENCE_STEPS:print(f"\n[SATURATION REACHED] No further improvement found after complete data optimization passes.")print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")print(f"Advancing pipeline to next raw data matrix sector...")print("================================================================================")breakif name == 'main':execute_lifelong_training()
+if loss.item() < best_loss_this_chunk:
+    best_loss_this_chunk = loss.item()
+    torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")
+    # --- PHASE 2: LAUNCH POST-OPTIMIZATION EPOCH CONTROLLER (RUN UNTIL SATURATION) ---
+print(f"--> [PHASE 2] Launching Post-Optimization Epoch Core Loops for Chunk {chunk_id}...")
+for param_group in optimizer.param_groups:
+    param_group['lr'] = base_lr * 0.1
+    no_improvement_counter = 0
+    epoch_count = 0
+# This controller executes iterative validation passes over the finalized parameters.
+# It optimizes the weights until no further performance gains are possible.
+while True:
+    epoch_count += 1
+    post_step = 0
+    # Reset chunk dataset iterator to perform an entire fresh optimized pass
+chunk_iterator = iter(data_streamer.load_next_chunk())
+print(f"    [POST-LOOP] Initiating Optimization Epoch Tracker #{epoch_count} for Fine-Tuning Parameter Adjustments...")
+while True:
+    try:
+        X, Y = data_streamer.get_batch(chunk_iterator, device=device)
+        post_step += 1
+    except StopIteration:
+        # Epoch complete
+        break
+    logits, loss = model(X, Y)
+    optimizer.zero_grad(set_to_none=True)
+    loss.backward()
+    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    optimizer.step()
+    current_loss = loss.item()
+    if current_loss < (best_loss_this_chunk - 1e-4):
+        print(f"        [PROGRESS] Epoch {epoch_count} Step {post_step} | Enhanced Weights Saved! Loss: {current_loss:.6f}")
+        best_loss_this_chunk = current_loss
+        no_improvement_counter = 0
+        torch.save({'chunk_id': chunk_id,'epoch': epoch_count,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"best_final_optimized_model_chunk_{chunk_id}.pt")
+    else:
+        no_improvement_counter += 1
+    if post_step % 5000 == 0:
+        in_acc, out_acc = compute_structural_zone_accuracy(model, data_streamer, device)
+        print(f"        [MONITOR] Epoch {epoch_count} Step {post_step} | Loss: {current_loss:.4f} | Patience: {no_improvement_counter}/{PATIENCE_STEPS}")
+        logger.log_step(chunk_id, epoch_count, post_step, "Phase2", current_loss, in_acc, out_acc)
+        # If saturation patience is triggered, terminate the interior step loop
+if no_improvement_counter >= PATIENCE_STEPS:
+    break
+# --- THE SATURATION ESCAPE CHECK LINE ---
+if no_improvement_counter >= PATIENCE_STEPS:
+    print(f"\n[SATURATION REACHED] No further improvement found after complete data optimization passes.")
+    print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
+    print(f"Advancing pipeline to next raw data matrix sector...")
+    print("================================================================================")
+    break
+    if name == 'main':
+        execute_lifelong_training()
 
 
 
