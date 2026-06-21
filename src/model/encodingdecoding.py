@@ -4,9 +4,10 @@ import os
 import csv
 import json
 import math
-import torch
-import torch.nn as nn
-from torch.nn import functional as F
+import string
+#import torch
+#import torch.nn as nn
+#from torch.nn import functional as F
 
 #=============================================================================
 # 1. HARDCODED PARAMETERS & CONFIGURATION PROFILE
@@ -59,11 +60,9 @@ class AdvancedCustomVocabularyRegistry:
       self.string_to_id[token_str] = token_id
       self.current_id += 1
   def _compile_exhaustive_hierarchy(self):
-    
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
     # ---------------------------------------------------------------------
     mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
-    
     # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
     for fc in mosf.keys():
       for sc in mosf.keys():
@@ -75,14 +74,12 @@ class AdvancedCustomVocabularyRegistry:
             self._add_token(f"{sc}{tc}{fc}", "Tier_5_Cube", "3_Char_Family_Token")
             self._add_token(f"{tc}{fc}{sc}", "Tier_5_Cube", "3_Char_Family_Token")
             self._add_token(f"{tc}{sc}{fc}", "Tier_5_Cube", "3_Char_Family_Token")
-    
     # 2. Two-Character Family Tokens (12 Families * 2 Flips = 24 Tokens)
     for fc in mosf.keys():
       for sc in mosf.keys():
         if sc not in [fc, mosf[fc]]:
           self._add_token(f"{fc}{sc}", "Tier_5_Cube", "2_Char_Family_Token")
           self._add_token(f"{sc}{fc}", "Tier_5_Cube", "2_Char_Family_Token")
-       
     # 3. Possible Action Move Vectors (18 Tokens)
     move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
     for m in range(18):
@@ -105,7 +102,87 @@ class AdvancedCustomVocabularyRegistry:
     if isinstance(tensor_or_list, torch.Tensor):
       tensor_or_list = tensor_or_list.tolist()
     return [self.vocab_map[idx]["string_representation"] for idx in tensor_or_list]
+#
+class EncodeDecode:
+  def __init__(self, full_text = None):
+    self.full_text = full_text
+    # here are all the unique characters that occur in this text
+    # Define the components
+    lowercase = string.ascii_lowercase          # a-z (26)
+    uppercase = string.ascii_uppercase          # A-Z (26)
+    digits = string.digits                      # 0-9 (10)
+    special = """ !.,{"'}()[]:;?-\n"""
+    # Combine them into one string
+    chars = lowercase + uppercase + digits + special
+    chars = sorted(list(set(chars)))
+    # Create new stoi with special tokens
+    self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
+    self.stoi['<PAD>'] = 0
+    self.stoi['<SOS>'] = 1
+    self.stoi['<EOS>'] = 2
+    self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
+    print(f" stoi = {self.stoi}")
+    print(f" stoi = {len(self.stoi)}")
+    print(f" itos = {self.itos}")
+    print(f" itos = {len(self.itos)}")
+    self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
+    self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
+  def encoder(self, str_in):
+    if self.encode(str_in):
+      # Returns the value if found, otherwise returns None
+      return self.encode(str_in)
+    elif not self.encode(str_in) and not isinstance(str_in, (dict, list)):
+      self.createTokens(str_in)
+      return self.encode(str_in)
+    elif isinstance(str_in, (dict, list)):
+      for strin in str_in:
+        if isinstance(strin, (dict, list)):
+          if self.encode(strin):
+            return self.encode(strin)
+          else:
+            self.encoder(strin)
+  def return_stoi_size(self):
+    return len(self.stoi)
+  def createTokens(self, full_text, stoi, itos):
+    self.stoi = stoi
+    self.itos = itos
+    print(f"stoi len before token cretion = {len(self.stoi)}")
+    if isinstance(full_text, dict):
+      print(f" full_text = {len(full_text)}")
+      for key, value in full_text.items(): 
+        str="<"+key+">"
+        if not self.stoi.get(str) and isinstance(value, dict):
+          t=len(self.stoi)
+          self.stoi[str] = t
+        if isinstance(value, dict) and len(value) in (16, 19, 20):
+          # This works! It checks if len(value) is 16, 19, or 20.
+          print(f"deep dive in dict of {key} of {len(value)} len value.\n")
+          self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
+        elif not isinstance(value, (dict, list)):
+          if not self.stoi.get(key) and key != "state":
+            t=len(self.stoi) ######
+            self.stoi[key] = t
+          if  not self.stoi.get(value):
+            t=len(self.stoi)
+            self.stoi[value] = t
+      print(f"itos len = {len(self.itos)}")
+      self.itos = {i: ch for ch, i in self.stoi.items()}
+      print(f"itos len at the end of createTokens in encoding decoding = {len(self.itos)}")
+      print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
+      return self.stoi, self.itos
 if __name__ == "__main__":
   acvr = AdvancedCustomVocabularyRegistry()
   print(f" vocab map = {acvr.vocab_map}\n#\n")
   print(f" string to id = {acvr.string_to_id}")
+  # if __name__ == "__main__":
+  # print(f"At start")
+  # import json
+  file= "data/dataset/cube3x3solvingdataset.json"
+  with open(file, 'r') as f:
+            data = json.load(f)
+  edc = EncodeDecode(data['solution'])
+  result=edc.createTokens(data["solution"])
+  print(f" Result= {result}\n")
+  print(f"stoi = {edc.stoi}\n\n")
+  print(f"itos = {edc.itos}")
+#
