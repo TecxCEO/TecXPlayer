@@ -122,10 +122,8 @@ class EncodeDecode:
     #chars = sorted(list(set(chars)))
   
     # Create new stoi with special tokens
-    self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
-    self.stoi['<PAD>'] = 0
-    self.stoi['<SOS>'] = 1
-    self.stoi['<EOS>'] = 2
+    # self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
+    self.stoi = {ch[i]["string_representation"]: i for i, ch in enumerate(vocab_map, start=3)}
     self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
     print(f" stoi = {self.stoi}")
     print(f" stoi = {len(self.stoi)}")
