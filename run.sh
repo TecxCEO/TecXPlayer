@@ -1,3 +1,11 @@
+chmod +x TecXPlayer/run.sh
+cd TecXPlayer
+chmod +x run.sh
+run.sh
+TecXPlayer/run.sh
+pause
+
+
 cd ~
 chmod +x TecXPlayer/run.sh
 cd TecXPlayer
