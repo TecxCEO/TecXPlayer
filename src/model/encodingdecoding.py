@@ -85,8 +85,8 @@ class AdvancedCustomVocabularyRegistry:
     for m in range(18):
       self._add_token(move_paths[m], "Tier_5_Cube", "Action_Move_Token")
     # 4. Functional Meta Command Cues (5 Tokens)
-    self._add_token("SOS", "Tier_5_Cube", "Control_SOS")
-    self._add_token("EOS_US", "Tier_5_Cube", "Control_EOS_US")
+    self._add_token("<SOS>", "Tier_5_Cube", "Control_SOS")
+    self._add_token("<EOS>", "Tier_5_Cube", "Control_EOS_US")
     self._add_token("TASK_FWD", "Tier_5_Cube", "Control_TASK_FWD")
     self._add_token("TASK_REV", "Tier_5_Cube", "Control_TASK_REV")
     self._add_token("TASK_SOLV", "Tier_5_Cube", "Control_TASK_SOLV")
@@ -106,15 +106,21 @@ class AdvancedCustomVocabularyRegistry:
 class EncodeDecode:
   def __init__(self, full_text = None):
     self.full_text = full_text
+    acvr = AdvancedCustomVocabularyRegistry()
+    token_str = acvr.vocab_map[token_id]["string_representation"]
+    token_id = acvr.string_to_id[token_str]
+    
     # here are all the unique characters that occur in this text
     # Define the components
-    lowercase = string.ascii_lowercase          # a-z (26)
-    uppercase = string.ascii_uppercase          # A-Z (26)
-    digits = string.digits                      # 0-9 (10)
-    special = """ !.,{"'}()[]:;?-\n"""
+    
+    #lowercase = string.ascii_lowercase          # a-z (26)
+    #uppercase = string.ascii_uppercase          # A-Z (26)
+    #digits = string.digits                      # 0-9 (10)
+    # special = """ !.,{"'}()[]:;?-\n"""
     # Combine them into one string
-    chars = lowercase + uppercase + digits + special
-    chars = sorted(list(set(chars)))
+    #chars = lowercase + uppercase + digits + special
+    #chars = sorted(list(set(chars)))
+  
     # Create new stoi with special tokens
     self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
     self.stoi['<PAD>'] = 0
@@ -125,8 +131,10 @@ class EncodeDecode:
     print(f" stoi = {len(self.stoi)}")
     print(f" itos = {self.itos}")
     print(f" itos = {len(self.itos)}")
+    
     self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
     self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
+    
   def encoder(self, str_in):
     if self.encode(str_in):
       # Returns the value if found, otherwise returns None
