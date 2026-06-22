@@ -1,3 +1,6 @@
+cd ~
+chmod +x TecXPlayer/run.sh
+TecXPlayer/run.sh
 rm a.json
 git pull
 clear
