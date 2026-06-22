@@ -150,12 +150,13 @@ class EncodeDecode:
   def return_stoi_size(self):
     #return len(self.stoi)
     return len(acvr.string_to_id)
-  def createTokens(self, full_text, string_to_id, acvr.vocab_map):
+  def createTokens(self, full_text, string_to_id, vocab_map):
     # def createTokens(self, full_text, stoi, itos):
     ### self.stoi = stoi
     #### self.itos = itos
     #print(f"stoi len before token cretion = {len(self.stoi)}")
     acvr.string_to_id = string_to_id
+    acvr.vocab_map = vocab_map
     if isinstance(full_text, dict):
       print(f" full_text = {len(full_text)}")
       for key, value in full_text.items(): 
