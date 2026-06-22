@@ -107,8 +107,8 @@ class EncodeDecode:
   def __init__(self, full_text = None):
     self.full_text = full_text
     acvr = AdvancedCustomVocabularyRegistry()
-    token_str = acvr.vocab_map[token_id]["string_representation"]
-    token_id = acvr.string_to_id[token_str]
+    #### token_str = acvr.vocab_map[token_id]["string_representation"]
+    ##### token_id = acvr.string_to_id[token_str]
     
     # here are all the unique characters that occur in this text
     # Define the components
@@ -123,12 +123,12 @@ class EncodeDecode:
   
     # Create new stoi with special tokens
     # self.stoi = {ch: i for i, ch in enumerate(chars, start=3)} # Shift everything by 3
-    self.stoi = {ch[i]["string_representation"]: i for i, ch in enumerate(vocab_map, start=3)}
-    self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
-    print(f" stoi = {self.stoi}")
-    print(f" stoi = {len(self.stoi)}")
-    print(f" itos = {self.itos}")
-    print(f" itos = {len(self.itos)}")
+    ##### self.stoi = {ch[i]["string_representation"]: i for i, ch in enumerate(vocab_map, start=3)}
+    ##### self.itos = {i: ch for ch, i in self.stoi.items()} # Reverse map
+    ##### print(f" stoi = {self.stoi}")
+    ##### print(f" stoi = {len(self.stoi)}")
+    ##### print(f" itos = {self.itos}")
+    ##### print(f" itos = {len(self.itos)}")
     
     self.encode = lambda s: [self.stoi[c] for c in s] # encoder: take a string, output a list of integers
     self.decode = lambda l: ''.join([self.itos[i] for i in l]) # decoder: take a list of integers, output a string
@@ -148,34 +148,48 @@ class EncodeDecode:
           else:
             self.encoder(strin)
   def return_stoi_size(self):
-    return len(self.stoi)
-  def createTokens(self, full_text, stoi, itos):
-    self.stoi = stoi
-    self.itos = itos
-    print(f"stoi len before token cretion = {len(self.stoi)}")
+    #return len(self.stoi)
+    return len(acvr.string_to_id)
+  def createTokens(self, full_text, string_to_id, acvr.vocab_map):
+    # def createTokens(self, full_text, stoi, itos):
+    ### self.stoi = stoi
+    #### self.itos = itos
+    #print(f"stoi len before token cretion = {len(self.stoi)}")
+    acvr.string_to_id = string_to_id
     if isinstance(full_text, dict):
       print(f" full_text = {len(full_text)}")
       for key, value in full_text.items(): 
         str="<"+key+">"
-        if not self.stoi.get(str) and isinstance(value, dict):
-          t=len(self.stoi)
-          self.stoi[str] = t
+        if not acvr.string_to_id.get(str) and isinstance(value, dict):
+          # if not self.stoi.get(str) and isinstance(value, dict):
+          # t=len(self.stoi)
+          # self.stoi[str] = t
+          acvr._add_token(str, "Tier_5_Cube", "Action_Move_Token")
         if isinstance(value, dict) and len(value) in (16, 19, 20):
           # This works! It checks if len(value) is 16, 19, or 20.
           print(f"deep dive in dict of {key} of {len(value)} len value.\n")
-          self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
+          # self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
+          acvr.string_to_id, acvr.vocab_map = self.createTokens(value, acvr.string_to_id, acvr.vocab_map)
         elif not isinstance(value, (dict, list)):
-          if not self.stoi.get(key) and key != "state":
-            t=len(self.stoi) ######
-            self.stoi[key] = t
-          if  not self.stoi.get(value):
-            t=len(self.stoi)
-            self.stoi[value] = t
-      print(f"itos len = {len(self.itos)}")
-      self.itos = {i: ch for ch, i in self.stoi.items()}
-      print(f"itos len at the end of createTokens in encoding decoding = {len(self.itos)}")
-      print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
-      return self.stoi, self.itos
+          if not acvr.string_to_id.get(key) and key != "state":
+            #if not self.stoi.get(key) and key != "state":
+            #t=len(self.stoi) ######
+            #self.stoi[key] = t
+            i = len(key)
+            acvr._add_token(key, "Tier_5_Cube", f"{i}_Char_Family_Token")
+          if  not acvr.string_to_id.get(value):
+            #if  not self.stoi.get(value):
+            #t=len(self.stoi)
+            #self.stoi[value] = t
+            v=len(self.value)
+            acvr._add_token(key, "Tier_5_Cube", f"{v}_Char_Family_Token")
+      ####print(f"itos len = {len(self.itos)}")
+      #### self.itos = {i: ch for ch, i in self.stoi.items()}
+      #####print(f"itos len at the end of createTokens in encoding decoding = {len(self.itos)}")
+      ####print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
+      ####return self.stoi, self.itos
+      return  acvr.string_to_id, acvr.vocab_map
+      
 if __name__ == "__main__":
   acvr = AdvancedCustomVocabularyRegistry()
   print(f" vocab map = {acvr.vocab_map}\n#\n")
