@@ -4,7 +4,9 @@ git pull
 clear
 python src/model/trainModel.py
 run.sh
-
+pause
+echo " I am exiting!"
+exit
 
 chmod +x TecXPlayer/run.sh
 ./TecXPlayer/run.sh
