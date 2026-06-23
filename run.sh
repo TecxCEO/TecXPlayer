@@ -3,6 +3,7 @@ rm a.json
 git pull
 clear
 python src/model/trainModel.py
+pause
 run.sh
 pause
 echo " I am exiting!"
