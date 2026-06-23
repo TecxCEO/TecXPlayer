@@ -4,6 +4,7 @@ git pull
 clear
 python src/model/trainModel.py
 pause
+exit
 run.sh
 pause
 echo " I am exiting!"
