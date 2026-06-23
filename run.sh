@@ -1,7 +1,7 @@
 
 rm a.json
 git pull
-clear
+# clear
 python src/model/trainModel.py
 pause
 exit
