@@ -4,7 +4,7 @@ mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
 # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
 same_move_list = {}
 for moving_step in move_paths:
-  same_move = None
+  same_move = []
   f=moving_step.strip()[1]
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
