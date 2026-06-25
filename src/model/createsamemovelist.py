@@ -14,7 +14,7 @@ for moving_step in move_paths.keys():
     same_move += f"<{t}{s}{mosf[f]}>"
     same_move += f"<{mosf[f]}{s}{mosf[t]}>"
     same_move += f"<{mosf[t]}{s}{f}>"
-  same_move_list.update(same_move[0]: same_move)
+  same_move_list.update({same_move[0]: same_move})
 print(f" same move = {same_move}")
 file= "list_of_same_move.json"
 with open(file, 'r') as f:
