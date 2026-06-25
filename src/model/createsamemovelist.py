@@ -7,7 +7,7 @@ for moving_step in move_paths:
   f=moving_step.strip()[1]
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
-  if locals.get(same_move) is not exist or None:
+  if get(same_move) is not exist or None:
     same_move = [f"<{f}{s}{t}>"]
   if locals.get(same_move):
     #same_move += f"<{f}{s}{t}>"
