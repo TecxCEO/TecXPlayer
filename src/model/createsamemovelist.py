@@ -18,4 +18,4 @@ for moving_step in move_paths:
 print(f" same move = {same_move}")
 file= "list_of_same_move.json"
 with open(file, 'r') as f:
-  data = json.dump(f)
+  data = json.write(f)
