@@ -6,10 +6,10 @@ for moving_step in move_paths.keys():
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
   if locals.get(same_move):
-    same_move += f"<{f}{s}{t}>"
-    same_move += f"<{mosf[]}{}{}>"
-    same_move += f"<{mosf[]}{}{}>"
-    same_move += f"<{mosf[]}{}{}>"
+    #same_move += f"<{f}{s}{t}>"
+    same_move += f"<{t}{s}{mosf[f]}>"
+    same_move += f"<{mosf[f]}{s}{mosf[t]}>"
+    same_move += f"<{mosf[t]}{s}{f}>"
   elif locals.get(same_move) is not exist:
     same_move = f"<{f}{s}{t}>"
         self._add_token(f"{fc}{sc}{tc}", "Tier_5_Cube", "3_Char_Family_Token")
