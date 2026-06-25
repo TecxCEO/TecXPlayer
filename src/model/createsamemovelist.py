@@ -1,4 +1,4 @@
-impor json
+import json
 move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
 mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
 # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
