@@ -4,7 +4,7 @@ mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
 # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
 same_move_list = {}
 for moving_step in move_paths:
-  same_move = []
+  same_move = None # []
   f=moving_step.strip()[1]
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
@@ -16,7 +16,8 @@ for moving_step in move_paths:
   same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
   same_move += [f"<{mosf[t]}{s}{f}>"]
   same_move_list.update({same_move[0]: same_move})
-print(f" same move = {same_move}")
+  print(f" same move = {same_move_list}")
+print(f" same move list = {same_move}")
 file= "list_of_same_move.json"
 with open(file, 'w') as f:
   data = json.dump(f)
