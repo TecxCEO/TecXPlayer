@@ -7,13 +7,13 @@ for moving_step in move_paths:
   f=moving_step.strip()[1]
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
-  if get(same_move) is not exist or None:
-    same_move = [f"<{f}{s}{t}>"]
-  if locals.get(same_move):
-    #same_move += f"<{f}{s}{t}>"
-    same_move += f"<{t}{s}{mosf[f]}>"
-    same_move += f"<{mosf[f]}{s}{mosf[t]}>"
-    same_move += f"<{mosf[t]}{s}{f}>"
+  #if get(same_move) is not exist or None:
+  same_move = [f"<{f}{s}{t}>"]
+  #if locals.get(same_move):
+  #same_move += f"<{f}{s}{t}>"
+  same_move += f"<{t}{s}{mosf[f]}>"
+  same_move += f"<{mosf[f]}{s}{mosf[t]}>"
+  same_move += f"<{mosf[t]}{s}{f}>"
   same_move_list.update({same_move[0]: same_move})
 print(f" same move = {same_move}")
 file= "list_of_same_move.json"
