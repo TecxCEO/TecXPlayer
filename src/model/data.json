@@ -1,18 +1,18 @@
 [
   {
-    "sequence_id": "overtrain_sequence_000",
+    "sequence_id": "training_sequence_000",
     "context_window_batches": [
       {
         "batch_index": 0,
         "steps": [
           {
             "step_index": 0,
-            "start_token": 100,
-            "fwd_bwd_token": 3,
-            "current_state":,
-            "move_token": 5,
-            "resulting_state":,
-            "eo_token": 200
+            "start_token": <SOS>,
+            "control_token": TASK_FWD,
+            "current_state":[],
+            "move_token": <rgy>,
+            "resulting_state":[],
+            "eo_token": <EOS>
           },
           {
             "step_index": 1,
