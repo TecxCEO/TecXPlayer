@@ -17,5 +17,5 @@ for moving_step in move_paths:
   same_move_list.update({same_move[0]: same_move})
 print(f" same move = {same_move}")
 file= "list_of_same_move.json"
-with open(file, 'r') as f:
-  data = json.write(f)
+with open(file, 'w') as f:
+  data = json.dump(f)
