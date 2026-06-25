@@ -1,0 +1,184 @@
+####import encoding_decoding as ed #
+#from torch.utils.data import Dataset
+import json
+import copy
+
+class ImportDataset():
+    #def __init__(self, data, ...):
+    def __init__(self, file_path):
+        self.data = None
+        #super.__init__()
+        self.file_path = file_path
+        self.load_data(file_path)
+        ##print(f"data file going to load\n") 
+        ##with open(self.file_path, 'r') as f:
+          ##  print(f"loading file \n") 
+          ##  self.data = json.load(f)
+            # data = json.load(f)
+        ##print(f"file loaded\n")
+        ##print(f"size of data{self.get_total_items(self.data)}")
+        """
+        import numpy as np
+        arr = np.array(self.get_total_items(self.data), dtype=object)
+        
+        ####arr = np.array(self.get_total_items(self.data))
+        print(arr.shape)  # Output: (2, 3)
+        print(arr.ndim)   # Output: 2
+        """
+    def load_data(self, file_path):
+        # This updates the existing dictionary without wiping it out
+        ##self.data.update(new_data)
+        with open(self.file_path, 'r') as f:
+            #print(f"loading file \n") 
+            self.data = json.load(f)
+        #return self.data
+    def get_total_items(self,d, count = []):
+        ####print(f"len of d in get_total_items {len(d)}")
+        count.append(len(d))
+        ##if count:
+            ##count[-1]= len(d)
+        ##else:
+            ##count= [(len(d))]
+        #count[-1]= len(d)
+        for value in d.values():
+            if isinstance(value, dict):
+                # Recursively count items in nested dicts
+                ##if len(count)==1:
+                    ##c = count
+                ##else:
+                    ##c = count[-1]
+                # count += 
+                ##self.get_total_items(value,c)
+                #####print(f"len of value in for in get_total_items {len(value)}")
+                count[-1] = self.get_total_items(value,[count[-1]])
+            #else:
+                #count += 1
+        return count
+
+    def get_my_data(self):
+        # Inside the class, use self
+        return self.data["solution"]
+    def importData(self):
+            #cube_data = json.read(f)
+            cube=self.data["solution"].deepcopy
+            # set default values: 
+            cst, mv, amvst = None, None, None
+            for result in self.get_nested_value(cube):
+                ####cst, mv, amvst = result
+                # ... rest of your processing and yield ...
+                # Replace your current result check with this:
+                ##result = next(self.get_nested_value(cube), None)
+                if result is not None:
+                    cst, mv, amvst = result
+                else:
+                    # Handle empty case
+                    print(f"No data found for cube")
+                    continue
+                print(f"result={result}")
+                # yield cst, mv, amvst
+                yield result
+    def get_nested_value(self,data):
+        print(f"In the get_nested_value function.\n")
+        """##result = self.get_nested_value(cube)
+        Recursively searches for a target_key in a nested dictionary.
+        """
+        mv=[]
+        cst = {}
+        amst={}
+        # data=data().copy()
+        data=data.copy()
+        #print(f" data = {data_given}")
+        # If the current element is a dictionary, look inside
+        if isinstance(data, dict):
+            print(f"In the get_nested_value function, if statement.\n")
+            for key, value in data.items():
+                print(f"In the get_nested_value function for loop\n")
+                print(f"Key = {key}\n, value = {value}")
+                if key == "state":
+                    #yield value
+                    cst=value
+                    print(f"In the key == 'state' statement cst = {cst}")
+                elif len(key) == 3:
+                    if len(value)==20 :
+                        #yield value
+                        mv=key
+                        amvst=value
+                        print(f"In the value len 20 statement mv = {mv}, amst = {amvst}")
+                    elif len(value)== (16, 19):
+                        #yield value
+                        mv=key
+                        amvst=value["state"]
+                        print(f"In the key != 'state' statement mv = {mv}, amst = {amvst}")
+                        # MOVE THIS OUTSIDE THE FOR LOOP
+                        # if cst is not None and mv is not None and amvst is not None:
+                        # print(f"Yielding collected data: {mv}")
+                        # yield cst, mv, amvst
+                        if cst and mv and amvst: # and key!="state":
+                            print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
+                            yield cst, mv, amvst
+                        if isinstance(value, dict): # and len(value)==(16, 19) :
+                            # If the value is another dictionary, dive deeper (recursion)
+                            yield from get_nested_value(value)
+            print(f"At the end of get_nested_value function.\n")
+    def createInputString(self, data):
+        stbm = None
+        mv = None
+        stam = None
+        for key, value in data.items():
+            if key == 'state' :
+                stbm = data[key]
+                ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
+            elif key != 'state' :
+                mv = key
+                ##print(f" value of value = {value}")
+                if len(value) in (16,19):
+                    stam = value['state']
+                    ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
+                #####yield (stbm, mv, stam)
+                # if all([stbm, mv, stam]):
+                if stbm and mv and stam:
+                    ####print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
+                    #yield (stbm, mv, stam)
+                    yield [stbm, mv, stam]
+    
+    def convertStateToList(self, stbm, mv, stam):
+        stbml = []
+        staml = []
+        for value in stbm.values():
+            stbml.append(value)
+            # stbml+=value
+        # staml.append(value) for value in stbm.values()
+        staml.extend(stam.values())
+        
+        #(staml+=value) for value in stbm.values()
+        #return (stbml, mv, staml)
+        return [stbml, mv, staml]
+if __name__ == "__main__":
+    idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
+    # print()
+    # st_data = idc.importData.copy()
+    # Then you must use it like this:
+    st_data = copy.copy(idc.importData)
+    print(f" st_data = {vars(st_data)}")
+    
+    # OR print(st_data.__dict__)
+
+    # This "exhausts" the generator and puts everything into a list
+    #####st_data = list(idc.importData()) 
+    ######print(f"st_data = {st_data}")
+    ######print(f" st_data = {next(st_data)}")
+    # RIGHT
+    ####iterator = iter(st_data)
+    ####print(f" st_data = {next(iterator, None)}")
+    idc.get_nested_value(idc.data["solution"])
+    # This will trigger every print inside the function as it loops
+    for result in idc.get_nested_value(idc.data["solution"]):
+        print(f"Got result: {result}")
+    st_mv_data = []
+    st_mv_data += idc.createInputString(idc.data["solution"])
+    ###print(f"st_mv_data = {st_mv_data}")
+    for l, smd in enumerate(st_mv_data, start = 1):
+        print(f"st_mv_data {l} = {smd[0]}\n, {smd[1]}\n, {smd[2]}\n")
+        # print(f"st_mv_data {l} = {smd[:3]}\n\n")
+        st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
+        print(f"st_mv_data_list {l} = {st_mv_data_list}\n\n")
