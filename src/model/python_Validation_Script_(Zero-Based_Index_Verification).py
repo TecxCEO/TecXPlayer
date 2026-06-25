@@ -34,19 +34,22 @@ class VerifiedCubicPuzzleDataset(Dataset):
                     f"Index Error: Batch {current_batch_idx}, expected step index {expected_step_idx}, but found {current_step_idx}"
                 
                 # Extract and reconstruct tokens in the precise sequence requested
-                start_token = [step["start_token"]]
-                fwd_bwd_token = [step["fwd_bwd_token"]]
+                # start_token = [step["start_token"]]
+                sos_token = [step["sos_token"]]
+                # fwd_bwd_token = [step["fwd_bwd_token"]]
+                control_token = [step["control_token"]]
                 current_state = step["current_state"]
                 move_token = [step["move_token"]]
                 resulting_state = step["resulting_state"]
-                eo_token = [step["eo_token"]]
+                eos_token = [step["eos_token"]]
                 
                 # Check individual state constraints (20 tokens each)
                 assert len(current_state) == 20, f"Format Error: Current state in Batch {current_batch_idx}, Step {current_step_idx} must be 20 tokens."
                 assert len(resulting_state) == 20, f"Format Error: Resulting state in Batch {current_batch_idx}, Step {current_step_idx} must be 20 tokens."
                 
                 # Assemble the 44-token flat block
-                step_tokens = start_token + fwd_bwd_token + current_state + move_token + resulting_state + eo_token
+                # step_tokens = start_token + fwd_bwd_token + current_state + move_token + resulting_state + eo_token
+                step_tokens = sos_token + control_token + current_state + move_token + resulting_state + eos_token
                 assert len(step_tokens) == 44, f"Alignment Error: Step tokens layout must be 44. Got {len(step_tokens)}"
                 
                 flattened_context.extend(step_tokens)
