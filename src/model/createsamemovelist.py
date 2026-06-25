@@ -20,3 +20,6 @@ for moving_step in move_paths:
 print(f" same move list = {same_move_list}")
 print(f" same move list length = {len(same_move_list)}")
 file= "list_of_same_move.json"
+if not os.path.isfile(file):
+  with open(file, "w") as f:
+    json.dump(same_move_list, f, indent=4)
