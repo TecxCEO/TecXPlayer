@@ -84,36 +84,19 @@ class ImportDataset():
         for value in stbm.values():
             stbml.append(value)
         staml.extend(stam.values())
-        
-        #(staml+=value) for value in stbm.values()
-        #return (stbml, mv, staml)
         return [stbml, mv, staml]
 if __name__ == "__main__":
     idc = ImportDataset("data/dataset/cube3x3solvingdataset.json")
-    # print()
-    # st_data = idc.importData.copy()
     # Then you must use it like this:
     st_data = copy.copy(idc.importData)
     print(f" st_data = {vars(st_data)}")
-    
-    # OR print(st_data.__dict__)
-
-    # This "exhausts" the generator and puts everything into a list
-    #####st_data = list(idc.importData()) 
-    ######print(f"st_data = {st_data}")
-    ######print(f" st_data = {next(st_data)}")
-    # RIGHT
-    ####iterator = iter(st_data)
-    ####print(f" st_data = {next(iterator, None)}")
     idc.get_nested_value(idc.data["solution"])
     # This will trigger every print inside the function as it loops
     for result in idc.get_nested_value(idc.data["solution"]):
         print(f"Got result: {result}")
     st_mv_data = []
     st_mv_data += idc.createInputString(idc.data["solution"])
-    ###print(f"st_mv_data = {st_mv_data}")
     for l, smd in enumerate(st_mv_data, start = 1):
         print(f"st_mv_data {l} = {smd[0]}\n, {smd[1]}\n, {smd[2]}\n")
-        # print(f"st_mv_data {l} = {smd[:3]}\n\n")
         st_mv_data_list = idc.convertStateToList(smd[0], smd[1], smd[2])
         print(f"st_mv_data_list {l} = {st_mv_data_list}\n\n")
