@@ -33,14 +33,12 @@ class ImportDataset():
                 yield result
     def get_nested_value(self,data):
         print(f"In the get_nested_value function.\n")
-        #result = self.get_nested_value(cube)
         Recursively searches for a target_key in a nested dictionary.
         mv=[]
         cst = {}
         amst={}
         # data=data().copy()
         data=data.copy()
-        #print(f" data = {data_given}")
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
             print(f"In the get_nested_value function, if statement.\n")
@@ -48,28 +46,21 @@ class ImportDataset():
                 print(f"In the get_nested_value function for loop\n")
                 print(f"Key = {key}\n, value = {value}")
                 if key == "state":
-                    #yield value
                     cst=value
                     print(f"In the key == 'state' statement cst = {cst}")
                 elif len(key) == 3:
                     if len(value)==20 :
-                        #yield value
                         mv=key
                         amvst=value
                         print(f"In the value len 20 statement mv = {mv}, amst = {amvst}")
                     elif len(value)== (16, 19):
-                        #yield value
                         mv=key
                         amvst=value["state"]
                         print(f"In the key != 'state' statement mv = {mv}, amst = {amvst}")
-                        # MOVE THIS OUTSIDE THE FOR LOOP
-                        # if cst is not None and mv is not None and amvst is not None:
-                        # print(f"Yielding collected data: {mv}")
-                        # yield cst, mv, amvst
-                        if cst and mv and amvst: # and key!="state":
+                        if cst and mv and amvst:
                             print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
                             yield cst, mv, amvst
-                        if isinstance(value, dict): # and len(value)==(16, 19) :
+                        if isinstance(value, dict):
                             # If the value is another dictionary, dive deeper (recursion)
                             yield from get_nested_value(value)
             print(f"At the end of get_nested_value function.\n")
@@ -80,18 +71,11 @@ class ImportDataset():
         for key, value in data.items():
             if key == 'state' :
                 stbm = data[key]
-                ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
             elif key != 'state' :
                 mv = key
-                ##print(f" value of value = {value}")
                 if len(value) in (16,19):
                     stam = value['state']
-                    ####print(f" {key} stbm = {stbm}, mv = {mv}, stam = {stam}")
-                #####yield (stbm, mv, stam)
-                # if all([stbm, mv, stam]):
                 if stbm and mv and stam:
-                    ####print(f"stbm = {stbm}, mv = {mv}, stam = {stam}")
-                    #yield (stbm, mv, stam)
                     yield [stbm, mv, stam]
     
     def convertStateToList(self, stbm, mv, stam):
@@ -99,8 +83,6 @@ class ImportDataset():
         staml = []
         for value in stbm.values():
             stbml.append(value)
-            # stbml+=value
-        # staml.append(value) for value in stbm.values()
         staml.extend(stam.values())
         
         #(staml+=value) for value in stbm.values()
