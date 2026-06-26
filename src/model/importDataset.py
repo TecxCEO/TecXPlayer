@@ -20,7 +20,7 @@ class ImportDataset():
         return self.data["solution"]
     def importData(self):
             cube=self.data["solution"].deepcopy
-            # set default values: 
+            # set default values:
             cst, mv, amvst = None, None, None
             for result in self.get_nested_value(cube):
                 if result is not None:
@@ -33,11 +33,10 @@ class ImportDataset():
                 yield result
     def get_nested_value(self,data):
         print(f"In the get_nested_value function.\n")
-        Recursively searches for a target_key in a nested dictionary.
+        # Recursively searches for a target_key in a nested dictionary.
         mv=[]
         cst = {}
         amst={}
-        # data=data().copy()
         data=data.copy()
         # If the current element is a dictionary, look inside
         if isinstance(data, dict):
@@ -60,6 +59,7 @@ class ImportDataset():
                         if cst and mv and amvst:
                             print(f" cst ={cst}\n, mv = {mv}\n, amvst = { amvst}")
                             yield cst, mv, amvst
+                            print( " after yield value")
                         if isinstance(value, dict):
                             # If the value is another dictionary, dive deeper (recursion)
                             yield from get_nested_value(value)
