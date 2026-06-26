@@ -1,65 +1,24 @@
-####import encoding_decoding as ed #
-#from torch.utils.data import Dataset
 import json
 import copy
 
 class ImportDataset():
-    #def __init__(self, data, ...):
     def __init__(self, file_path):
         self.data = None
-        #super.__init__()
         self.file_path = file_path
         self.load_data(file_path)
-        ##print(f"data file going to load\n") 
-        ##with open(self.file_path, 'r') as f:
-          ##  print(f"loading file \n") 
-          ##  self.data = json.load(f)
-            # data = json.load(f)
-        ##print(f"file loaded\n")
-        ##print(f"size of data{self.get_total_items(self.data)}")
-        """
-        import numpy as np
-        arr = np.array(self.get_total_items(self.data), dtype=object)
-        
-        ####arr = np.array(self.get_total_items(self.data))
-        print(arr.shape)  # Output: (2, 3)
-        print(arr.ndim)   # Output: 2
-        """
     def load_data(self, file_path):
-        # This updates the existing dictionary without wiping it out
-        ##self.data.update(new_data)
         with open(self.file_path, 'r') as f:
-            #print(f"loading file \n") 
             self.data = json.load(f)
-        #return self.data
     def get_total_items(self,d, count = []):
-        ####print(f"len of d in get_total_items {len(d)}")
         count.append(len(d))
-        ##if count:
-            ##count[-1]= len(d)
-        ##else:
-            ##count= [(len(d))]
-        #count[-1]= len(d)
         for value in d.values():
             if isinstance(value, dict):
-                # Recursively count items in nested dicts
-                ##if len(count)==1:
-                    ##c = count
-                ##else:
-                    ##c = count[-1]
-                # count += 
-                ##self.get_total_items(value,c)
-                #####print(f"len of value in for in get_total_items {len(value)}")
                 count[-1] = self.get_total_items(value,[count[-1]])
-            #else:
-                #count += 1
         return count
 
     def get_my_data(self):
-        # Inside the class, use self
         return self.data["solution"]
     def importData(self):
-            #cube_data = json.read(f)
             cube=self.data["solution"].deepcopy
             # set default values: 
             cst, mv, amvst = None, None, None
