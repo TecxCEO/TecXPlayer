@@ -62,7 +62,7 @@ class AdvancedCustomVocabularyRegistry:
       self.current_id += 1
     elif token_str in self.string_to_id:
       print(f"token_str = {token_str}")
-      self.same += token_str
+      self.same += [token_str]
   def _compile_exhaustive_hierarchy(self):
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
     # ---------------------------------------------------------------------
