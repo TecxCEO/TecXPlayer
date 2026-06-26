@@ -23,10 +23,6 @@ class ImportDataset():
             # set default values: 
             cst, mv, amvst = None, None, None
             for result in self.get_nested_value(cube):
-                ####cst, mv, amvst = result
-                # ... rest of your processing and yield ...
-                # Replace your current result check with this:
-                ##result = next(self.get_nested_value(cube), None)
                 if result is not None:
                     cst, mv, amvst = result
                 else:
@@ -34,13 +30,11 @@ class ImportDataset():
                     print(f"No data found for cube")
                     continue
                 print(f"result={result}")
-                # yield cst, mv, amvst
                 yield result
     def get_nested_value(self,data):
         print(f"In the get_nested_value function.\n")
-        """##result = self.get_nested_value(cube)
+        #result = self.get_nested_value(cube)
         Recursively searches for a target_key in a nested dictionary.
-        """
         mv=[]
         cst = {}
         amst={}
