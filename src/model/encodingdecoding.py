@@ -121,6 +121,7 @@ class AdvancedCustomVocabularyRegistry:
           a = None
           b = None
           c = None
+      print(f"same_moves = {same_move} ")
       same_move_list.update({same_move[0]: same_move})
       print(f" same move = {same_move}")
     print(f" same move list = {same_move_list}")
