@@ -90,7 +90,7 @@ class AdvancedCustomVocabularyRegistry:
     b = None
     c = None
     for moving_step in move_paths:
-      same_move = None #[]
+      same_move = []
       f=moving_step.strip()[1]
       s=moving_step.strip()[2]
       t=moving_step.strip()[3]
