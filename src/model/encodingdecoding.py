@@ -84,6 +84,47 @@ class AdvancedCustomVocabularyRegistry:
     move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<grb>","<gow>","<goy>","<gob>","<yrg>","<yrb>","<yrw>","<yog>","<yob>","<yow>"]
     for m in range(18):
       self._add_token(move_paths[m], "Tier_5_Cube", "Action_Move_Token")
+    # Similar Moves
+    same_move_list = {}
+    a = None
+    b = None
+    c = None
+    for moving_step in move_paths:
+      same_move = None #[]
+      f=moving_step.strip()[1]
+      s=moving_step.strip()[2]
+      t=moving_step.strip()[3]
+      if f != mosf[t]:
+        if b is None or b not in [t, mosf[t]]:
+          a = f
+          b = t
+        if b == mosf[t] and a == f:
+          c = t
+          same_move = [f"<{f}{s}{t}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{t}{s}{mosf[f]}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{mosf[t]}{s}{f}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+      elif f == mosf[t]:
+        if a == f and b == mosf[c] and a not in [b, c] and s not in [b, c]:
+          same_move = [f"<{f}{s}{t}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{b}{s}{c}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{t}{s}{f}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          same_move += [f"<{c}{s}{b}>"]
+          self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
+          a = None
+          b = None
+          c = None
+      same_move_list.update({same_move[0]: same_move})
+      print(f" same move = {same_move}")
+    print(f" same move list = {same_move_list}")
+    print(f" same move list length = {len(same_move_list)}")
     # 4. Functional Meta Command Cues (5 Tokens)
     self._add_token("<SOS>", "Tier_5_Cube", "Control_SOS")
     self._add_token("<EOS>", "Tier_5_Cube", "Control_EOS_US")
