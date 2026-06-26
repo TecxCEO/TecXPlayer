@@ -20,7 +20,7 @@ for moving_step in move_paths:
     same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
     same_move += [f"<{mosf[t]}{s}{f}>"]
   elif f == mosf[t]:
-    if a == f and b == mosf[c] and a is not in (b, c) and s is not in (b, c):
+    if a == f and b == mosf[c] and a is not in [b, c] and s is not in [b, c]:
       same_move = [f"<{f}{s}{t}>"]
       same_move += [f"<{b}{s}{c}>"]
       same_move += [f"<{t}{s}{f}>"]
