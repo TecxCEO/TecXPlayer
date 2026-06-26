@@ -3,7 +3,9 @@ move_paths=["<rgy>","<rgw>","<rgo>","<rby>","<rbw>","<rbo>","<grw>","<gry>","<gr
 mosf={'b':'g','g':'b','o':'r','r':'o','w':'y','y':'w'}
 # 1. Three-Character Family Tokens (8 Families * 6 Flips = 48 Tokens)
 same_move_list = {}
-a,b, c = None
+a = None
+b = None
+c = None
 for moving_step in move_paths:
   same_move = None #[]
   f=moving_step.strip()[1]
@@ -25,7 +27,9 @@ for moving_step in move_paths:
       same_move += [f"<{b}{s}{c}>"]
       same_move += [f"<{t}{s}{f}>"]
       same_move += [f"<{c}{s}{b}>"]
-      a,b, c = None
+      a = None
+      b = None
+      c = None
     same_move_list.update({same_move[0]: same_move})
   print(f" same move = {same_move}")
 print(f" same move list = {same_move_list}")
