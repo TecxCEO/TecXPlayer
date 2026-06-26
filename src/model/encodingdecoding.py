@@ -47,7 +47,8 @@ class AdvancedCustomVocabularyRegistry:
     self.vocab_map = {}
     self.string_to_id = {}
     self.current_id = 0
-    self._compile_exhaustive_hierarchy()
+    self.same = []
+    self._compile_exhaustive_hierarchy() 
   def _add_token(self, token_str, tier_type, sub_category=""):
     if token_str not in self.string_to_id:
       token_id = self.current_id
@@ -59,6 +60,9 @@ class AdvancedCustomVocabularyRegistry:
       }
       self.string_to_id[token_str] = token_id
       self.current_id += 1
+    elif token_str in self.string_to_id:
+      print(f"token_str = {token_str}")
+      self.same += token_str
   def _compile_exhaustive_hierarchy(self):
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
     # ---------------------------------------------------------------------
@@ -101,30 +105,20 @@ class AdvancedCustomVocabularyRegistry:
         if b == mosf[t] and a == f:
           c = t
         same_move = [f"<{f}{s}{t}>"]
-        ##print(f"same_moves = {same_move} ")
-        # self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
         same_move += [f"<{t}{s}{mosf[f]}>"]
-        ##print(f"same_moves = {same_move} ")
         self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
         same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
-        ##print(f"same_moves = {same_move} ")
         self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
         same_move += [f"<{mosf[t]}{s}{f}>"]
-        ##print(f"same_moves = {same_move} ")
         self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
       elif f == mosf[t]:
         if a == f and b == mosf[c] and a not in [b, c] and s not in [b, c]:
           same_move = [f"<{f}{s}{t}>"]
-          ##print(f"same_moves = {same_move} ")
-          # self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{b}{s}{c}>"]
-          ##print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
           same_move += [f"<{t}{s}{f}>"]
-          ##print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
           same_move += [f"<{c}{s}{b}>"]
-          ##print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}_same_Token")
           a = None
           b = None
@@ -256,4 +250,6 @@ if __name__ == "__main__":
   print(f" Result= {result}\n")
   print(f"stoi = {edc.stoi}\n\n")
   print(f"itos = {edc.itos}")
+  print(f" same = {self.same}")
+  print(f" same len = {len(self.same)}")
 #
