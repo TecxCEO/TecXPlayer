@@ -101,22 +101,30 @@ class AdvancedCustomVocabularyRegistry:
         if b == mosf[t] and a == f:
           c = t
           same_move = [f"<{f}{s}{t}>"]
+          print(f"same_moves = {same_move} ")
           # self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{t}{s}{mosf[f]}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{mosf[t]}{s}{f}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
       elif f == mosf[t]:
         if a == f and b == mosf[c] and a not in [b, c] and s not in [b, c]:
           same_move = [f"<{f}{s}{t}>"]
+          print(f"same_moves = {same_move} ")
           # self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{b}{s}{c}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{t}{s}{f}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           same_move += [f"<{c}{s}{b}>"]
+          print(f"same_moves = {same_move} ")
           self._add_token(same_move[-1], "Tier_5_Cube", f"Action_Move_{same_move[0]}same_Token")
           a = None
           b = None
