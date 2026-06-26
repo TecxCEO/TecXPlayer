@@ -242,6 +242,8 @@ if __name__ == "__main__":
   # if __name__ == "__main__":
   # print(f"At start")
   # import json
+  print(f" same = {self.same}")
+  print(f" same len = {len(self.same)}")
   file= "data/dataset/cube3x3solvingdataset.json"
   with open(file, 'r') as f:
             data = json.load(f)
@@ -250,6 +252,5 @@ if __name__ == "__main__":
   print(f" Result= {result}\n")
   print(f"stoi = {edc.stoi}\n\n")
   print(f"itos = {edc.itos}")
-  print(f" same = {self.same}")
-  print(f" same len = {len(self.same)}")
+  
 #
