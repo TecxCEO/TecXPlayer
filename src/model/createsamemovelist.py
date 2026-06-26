@@ -30,7 +30,7 @@ for moving_step in move_paths:
       a = None
       b = None
       c = None
-    same_move_list.update({same_move[0]: same_move})
+  same_move_list.update({same_move[0]: same_move})
   print(f" same move = {same_move}")
 print(f" same move list = {same_move_list}")
 print(f" same move list length = {len(same_move_list)}")
