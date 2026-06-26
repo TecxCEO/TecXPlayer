@@ -245,7 +245,7 @@ if __name__ == "__main__":
   print(f" same = {acvr.same}")
   print(f" same len = {len(acvr.same)}")
   file= "data/dataset/cube3x3solvingdataset.json"
-  if not os.path.isfile(self.filename):
+  if not os.path.isfile(self.file):
       #with open(self.filename, "w") as f:
       with open(file, 'r') as f:
         data = json.load(f)
