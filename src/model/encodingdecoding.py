@@ -245,8 +245,10 @@ if __name__ == "__main__":
   print(f" same = {acvr.same}")
   print(f" same len = {len(acvr.same)}")
   file= "data/dataset/cube3x3solvingdataset.json"
-  with open(file, 'r') as f:
-            data = json.load(f)
+  if not os.path.isfile(self.filename):
+      #with open(self.filename, "w") as f:
+      with open(file, 'r') as f:
+        data = json.load(f)
   edc = EncodeDecode(data['solution'])
   result=edc.createTokens(data["solution"])
   print(f" Result= {result}\n")
