@@ -10,7 +10,7 @@ for moving_step in move_paths:
   s=moving_step.strip()[2]
   t=moving_step.strip()[3]
   if f != mosf[t]:
-    if b is None or b is not in [t, mosf[t]]:
+    if b is None or b not in [t, mosf[t]]:
       a = f
       b = t
     if b == mosf[t] and a == f:
@@ -20,7 +20,7 @@ for moving_step in move_paths:
     same_move += [f"<{mosf[f]}{s}{mosf[t]}>"]
     same_move += [f"<{mosf[t]}{s}{f}>"]
   elif f == mosf[t]:
-    if a == f and b == mosf[c] and a is not in [b, c] and s is not in [b, c]:
+    if a == f and b == mosf[c] and a not in [b, c] and s not in [b, c]:
       same_move = [f"<{f}{s}{t}>"]
       same_move += [f"<{b}{s}{c}>"]
       same_move += [f"<{t}{s}{f}>"]
