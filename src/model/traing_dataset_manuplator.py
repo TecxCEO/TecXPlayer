@@ -21,9 +21,11 @@ for seq_id in range(277): # 20*18*277 = 99720
         "eos_token": "<EOS>"
           }
       step_idx += step
-    contxt_win_bat.update({"steps" : step_idx})
+    # contxt_win_bat.update({"steps" : step_idx})
+    contxt_win_bat.update(steps = step_idx)
   contxt_win_bates += contxt_win_bat
-  sequence.update({"context_window_batches" : contxt_win_bates})
+  # sequence.update({"context_window_batches" : contxt_win_bates})
+  sequence.update(context_window_batches = contxt_win_bates)
   sequences += sequence
   #print(f" sequences = {sequences}")
   file= "training_data_list.json"
