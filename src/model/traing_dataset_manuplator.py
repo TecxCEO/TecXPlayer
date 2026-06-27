@@ -24,4 +24,7 @@ for seq_id in range(277): # 20*18*277 = 99720
   contxt_win_bates += contxt_win_bat
   sequence.update({"context_window_batches" : contxt_win_bates})
   sequences += sequence
-  print(f" sequences = {sequences}")
+  #print(f" sequences = {sequences}")
+  file= "training_data_list.json"
+  with open(file, "w") as f:
+    json.dump(same_move_list, f, indent=4)
