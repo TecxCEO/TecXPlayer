@@ -13,7 +13,7 @@ for seq_id in range(277): # 20*18*277 = 99720
       step = {
         "step_index": stp_idx,
         "start_token": "<SOS>",
-        "control_token": TASK_FWD,
+        "control_token": "TASK_FWD",
         "current_state":[],
         "move_token": "<rgy>",
         "resulting_state":[],
