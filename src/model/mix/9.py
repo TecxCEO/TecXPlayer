@@ -2,8 +2,6 @@
 In standard text transformers, models often train on data samples without completing multiple structured passes (epochs) over the complete dataset chunk before starting the fine-tuning loop.To ensure the architecture first processes every single element of the complete input dataset chunk, it requires an explicit Dataset Index Tracking Loop rather than an arbitrary step limit.Here is the upgraded script. This edition removes arbitrary step counts and structures training around a rigid Epoch Data Matrix Router. It processes every sample in the input chunk, tracks the epoch steps, and then initiates the post-optimization convergence loop.
 """
 
-
-
 # Save this entire script as: geometry_constrained_transformer.py
 
 import os
@@ -12,12 +10,20 @@ import math
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from encodingdecoding ad ed
 
+edacvr = ed.AdvancedCustomVocabularyRegistry() ####
+# print(f" vocab map = {acvr.vocab_map}\n#\n")
+# print(f" string to id = {acvr.string_to_id}")
+# print(f" same = {acvr.same}")
+# print(f" same len = {len(acvr.same)}")
+# print(f" vocab map = {acvr.vocab_map}\n#\n")
+# len(acvr.same)
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
-BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
-
+# BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
+BASE_VOCAB_SIZE = len(edacvr.string_to_id)     # Base structural tokens (0 to 89)
 # Register Explicit Task and Structural Meta-Tokens
 SOS_TOKEN = BASE_VOCAB_SIZE      # 90
 EOS_TOKEN = BASE_VOCAB_SIZE + 1  # 91 (Used as US/End token)
