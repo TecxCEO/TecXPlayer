@@ -222,10 +222,10 @@ if __name__ == "__main__":
   if os.path.isfile(file):
     with open(file, 'r') as f:
       data = json.load(f)
-  edc = EncodeDecode(data['solution'])
-  result=edc.createTokens(data["solution"])
-  print(f" Result= {result}\n")
-  print(f"stoi = {edc.stoi}\n\n")
-  print(f"itos = {edc.itos}")
+    edc = EncodeDecode(data['solution'])
+    result=edc.createTokens(data["solution"])
+    print(f" Result= {result}\n")
+    print(f"stoi = {edc.stoi}\n\n")
+    print(f"itos = {edc.itos}")
   
 #
