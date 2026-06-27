@@ -1,7 +1,7 @@
 sequences = []
 for seq_id in range(277): # 20*18*277 = 99720
   sequence = {}
-  sequence.update("sequence_id": f"training_sequence_{seq_id}")
+  sequence.update({"sequence_id": f"training_sequence_{seq_id}"})
   context_window_batches = {}
   cntxt_win_bates = []
   for bat_idx in range(18):
