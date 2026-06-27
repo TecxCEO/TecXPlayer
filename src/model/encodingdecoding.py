@@ -31,6 +31,7 @@ ACCURACY_GATE_MIN = 0.98
 # Minimum 98% accuracy required to pass performance gate
 CSV_LOG_FILE = "phase1_training_metrics.csv"
 VOCAB_LEDGER_FILE = "structural_vocabulary_ledger.json"
+string_to_id_list = "string_to_id_list.json " ####
 #=============================================================================
 # 2. END-TO-END TIERED VOCABULARY ENGINE & REGISTRY
 #=============================================================================
@@ -40,10 +41,11 @@ class AdvancedCustomVocabularyRegistry:
   """
   def __init__(self, ledger_path=VOCAB_LEDGER_FILE):
     self.ledger_path = ledger_path
+    ####self.string_to_id_list = ####
     self.vocab_map = {}
     self.string_to_id = {}
     self.current_id = 0
-    self.same = []
+    self.same = [] ####
     self._compile_exhaustive_hierarchy() 
   def _add_token(self, token_str, tier_type, sub_category=""):
     if token_str not in self.string_to_id:
@@ -56,9 +58,9 @@ class AdvancedCustomVocabularyRegistry:
       }
       self.string_to_id[token_str] = token_id
       self.current_id += 1
-    elif token_str in self.string_to_id:
-      print(f"token_str = {token_str}")
-      self.same += [token_str]
+    elif token_str in self.string_to_id: ####
+      print(f"token_str = {token_str}") ####
+      self.same += [token_str] ####
   def _compile_exhaustive_hierarchy(self):
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
     # ---------------------------------------------------------------------
@@ -133,6 +135,9 @@ class AdvancedCustomVocabularyRegistry:
     # Write absolute compiled snapshot map ledger out to disk
     with open(self.ledger_path, "w", encoding="utf-8") as f:
       json.dump(self.vocab_map, f, indent=4, ensure_ascii=False)
+    with open(string_to_id_list, "w", encoding="utf-8") as f: ####
+      json.dump(self.string_to_id, f, indent=4, ensure_ascii=False) ####
+    #### string_to_id_list
   @property
   def total_vocab_size(self):
     return self.current_id
