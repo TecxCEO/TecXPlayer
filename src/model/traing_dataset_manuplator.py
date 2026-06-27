@@ -28,4 +28,4 @@ for seq_id in range(277): # 20*18*277 = 99720
   #print(f" sequences = {sequences}")
   file= "training_data_list.json"
   with open(file, "w") as f:
-    json.dump(same_move_list, f, indent=4)
+    json.dump(sequences, f, indent=4)
