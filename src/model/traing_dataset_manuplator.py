@@ -12,12 +12,12 @@ for seq_id in range(277): # 20*18*277 = 99720
     for stp_idx in range(20):
       step = {
         "step_index": stp_idx,
-        "start_token": <SOS>,
+        "start_token": "<SOS>",
         "control_token": TASK_FWD,
         "current_state":[],
-        "move_token": <rgy>,
+        "move_token": "<rgy>",
         "resulting_state":[],
-        "eos_token": <EOS>
+        "eos_token": "<EOS>"
           }
       step_idx += step
     cntxt_win_bat.update({steps : step_idx})
