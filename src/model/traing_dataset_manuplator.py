@@ -1,3 +1,4 @@
+import json
 sequences = []
 for seq_id in range(277): # 20*18*277 = 99720
   sequence = {}
