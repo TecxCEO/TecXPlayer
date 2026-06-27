@@ -11,6 +11,7 @@ for seq_id in range(277): # 20*18*277 = 99720
     steps = {}
     step_idx = []
     for stp_idx in range(20):
+      step = {}
       step = {
         "step_index": stp_idx,
         "start_token": "<SOS>",
