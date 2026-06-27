@@ -7,10 +7,10 @@ for seq_id in range(99720):
   for bat_idx in range(18):
     context_window_batches.update({"batch_index": bat_idx})
     "steps" = {}
+    step_idx = []
     for stp_idx in range(20):
-      "step_index": stp_idx
-      {
-        "step_index": 0,
+      step = {
+        "step_index": stp_idx,
         "start_token": <SOS>,
         "control_token": TASK_FWD,
         "current_state":[],
@@ -18,7 +18,10 @@ for seq_id in range(99720):
         "resulting_state":[],
         "eos_token": <EOS>
           }
-    sequence.update("sequence_id": f"training_sequence_00{seq_id}")
+      step_idx += step_idx
+    context_window_batches.update({steps : step_idx})
+  sequence.update("sequence_id": f"training_sequence_00{seq_id}")
+  sequence.update("sequence_id": f"training_sequence_00{seq_id}")
     sequences += sequence
 
 {
