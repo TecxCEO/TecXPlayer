@@ -5,10 +5,6 @@ import csv
 import json
 import math
 import string
-#import torch
-#import torch.nn as nn
-#from torch.nn import functional as F
-
 #=============================================================================
 # 1. HARDCODED PARAMETERS & CONFIGURATION PROFILE
 #=============================================================================
@@ -195,10 +191,6 @@ class EncodeDecode:
     #return len(self.stoi)
     return len(acvr.string_to_id)
   def createTokens(self, full_text, string_to_id, vocab_map):
-    # def createTokens(self, full_text, stoi, itos):
-    ### self.stoi = stoi
-    #### self.itos = itos
-    #print(f"stoi len before token cretion = {len(self.stoi)}")
     acvr.string_to_id = string_to_id
     acvr.vocab_map = vocab_map
     if isinstance(full_text, dict):
@@ -206,47 +198,28 @@ class EncodeDecode:
       for key, value in full_text.items(): 
         str="<"+key+">"
         if not acvr.string_to_id.get(str) and isinstance(value, dict):
-          # if not self.stoi.get(str) and isinstance(value, dict):
-          # t=len(self.stoi)
-          # self.stoi[str] = t
           acvr._add_token(str, "Tier_5_Cube", "Action_Move_Token")
         if isinstance(value, dict) and len(value) in (16, 19, 20):
           # This works! It checks if len(value) is 16, 19, or 20.
           print(f"deep dive in dict of {key} of {len(value)} len value.\n")
-          # self.stoi, self.itos = self.createTokens(value, self.stoi, self.itos)
           acvr.string_to_id, acvr.vocab_map = self.createTokens(value, acvr.string_to_id, acvr.vocab_map)
         elif not isinstance(value, (dict, list)):
           if not acvr.string_to_id.get(key) and key != "state":
-            #if not self.stoi.get(key) and key != "state":
-            #t=len(self.stoi) ######
-            #self.stoi[key] = t
             i = len(key)
             acvr._add_token(key, "Tier_5_Cube", f"{i}_Char_Family_Token")
           if  not acvr.string_to_id.get(value):
-            #if  not self.stoi.get(value):
-            #t=len(self.stoi)
-            #self.stoi[value] = t
             v=len(self.value)
             acvr._add_token(key, "Tier_5_Cube", f"{v}_Char_Family_Token")
-      ####print(f"itos len = {len(self.itos)}")
-      #### self.itos = {i: ch for ch, i in self.stoi.items()}
-      #####print(f"itos len at the end of createTokens in encoding decoding = {len(self.itos)}")
-      ####print(f"stoi len at the end of createTokens in encoding decoding = {len(self.stoi)}")
-      ####return self.stoi, self.itos
       return  acvr.string_to_id, acvr.vocab_map
       
 if __name__ == "__main__":
   acvr = AdvancedCustomVocabularyRegistry()
   print(f" vocab map = {acvr.vocab_map}\n#\n")
   print(f" string to id = {acvr.string_to_id}")
-  # if __name__ == "__main__":
-  # print(f"At start")
-  # import json
   print(f" same = {acvr.same}")
   print(f" same len = {len(acvr.same)}")
   file= "data/dataset/cube3x3solvingdataset.json"
   if os.path.isfile(file):
-    #with open(self.filename, "w") as f:
     with open(file, 'r') as f:
       data = json.load(f)
   edc = EncodeDecode(data['solution'])
