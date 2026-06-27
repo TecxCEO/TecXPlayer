@@ -1,12 +1,13 @@
 sequences = []
-#while True: 
-for seq_id in range(99720):
+for seq_id in range(277): # 20*18*277 = 99720
   sequence = {}
-  sequence.update("sequence_id": f"training_sequence_00{seq_id}")
-  "context_window_batches" = {}
+  sequence.update("sequence_id": f"training_sequence_{seq_id}")
+  context_window_batches = {}
+  cntxt_win_bates = []
   for bat_idx in range(18):
-    context_window_batches.update({"batch_index": bat_idx})
-    "steps" = {}
+    contxt_win_bat = {}
+    contxt_win_bat.update({"batch_index": bat_idx})
+    steps = {}
     step_idx = []
     for stp_idx in range(20):
       step = {
@@ -18,35 +19,9 @@ for seq_id in range(99720):
         "resulting_state":[],
         "eos_token": <EOS>
           }
-      step_idx += step_idx
-    context_window_batches.update({steps : step_idx})
-  sequence.update("sequence_id": f"training_sequence_00{seq_id}")
-  sequence.update("sequence_id": f"training_sequence_00{seq_id}")
-    sequences += sequence
-
-{
-    "sequence_id": "training_sequence_000",
-    "context_window_batches": [
-      {
-        "batch_index": 0,
-        "steps": [
-          {
-            "step_index": 0,
-            "start_token": <SOS>,
-            "control_token": TASK_FWD,
-            "current_state":[],
-            "move_token": <rgy>,
-            "resulting_state":[],
-            "eo_token": <EOS>
-          },
-          {
-            "step_index": 1,
-            "sos_token": 100,
-            "control_token": 3,
-            "current_state":,
-            "move_token": 6,
-            "resulting_state":,
-            "eos_token": 200
-          },
-          {
-            "step_index": 2,
+      step_idx += step
+    cntxt_win_bat.update({steps : step_idx})
+  cntxt_win_bates += cntxt_win_bat
+  sequence.update(context_window_batches: cntxt_win_bates)
+  sequences += sequence
+  print(f" sequences = {sequences}")
