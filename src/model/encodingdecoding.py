@@ -31,7 +31,7 @@ ACCURACY_GATE_MIN = 0.98
 # Minimum 98% accuracy required to pass performance gate
 CSV_LOG_FILE = "phase1_training_metrics.csv"
 VOCAB_LEDGER_FILE = "structural_vocabulary_ledger.json"
-string_to_id_list = "string_to_id_list.json " ####
+string_to_id_list = "string_to_id_list.json" ####
 #=============================================================================
 # 2. END-TO-END TIERED VOCABULARY ENGINE & REGISTRY
 #=============================================================================
@@ -41,7 +41,7 @@ class AdvancedCustomVocabularyRegistry:
   """
   def __init__(self, ledger_path=VOCAB_LEDGER_FILE):
     self.ledger_path = ledger_path
-    ####self.string_to_id_list = ####
+    self.string_to_id_list = string_to_id_list####
     self.vocab_map = {}
     self.string_to_id = {}
     self.current_id = 0
@@ -135,7 +135,7 @@ class AdvancedCustomVocabularyRegistry:
     # Write absolute compiled snapshot map ledger out to disk
     with open(self.ledger_path, "w", encoding="utf-8") as f:
       json.dump(self.vocab_map, f, indent=4, ensure_ascii=False)
-    with open(string_to_id_list, "w", encoding="utf-8") as f: ####
+    with open(self.string_to_id_list, "w", encoding="utf-8") as f: ####
       json.dump(self.string_to_id, f, indent=4, ensure_ascii=False) ####
     #### string_to_id_list
   @property
