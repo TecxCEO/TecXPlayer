@@ -1,11 +1,11 @@
 sequences = []
 #while True: 
-for seq_id in range(15427):
+for seq_id in range(99720):
   sequence = {}
   sequence.update("sequence_id": f"training_sequence_00{seq_id}")
   "context_window_batches" = {}
   for bat_idx in range(18):
-    "batch_index": bat_idx,
+    context_window_batches.update({"batch_index": bat_idx})
     "steps" = {}
     for stp_idx in range(20):
       "step_index": stp_idx
