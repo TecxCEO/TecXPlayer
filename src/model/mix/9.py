@@ -13,18 +13,14 @@ from torch.nn import functional as F
 from encodingdecoding ad ed
 
 edacvr = ed.AdvancedCustomVocabularyRegistry() ####
-# print(f" vocab map = {acvr.vocab_map}\n#\n")
-# print(f" string to id = {acvr.string_to_id}")
-# print(f" same = {acvr.same}")
-# print(f" same len = {len(acvr.same)}")
-# print(f" vocab map = {acvr.vocab_map}\n#\n")
-# len(acvr.same)
+
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
 # BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
 BASE_VOCAB_SIZE = len(edacvr.string_to_id)     # Base structural tokens (0 to 89)
 # Register Explicit Task and Structural Meta-Tokens
+
 """
 SOS_TOKEN = BASE_VOCAB_SIZE      # 90
 EOS_TOKEN = BASE_VOCAB_SIZE + 1  # 91 (Used as US/End token)
