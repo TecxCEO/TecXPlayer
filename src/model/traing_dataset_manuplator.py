@@ -1,16 +1,16 @@
 import json
 sequences = []
 for seq_id in range(277): # 20*18*277 = 99720
-  print(f" sequences = {sequences}")
+  #print(f" sequences = {sequences}")
   sequence = {}
   sequence.update({"sequence_id": f"training_sequence_{seq_id}"})
-  print(f" sequence = {sequence}")
+  #print(f" sequence = {sequence}")
   context_window_batches = {}
   contxt_win_bates = []
   for bat_idx in range(18):
     contxt_win_bat = {}
     contxt_win_bat.update({"batch_index": bat_idx})
-    print(f" contxt_win_bat = {contxt_win_bat}")
+    #print(f" contxt_win_bat = {contxt_win_bat}")
     steps = {}
     step_idx = []
     for stp_idx in range(20):
@@ -24,17 +24,17 @@ for seq_id in range(277): # 20*18*277 = 99720
         "resulting_state":[],
         "eos_token": "<EOS>"
           }
-      print(f" step = {step}")
+      #print(f" step = {step}")
       step_idx += [step]
-      print(f" step_idx = {step_idx}")
+      #print(f" step_idx = {step_idx}")
     # contxt_win_bat.update({"steps" : step_idx})
     contxt_win_bat.update(steps = step_idx)
-    print(f" contxt_win_bat = {contxt_win_bat}")
+    #print(f" contxt_win_bat = {contxt_win_bat}")
     contxt_win_bates += [contxt_win_bat]
-    print(f" contxt_win_bates = {contxt_win_bates}")
+    #print(f" contxt_win_bates = {contxt_win_bates}")
   # sequence.update({"context_window_batches" : contxt_win_bates})
   sequence.update(context_window_batches = contxt_win_bates)
-  print(f" sequence = {sequence}")
+  #print(f" sequence = {sequence}")
   sequences += [sequence]
   #print(f" sequences = {sequences}")
   file= "training_data_list.json"
