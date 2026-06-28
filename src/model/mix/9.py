@@ -10,7 +10,7 @@ import math
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from encodingdecoding ad ed
+from encodingdecoding as ed
 
 edacvr = ed.AdvancedCustomVocabularyRegistry() ####
 
@@ -18,7 +18,7 @@ edacvr = ed.AdvancedCustomVocabularyRegistry() ####
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
 # BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
-BASE_VOCAB_SIZE = len(edacvr.string_to_id)     # Base structural tokens (0 to 89)
+BASE_VOCAB_SIZE = len(edacvr.string_to_id) - 5     # Base structural tokens (0 to 89)
 # Register Explicit Task and Structural Meta-Tokens
 
 """
@@ -27,10 +27,10 @@ EOS_TOKEN = BASE_VOCAB_SIZE + 1  # 91 (Used as US/End token)
 TASK_FWD  = BASE_VOCAB_SIZE + 2  # 92
 TASK_REV  = BASE_VOCAB_SIZE + 3  # 93
 TASK_SOLV = BASE_VOCAB_SIZE + 4  # 94
-
-ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
 """
-ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
+ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
+
+# ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
 # Sequence Window Constraints
 STEPS_PER_SEQ = 20       # 20 stages per matrix sequence
 TOKENS_PER_STEP = 44     # Each step maps exactly 44 internal elements
