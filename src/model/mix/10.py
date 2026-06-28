@@ -16,15 +16,16 @@ from torch.nn import functional as F
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
-BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
-
+# BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
+BASE_VOCAB_SIZE = len() - 5      # Base structural tokens (0 to 89)
+"""
 # Register Explicit Task and Structural Meta-Tokens
 SOS_TOKEN = BASE_VOCAB_SIZE      # 90
 EOS_TOKEN = BASE_VOCAB_SIZE + 1  # 91 (Used as US/End token)
 TASK_FWD  = BASE_VOCAB_SIZE + 2  # 92
 TASK_REV  = BASE_VOCAB_SIZE + 3  # 93
 TASK_SOLV = BASE_VOCAB_SIZE + 4  # 94
-
+"""
 ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
 
 # Sequence Window Constraints
@@ -234,7 +235,8 @@ class FiniteChunkDataset:
     """
     Simulates a finite, fixed data payload containing exactly 1,00,000 steps.
     """
-    def __init__(self, total_steps=100000):
+    # def __init__(self, total_steps=100000):
+    def __init__(self, total_steps=99720):
         self.total_steps = total_steps
         self.current_step = 0
 
