@@ -21,7 +21,9 @@ edacvr = ed.AdvancedCustomVocabularyRegistry() ####
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
 # BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
-BASE_VOCAB_SIZE = len() - 5      # Base structural tokens (0 to 89)
+# BASE_VOCAB_SIZE = len(edacvr.string_to_id)
+# ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
+BASE_VOCAB_SIZE = len(edacvr.string_to_id) - 5 # Base structural tokens (0 to 89)
 """
 # Register Explicit Task and Structural Meta-Tokens
 SOS_TOKEN = BASE_VOCAB_SIZE      # 90
