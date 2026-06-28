@@ -12,6 +12,10 @@ import math
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
+from encodingdecoding as ed
+
+edacvr = ed.AdvancedCustomVocabularyRegistry() ####
+
 
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
