@@ -370,7 +370,7 @@ def execute_lifelong_training():
                         print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
                         print("================================================================================")
                         break
-if name == 'main':
+if "__name__" == 'main':
     execute_lifelong_training()
 
 
