@@ -16,10 +16,10 @@ from torch.nn import functional as F
 import encodingdecoding as ed
 
 edacvr = ed.AdvancedCustomVocabularyRegistry() ###
-print(f" vocab map = {edacvr.vocab_map}\n#\n")
+#### print(f" vocab map = {edacvr.vocab_map}\n#\n")
 print(f" string to id = {edacvr.string_to_id}")
-print(f" same = {edacvr.same}")
-print(f" same len = {len(edacvr.same)}")
+## print(f" same = {edacvr.same}")
+## print(f" same len = {len(edacvr.same)}")
 #file= "data/dataset/cube3x3solvingdataset.json"
 #if os.path.isfile(file):
     #with open(file, 'r') as f:
@@ -34,6 +34,7 @@ print(f" same len = {len(edacvr.same)}")
 # BASE_VOCAB_SIZE = len(edacvr.string_to_id)
 # ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
 BASE_VOCAB_SIZE = len(edacvr.string_to_id) - 5 # Base structural tokens (0 to 89)
+print(f" BASE_VOCAB_SIZE = {BASE_VOCAB_SIZE}")
 """
 # Register Explicit Task and Structural Meta-Tokens
 SOS_TOKEN = BASE_VOCAB_SIZE      # 90
@@ -43,7 +44,7 @@ TASK_REV  = BASE_VOCAB_SIZE + 3  # 93
 TASK_SOLV = BASE_VOCAB_SIZE + 4  # 94
 """
 ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
-
+print(f" ACTUAL_VOCAB_SIZE = {ACTUAL_VOCAB_SIZE}")
 # Sequence Window Constraints
 STEPS_PER_SEQ = 20       # 20 stages per matrix sequence
 TOKENS_PER_STEP = 44     # Each step maps exactly 44 internal elements
