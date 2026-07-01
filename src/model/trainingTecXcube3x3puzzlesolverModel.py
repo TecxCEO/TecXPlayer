@@ -381,6 +381,7 @@ def execute_lifelong_training():
                         print("================================================================================")
                         break
 if "__name__" == 'main':
+    print(f" Code is started")
     execute_lifelong_training()
 
 
