@@ -59,7 +59,7 @@ class AdvancedCustomVocabularyRegistry:
       self.string_to_id[token_str] = token_id
       self.current_id += 1
     elif token_str in self.string_to_id: ####
-      print(f"token_str = {token_str}") ####
+      # print(f"token_str = {token_str}") ####
       self.same += [token_str] ####
   def _compile_exhaustive_hierarchy(self):
     # TIER 5: Special Cube Operators (The Precise 95 Token Geometry Line)
@@ -121,11 +121,11 @@ class AdvancedCustomVocabularyRegistry:
           a = None
           b = None
           c = None
-      print(f"same_moves = {same_move} ")
+      # print(f"same_moves = {same_move} ")
       same_move_list.update({same_move[0]: same_move})
-      print(f" same move = {same_move}")
-    print(f" same move list = {same_move_list}")
-    print(f" same move list length = {len(same_move_list)}")
+      # print(f" same move = {same_move}")
+    # print(f" same move list = {same_move_list}")
+    # print(f" same move list length = {len(same_move_list)}")
     # 4. Functional Meta Command Cues (5 Tokens)
     self._add_token("<SOS>", "Tier_5_Cube", "Control_SOS")
     self._add_token("<EOS>", "Tier_5_Cube", "Control_EOS_US")
@@ -199,14 +199,14 @@ class EncodeDecode:
     acvr.string_to_id = string_to_id
     acvr.vocab_map = vocab_map
     if isinstance(full_text, dict):
-      print(f" full_text = {len(full_text)}")
+      # print(f" full_text = {len(full_text)}")
       for key, value in full_text.items(): 
         str="<"+key+">"
         if not acvr.string_to_id.get(str) and isinstance(value, dict):
           acvr._add_token(str, "Tier_5_Cube", "Action_Move_Token")
         if isinstance(value, dict) and len(value) in (16, 19, 20):
           # This works! It checks if len(value) is 16, 19, or 20.
-          print(f"deep dive in dict of {key} of {len(value)} len value.\n")
+          # print(f"deep dive in dict of {key} of {len(value)} len value.\n")
           acvr.string_to_id, acvr.vocab_map = self.createTokens(value, acvr.string_to_id, acvr.vocab_map)
         elif not isinstance(value, (dict, list)):
           if not acvr.string_to_id.get(key) and key != "state":
