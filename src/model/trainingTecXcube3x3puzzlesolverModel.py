@@ -1,10 +1,10 @@
 """
 
 Here is the complete, high-performance PyTorch script. It integrates Cosine Annealing Learning Rate Decay into the primary training run and establishes an Accuracy Performance Gate alongside raw loss checks during the post-optimization epochs.The system tracks metrics down to the individual token position and automatically exports analytical logs to a separate CSV file.python
+# Save this entire script as: geometry_constrained_transformer.py
 
 """
 
-# Save this entire script as: geometry_constrained_transformer.py
 
 import os
 import csv
@@ -17,7 +17,7 @@ import encodingdecoding as ed
 
 edacvr = ed.AdvancedCustomVocabularyRegistry() ###
 #### print(f" vocab map = {edacvr.vocab_map}\n#\n")
-print(f" string to id = {edacvr.string_to_id}")
+########### print(f" string to id = {edacvr.string_to_id}")
 ## print(f" same = {edacvr.same}")
 ## print(f" same len = {len(edacvr.same)}")
 #file= "data/dataset/cube3x3solvingdataset.json"
