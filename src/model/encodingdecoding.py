@@ -184,6 +184,7 @@ class EncodeDecode:
       return self.encode(str_in)
     elif not self.encode(str_in) and not isinstance(str_in, (dict, list)):
       self.createTokens(str_in)
+      # self.createTokens(str_in, acvr.string_to_id, acvr.vocab_map)
       return self.encode(str_in)
     elif isinstance(str_in, (dict, list)):
       for strin in str_in:
