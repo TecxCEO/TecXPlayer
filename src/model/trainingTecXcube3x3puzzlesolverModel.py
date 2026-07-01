@@ -16,43 +16,43 @@ from torch.nn import functional as F
 import encodingdecoding as ed
 import cube3x3dataset20steps18perellel_batch as cdspb
 ######
-state_given_to_solve={
-      "rgy":"rgy",
-      "rgw":"rgw",
-      "rby":"rby",
-      "rbw":"rbw",
-      "ogy":"ogy",
-      "ogw":"ogw",
-      "oby":"oby",
-      "obw":"obw",
-      "rb":"rb",
-      "rg":"rg",
-      "rw":"rw",
-      "ry":"ry",
-      "ob":"ob",
-      "og":"og",
-      "ow":"ow",
-      "oy":"oy",
-      "by":"by",
-      "bw":"bw",
-      "gw":"gw",
-      "gy":"gy"
-    }
-  s=cdspb.Solver()
-  ####full_response = []
-  for char in s.solve(state_given_to_solve):
-    ####sys.stdout.write(str(char) + " ")
-    #### sys.stdout.flush()
-    #### full_response += (" " + str(char)) # Collect for logging
-    ####time.sleep(7)
-    #time.sleep(0.01) 
-#### print(f" full_response = {full_response}")
-#######
-edacvr = ed.AdvancedCustomVocabularyRegistry() ###
-
-# =============================================================================
-# 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
-# =============================================================================
+def fresh_data_generator():
+      state_given_to_solve={
+            "rgy":"rgy",
+            "rgw":"rgw",
+            "rby":"rby",
+            "rbw":"rbw",
+            "ogy":"ogy",
+            "ogw":"ogw",
+            "oby":"oby",
+            "obw":"obw",
+            "rb":"rb",
+            "rg":"rg",
+            "rw":"rw",
+            "ry":"ry",
+            "ob":"ob",
+            "og":"og",
+            "ow":"ow",
+            "oy":"oy",
+            "by":"by",
+            "bw":"bw",
+            "gw":"gw",
+            "gy":"gy"
+      }
+      s=cdspb.Solver()
+      ####full_response = []
+      for char in s.solve(state_given_to_solve):
+            ###sys.stdout.write(str(char) + " ")
+            ### sys.stdout.flush()
+            ### full_response += (" " + str(char)) # Collect for logging
+            ####time.sleep(7)
+            #time.sleep(0.01) 
+      ## print(f" full_response = {full_response}")
+      ###
+      edacvr = ed.AdvancedCustomVocabularyRegistry() ###
+      # =============================================================================
+            # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
+           # =============================================================================
 
 # BASE_VOCAB_SIZE = len(edacvr.string_to_id)
 # ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
