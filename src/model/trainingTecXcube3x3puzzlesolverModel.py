@@ -388,11 +388,11 @@ if __name__ == "__main__":
 
 """
 
-  ### Explanation of the Upgraded Framework Features
+### Explanation of the Upgraded Framework Features
 
 #### 1. Cosine Annealing Learning Rate Decay (Lines 198–202)
 Standard step-bound runs often drop the learning rate abruptly, which can disrupt gradient tracking across sequence elements. This update calculates a smooth mathematical curve:
-\[\eta_t = \eta_{\text{min}} + \frac{1}{2}(\eta_{\text{max}} - \eta_{\text{min}})\left(1 + \cos\left(\frac{T_{\text{cur}}}{T_{\text{max}}}\pi\right)\right)\]
+####\[\eta_t = \eta_{\text{min}} + \frac{1}{2}(\eta_{\text{max}} - \eta_{\text{min}})\left(1 + \cos\left(\frac{T_{\text{cur}}}{T_{\text{max}}}\pi\right)\right)\]
 This structural adjustment slowly scales the parameters down from `6e-4` to `6e-5` over the initial 1,00,000 steps, helping the network settle into stable local minima before fine-tuning begins.
 
 #### 2. Accuracy Performance Gate (Lines 248–261)
