@@ -275,9 +275,9 @@ class ChunkedDataStreamer:
         print("Input Data (X) Sample Tensors:\n", x[:2])  # Prints the first 2 rows of the batch
         print("Target Data (Y) Sample Tensors:\n", y[:2]) # Prints the corresponding targets
         print("---------------------------------------------\n")
+        return x, y
     # =========================================
 
-    return x, y
     
     
 #=============================================================================
