@@ -20,19 +20,12 @@ edacvr = ed.AdvancedCustomVocabularyRegistry() ###
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
-# BASE_VOCAB_SIZE = 90      # Base structural tokens (0 to 89)
+
 # BASE_VOCAB_SIZE = len(edacvr.string_to_id)
 # ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
 BASE_VOCAB_SIZE = len(edacvr.string_to_id) - 5 # Base structural tokens (0 to 89)
 print(f" BASE_VOCAB_SIZE = {BASE_VOCAB_SIZE}")
-"""
-# Register Explicit Task and Structural Meta-Tokens
-SOS_TOKEN = BASE_VOCAB_SIZE      # 90
-EOS_TOKEN = BASE_VOCAB_SIZE + 1  # 91 (Used as US/End token)
-TASK_FWD  = BASE_VOCAB_SIZE + 2  # 92
-TASK_REV  = BASE_VOCAB_SIZE + 3  # 93
-TASK_SOLV = BASE_VOCAB_SIZE + 4  # 94
-"""
+
 ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
 print(f" ACTUAL_VOCAB_SIZE = {ACTUAL_VOCAB_SIZE}")
 # Sequence Window Constraints
@@ -373,6 +366,5 @@ def execute_lifelong_training():
                         print("================================================================================")
                         break
 if __name__ == "__main__":
-    #if "__name__" == "main":
     print(f" Code is started")
     execute_lifelong_training()
