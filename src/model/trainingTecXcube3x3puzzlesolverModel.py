@@ -270,11 +270,11 @@ class ChunkedDataStreamer:
         x = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)
         y = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)
         # === ADD THESE LINES TO PRINT THE DATA ===
-    print("\n--- CURRENT GENERATED TRAINING DATA BATCH ---")
-    print("Input Data (X) Shape:", x.shape)
-    print("Input Data (X) Sample Tensors:\n", x[:2])  # Prints the first 2 rows of the batch
-    print("Target Data (Y) Sample Tensors:\n", y[:2]) # Prints the corresponding targets
-    print("---------------------------------------------\n")
+        print("\n--- CURRENT GENERATED TRAINING DATA BATCH ---")
+        print("Input Data (X) Shape:", x.shape)
+        print("Input Data (X) Sample Tensors:\n", x[:2])  # Prints the first 2 rows of the batch
+        print("Target Data (Y) Sample Tensors:\n", y[:2]) # Prints the corresponding targets
+        print("---------------------------------------------\n")
     # =========================================
 
     return x, y
