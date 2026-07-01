@@ -8,6 +8,7 @@ Here is the complete, high-performance PyTorch script. It integrates Cosine Anne
 
 import os
 import csv
+import json
 import math
 import torch
 import torch.nn as nn
@@ -45,6 +46,30 @@ ACCURACY_GATE_MIN = 0.98 # Minimum 98% accuracy required to pass performance gat
 
 CSV_LOG_FILE = "phase1_training_metrics.csv"
 
+"""
+#
+
+def fresh_data_generator(file_path="data/dataset/cube3x3solvingdataset.json"):
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"Could not find fresh data at {file_path}")
+        
+    print(f"[DATA SHUTTLE] Streaming fresh external dataset from: {file_path}")
+    
+    with open(file_path, 'r') as f:
+        # Assuming your JSON file contains a list of entry items
+        raw_entries = json.load(f) 
+        
+    # Process and stream entries one by one using yield
+    for entry in raw_entries:
+        # Pass your fresh data string into your tokenization function
+        edc = ed.EncodeDecode(entry['solution'])
+        token_list = edc.createTokens(entry["solution"])
+        
+        # Convert the structural sequence directly into a PyTorch tensor
+        yield torch.tensor(token_list, dtype=torch.long)
+        
+#
+"""
 # =============================================================================
 # 2. ENFORCED GEOMETRIC MODEL ARCHITECTURE
 # =============================================================================
@@ -249,6 +274,49 @@ class FiniteChunkDataset:
             raise StopIteration
         self.current_step += 1
         return self.current_step
+"""
+#
+class ChunkedDataStreamer:
+    def __init__(self):
+        self.current_chunk_id = 0
+        # Initialize your fresh data stream generator here
+        self.data_stream = fresh_data_generator()
+
+    def load_next_chunk(self):
+        self.current_chunk_id += 1
+        print(f"\n[STREAM ENGINE] Loading Data Chunk #{self.current_chunk_id}...")
+        return FiniteChunkDataset(total_steps=99720)
+
+    def get_batch(self, dataset_iterator, device='cuda'):
+        x_list = []
+        y_list = []
+        
+        # Build your training batch using the yield stream
+        while len(x_list) < BATCH_SIZE:
+            try:
+                # Grab the next sequence yielded from your data file
+                full_sequence = next(self.data_stream)
+            except StopIteration:
+                # If the generator runs out of entries, restart the stream file
+                self.data_stream = fresh_data_generator()
+                full_sequence = next(self.data_stream)
+                
+            # Ensure the stream sequence satisfies your structural window constraints
+            if len(full_sequence) > BLOCK_SIZE:
+                x_list.append(full_sequence[:BLOCK_SIZE])
+                y_list.append(full_sequence[1:1 + BLOCK_SIZE])
+                
+        # Stack individual sequences into matrix blocks
+        x = torch.stack(x_list).to(device)
+        y = torch.stack(y_list).to(device)
+        return x, y
+
+    def get_batch_simulated(self, batch_size=BATCH_SIZE, device='cuda'):
+        # Keep simulated training synchronized with your fresh yield data loop
+        return self.get_batch(None, device=device)
+        
+#
+"""
 class ChunkedDataStreamer:
     def __init__(self):
         self.current_chunk_id = 0
