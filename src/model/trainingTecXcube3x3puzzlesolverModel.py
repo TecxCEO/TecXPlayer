@@ -267,7 +267,7 @@ class FiniteChunkDataset:
         self.current_step += 1
         return self.current_step
 class ChunkedDataStreamer:
-    def init(self):
+    def __init__(self):
         self.current_chunk_id = 0
     def load_next_chunk(self):
         self.current_chunk_id += 1
