@@ -272,7 +272,8 @@ class ChunkedDataStreamer:
     def load_next_chunk(self):
         self.current_chunk_id += 1
         print(f"\n[STREAM ENGINE] Loading Incoming Data Chunk #{self.current_chunk_id} into Pipeline Context...")
-        return FiniteChunkDataset(total_steps=100000)
+        # return FiniteChunkDataset(total_steps=100000)
+        return FiniteChunkDataset(total_steps=99720)
     def get_batch(self, dataset_iterator, device='cuda'):
         _ = next(dataset_iterator)
         x = torch.randint(0, ACTUAL_VOCAB_SIZE, (BATCH_SIZE, BLOCK_SIZE), device=device)
