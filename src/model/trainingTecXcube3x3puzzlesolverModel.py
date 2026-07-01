@@ -16,6 +16,7 @@ from torch.nn import functional as F
 import encodingdecoding as ed
 import cube3x3dataset20steps18perellel_batch as cdspb
 ######
+edacvr = ed.AdvancedCustomVocabularyRegistry()
 def fresh_data_generator():
       state_given_to_solve={
             "rgy":"rgy",
@@ -48,11 +49,17 @@ def fresh_data_generator():
             ####time.sleep(7)
             #time.sleep(0.01) 
       ## print(f" full_response = {full_response}")
+            
+      # Pass your fresh data string into your tokenization function
+      edc = ed.EncodeDecode(entry['solution'])
+      token_list = edc.createTokens(entry["solution"])
+        
+      # Convert the structural sequence directly into a PyTorch tensor
+      yield torch.tensor(token_list, dtype=torch.long)
       ###
-      edacvr = ed.AdvancedCustomVocabularyRegistry() ###
-      # =============================================================================
-            # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
-           # =============================================================================
+# =============================================================================
+# 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
+# =============================================================================
 
 # BASE_VOCAB_SIZE = len(edacvr.string_to_id)
 # ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
