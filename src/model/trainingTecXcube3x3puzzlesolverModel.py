@@ -16,17 +16,7 @@ from torch.nn import functional as F
 import encodingdecoding as ed
 
 edacvr = ed.AdvancedCustomVocabularyRegistry() ###
-#### print(f" vocab map = {edacvr.vocab_map}\n#\n")
-########### print(f" string to id = {edacvr.string_to_id}")
-## print(f" same = {edacvr.same}")
-## print(f" same len = {len(edacvr.same)}")
-#file= "data/dataset/cube3x3solvingdataset.json"
-#if os.path.isfile(file):
-    #with open(file, 'r') as f:
-        #data = json.load(f)
-#edc = ed.EncodeDecode(data['solution'])
-#result=edc.createTokens(data["solution"])
-#print(f" Result= {result}\n")
+
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
@@ -386,24 +376,3 @@ if __name__ == "__main__":
     #if "__name__" == "main":
     print(f" Code is started")
     execute_lifelong_training()
-
-
-"""
-
-### Explanation of the Upgraded Framework Features
-
-#### 1. Cosine Annealing Learning Rate Decay (Lines 198–202)
-Standard step-bound runs often drop the learning rate abruptly, which can disrupt gradient tracking across sequence elements. This update calculates a smooth mathematical curve:
-####\[\eta_t = \eta_{\text{min}} + \frac{1}{2}(\eta_{\text{max}} - \eta_{\text{min}})\left(1 + \cos\left(\frac{T_{\text{cur}}}{T_{\text{max}}}\pi\right)\right)\]
-This structural adjustment slowly scales the parameters down from `6e-4` to `6e-5` over the initial 1,00,000 steps, helping the network settle into stable local minima before fine-tuning begins.
-
-#### 2. Accuracy Performance Gate (Lines 248–261)
-During optimization epochs, a model can sometimes overfit to short-term token sequences at the expense of its overall geometric constraints. 
-To prevent this, the architecture introduces a verification gate (`ACCURACY_GATE_MIN = 0.98`). Even if a fine-tuning step achieves a lower loss, the weights are only saved to disk if the model achieves at least **98% structural accuracy** across both the Input and Output Stage token slots.
-
-#### 3. Integrated Analytical Logging (Line 150)
-The unified `MetricLogger` logs performance markers exactly every 1,000 steps during primary training and every 5,000 steps during the validation epochs. It appends metrics directly to `phase1_training_metrics.csv` to keep a reliable ledger across all incoming data streams.
-
-If you would like to adjust the minimum threshold of the accuracy gate or explore adding a **moving average to smooth out cross-entropy calculations**, let me know!
-
-"""
