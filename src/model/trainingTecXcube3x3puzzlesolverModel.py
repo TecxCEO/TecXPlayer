@@ -15,9 +15,18 @@ from torch.nn import functional as F
 #from 
 import encodingdecoding as ed
 
-edacvr = ed.AdvancedCustomVocabularyRegistry() ####
-
-
+edacvr = ed.AdvancedCustomVocabularyRegistry() ###
+print(f" vocab map = {edacvr.vocab_map}\n#\n")
+print(f" string to id = {edacvr.string_to_id}")
+print(f" same = {edacvr.same}")
+print(f" same len = {len(edacvr.same)}")
+#file= "data/dataset/cube3x3solvingdataset.json"
+#if os.path.isfile(file):
+    #with open(file, 'r') as f:
+        #data = json.load(f)
+#edc = ed.EncodeDecode(data['solution'])
+#result=edc.createTokens(data["solution"])
+#print(f" Result= {result}\n")
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
