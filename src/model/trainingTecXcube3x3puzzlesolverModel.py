@@ -294,6 +294,7 @@ def execute_lifelong_training():
     model.to(device)
     data_streamer = ChunkedDataStreamer()
     logger = MetricLogger(CSV_LOG_FILE)
+    print(f" logger {logger}")
     base_lr = 6e-4
     min_lr = 6e-5
     weight_decay = 0.1
