@@ -1,7 +1,8 @@
 
-rm a.json
 git pull
+python src/model/trainingTecXcube3x3puzzlesolverModel.py
 # clear
+pause
 python src/model/trainModel.py
 pause
 # A clean, simple pause with a custom prompt message
