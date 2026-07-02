@@ -183,7 +183,7 @@ if __name__=="__main__":
   full_response = []
   l = 0
   for char in s.solve(state_given_to_solve):
-    print(f" line no = l++)
+    print(f" line no = {l++})
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
