@@ -189,5 +189,8 @@ if __name__=="__main__":
     full_response += (" " + str(char)) # Collect for logging
     #time.sleep(47)
     print(f"Length of data_batch as char  {len(char)} ")
+    l=len(char)
+    for i in range(l):
+      print(f"Length of data_batch as char {i}  {char[i]} ")
     time.sleep(47) 
 print(f" full_response = {full_response}")
