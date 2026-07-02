@@ -46,7 +46,7 @@ class Solver(c3x3):
         print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
         if while_loop >=40:
           time.sleep(11)
-        print(f" my data = { my_data}")
+        #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
           json.dump(my_data, wf)
           # json.dump(my_data, wf, indent=4)
