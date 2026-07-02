@@ -30,7 +30,7 @@ class Solver(c3x3):
         json.dump(puzzle_data, f, indent=4)
     while_loop=0
     data_batch = {}
-    print(f"while loop is going to started.")
+    # print(f"while loop is going to started.")
     while True:
       print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") #
       # 1. Load your file
@@ -41,9 +41,9 @@ class Solver(c3x3):
       # 2. Update a key (no matter how deep it is)      
       if my_data["puzzle"]["puzzle_status"]==False:
         self.update_nested_key(my_data["solution"],my_data["puzzle"]["puzzle_status"],my_data["puzzle"]["moves_to_solve_puzzle"],my_data["puzzle"]["moves_history"], data_batch,my_data["puzzle"]["p_moves_history"])
-        print(f" pkm in while loop = {self.pkm} ")
-        print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
-        print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
+        # print(f" pkm in while loop = {self.pkm} ")
+        # print(f" my_data[puzzle][moves_history] in while loop = {my_data["puzzle"]["moves_history"]} and len = {len(my_data["puzzle"]["moves_history"])} ")
+        # print(f" my_data[puzzle][p_moves_history] in while loop = {my_data["puzzle"]["p_moves_history"]} ")
         if while_loop >=40:
           time.sleep(11)
         #print(f" my data = { my_data}")
@@ -52,7 +52,7 @@ class Solver(c3x3):
           json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
-      print(f"While loop no = {while_loop}  are done.") ##########
+      # print(f"While loop no = {while_loop}  are done.") ##########
       if self.pkm < len(my_data["puzzle"]["p_moves_history"]) and len(my_data["puzzle"]["p_moves_history"][self.pkm]) == self.max_steps:
         yield data_batch
   def delete_and_clean(self, data_to_process, moves_history, index=0):
@@ -181,7 +181,9 @@ if __name__=="__main__":
     }
   s=Solver()
   full_response = []
+  l = 0
   for char in s.solve(state_given_to_solve):
+    print(f" line no = l++)
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
