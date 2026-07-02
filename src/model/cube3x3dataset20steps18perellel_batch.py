@@ -187,12 +187,12 @@ if __name__=="__main__":
     sys.stdout.write(str(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
-    #time.sleep(47)
     print(f"Length of data_batch as char  {len(char)} ")
     l=len(char)
     for key,value in char.items():
       print(f" key = {key}")
       print(f"value = {value}")
       # print(f"Length of data_batch as char {i} = {char[i]} ")
-      time.sleep(47) 
+      time.sleep(7) 
+      time.sleep(47)
 print(f" full_response = {full_response}")
