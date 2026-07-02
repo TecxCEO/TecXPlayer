@@ -15,7 +15,7 @@ import torch.nn as nn
 from torch.nn import functional as F 
 import encodingdecoding as ed
 import cube3x3dataset20steps18perellel_batch as cdspb
-######
+
 edacvr = ed.AdvancedCustomVocabularyRegistry()
 def fresh_data_generator():
       state_given_to_solve={
@@ -41,6 +41,7 @@ def fresh_data_generator():
             "gy":"gy"
       }
       s=cdspb.Solver()
+      
       ####full_response = []
       for char in s.solve(state_given_to_solve):
             ###sys.stdout.write(str(char) + " ")
@@ -51,12 +52,33 @@ def fresh_data_generator():
       ## print(f" full_response = {full_response}")
             
       # Pass your fresh data string into your tokenization function
-      edc = ed.EncodeDecode(entry['solution'])
-      token_list = edc.createTokens(entry["solution"])
-        
+      # edc = ed.EncodeDecode(entry['solution'])
+      edc = ed.EncodeDecode()
+      edcacvr = edc.acvr
+      # token_list = edc.createTokens(entry["solution"])
+      # token_list = edc.createTokens(char)
+      token_list = edc.encoder(char)
+      ####
+      while len(x_list) < BATCH_SIZE:
+            try:
+                # Grab the next sequence yielded from your data file
+                full_sequence = next(self.data_stream)
+            except StopIteration:
+                # If the generator runs out of entries, restart the stream file
+                self.data_stream = fresh_data_generator()
+                full_sequence = next(self.data_stream)
+                
+            # Ensure the stream sequence satisfies your structural window constraints
+            if len(full_sequence) > BLOCK_SIZE:
+                x_list.append(full_sequence[:BLOCK_SIZE])
+                y_list.append(full_sequence[1:1 + BLOCK_SIZE])
+      ####
+      ####edc = ed.EncodeDecode()
+      ###edcacvr = edc.acvr
+      ####token_list = edc.encoder(char)
+      
       # Convert the structural sequence directly into a PyTorch tensor
       yield torch.tensor(token_list, dtype=torch.long)
-      ###
 # =============================================================================
 # 1. PARAMETERS & EXACT EXPLICIT VOCABULARY PROFILE
 # =============================================================================
