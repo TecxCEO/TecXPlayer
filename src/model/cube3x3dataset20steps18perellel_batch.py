@@ -190,10 +190,9 @@ if __name__=="__main__":
     #time.sleep(47)
     print(f"Length of data_batch as char  {len(char)} ")
     l=len(char)
-    for i in range(l):
-      print(f" i = {i}")
-      print(f"Length of data_batch as char keys = {char.keys()} ")
+    for key,value in char.items():
+      print(f" key = {key}")
+      print(f"value = {value}")
       # print(f"Length of data_batch as char {i} = {char[i]} ")
-    time
-    time.sleep(47) 
+      time.sleep(47) 
 print(f" full_response = {full_response}")
