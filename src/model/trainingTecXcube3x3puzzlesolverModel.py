@@ -62,10 +62,12 @@ def fresh_data_generator():
       #### token_list = edc.encoder(char)
       ####
       """
-      while len(x_list) < BATCH_SIZE:
+      data_stream = s.solve(state_given_to_solve)
+      # while len(x_list) < BATCH_SIZE:
+      while True:
             try:
                 # Grab the next sequence yielded from your data file
-                full_sequence = next(self.data_stream)
+                full_sequence = next(data_stream)
             except StopIteration:
                 # If the generator runs out of entries, restart the stream file
                 self.data_stream = fresh_data_generator()
