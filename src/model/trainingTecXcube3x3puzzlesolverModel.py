@@ -41,7 +41,8 @@ def fresh_data_generator():
             "gy":"gy"
       }
       s=cdspb.Solver()
-      
+      edc = ed.EncodeDecode()
+      edcacvr = edc.acvr
       ####full_response = []
       for char in s.solve(state_given_to_solve):
             ###sys.stdout.write(str(char) + " ")
@@ -49,16 +50,18 @@ def fresh_data_generator():
             ### full_response += (" " + str(char)) # Collect for logging
             ####time.sleep(7)
             #time.sleep(0.01) 
+            token_list = edc.encoder(char)
       ## print(f" full_response = {full_response}")
             
       # Pass your fresh data string into your tokenization function
       # edc = ed.EncodeDecode(entry['solution'])
-      edc = ed.EncodeDecode()
-      edcacvr = edc.acvr
+      #### edc = ed.EncodeDecode()
+      #### edcacvr = edc.acvr
       # token_list = edc.createTokens(entry["solution"])
       # token_list = edc.createTokens(char)
-      token_list = edc.encoder(char)
+      #### token_list = edc.encoder(char)
       ####
+      """
       while len(x_list) < BATCH_SIZE:
             try:
                 # Grab the next sequence yielded from your data file
@@ -72,10 +75,11 @@ def fresh_data_generator():
             if len(full_sequence) > BLOCK_SIZE:
                 x_list.append(full_sequence[:BLOCK_SIZE])
                 y_list.append(full_sequence[1:1 + BLOCK_SIZE])
+      """
       ####
       ####edc = ed.EncodeDecode()
       ###edcacvr = edc.acvr
-      ####token_list = edc.encoder(char)
+      token_list = edc.encoder(char)
       
       # Convert the structural sequence directly into a PyTorch tensor
       yield torch.tensor(token_list, dtype=torch.long)
