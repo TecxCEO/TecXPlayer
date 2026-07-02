@@ -185,9 +185,9 @@ if __name__=="__main__":
   for char in s.solve(state_given_to_solve):
     # print(f" line no = {l:=l+1}")
     sys.stdout.write(str(char) + " ")
-    sys.stdout.write(len(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
-    time.sleep(47)
-    #time.sleep(0.01) 
+    #time.sleep(47)
+    print(f"Length of data_batch as char  {len(char)} ")
+    time.sleep(47) 
 print(f" full_response = {full_response}")
