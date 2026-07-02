@@ -48,8 +48,8 @@ class Solver(c3x3):
           time.sleep(11)
         #print(f" my data = { my_data}")
         with open(self.filename, "w") as wf:
-          #json.dump(my_data, wf)
-          json.dump(my_data, wf, indent=4)
+          json.dump(my_data, wf)
+          # json.dump(my_data, wf, indent=4)
       elif my_data["puzzle"]["puzzle_status"]==True:
         break
       # print(f"While loop no = {while_loop}  are done.") ##########
