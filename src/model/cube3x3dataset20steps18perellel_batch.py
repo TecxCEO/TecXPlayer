@@ -185,6 +185,7 @@ if __name__=="__main__":
   for char in s.solve(state_given_to_solve):
     # print(f" line no = {l:=l+1}")
     sys.stdout.write(str(char) + " ")
+    sys.stdout.write(len(char) + " ")
     sys.stdout.flush()
     full_response += (" " + str(char)) # Collect for logging
     time.sleep(47)
