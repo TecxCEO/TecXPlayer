@@ -194,5 +194,5 @@ if __name__=="__main__":
       print(f"value = {value}")
       # print(f"Length of data_batch as char {i} = {char[i]} ")
       time.sleep(7) 
-    time.sleep(47)
+    time.sleep(4)
 print(f" full_response = {full_response}")
