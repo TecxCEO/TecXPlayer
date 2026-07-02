@@ -32,7 +32,7 @@ class Solver(c3x3):
     data_batch = {}
     # print(f"while loop is going to started.")
     while True:
-      print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") #
+      ##print(f"While loop no = {(while_loop := while_loop + 1)}  are started.") #
       # 1. Load your file
       with open(self.filename, "r") as rf:
         my_data = json.load(rf)
