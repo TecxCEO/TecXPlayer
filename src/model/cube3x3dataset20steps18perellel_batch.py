@@ -179,6 +179,7 @@ if __name__=="__main__":
       "gw":"gw",
       "gy":"gy"
     }
+  print(f"state_given_to_solve = {state_given_to_solve} ")
   s=Solver()
   full_response = []
   l = 0
