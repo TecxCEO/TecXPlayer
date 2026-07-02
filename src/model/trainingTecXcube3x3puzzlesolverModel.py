@@ -70,8 +70,8 @@ def fresh_data_generator():
                 full_sequence = next(data_stream)
             except StopIteration:
                 # If the generator runs out of entries, restart the stream file
-                self.data_stream = fresh_data_generator()
-                full_sequence = next(self.data_stream)
+                data_stream = s.solve(state_given_to_solve)
+                full_sequence = next(data_stream)
                 
             # Ensure the stream sequence satisfies your structural window constraints
             if len(full_sequence) > BLOCK_SIZE:
