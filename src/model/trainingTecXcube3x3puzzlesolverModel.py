@@ -515,4 +515,34 @@ def execute_lifelong_training():
                         break
 if __name__ == "__main__":
     print(f" Code is started")
+    """
+    edc = None
+    idc = None
+    model = None
+    checkpoint = None
+    datatraining = None
+    dataval = None
+    t = 0
+    v = 0
+    # For start training last time train model state
+    model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
+    if os.path.exists(model_path):
+        checkpoint = torch.load(model_path)
+        model = tm.TecXModel(vocab_size=int(len(checkpoint["itos"])))
+        if locals().get("checkpoint") is not None:
+            model_dict = checkpoint["model_state_dict"]
+            #optimizer_dict = checkpoint['optimizer_state_dict']
+            #self.stoi = checkpoint["stoi"]
+            #self.itos = checkpoint["itos"]
+            model.load_state_dict(model_dict, strict=False)
+            # Ensure your model is in evaluation mode
+        tmt = tm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        model, checkpoint = tmt.trainModel(model, checkpoint)
+        #####tmt = tmtbm.TecXModelTrain(datatraining, edc.stoi, edc.itos, dataval)
+        ####model, checkpoint = tmt.trainModel(model, checkpoint)
+    torch.save(checkpoint, model_path)
+    print(f"--> Saved new final model with name as tecx_cube_solver_model_final.")
+    # Save progress
+    ##torch.save(checkpoint, f"models/tecx/checkpoint_epoch_{epoch}_{iter}.pth")
+"""
     execute_lifelong_training()
