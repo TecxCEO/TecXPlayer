@@ -463,6 +463,7 @@ def execute_lifelong_training():
                 if loss.item() < best_loss_this_chunk:
                     best_loss_this_chunk = loss.item()
                     torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")
+                      
         # --- PHASE 2: CONVERGENCE LOOP WITH ACCURACY PERFORMANCE GATE ---
         print(f"--> [PHASE 2] Launching Fine-Tuning Optimization Epochs for Chunk {chunk_id}...")
         # Lock fine-tuning updates to 10% of the maximum engine scale
@@ -513,6 +514,7 @@ def execute_lifelong_training():
                         print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
                         print("================================================================================")
                         break
+                          
 if __name__ == "__main__":
     print(f" Code is started")
     """
