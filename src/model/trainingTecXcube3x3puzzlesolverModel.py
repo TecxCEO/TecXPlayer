@@ -509,11 +509,11 @@ def execute_lifelong_training():
                             logger.log_step(chunk_id, epoch_count, post_step, "Phase2", current_loss, in_acc, out_acc, base_lr * 0.1)
                         if no_improvement_counter >= PATIENCE_STEPS:
                             break
-                    if no_improvement_counter >= PATIENCE_STEPS:
-                        print(f"\n[SATURATION REACHED] No further improvement found over {PATIENCE_STEPS} steps.")
-                        print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
-                        print("================================================================================")
-                        break
+                if no_improvement_counter >= PATIENCE_STEPS:
+                      print(f"\n[SATURATION REACHED] No further improvement found over {PATIENCE_STEPS} steps.")
+                      print(f"Optimal model for Chunk {chunk_id} saved as: 'best_final_optimized_model_chunk_{chunk_id}.pt'")
+                      print("================================================================================")
+                      break
                           
 if __name__ == "__main__":
     print(f" Code is started")
