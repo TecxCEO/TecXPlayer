@@ -959,28 +959,17 @@ def execute_lifelong_training():
                                 'model_state_dict': model.state_dict(),
                                 'optimizer_state_dict': optimizer.state_dict(),
                                 'best_val_loss': best_val_loss,
-                                string_to_id': edacvr.string_to_id,
+                                'string_to_id': edacvr.string_to_id,
                                 'vocab_map' : edacvr.vocab_map
                           }
                           print(f" checkpoint before save = {checkpoint}")
-                    # Inside your epoch loop,
-                    # 2. Now you can check if it's the best one
-                    if avg_val_loss < best_val_loss:
-                          best_val_loss = avg_val_loss
-                    # Save the model state
-                    ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
-                    ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
                     torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
-                    print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
-                    print(f" checkpoint[stoi] = {checkpoint['stoi']}")
-                    print(f" checkpoint[itos] = {checkpoint['itos']}")
                     # Save progress
                     # 1. Define the path for the current epoch
                     current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
                     # 2. Save the new model checkpoint
                     torch.save(checkpoint, current_checkpoint_path)
                     print(f"Saved: {current_checkpoint_path}")
-                    #torch.save(checkpoint, current_checkpoint_path)
                     # 3. Delete the previous epoch's file if it exists
                     if prev_checkpoint_path and os.path.exists(prev_checkpoint_path):
                           os.remove(prev_checkpoint_path)
