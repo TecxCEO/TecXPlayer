@@ -872,7 +872,20 @@ def execute_lifelong_training():
     base_lr = 6e-4
     min_lr = 6e-5
     weight_decay = 0.1
+    # For start training last time train model state
+    model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
     while True:
+        if os.path.exists(model_path):
+              checkpoint = torch.load(model_path)
+              # model = tm.TecXModel(vocab_size=int(len(checkpoint["string_to_id"])))
+              if locals().get("checkpoint") is not None:
+                    model_dict = checkpoint["model_state_dict"]
+            ####optimizer_dict = checkpoint['optimizer_state_dict']
+            #self.string_to_id = checkpoint["string_to_id"]
+            edacvr.string_to_id = checkpoint["string_to_id"]
+            #self.itos = checkpoint["itos"]
+            self.itos = checkpoint["itos"]
+            model.load_state_dict(model_dict, strict=False)
         #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
         dataset_chunk = data_streamer.load_next_chunk()
         chunk_id = data_streamer.current_chunk_id
