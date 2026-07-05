@@ -873,19 +873,20 @@ def execute_lifelong_training():
     min_lr = 6e-5
     weight_decay = 0.1
     # For start training last time train model state
-    model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
+    # model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
+    model_path = 'models/tecx/tecx_cube_solver_last_model.pth'
     while True:
         if os.path.exists(model_path):
               checkpoint = torch.load(model_path)
               # model = tm.TecXModel(vocab_size=int(len(checkpoint["string_to_id"])))
               if locals().get("checkpoint") is not None:
                     model_dict = checkpoint["model_state_dict"]
-            ####optimizer_dict = checkpoint['optimizer_state_dict']
-            #self.string_to_id = checkpoint["string_to_id"]
-            edacvr.string_to_id = checkpoint["string_to_id"]
-            #self.itos = checkpoint["itos"]
-            self.itos = checkpoint["itos"]
-            model.load_state_dict(model_dict, strict=False)
+                    ####optimizer_dict = checkpoint['optimizer_state_dict']
+                    #self.string_to_id = checkpoint["string_to_id"]
+                    edacvr.string_to_id = checkpoint["string_to_id"]
+                    #self.itos = checkpoint["itos"]
+                    edacvr.vocab_map = checkpoint["vocab_map"]
+                    model.load_state_dict(model_dict, strict=False)
         #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
         dataset_chunk = data_streamer.load_next_chunk()
         chunk_id = data_streamer.current_chunk_id
@@ -919,7 +920,7 @@ def execute_lifelong_training():
                 if loss.item() < best_loss_this_chunk:
                     best_loss_this_chunk = loss.item()
                     torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")
-                      
+                torch.save(checkpoint, model_path) # 
         # --- PHASE 2: CONVERGENCE LOOP WITH ACCURACY PERFORMANCE GATE ---
         print(f"--> [PHASE 2] Launching Fine-Tuning Optimization Epochs for Chunk {chunk_id}...")
         # Lock fine-tuning updates to 10% of the maximum engine scale
