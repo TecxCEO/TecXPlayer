@@ -879,17 +879,40 @@ def execute_lifelong_training():
     model_path = 'models/tecx/tecx_cube_solver_last_model.pth'
     prev_checkpoint_path = None
     while True:
-        if os.path.exists(model_path):
-              checkpoint = torch.load(model_path)
-              # model = tm.TecXModel(vocab_size=int(len(checkpoint["string_to_id"])))
-              if locals().get("checkpoint") is not None:
-                    model_dict = checkpoint["model_state_dict"]
-                    ####optimizer_dict = checkpoint['optimizer_state_dict']
-                    edacvr.string_to_id = checkpoint["string_to_id"]
-                    edacvr.vocab_map = checkpoint["vocab_map"]
-                    model.load_state_dict(model_dict, strict=False)
+        checkpoint = {}
+        ph1_cpc_id = 0
+        ph2_cpc_id = 0
         #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
-        dataset_chunk = data_streamer.load_next_chunk()
+        # dataset_chunk = data_streamer.load_next_chunk()
+        # chunk_id = data_streamer.current_chunk_id
+        # best_loss_this_chunk = float('inf')
+        if os.path.exists(prev_checkpoint_path):
+              # checkpoint2 = {}
+              checkpoint2 = torch.load(prev_checkpoint_path)
+              ph2_cpc_id = checkpoint2['chunk_id']
+              data_streamer.current_chunk_id = ph2_cpc_id
+              if locals().get("checkpoint2") is not None:
+                    model_dict = checkpoint2["model_state_dict"]
+                    ####optimizer_dict = checkpoint['optimizer_state_dict']
+                    edacvr.string_to_id = checkpoint2["string_to_id"]
+                    edacvr.vocab_map = checkpoint2["vocab_map"]
+                    model.load_state_dict(model_dict, strict=False)
+        if os.path.exists(model_path):
+              # checkpoint1 = {}
+              checkpoint1 = torch.load(model_path)
+              ph1_cpc_id = checkpoint1['chunk_id']
+              # model = tm.TecXModel(vocab_size=int(len(checkpoint["string_to_id"])))
+              if ph1_cpc_id > ph2_cpc_id:
+                    if locals().get("checkpoint1") is not None:
+                          data_streamer.current_chunk_id = ph1_cpc_id
+                          model_dict = checkpoint1["model_state_dict"]
+                          ####optimizer_dict = checkpoint['optimizer_state_dict']
+                          edacvr.string_to_id = checkpoint1["string_to_id"]
+                          edacvr.vocab_map = checkpoint1["vocab_map"]
+                          model.load_state_dict(model_dict, strict=False)
+        #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
+        dataset_chunk = data_streamer.load_next_chunk() if ph1_cpc_id == ph2_cpc_id else None
+        # dataset_chunk = data_streamer.load_next_chunk()
         chunk_id = data_streamer.current_chunk_id
         best_loss_this_chunk = float('inf')
         optimizer = torch.optim.AdamW(model.parameters(), lr=base_lr, betas=(0.9, 0.95), weight_decay=weight_decay)
@@ -897,6 +920,7 @@ def execute_lifelong_training():
         print(f"--> [PHASE 1] Training Loop Active for Chunk {chunk_id} (Enforcing Cosine LR Decay)")
         model.train()
         while True:
+            break if ph1_cpc_id > ph2_cpc_id and ph1_cpc_id >0 else None
             try:
                 X, Y = data_streamer.get_batch(chunk_iterator, device=device)
                 current_step = dataset_chunk.current_step
@@ -921,6 +945,23 @@ def execute_lifelong_training():
                 if loss.item() < best_loss_this_chunk:
                     best_loss_this_chunk = loss.item()
                     torch.save({'chunk_id': chunk_id,'step': current_step,'model_state_dict': model.state_dict(),'loss': best_loss_this_chunk,}, f"checkpoint_chunk_{chunk_id}_phase1.pt")
+                if locals().get("checkpoint") :
+                          # checkpoint['chunk_id'] = chunk_id
+                          checkpoint.update({'chunk_id' : chunk_id })
+                          checkpoint.update({'model_state_dict': model.state_dict()})
+                          checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
+                          checkpoint.update({'best_val_loss': best_val_loss})
+                          checkpoint.update({'string_to_id': edacvr.string_to_id}) # Saving the vocabulary is critical!
+                          checkpoint.update({'vocab_map' : edacvr.vocab_map})
+                    elif locals().get("checkpoint") is None:
+                          checkpoint = {
+                                'chunk_id' : chunk_id,
+                                'model_state_dict': model.state_dict(),
+                                'optimizer_state_dict': optimizer.state_dict(),
+                                'best_val_loss': best_val_loss,
+                                'string_to_id': edacvr.string_to_id,
+                                'vocab_map' : edacvr.vocab_map
+                          }   
                 torch.save(checkpoint, model_path) # 
         # --- PHASE 2: CONVERGENCE LOOP WITH ACCURACY PERFORMANCE GATE ---
         print(f"--> [PHASE 2] Launching Fine-Tuning Optimization Epochs for Chunk {chunk_id}...")
@@ -948,7 +989,8 @@ def execute_lifelong_training():
                     current_loss = loss.item()
                     ######
                     if locals().get("checkpoint") :
-                          checkpoint['epoch'] = epoch + 1
+                          checkpoint.update({'chunk_id' : chunk_id })
+                          checkpoint.update({'epoch' = epoch_count })
                           checkpoint.update({'model_state_dict': model.state_dict()})
                           checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
                           checkpoint.update({'best_val_loss': best_val_loss})
@@ -956,7 +998,8 @@ def execute_lifelong_training():
                           checkpoint.update({'vocab_map' : edacvr.vocab_map})
                     elif locals().get("checkpoint") is None:
                           checkpoint = {
-                                'epoch': epoch + 1,
+                                'chunk_id' : chunk_id,
+                                'epoch': epoch_count,
                                 'model_state_dict': model.state_dict(),
                                 'optimizer_state_dict': optimizer.state_dict(),
                                 'best_val_loss': best_val_loss,
