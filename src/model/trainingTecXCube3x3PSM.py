@@ -945,6 +945,49 @@ def execute_lifelong_training():
                     torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                     optimizer.step()
                     current_loss = loss.item()
+                    ######
+                    if locals().get("checkpoint") :
+                          checkpoint['epoch'] = epoch + 1
+                          checkpoint.update({'model_state_dict': model.state_dict()})
+                          checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
+                          checkpoint.update({'best_val_loss': best_val_loss})
+                          checkpoint.update({'stoi': self.stoi}) #edc.stoi , # Saving the vocabulary is critical!
+                          checkpoint.update({'itos' : self.itos}) #edc.itos
+                    elif locals().get("checkpoint") is None:
+                          checkpoint = {
+                                'epoch': epoch + 1,
+                                'model_state_dict': model.state_dict(),
+                                'optimizer_state_dict': optimizer.state_dict(),
+                                'best_val_loss': best_val_loss,
+                                'stoi': self.stoi,
+                                'itos' : self.itos
+                          }
+                          print(f" checkpoint before save = {checkpoint}")
+                    # Inside your epoch loop,
+                    # 2. Now you can check if it's the best one
+                    if avg_val_loss < best_val_loss:
+                          best_val_loss = avg_val_loss
+                    # Save the model state
+                    ######torch.save(checkpoint, 'models/best_dictionary_model.pth')
+                    ######print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+                    torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
+                    print(f"--> Saved new best model with Val Loss: {best_val_loss:.4f}")
+                    print(f" checkpoint[stoi] = {checkpoint['stoi']}")
+                    print(f" checkpoint[itos] = {checkpoint['itos']}")
+                    # Save progress
+                    # 1. Define the path for the current epoch
+                    current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
+                    # 2. Save the new model checkpoint
+                    torch.save(checkpoint, current_checkpoint_path)
+                    print(f"Saved: {current_checkpoint_path}")
+                    #torch.save(checkpoint, current_checkpoint_path)
+                    # 3. Delete the previous epoch's file if it exists
+                    if prev_checkpoint_path and os.path.exists(prev_checkpoint_path):
+                          os.remove(prev_checkpoint_path)
+                          print(f"Deleted previous checkpoint: {prev_checkpoint_path}")
+                    # 4. Update the tracker to point to the current file for the next iteration
+                    prev_checkpoint_path = current_checkpoint_path
+                    #########
                     # Evaluate both structural layout constraints and loss floor changes
                     if current_loss < (best_loss_this_chunk - 1e-4):
                         # --- FEATURE 2: ACCURACY PERFORMANCE GATE ---
