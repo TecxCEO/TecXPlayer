@@ -963,7 +963,7 @@ def execute_lifelong_training():
                                 'vocab_map' : edacvr.vocab_map
                           }
                           print(f" checkpoint before save = {checkpoint}")
-                    torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
+                    # torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
                     # Save progress
                     # 1. Define the path for the current epoch
                     current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
