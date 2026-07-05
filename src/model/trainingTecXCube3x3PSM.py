@@ -862,6 +862,8 @@ class ChunkedDataStreamer:
 # 5. LIFELONG LOOP CONTROLLER WITH ENFORCED COMPLETION CHECKS
 # =============================================================================
 def execute_lifelong_training():
+    # Here there will many chunks, and each chunk has 277 sequences, and each sequence have 18 batch, and each batch have 20 steps
+    # chunk = 99720 steps = 277*18*20 steps.
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"System Online. Targeted Core Execution Hardware: {device.upper()}")
     model = CustomTransformer()
@@ -875,6 +877,7 @@ def execute_lifelong_training():
     # For start training last time train model state
     # model_path = 'models/tecx/tecx_cube_solver_model_final.pth'
     model_path = 'models/tecx/tecx_cube_solver_last_model.pth'
+    prev_checkpoint_path = None
     while True:
         if os.path.exists(model_path):
               checkpoint = torch.load(model_path)
@@ -882,9 +885,7 @@ def execute_lifelong_training():
               if locals().get("checkpoint") is not None:
                     model_dict = checkpoint["model_state_dict"]
                     ####optimizer_dict = checkpoint['optimizer_state_dict']
-                    #self.string_to_id = checkpoint["string_to_id"]
                     edacvr.string_to_id = checkpoint["string_to_id"]
-                    #self.itos = checkpoint["itos"]
                     edacvr.vocab_map = checkpoint["vocab_map"]
                     model.load_state_dict(model_dict, strict=False)
         #--- PHASE 1: INITIAL CHUNK PASSTHROUGH WITH COSINE SCHEDULER ---
@@ -966,7 +967,7 @@ def execute_lifelong_training():
                     # torch.save(checkpoint, 'models/tecx/tecx_best_model.pth')
                     # Save progress
                     # 1. Define the path for the current epoch
-                    current_checkpoint_path = f"models/tecx/tecx_model_epoch_{epoch}.pth"
+                    current_checkpoint_path = f"models/tecx/tecx_model_checkpoint_chunk_{chunk_id}_phase2_epoch_{epoch}.pth"
                     # 2. Save the new model checkpoint
                     torch.save(checkpoint, current_checkpoint_path)
                     print(f"Saved: {current_checkpoint_path}")
