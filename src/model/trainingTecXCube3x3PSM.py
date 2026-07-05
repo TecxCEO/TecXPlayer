@@ -951,16 +951,16 @@ def execute_lifelong_training():
                           checkpoint.update({'model_state_dict': model.state_dict()})
                           checkpoint.update({'optimizer_state_dict': optimizer.state_dict()})
                           checkpoint.update({'best_val_loss': best_val_loss})
-                          checkpoint.update({'stoi': self.stoi}) #edc.stoi , # Saving the vocabulary is critical!
-                          checkpoint.update({'itos' : self.itos}) #edc.itos
+                          checkpoint.update({'string_to_id': edacvr.string_to_id}) # Saving the vocabulary is critical!
+                          checkpoint.update({'vocab_map' : edacvr.vocab_map})
                     elif locals().get("checkpoint") is None:
                           checkpoint = {
                                 'epoch': epoch + 1,
                                 'model_state_dict': model.state_dict(),
                                 'optimizer_state_dict': optimizer.state_dict(),
                                 'best_val_loss': best_val_loss,
-                                'stoi': self.stoi,
-                                'itos' : self.itos
+                                string_to_id': edacvr.string_to_id,
+                                'vocab_map' : edacvr.vocab_map
                           }
                           print(f" checkpoint before save = {checkpoint}")
                     # Inside your epoch loop,
