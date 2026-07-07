@@ -82,7 +82,7 @@ def fresh_data_generator():
 
 # BASE_VOCAB_SIZE = len(edacvr.string_to_id)
 # ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE
-BASE_VOCAB_SIZE = len(edacvr.string_to_id) - 5 # Base structural tokens (0 to 89)
+BASE_VOCAB_SIZE = len(edcacvr.string_to_id) - 5 # Base structural tokens (0 to 89)
 print(f" BASE_VOCAB_SIZE = {BASE_VOCAB_SIZE}")
 
 ACTUAL_VOCAB_SIZE = BASE_VOCAB_SIZE + 5  # Exactly 95 total unique tokens
@@ -180,7 +180,7 @@ def get_nested_data(data, edc, idc):
     ####stoi, itos = 
     ##########edc.createTokens(data)
     #edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
-    edacvr.string_to_id, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos) if data.get("solution") else  edc.createTokens(data, edc.stoi, edc.itos)
+    edcacvr.string_to_id, edcacvr.vocab_map = edc.createTokens(data["solution"], edcacvr.string_to_id, edcacvr.vocab_map) if data.get("solution") else  edc.createTokens(data, edcacvr.string_to_id, edcacvr.vocab_map)
     """
     if not stmd and not smd and not smdl and not stmdl:
         stmd = None
