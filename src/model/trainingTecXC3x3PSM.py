@@ -276,14 +276,14 @@ def createTVData(file, edctv = None, idctv = None):
         ####
         print(f" Loop no = {i}\n")
         stmdlin  = []
-        ####stmdlin  = ['<SOS>']
+        stmdlin  = ['<SOS>']
         stmdlin += stmdl[3*i]
         #stmdlin += [stmdl[3*i]]
         # stmdlin += stmdl[3*i]
         stmdlin += ['<'+stmdl[3*i+1]+'>']
         stmdlin += stmdl[3*i+2]
         #stmdlin += [stmdl[3*i+2]]
-        ####stmdlin += ['<EOS>']
+        stmdlin += ['<EOS>']
         print(f" stmdlin = {stmdlin}")
         print(f" stmdlin len = {len(stmdlin)}")
         #stmdlenc = edc.encode(stmdlin)
