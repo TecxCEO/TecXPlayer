@@ -205,12 +205,10 @@ def get_nested_data(data, edc, idc):
             print(f" stmd len = {len(stmd)}\n")
             print(f" stmd = {stmd}\n")
             for smdt in st_mv_data:
-                #stoi, itos = 
-                #########edc.createTokens(smdt[0]) #####
-                edc.stoi, edc.itos = edc.createTokens(smdt[0], edc.stoi, edc.itos)
-                #stoi, itos = 
-                #####edc.createTokens(smdt[2]) ####
-                edc.stoi, edc.itos = edc.createTokens(smdt[2], edc.stoi, edc.itos)
+                # edacvr.string_to_id, edacvr.vocab_map["string_representation"]
+                # edcacvr.string_to_id, edcacvr.vocab_map["string_representation"]
+                edacvr.string_to_id, edc.itos = edc.createTokens(smdt[0], edc.stoi, edc.itos)
+                edacvr.string_to_id, edc.itos = edc.createTokens(smdt[2], edc.stoi, edc.itos)
                 #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 if stmdl:
