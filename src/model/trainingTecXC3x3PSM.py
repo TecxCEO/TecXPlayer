@@ -539,6 +539,45 @@ class ChunkedDataStreamer:
         return self.get_batch(None, device=device)
         
 #
+
+##### from search get
+
+
+
+    def load_next_chunk(self):
+        self.current_chunk_id += 1
+        print(f"\n[STREAM ENGINE] Loading Incoming Data Chunk #{self.current_chunk_id}...")
+        
+        # === PLUG IN EXTERNAL DATA HERE ===
+        # Example: Loading a file named 'chunk_1.npy', 'chunk_2.npy', etc.
+        import numpy as np
+        file_path = f"data/chunk_{self.current_chunk_id}.npy"
+        
+        # Load the external file into memory
+        raw_data = np.load(file_path) 
+        
+        # Pass this real data into your dataset class
+        return FiniteChunkDataset(raw_data=raw_data)
+
+class FiniteChunkDataset:
+    def __init__(self, raw_data):
+        self.data = raw_data  # External data is stored here
+        self.total_steps = len(raw_data) // (BATCH_SIZE * BLOCK_SIZE)
+        self.current_step = 0
+
+    def __next__(self):
+        if self.current_step >= self.total_steps:
+            raise StopIteration
+        
+        # Slice out a specific window of text tokens for this step
+        start_idx = self.current_step * (BATCH_SIZE * BLOCK_SIZE)
+        end_idx = start_idx + (BATCH_SIZE * BLOCK_SIZE)
+        chunk_slice = self.data[start_idx:end_idx]
+        
+        self.current_step += 1
+        return chunk_slice  # Returns actual token data instead of a counter
+        
+        
 """
 class ChunkedDataStreamer:
     def __init__(self):
