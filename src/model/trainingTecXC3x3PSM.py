@@ -180,7 +180,7 @@ def get_nested_data(data, edc, idc):
     ####stoi, itos = 
     ##########edc.createTokens(data)
     #edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
-    edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos) if data.get("solution") else  edc.createTokens(data, edc.stoi, edc.itos)
+    edacvr.string_to_id, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos) if data.get("solution") else  edc.createTokens(data, edc.stoi, edc.itos)
     """
     if not stmd and not smd and not smdl and not stmdl:
         stmd = None
@@ -207,8 +207,8 @@ def get_nested_data(data, edc, idc):
             for smdt in st_mv_data:
                 # edacvr.string_to_id, edacvr.vocab_map["string_representation"]
                 # edcacvr.string_to_id, edcacvr.vocab_map["string_representation"]
-                edacvr.string_to_id, edc.itos = edc.createTokens(smdt[0], edc.stoi, edc.itos)
-                edacvr.string_to_id, edc.itos = edc.createTokens(smdt[2], edc.stoi, edc.itos)
+                edcacvr.string_to_id, edcacvr.vocab_map = edc.createTokens(smdt[0], edcacvr.string_to_id, edcacvr.vocab_map)
+                edcacvr.string_to_id, edcacvr.vocab_map = edc.createTokens(smdt[2], edcacvr.string_to_id, edcacvr.vocab_map)
                 #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
                 if stmdl:
