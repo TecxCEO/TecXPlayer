@@ -173,6 +173,127 @@ class ChunkedDataStreamer:
         
 #
 """
+######
+######
+def get_nested_data(data, edc, idc):
+    ####stoi, itos = 
+    ##########edc.createTokens(data)
+    #edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos)
+    edc.stoi, edc.itos = edc.createTokens(data["solution"], edc.stoi, edc.itos) if data.get("solution") else  edc.createTokens(data, edc.stoi, edc.itos)
+    """
+    if not stmd and not smd and not smdl and not stmdl:
+        stmd = None
+        smd = None
+        smdl = None
+        stmdl = None
+    """
+    stmd = None
+    smd = None
+    smdl = None
+    stmdl = None
+    st_mv_data = []
+    if data.get('state') and len(data) in (16, 19):
+        st_mv_data += idc.createInputString(data)
+        #print(f" st_mv_data len = {len(st_mv_data)}\n st_mv_data = {st_mv_data}")
+        if st_mv_data:
+            if stmd:
+                stmd += st_mv_data
+            else:
+                stmd = st_mv_data
+            print(f" st_mv_data len = {len(st_mv_data)}\n")
+            print(f" stmd len = {len(stmd)}\n")
+            print(f" stmd = {stmd}\n")
+            for smdt in st_mv_data:
+                #stoi, itos = 
+                #########edc.createTokens(smdt[0]) #####
+                edc.stoi, edc.itos = edc.createTokens(smdt[0], edc.stoi, edc.itos)
+                #stoi, itos = 
+                #####edc.createTokens(smdt[2]) ####
+                edc.stoi, edc.itos = edc.createTokens(smdt[2], edc.stoi, edc.itos)
+                #st_mv_data_list += idc.convertStateToList(smdt[0], smdt[1], smdt[2])
+                st_mv_data_list = idc.convertStateToList(smdt[0], smdt[1], smdt[2])
+                if stmdl:
+                    stmdl += st_mv_data_list
+                else:
+                    stmdl = st_mv_data_list
+    ####print(f" starting for loop \n stmd = {stmd}\n \n stmdl = {stmdl}\n " )
+    #i=0
+    for key, value in data.items():
+        if key != 'state' and len(value) in (19, 16):
+            edc, idc, smd, smdl =  get_nested_data(value, edc, idc)
+            if smd and len(smd) > 1:
+                stmd.extend(smd)
+            elif smd and len(smd) == 1:
+                stmd += smd
+            if smdl and len(smdl) > 1:
+                stmdl.extend(smdl)
+            elif smdl and len(smdl) == 1:
+                stmdl += smdl
+        #i += 1
+        ########print(f" Ending for loop, i = {i}, stmd = {stmd}, \n stmdl = {stmdl}\n " )
+    return edc, idc, stmd, stmdl
+#####
+def createTVData(file, edctv = None, idctv = None):
+    ########filepath = "./data/dataset/cube3x3solvingdataset.json"
+    filepath = file
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print(f"idctv \n")
+    #if idctv not None: 
+    if idctv:
+        print(f"idctv in if statement  \n")
+        idc = idctv
+        print(f" idc idctv = {idc}")
+        ##idc(filepath)#
+        idc.load_data(filepath)
+    else:
+        print(f"imd in else statement.\n")
+        idc = imd.ImportDataset(filepath) 
+    print(f" data deep copy. \n")
+    data=deepcopy(idc.data["solution"])
+    if edctv:
+        print(f"edctv in if statement \n")
+        edc = edctv
+        ###edc(data)
+    else:
+        print(f"ed in else statement \n")
+        #ed.EncodeDecode(data)
+        edc = ed.EncodeDecode(data)
+    print(f"stoi before = {edc.stoi}")
+    print(f"itos before = {edc.itos}")
+    print(f"stoi len before = {len(edc.stoi)}")
+    print(f"itos len before = {len(edc.itos)}")
+    edc, idc, stmd, stmdl = get_nested_data(idc.data["solution"], edc, idc)
+    print(f"itos after = {edc.itos}")
+    print(f"stoi after = {edc.stoi}")
+    print(f"itos len after = {len(edc.itos)}")
+    print(f"stoi len after = {len(edc.stoi)}")
+    print(f"stmd len = {len(stmd)}\n")
+    print(f"stmdl len = {len(stmdl)}\n")
+    stmdlenc = []
+    stmdltensor = []
+    #for epoch in range(max_epoch):
+        ###print(epoch)
+    for i in range(len(stmdl) // 3 if stmdl else 0):
+        ####
+        print(f" Loop no = {i}\n")
+        stmdlin  = []
+        ####stmdlin  = ['<SOS>']
+        stmdlin += stmdl[3*i]
+        #stmdlin += [stmdl[3*i]]
+        # stmdlin += stmdl[3*i]
+        stmdlin += ['<'+stmdl[3*i+1]+'>']
+        stmdlin += stmdl[3*i+2]
+        #stmdlin += [stmdl[3*i+2]]
+        ####stmdlin += ['<EOS>']
+        print(f" stmdlin = {stmdlin}")
+        print(f" stmdlin len = {len(stmdlin)}")
+        #stmdlenc = edc.encode(stmdlin)
+        ####stmdlenc += edc.encode(stmdlin)
+        stmdlenc += [edc.encode(stmdlin)] ####
+        print(f"stmdlenc len= {len(stmdlenc[-1])}")
+    return stmdlenc, edc, idc
+######
+######
 # =============================================================================
 # 2. ENFORCED GEOMETRIC MODEL ARCHITECTURE
 # =============================================================================
