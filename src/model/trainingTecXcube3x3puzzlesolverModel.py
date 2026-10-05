@@ -107,7 +107,7 @@ OUTPUT_STAGE_TOKENS = 20 # Next 20 slots: Target stage transformations
 CONTROL_TOKENS = 4       # Final 4 slots: Meta commands (SOS, EOS, Task, Move)
 
 # Training Hyperparameters
-BATCH_SIZE = 18          # Process exactly 18 parallel sequence streams per batch
+BATCH_SIZE = 18       # 18x880 = 18x20x44 = 18x20x(20+20+4)   # Process exactly 18 parallel sequence streams per batch
 PATIENCE_STEPS = 2000    # Target patience window for post-optimization convergence
 ACCURACY_GATE_MIN = 0.98 # Minimum 98% accuracy required to pass performance gate
 
