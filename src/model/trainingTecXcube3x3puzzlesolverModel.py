@@ -227,8 +227,8 @@ class Block(nn.Module):
 
 
 class CustomTransformer(nn.Module):
-    #def __init__(self, vocab_size=ACTUAL_VOCAB_SIZE, block_size=BLOCK_SIZE, n_layer=18, n_head=20, n_embd=768, dropout=0.1, bias=False):
-    def __init__(self, vocab_size=ACTUAL_VOCAB_SIZE, block_size=BLOCK_SIZE, n_layer=12, n_head=12, n_embd=768, dropout=0.1, bias=False):
+    #def __init__(self, vocab_size=ACTUAL_VOCAB_SIZE, block_size=BLOCK_SIZE, n_layer=12, n_head=12, n_embd=768, dropout=0.1, bias=False):
+    def __init__(self, vocab_size=ACTUAL_VOCAB_SIZE, block_size=BLOCK_SIZE, n_layer=20, n_head=44, n_embd=1408, dropout=0.1, bias=False):
         super().__init__()
         self.block_size = block_size
         self.transformer = nn.ModuleDict(dict(
