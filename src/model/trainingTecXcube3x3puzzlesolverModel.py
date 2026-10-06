@@ -169,9 +169,9 @@ class StructuralPositionalEncoding(nn.Module):
             """  
             # Allocate Segment Boundaries cleanly across the step block
             zone_mask[step_offset + 0 ] = 0  # Control Operational Zone
-            zone_mask[step_offset + 1 : step_offset + 20] = 1   # Input Stage Zone
-            zone_mask[step_offset + 21 : step_offset + 22] = 0  # Control Operational Zone
-            zone_mask[step_offset + 23 : step_offset + 42] = 2  # Output Stage Zone
+            zone_mask[step_offset + 1 : step_offset + 21] = 1   # Input Stage Zone
+            zone_mask[step_offset + 21 : step_offset + 23] = 0  # Control Operational Zone
+            zone_mask[step_offset + 23 : step_offset + 43] = 2  # Output Stage Zone
             zone_mask[step_offset + 43] = 0  # Control Operational Zone
             """
         self.zone_embeddings = nn.Embedding(3, d_model) 
